@@ -5,25 +5,28 @@
         "revision": "3e6ed3cb423ac9ce63aeb1e01d0371cd588db987"
       },
       "homebrew/bundle": {
-        "revision": "b0c5eda199b79c9ea5ce2706fc4fe3007e19eec9"
+        "revision": "7ec0ec6f4b7560f3ee448d5595160f54e4e0ca40"
       },
       "homebrew/cask": {
-        "revision": "aafa2d978d4e2e8fc18435f725563ebf6e0681e4"
+        "revision": "84de3756598e6d2c183de3e96b490049abc278c8"
       },
       "homebrew/cask-versions": {
-        "revision": "3fbfe1ca0c5e6c47c37712148298042f93f797a9"
+        "revision": "c1400ee3c9714d8a416837b9bcb987c5dfe06e25"
       },
       "homebrew/core": {
-        "revision": "6ae13fe465fc4ef47713c3a36c83f3d77cc8b8ce"
+        "revision": "fa7f968361259decb0fb5f56250ac940e27a95d6"
       },
       "homebrew/services": {
-        "revision": "0c32de2ca3cec2a85eebf5e3704af7dc7d650845"
+        "revision": "c8f71846b2ee29c46a9557f9a03f106d5d2778d8"
       },
       "rbenv/tap": {
         "revision": "5c21a29c7a4364cccf11f5aff813dd25d1021667"
       },
       "romkatv/powerlevel10k": {
         "revision": "177f8bad7610834250988cb48c497a5d8f94b892"
+      },
+      "homebrew/cask-fonts": {
+        "revision": "08395c17dfe880bf2cbe1e1ebeb95fd970ba8886"
       }
     },
     "brew": {
@@ -1336,7 +1339,7 @@
         }
       },
       "google-chrome": {
-        "version": "91.0.4472.114",
+        "version": "91.0.4472.164",
         "options": {
           "full_name": "google-chrome"
         }
@@ -1348,7 +1351,7 @@
         }
       },
       "jetbrains-toolbox": {
-        "version": "1.20,1.20.8804",
+        "version": "1.21,1.21.9547",
         "options": {
           "full_name": "jetbrains-toolbox"
         }
@@ -1378,9 +1381,15 @@
         }
       },
       "visual-studio-code": {
-        "version": "1.58.1",
+        "version": "1.58.2",
         "options": {
           "full_name": "visual-studio-code"
+        }
+      },
+      "libreoffice": {
+        "version": "7.1.4",
+        "options": {
+          "full_name": "libreoffice"
         }
       }
     }
@@ -1390,7 +1399,7 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.2.2",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "6ae13fe465fc4ef47713c3a36c83f3d77cc8b8ce",
+        "Homebrew/homebrew-core": "fa7f968361259decb0fb5f56250ac940e27a95d6",
         "CLT": "12.5.0.22.9",
         "Xcode": "12.5",
         "macOS": "11.4"
