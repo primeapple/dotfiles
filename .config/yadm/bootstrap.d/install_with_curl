@@ -1,0 +1,8 @@
+#!/usr/local/bin/fish
+#### RVM - Ruby enVironment Manager
+# install fish
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
+# install fish functions
+curl -L --create-dirs -o ~/.config/fish/functions/rvm.fish https://raw.github.com/lunks/fish-nuggets/master/functions/rvm.fish
+# set default ruby 
+rvm --default use 3.0.2
