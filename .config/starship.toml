@@ -1,0 +1,6 @@
+# Disable modules, hiding them from the prompt completely
+[package]
+disabled = true
+
+[kotlin]
+disabled = true
