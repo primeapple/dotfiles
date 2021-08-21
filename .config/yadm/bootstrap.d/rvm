@@ -1,0 +1,4 @@
+#!/usr/local/bin/fish
+echo "Installing latest Ruby as default:"
+# we could also use ruby-head to get the head, --default gives the latest lts mri
+rvm use --latest --default
