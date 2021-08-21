@@ -145,3 +145,11 @@ nnoremap <silent> L :call ToggleMovement('L', 'H')<CR>
 " How about G and gg
 nnoremap <silent> G :call ToggleMovement('G', 'gg')<CR>
 nnoremap <silent> gg :call ToggleMovement('gg', 'G')<CR>
+
+" Copy until eol
+nnoremap Y yg_
+
+" Keeping Cursor centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
