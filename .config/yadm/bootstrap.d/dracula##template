@@ -1,0 +1,5 @@
+#!/usr/local/bin/fish
+# TODO: is it really necessary to clone the themes?
+{% if yadm.os == "Darwin" %}
+git clone https://github.com/dracula/iterm.git ~/.config/dracula-theme/
+{% endif %}
