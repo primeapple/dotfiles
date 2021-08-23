@@ -1,1 +1,5 @@
 source ~/.vimrc
+
+
+nnoremap <silent> G G<CR>
+nnoremap <silent> gg gg<CR>
