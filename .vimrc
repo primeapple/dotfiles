@@ -143,8 +143,8 @@ nnoremap <silent> H :call ToggleMovement('H', 'L')<CR>
 nnoremap <silent> L :call ToggleMovement('L', 'H')<CR>
 
 " How about G and gg
-nnoremap <silent> G :call ToggleMovement('G', 'gg')<CR>
-nnoremap <silent> gg :call ToggleMovement('gg', 'G')<CR>
+" nnoremap <silent> G :call ToggleMovement('G', 'gg')<CR>
+" nnoremap <silent> gg :call ToggleMovement('gg', 'G')<CR>
 
 " Copy until eol
 nnoremap Y yg_
@@ -153,3 +153,6 @@ nnoremap Y yg_
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %

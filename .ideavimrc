@@ -1,5 +1,6 @@
 source ~/.vimrc
 
 
-nnoremap <silent> G G<CR>
-nnoremap <silent> gg gg<CR>
+" needed for toggle function in .vimrc
+" nnoremap <silent> G G<CR>
+" nnoremap <silent> gg gg<CR>
