@@ -156,3 +156,7 @@ nnoremap J mzJ`z
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
+" Highlight until eol
+nnoremap V vg_
+nnoremap vv V
