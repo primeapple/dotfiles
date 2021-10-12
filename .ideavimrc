@@ -1,5 +1,6 @@
 source ~/.vimrc
 
+set relativenumber number
 
 " needed for toggle function in .vimrc
 " nnoremap <silent> G G<CR>
