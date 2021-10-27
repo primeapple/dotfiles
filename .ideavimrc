@@ -1,5 +1,15 @@
 source ~/.vimrc
 
+" Plugin Support, see https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
+"
+set NERDTree
+" ys, cs, ds, S
+set surround
+" gcc, gc + motion, v_gc
+set commentary
+" <A-n>, <A-x>, <A-p>, g<A-n>
+set multiple-cursors
+
 " needed for toggle function in .vimrc
 " nnoremap <silent> G G<CR>
 " nnoremap <silent> gg gg<CR>

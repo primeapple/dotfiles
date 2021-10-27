@@ -16,5 +16,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'jiangmiao/auto-pairs'
 	" Nice color scheme
 	Plug 'dracula/vim'
+	" Sorround
+	Plug 'tpope/vim-surround'
+	" Commentary
+	Plug 'tpope/vim-commentary'
+	" Commentary
+	Plug 'mg979/vim-visual-multi'
 
 call plug#end()
