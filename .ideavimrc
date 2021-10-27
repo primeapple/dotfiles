@@ -10,6 +10,8 @@ set commentary
 " <A-n>, <A-x>, <A-p>, g<A-n>
 set multiple-cursors
 
+set highlightedyank
+
 " needed for toggle function in .vimrc
 " nnoremap <silent> G G<CR>
 " nnoremap <silent> gg gg<CR>

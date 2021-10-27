@@ -20,7 +20,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'tpope/vim-surround'
 	" Commentary
 	Plug 'tpope/vim-commentary'
-	" Commentary
+	" Multiple Cursors
 	Plug 'mg979/vim-visual-multi'
+	" Highlights yanked text
+	Plug 'machakann/vim-highlightedyank'
 
 call plug#end()
