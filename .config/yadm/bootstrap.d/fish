@@ -1,0 +1,17 @@
+#!/bin/bash
+# TODO: setup tide and nvm
+
+# settings shell to fish, if it isn't yet
+CURRENT_SHELL=${SHELL##*/}
+if [[ ! "$CURRENT_SHELL" == "fish" ]]; then
+	chsh -s $(which fish)
+fi
+
+# adding .bin folder to path
+fish -c "fish_add_path ~/.bin"
+
+# manage fisher plugins, this should normally work through the fish_plugins file, but sadly does not
+fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+fish -c "fisher install jorgebucaran/nvm.fish"
+fish -c "fisher install IlanCosman/tide@v5"
+fish -c "fisher install gazorby/fish-abbreviation-tips"
