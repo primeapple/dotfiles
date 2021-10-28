@@ -1,9 +1,12 @@
-#!/usr/local/bin/fish
+#!/bin/bash
 
 #### RVM - Ruby enVironment Manager
 # see: https://rvm.io/rvm/install
 echo "Installing RVM:"
-# TODO: add keys to keyserver
+# fetch the keys
+# this is a little less secure than using gpg to fetch the keys, but at least it works
+curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 # install rvm
 curl -sSL https://get.rvm.io | bash -s stable --ruby
 # install fish functions
