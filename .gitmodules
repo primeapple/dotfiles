@@ -1,3 +1,6 @@
 [submodule "/Users/tmueller/.tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule ".yadm-project"]
+	path = .yadm-project
+	url = https://github.com/TheLocehiliosan/yadm.git
