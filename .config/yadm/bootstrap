@@ -4,9 +4,20 @@
 # execute all executable files (excluding templates and editor backups) in the
 # ~/.config/yadm/bootstrap.d directory when run.
 
+# script fails if any command has exit != 0
 set -eu
 
-# Directory to look for bootstrap executables in
+### init all submodules ###
+echo "Init all submodules"
+cd "$HOME"
+yadm submodule update --recursive --init
+cd "$HOME/.config/yadm"
+
+### change https to git repo url ###
+echo "Updating the yadm repo origin URL"
+yadm remote set-url origin "git@github.com:primeapple/dotfiles.git"
+
+### Execute all files in bootstrap directory ###
 BOOTSTRAP_D="${BASH_SOURCE[0]}.d"
 
 if [[ ! -d "$BOOTSTRAP_D" ]]; then

@@ -9,15 +9,16 @@ fi
 # adding .bin folder to path
 fish -c "fish_add_path ~/.bin"
 
-# manage fisher plugins, this should normally work through the fish_plugins file, but sadly does not
-fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
-fish -c "fisher install jorgebucaran/nvm.fish"
-fish -c "fisher install IlanCosman/tide@v5"
-fish -c "fisher install gazorby/fish-abbreviation-tips"
+# TODO: this does not work yet, it sometimes adds weird filenames to the fish_plugins file
+# # manage fisher plugins, this should normally work through the fish_plugins file, but sadly does not
+# fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+# fish -c "fisher install jorgebucaran/nvm.fish"
+# fish -c "fisher install IlanCosman/tide@v5"
+# fish -c "fisher install gazorby/fish-abbreviation-tips"
 
-# running tide configure, maybe only do this, if there are no tide settings yet
-# fish -c "tide configure"
+# # running tide configure, maybe only do this, if there are no tide settings yet
+# # fish -c "tide configure"
 
-# install latest node version
+# # install some node versions
 # fish -c "nvm install lts"
 # fish -c "nvm install latest"
