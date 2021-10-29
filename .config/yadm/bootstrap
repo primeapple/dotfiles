@@ -11,13 +11,17 @@ set -eu
 echo "Init all submodules"
 cd "$HOME"
 yadm submodule update --recursive --init
-cd "$HOME/.config/yadm"
+
+### hide README and LICENSE ###
+yadm gitconfig core.sparseCheckout true
+yadm sparse-checkout set '/*' '!README.md' '!LICENSE'
 
 ### change https to git repo url ###
 echo "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:primeapple/dotfiles.git"
 
 ### Execute all files in bootstrap directory ###
+cd "$HOME/.config/yadm"
 BOOTSTRAP_D="${BASH_SOURCE[0]}.d"
 
 if [[ ! -d "$BOOTSTRAP_D" ]]; then
