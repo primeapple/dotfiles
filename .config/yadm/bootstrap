@@ -10,7 +10,7 @@ set -eu
 ### init all submodules ###
 echo "Init all submodules"
 cd "$HOME"
-yadm submodule update --recursive --init
+yadm submodule update --recursive --init --rebase
 
 ### hide README and LICENSE ###
 yadm gitconfig core.sparseCheckout true
