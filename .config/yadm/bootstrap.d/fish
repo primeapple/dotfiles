@@ -13,6 +13,9 @@ if not contains ~/.bin \$PATH
 end
 "
 
+# adding nice fish greeting
+fish -c "set -U fish_greeting 'Welcome to fish 🐟'"
+
 # TODO: this does not work yet, it sometimes adds weird filenames to the fish_plugins file
 # # manage fisher plugins, this should normally work through the fish_plugins file, but sadly does not
 # fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
