@@ -98,7 +98,6 @@ set tabstop=4
 " when indenting with '>', use 4 spaces width
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
-" AUSGEGRAUT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 "set expandtab
 
 "Zeilennummerierung anschalten:
@@ -106,8 +105,10 @@ set number
 set relativenumber
 
 "Systemclipboard wird statt dem VIM Clipboard genutzt
-"d.h. copy paste Systemweit in und aus vim unterstützt
 set clipboard=unnamedplus
+" in visual mode on insert don't overwrite default register with the
+" overwritten word, see https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
+xnoremap <silent> p p:let @+=@0<CR>
 
 "BackupOrdner ändern
 set backupdir=~/.config/nvim/tmp,.
