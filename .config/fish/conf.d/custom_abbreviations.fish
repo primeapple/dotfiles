@@ -6,6 +6,7 @@ if status --is-interactive
 	abbr --add --global gpu 'git push -u origin HEAD'
 	abbr --add --global gw './gradlew -Dconfig.profile=dev-local'
 	abbr --add --global mv 'mv -i'
+	abbr --add --global g 'git'
 	if command -q exa
 		abbr --add --global ls exa
 	end

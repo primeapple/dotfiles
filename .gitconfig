@@ -1,0 +1,10 @@
+[fetch]
+	prune = true
+	pruneTags = true
+[user]
+	name = primeapple
+	email = toni.mueller.web@mailbox.org
+[init]
+	defaultBranch = main
+[alias]
+	logl = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
