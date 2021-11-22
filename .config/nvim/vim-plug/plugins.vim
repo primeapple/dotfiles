@@ -9,7 +9,8 @@ endif
 call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Better Syntax Support
-    Plug 'sheerun/vim-polyglot'
+	" Not yet fully out of beta?
+	" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " updating the parsers on update
     " File Explorer
     Plug 'scrooloose/NERDTree'
     " Auto pairs for '(' '[' '{'
@@ -24,5 +25,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'mg979/vim-visual-multi'
 	" Highlights yanked text
 	Plug 'machakann/vim-highlightedyank'
+	" Latex Plugin
+	Plug 'lervag/vimtex'
 
 call plug#end()

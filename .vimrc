@@ -161,3 +161,6 @@ cmap w!! w !sudo tee > /dev/null %
 " Highlight until eol
 nnoremap V vg_
 nnoremap vv V
+
+" enable syntax related features
+syntax enable
