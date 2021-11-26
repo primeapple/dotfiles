@@ -13,8 +13,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " updating the parsers on update
     " File Explorer
     Plug 'scrooloose/NERDTree'
-    " Auto pairs for '(' '[' '{'
-    Plug 'jiangmiao/auto-pairs'
 	" Nice color scheme
 	Plug 'dracula/vim'
 	" Sorround
@@ -27,5 +25,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'machakann/vim-highlightedyank'
 	" Latex Plugin
 	Plug 'lervag/vimtex'
+	" Auto closing brackets on enter key
+	Plug 'rstacruz/vim-closer'
 
 call plug#end()

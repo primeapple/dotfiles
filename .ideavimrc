@@ -12,6 +12,9 @@ set multiple-cursors
 
 set highlightedyank
 
+" the follwoing from .vimrc does not work...
+" xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR>
+xnoremap p "_dP
 " needed for toggle function in .vimrc
 " nnoremap <silent> G G<CR>
 " nnoremap <silent> gg gg<CR>

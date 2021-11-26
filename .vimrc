@@ -108,7 +108,7 @@ set relativenumber
 set clipboard=unnamedplus
 " in visual mode on insert don't overwrite default register with the
 " overwritten word, see https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
-xnoremap <silent> p p:let @+=@0<CR>
+xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR>
 
 "BackupOrdner ändern
 set backupdir=~/.config/nvim/tmp,.
