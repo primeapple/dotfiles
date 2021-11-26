@@ -164,3 +164,8 @@ nnoremap vv V
 
 " enable syntax related features
 syntax enable
+
+" searches are case insensitive if no upper word are in the search word
+set ignorecase
+" searches get case sensitive if any upper letter is in the search word
+set smartcase
