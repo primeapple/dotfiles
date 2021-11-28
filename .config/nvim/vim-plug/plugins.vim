@@ -19,6 +19,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'tpope/vim-surround'
 	" Commentary
 	Plug 'tpope/vim-commentary'
+	" Git support in Vim
+	Plug 'tpope/vim-fugitive'
 	" Multiple Cursors
 	Plug 'mg979/vim-visual-multi'
 	" Highlights yanked text

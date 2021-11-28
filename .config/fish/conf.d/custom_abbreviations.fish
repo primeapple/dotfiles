@@ -15,4 +15,7 @@ if status --is-interactive
 	if command -q bat
 		abbr --add --global cat bat
 	end
+	if command -q fd
+		abbr --add --global find fd
+	end
 end

@@ -108,7 +108,7 @@ set relativenumber
 set clipboard=unnamedplus
 " in visual mode on insert don't overwrite default register with the
 " overwritten word, see https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
-xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR>
+xnoremap <silent> p p:let @+=@0<CR>
 
 "BackupOrdner ändern
 set backupdir=~/.config/nvim/tmp,.
@@ -169,3 +169,9 @@ syntax enable
 set ignorecase
 " searches get case sensitive if any upper letter is in the search word
 set smartcase
+
+
+" This unsets the 'last search pattern' register by hitting return
+" https://stackoverflow.com/a/662914
+nnoremap <CR> :noh<CR><CR>
+
