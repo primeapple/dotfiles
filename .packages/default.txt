@@ -1,9 +1,0 @@
-bat
-neovim
-exa
-fish
-curl
-wget
-htop
-tmux
-ping

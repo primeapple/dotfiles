@@ -6,6 +6,7 @@ if status --is-interactive
 	abbr --add --global gw './gradlew -Dconfig.profile=dev-local'
 	abbr --add --global mv 'mv -i'
 	abbr --add --global g 'git'
+	abbr --add --global reload 'source ~/.config/fish/config.fish'
 	if command -q exa
 		abbr --add --global ls exa
 	end
