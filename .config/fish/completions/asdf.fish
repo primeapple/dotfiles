@@ -1,1 +1,1 @@
-/Users/tmueller/.asdf/completions/asdf.fish
+../../yadm/alt/.config/fish/completions/asdf.fish##distro.ManjaroLinux
