@@ -5,3 +5,4 @@ neovim stable
 nodejs lts
 ruby 3.0.3
 tmux 3.2a
+fd 8.3.0
