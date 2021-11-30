@@ -3,6 +3,5 @@ exa 0.10.1
 jq 1.6
 neovim stable
 nodejs lts
-ruby 3.0.3
 tmux 3.2a
 fd 8.3.0
