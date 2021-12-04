@@ -113,10 +113,10 @@ xnoremap <silent> p p:let @+=@0<CR>
 "BackupOrdner ändern
 set backupdir=~/.config/nvim/tmp,.
 set directory=~/.config/nvim/tmp,.
-"
+ 
 "UndoOrdner ändern
 set undodir=~/.config/nvim/tmpm,.
-"
+set undofile
 
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.

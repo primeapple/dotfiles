@@ -21,6 +21,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'tpope/vim-commentary'
 	" Git support in Vim
 	Plug 'tpope/vim-fugitive'
+	" Useful mappings with [ and ]
+	Plug 'tpope/vim-unimpaired'
 	" Multiple Cursors
 	Plug 'mg979/vim-visual-multi'
 	" Highlights yanked text
@@ -29,5 +31,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'lervag/vimtex'
 	" Auto closing brackets on enter key
 	Plug 'rstacruz/vim-closer'
+	" move through camelCase, snake_case, kebab-case, CONSTANTS, ... with w, e, b, ge, aw, iw
+	Plug 'chaoren/vim-wordmotion'
+	" better marks
+	" Im to stupid to set it up properly... probably have to move to lua fulltime :O
+	" Plug 'chentau/marks.nvim'
 
 call plug#end()
+
