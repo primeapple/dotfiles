@@ -170,8 +170,10 @@ set ignorecase
 " searches get case sensitive if any upper letter is in the search word
 set smartcase
 
-
+" Sets the leader key to space:
+nmap <space> <leader>
+nmap <space><space> <localleader>
 " This unsets the 'last search pattern' register by hitting return
 " https://stackoverflow.com/a/662914
-nnoremap <CR> :noh<CR><CR>
+nnoremap <CR> :noh<CR>
 

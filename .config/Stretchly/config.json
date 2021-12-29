@@ -27,7 +27,7 @@
 	"volume": 1,
 	"fullscreen": true,
 	"ideas": true,
-	"naturalBreaks": false,
+	"naturalBreaks": true,
 	"naturalBreaksInactivityResetTime": 300000,
 	"allScreens": true,
 	"useIdeasFromSettings": false,

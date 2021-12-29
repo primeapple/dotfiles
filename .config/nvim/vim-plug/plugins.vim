@@ -33,9 +33,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'rstacruz/vim-closer'
 	" move through camelCase, snake_case, kebab-case, CONSTANTS, ... with w, e, b, ge, aw, iw
 	Plug 'chaoren/vim-wordmotion'
-	" better marks
-	" Im to stupid to set it up properly... probably have to move to lua fulltime :O
-	" Plug 'chentau/marks.nvim'
+	" better marks (visualization, deletion, navigation, etc.)
+	Plug 'chentau/marks.nvim'
 
 call plug#end()
 

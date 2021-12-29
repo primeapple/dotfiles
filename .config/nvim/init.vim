@@ -14,3 +14,12 @@ set undodir=~/.config/nvim/tmpm,.
 
 "Farbschema ändern
 colorscheme dracula
+
+""""""""""""""""""""""""
+" Plugin Configuration "
+""""""""""""""""""""""""
+lua <<EOF
+require'marks'.setup {
+  builtin_marks = { ".", "<", ">", "^" }
+}
+EOF
