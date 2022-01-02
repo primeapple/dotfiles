@@ -1,0 +1,10 @@
+[
+	{ "keys": ["l", "TAB"], "type": "function", "command": "focus_next" },
+	{ "keys": ["h", "SHIFT_TAB"], "type": "function", "command": "focus_previous" },
+	{ "keys": ["k", "UP"], "type": "function", "command": "move_up" },
+	{ "keys": ["j", "DOWN"], "type": "function", "command": "move_down" },
+	{ "keys": ["cn"], "type": "prompt", "command": "ren $n \"\"", "cursorPosition": -2 },
+	{ "keys": ["d", "PAGE_DOWN"], "type": "function", "command": "page_down" },
+	{ "keys": ["u", "PAGE_UP"], "type": "function", "command": "page_up" },
+	{ "keys": ["x", "DELETE", "BACKSPACE"], "type": "function", "command": "delete" }
+]
