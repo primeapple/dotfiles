@@ -9,13 +9,12 @@ endif
 call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Better Syntax Support
-	" Not yet fully out of beta?
-	" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " updating the parsers on update
-    " File Explorer
-    Plug 'scrooloose/NERDTree'
+	" TODO: Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " updating the parsers on update
+	" File Explorer
+	" TODO: Plug 'kyazdani42/nvim-tree.lua'
 	" Nice color scheme
 	Plug 'dracula/vim'
-	" Sorround
+	" Surround
 	Plug 'tpope/vim-surround'
 	" Commentary
 	Plug 'tpope/vim-commentary'

@@ -1,15 +1,29 @@
 #!/bin/bash
 
-# TODO: lazydocker, ctop, yay
-pacman_packages=(
+# lazydocker, ctop, yay, neovim?,
+pacman_shell_packages=(
 	"bat"
+	"docker"
+	"docker-compose"
 	"exa"
 	"fd"
 	"htop"
 	"jq"
+	"keepassxc"
+	"syncthing"
 	"tmux"
+	"youtube-dl"
 )
 
+# vscode
+pacman_gui_packages=(
+	"chromium"
+	"firefox"
+	"kitty"
+	"thunderbird"
+)
+
+# jetbrains toolbox
 aur_packages=(
 	"stretchly"	
 )
