@@ -1,0 +1,5 @@
+#!/bin/bash
+
+nvim +'PlugRemove --sync' +qa
+nvim +'PlugUpdate --sync' +qa
+nvim +'PlugInstall --sync' +qa
