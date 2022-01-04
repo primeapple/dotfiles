@@ -35,6 +35,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'chaoren/vim-wordmotion'
 	" better marks (visualization, deletion, navigation, etc.)
 	Plug 'chentau/marks.nvim'
+	" Neovim im Browser :O
+	Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 call plug#end()
 
