@@ -1,20 +1,86 @@
 source ~/.vimrc
 
-" Plugin Support, see https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
-"
-set NERDTree
+" nice reads: 
+" - https://danidiaz.medium.com/configuring-ideavimrc-de16a4da0715
+" - https://towardsdatascience.com/the-essential-ideavim-remaps-291d4cd3971b
+
+
+""""""""""""""""
+""" Plugins: """
+""""""""""""""""
+" see https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
+
 " ys, cs, ds, S
 set surround
 " gcc, gc + motion, v_gc
 set commentary
 " <A-n>, <A-x>, <A-p>, g<A-n>
 set multiple-cursors
-
 set highlightedyank
 
-" the follwoing from .vimrc does not work...
-" xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR>
+"""""""""""""""""""""""""""""""""""""""""
+""" Things that don't work from vimrc """
+"""""""""""""""""""""""""""""""""""""""""
+" alternative to xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR>
 xnoremap p "_dP
-" needed for toggle function in .vimrc
-" nnoremap <silent> G G<CR>
-" nnoremap <silent> gg gg<CR>
+
+
+""""""""""""""""""""
+""" IDEA setings """
+""""""""""""""""""""
+
+" marks as bookmarks
+set ideamarks
+" some line join magic
+set ideajoin
+" disable bells
+set visualbell
+set noerrorbells
+
+" enable vim as handler for the following
+sethandler <C-a> a:vim
+sethandler <C-x> a:vim
+sethandler <C-r> a:vim
+sethandler <C-f> a:vim
+sethandler <C-/> a:vim
+
+" SourceCodeEditing
+nnoremap <Leader>= :action ReformatCode<cr>
+nnoremap <leader>o :action OptimizeImports<cr>
+nnoremap <leader>h :action QuickJavaDoc<cr>
+
+" Data type related
+" nnoremap <leader>h :action CallHierarchy<cr>
+" nnoremap <c-s> :action FileStructurePopup<cr>
+" already occupied by commentary
+" nnoremap gc :action GotoClass<cr>
+nnoremap gb :action ShowNavBar<cr>
+nnoremap gd :action GotoDeclaration<cr>
+nnoremap ge :action GotoNextError<cr>
+nnoremap gE :action GotoPreviousError<cr>
+nnoremap gh :action TypeHierarchy<cr>
+nnoremap gi :action GotoImplementation<cr>
+nnoremap gp :action GotoSuperMethod<cr>
+nnoremap gr :action GotoRelated<cr>
+nnoremap gs :action GotoSymbol<cr>
+nnoremap gt :action GotoTest<cr>
+" nnoremap gb :action Back<cr>
+" nnoremap gf :action Forward<cr>
+
+" Navigation
+map <C-o> <Action>(Back)
+map <C-i> <Action>(Forward)
+map <C-/> <Action>(FindInPath)
+map <C-f> <Action>(GotoFile)
+map <C-c> <Action>(GotoClass)
+map <C-e> <Action>(RecentFiles)
+
+" Runing stuff
+nnoremap <Leader>rr :action ContextRun<cr>
+nnoremap <Leader>rd :action ContextDebug<cr>
+nnoremap <Leader>rc :action RunClass<cr>
+nnoremap <Leader>re :action Rerun<cr>
+nnoremap <Leader>rf :action RerunFailedTests<cr>
+nnoremap <Leader>rt :action ActivateRunToolWindow<cr>
+" launches Run Configuration Window
+" nnoremap ,l :action ChooseRunConfiguration<cr>

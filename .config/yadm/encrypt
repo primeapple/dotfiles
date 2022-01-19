@@ -1,1 +1,2 @@
 .config/fish/conf.d/custom_abbreviations_work.fish
+.config/fish/functions/datameer.fish

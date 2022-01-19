@@ -10,8 +10,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Better Syntax Support
 	" TODO: Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " updating the parsers on update
-	" File Explorer
-	" TODO: Plug 'kyazdani42/nvim-tree.lua'
 	" Nice color scheme
 	Plug 'dracula/vim'
 	" Surround
@@ -22,8 +20,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'tpope/vim-fugitive'
 	" Useful mappings with [ and ]
 	Plug 'tpope/vim-unimpaired'
-	" Multiple Cursors
-	Plug 'mg979/vim-visual-multi'
+	" Lua Functions, required by telescope and harpoon
+	Plug 'nvim-lua/plenary.nvim'
+	" Fuzzy Finder
+	Plug 'nvim-telescope/telescope.nvim'
 	" Highlights yanked text
 	Plug 'machakann/vim-highlightedyank'
 	" Latex Plugin

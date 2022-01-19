@@ -122,27 +122,6 @@ set undofile
 " compatible.
 packadd matchit
 
-"Toggle Methoden einfügen, dabei werden immer abwechselnd erst das eine, dann
-"das andere Kommando ausgeführt, egal, welche Taste von beiden gedrückt wird:
-function! ToggleMovement(firstOp, thenOp)
-  let pos = getpos('.')
-  execute "normal! " . a:firstOp
-  if pos == getpos('.')
-    execute "normal! " . a:thenOp
-  endif
-endfunction
-
-" The original carat 0 swap
-nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
-
-" How about ; and ,
-nnoremap <silent> ; :call ToggleMovement(';', ',')<CR>
-nnoremap <silent> , :call ToggleMovement(',', ';')<CR>
-
-" How about H and L
-nnoremap <silent> H :call ToggleMovement('H', 'L')<CR>
-nnoremap <silent> L :call ToggleMovement('L', 'H')<CR>
-
 " How about G and gg
 " nnoremap <silent> G :call ToggleMovement('G', 'gg')<CR>
 " nnoremap <silent> gg :call ToggleMovement('gg', 'G')<CR>
@@ -170,9 +149,10 @@ set ignorecase
 " searches get case sensitive if any upper letter is in the search word
 set smartcase
 
-" Sets the leader key to space:
-nmap <space> <leader>
-nmap <space><space> <localleader>
+" Sets the leader key to space, see https://stackoverflow.com/a/31540733
+map <Space> <Leader>
+let maplocalleader = ","
+
 " This unsets the 'last search pattern' register by hitting return
 " https://stackoverflow.com/a/662914
 nnoremap <CR> :noh<CR>
