@@ -9,13 +9,15 @@ endif
 call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Better Syntax Support
-	" TODO: Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " updating the parsers on update
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " updating the parsers on update
 	" Nice color scheme
 	Plug 'dracula/vim'
 	" Surround
 	Plug 'tpope/vim-surround'
 	" Commentary
 	Plug 'tpope/vim-commentary'
+	" Enhancement for netrw
+	Plug 'tpope/vim-vinegar'
 	" Git support in Vim
 	Plug 'tpope/vim-fugitive'
 	" Useful mappings with [ and ]
@@ -34,8 +36,39 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'chaoren/vim-wordmotion'
 	" better marks (visualization, deletion, navigation, etc.)
 	Plug 'chentau/marks.nvim'
-	" Neovim im Browser :O
-	Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 call plug#end()
 
+
+""""""""""""""""""""""""
+" Plugin Configuration "
+""""""""""""""""""""""""
+
+" Marks Nvim
+lua <<EOF
+require'marks'.setup {
+  builtin_marks = { ".", "[", "]", "{", "}", "^" }
+}
+require'nvim-treesitter.configs'.setup {
+  -- Maybe change to list of languages
+  ensure_installed = "maintained",
+
+  highlight = {
+    enable = true,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    additional_vim_regex_highlighting = false,
+  },
+  -- EXPERIMENTAL
+  indent = {
+    enable = true
+  }
+}
+EOF
+
+" Telescope Nvim
+nnoremap <C-f> <cmd>Telescope find_files<cr>
+nnoremap <C-/> <cmd>Telescope live_grep<cr>
+
+" WordMotionPrefix
+let g:wordmotion_prefix = '<Leader>'

@@ -1,0 +1,13 @@
+# VI Mode
+# see https://vim.fandom.com/wiki/Use_vi_shortcuts_in_terminal
+set editing-mode vi
+set keymap vi-command
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set keymap vi-insert
+TAB: menu complete
+
+# Edit options before rerunning previous command, eg: ls a b c -> ls -al a b c
+"\e-": "\C-p\C-a\M-f "
+# Two escapes clear command line.
+"\e\e": "\C-a\C-k"
