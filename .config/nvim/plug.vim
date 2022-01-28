@@ -12,6 +12,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " updating the parsers on update
 	" Nice color scheme
 	Plug 'dracula/vim'
+        " Another nice color scheme
+        " Plug 'sainnhe/everforest'
 	" Surround
 	Plug 'tpope/vim-surround'
 	" Commentary
@@ -36,6 +38,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'chaoren/vim-wordmotion'
 	" better marks (visualization, deletion, navigation, etc.)
 	Plug 'chentau/marks.nvim'
+        " Nice statusline
+        Plug 'nvim-lualine/lualine.nvim'
+        " all these icons...
+        Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
@@ -69,6 +75,12 @@ EOF
 " Telescope Nvim
 nnoremap <C-f> <cmd>Telescope find_files<cr>
 nnoremap <C-/> <cmd>Telescope live_grep<cr>
+nnoremap <C-e> <cmd>Telescope oldfiles<cr>
 
 " WordMotionPrefix
 let g:wordmotion_prefix = '<Leader>'
+
+" Lualine
+lua << END
+require('lualine').setup()
+END
