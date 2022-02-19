@@ -56,7 +56,7 @@ nnoremap Y yg_
 " Keeping Cursor centered
 nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap <silent> J mzJ`z:delm z<CR>
+nnoremap <silent> J mzJ'z:delm z<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
@@ -80,3 +80,8 @@ nnoremap vv V
 " https://stackoverflow.com/a/662914
 nnoremap <silent> <CR> :noh<CR>
 
+nnoremap H ^
+nnoremap L g_
+" move lines up and down in visual mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv

@@ -10,6 +10,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-nvim-lsp'
     use 'saadparwaiz1/cmp_luasnip'
     use 'L3MON4D3/LuaSnip'
+    use 'onsails/lspkind-nvim'
     use { 'lervag/vimtex', ft = { 'tex', 'bib' }}
 
     -- editing
@@ -20,14 +21,12 @@ require('packer').startup(function()
     use 'rstacruz/vim-closer'
     use 'chaoren/vim-wordmotion'
     use 'Pocco81/AutoSave.nvim'
-    use 'nvim-lua/plenary.nvim'
+    use 'ggandor/lightspeed.nvim'
 
     -- navigating
     use 'christoomey/vim-tmux-navigator'
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
+    use { "ThePrimeagen/harpoon", requires = "nvim-lua/plenary.nvim" }
+    use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     -- appearance
@@ -97,8 +96,15 @@ end
 local luasnip = require('luasnip')
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
+local lspkind = require('lspkind')
+local cmp = require('cmp')
 cmp.setup {
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = 'symbol_text',
+      maxwidth = 50,
+    })
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
