@@ -27,7 +27,8 @@ set highlightedyank
 xnoremap p "_dP
 
 " Imitating Harpoon
-" Setting - only for lines :(
+" Setting - only for lines. To use it with files we have to call
+" :NERDTreeFind<cr> and then <A-0>...<A-9> - these have to be set in Idea
 " nnoremap m1 :action SetFileBookmark1<cr>
 " nnoremap m2 :action SetFileBookmark2<cr>
 " nnoremap m3 :action SetFileBookmark3<cr>
@@ -78,6 +79,11 @@ nnoremap v<Leader>ge v]b
 " nnoremap ci<Leader>w di[w
 
 
+" vim-unimpaired
+nnoremap ]q :action GotoNextError<cr>
+nnoremap [q :action GotoPreviousError<cr>
+
+
 """"""""""""""""""""
 """ IDEA setings """
 """"""""""""""""""""
@@ -88,6 +94,8 @@ set ideamarks
 set ideajoin
 " disable bells
 set noerrorbells
+" NerdTree
+set NERDTree
 
 " enable vim as handler for the following
 sethandler <C-/> a:vim
@@ -131,8 +139,6 @@ nnoremap <Leader>h :action QuickJavaDoc<cr>
 " already occupied by commentary
 nnoremap gb :action ShowNavBar<cr>
 nnoremap gd :action GotoDeclaration<cr>
-" nnoremap ge :action GotoNextError<cr>
-" nnoremap gE :action GotoPreviousError<cr>
 nnoremap gi :action GotoImplementation<cr>
 nnoremap gp :action GotoSuperMethod<cr>
 nnoremap gr :action GotoRelated<cr>
@@ -140,9 +146,6 @@ nnoremap gs :action GotoSymbol<cr>
 nnoremap gt :action GotoTest<cr>
 nnoremap gh :action TypeHierarchy<cr>
 nnoremap gm :action FileStructurePopup<cr>
-" nnoremap gm :action GotoMethodsOfClass<cr>
-" nnoremap gb :action Back<cr>
-" nnoremap gf :action Forward<cr>
 
 "" Show stuff
 
@@ -153,6 +156,7 @@ map <C-/> <Action>(FindInPath)
 map <C-f> <Action>(GotoFile)
 map <C-c> <Action>(GotoClass)
 map <C-e> <Action>(RecentFiles)
+map <C-t> :NERDTreeFind<cr>
 
 " Runing stuff
 nnoremap <Leader>r :action Run<cr>
@@ -169,8 +173,8 @@ map <C-s> <Action>(Stop)
 " nnoremap ,l :action ChooseRunConfiguration<cr>
 
 " Debugging
-nnoremap <Leader>b :action ToggleLineBreakpoint<cr>
-nnoremap <Leader>B :action EditBreakpoint<cr>
+nnoremap <Leader>db :action ToggleLineBreakpoint<cr>
+nnoremap <Leader>dB :action EditBreakpoint<cr>
 
-" Other
-nnoremap <Leader>gb :action Vcs.Log.AnnotateRevisionAction<cr>
+" Git Integration
+nnoremap <Leader>vb :action Annotate<cr>
