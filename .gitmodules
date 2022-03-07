@@ -7,3 +7,6 @@
 [submodule ".asdf"]
 	path = .asdf
 	url = git@github.com:asdf-vm/asdf.git
+[submodule ".config/qutebrowser/dracula"]
+	path = .config/qutebrowser/dracula
+	url = git@github.com:dracula/qutebrowser.git
