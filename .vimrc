@@ -56,7 +56,7 @@ nnoremap Y yg_
 " Keeping Cursor centered
 nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap <silent> J mzJ'z:delm z<CR>
+nnoremap <silent> J mzJ`z
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %

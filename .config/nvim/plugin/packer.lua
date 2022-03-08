@@ -47,23 +47,24 @@ end)
 vim.cmd('colorscheme dracula')
 
 require('marks').setup {
-  builtin_marks = { ".", "[", "]", "{", "}", "^" }
+    builtin_marks = { ".", "[", "]", "{", "}", "^" }
+
 }
 
 require('nvim-treesitter.configs').setup {
-  -- Maybe change to list of languages
-  ensure_installed = "maintained",
+    -- Maybe change to list of languages
+    ensure_installed = "maintained",
 
-  highlight = {
-    enable = true,
+    highlight = {
+        enable = true,
 
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    additional_vim_regex_highlighting = false,
-  },
-  -- EXPERIMENTAL
-  indent = {
-    enable = true
-  }
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        additional_vim_regex_highlighting = false,
+    },
+    -- EXPERIMENTAL
+    indent = {
+        enable = true
+    }
 }
 
 require('telescope').load_extension('fzf')
@@ -86,10 +87,10 @@ local lspconfig = require('lspconfig')
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { 'elmls', 'tsserver' }
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
-    capabilities = capabilities,
-  }
+    lspconfig[lsp].setup {
+        -- on_attach = my_custom_on_attach,
+        capabilities = capabilities,
+    }
 end
 
 -- luasnip setup
@@ -99,53 +100,53 @@ local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 local cmp = require('cmp')
 cmp.setup {
-  formatting = {
-    format = lspkind.cmp_format({
-      mode = 'symbol_text',
-      maxwidth = 50,
-    })
-  },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = {
-    ['<C-j>'] = cmp.mapping.select_prev_item(),
-    ['<C-k>'] = cmp.mapping.select_next_item(),
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-q>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = 'symbol_text',
+            maxwidth = 50,
+        })
     },
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
-  },
-  sources = {
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    mapping = {
+        ['<C-j>'] = cmp.mapping.select_prev_item(),
+        ['<C-k>'] = cmp.mapping.select_next_item(),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-q>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        },
+        ['<Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end,
+        ['<S-Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end,
+    },
+    sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-  },
+    },
 }
 
 require("autosave").setup(
-    { conditions = { filetype_is_not = {"tex", "log"} } }
+{ conditions = { filetype_is_not = {"tex", "log"} } }
 )
