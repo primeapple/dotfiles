@@ -1,4 +1,4 @@
-require('packer').startup(function()
+require('packer').startup(function(use)
     -- plugins
     use 'wbthomason/packer.nvim'
     use 'lewis6991/impatient.nvim'
@@ -18,6 +18,7 @@ require('packer').startup(function()
     use 'tpope/vim-commentary'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-unimpaired'
+    use 'tpope/vim-repeat'
     use 'rstacruz/vim-closer'
     use 'chaoren/vim-wordmotion'
     use 'Pocco81/AutoSave.nvim'
@@ -30,7 +31,6 @@ require('packer').startup(function()
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     -- appearance
-    use 'machakann/vim-highlightedyank'
     use 'chentau/marks.nvim'
     use 'nvim-lualine/lualine.nvim'
     use 'kyazdani42/nvim-web-devicons'
@@ -46,32 +46,6 @@ end)
 --------------------------
 vim.cmd('colorscheme dracula')
 
-require('marks').setup {
-    builtin_marks = { ".", "[", "]", "{", "}", "^" }
-
-}
-
-require('nvim-treesitter.configs').setup {
-    -- Maybe change to list of languages
-    ensure_installed = "maintained",
-
-    highlight = {
-        enable = true,
-
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        additional_vim_regex_highlighting = false,
-    },
-    -- EXPERIMENTAL
-    indent = {
-        enable = true
-    }
-}
-
-require('telescope').load_extension('fzf')
-
-vim.api.nvim_set_keymap('n', "<C-f>", "<cmd>Telescope find_files<cr>", { noremap = true })
-vim.api.nvim_set_keymap('n', "<C-/>", "<cmd>Telescope live_grep<cr>", { noremap = true })
-vim.api.nvim_set_keymap('n', "<C-e>", "<cmd>Telescope oldfiles<cr>", { noremap = true })
 
 vim.g.wordmotion_prefix = '<Leader>'
 
@@ -147,6 +121,3 @@ cmp.setup {
     },
 }
 
-require("autosave").setup(
-{ conditions = { filetype_is_not = {"tex", "log"} } }
-)
