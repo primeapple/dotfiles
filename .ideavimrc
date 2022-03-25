@@ -136,7 +136,6 @@ nnoremap <Leader>h :action QuickJavaDoc<cr>
 "" Goto Stuff ""
 " Data type related
 " nnoremap <Leader>h :action CallHierarchy<cr>
-" already occupied by commentary
 nnoremap gb :action ShowNavBar<cr>
 nnoremap gd :action GotoDeclaration<cr>
 nnoremap gi :action GotoImplementation<cr>

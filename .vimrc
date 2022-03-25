@@ -30,7 +30,7 @@ set shiftwidth=4 " 4 spaces for identation
 set softtabstop=4 " Tab und Backspace use the correct number of spaces
 set expandtab " tab gets converted to spaces
 set clipboard=unnamedplus " default clipboard on Linux, Mac, Windows
-set scrolloff=5 " autoscroll if on top or bottom
+set scrolloff=10 " autoscroll if on top or bottom
 set splitbelow " open horizontal splits below
 set splitright " open vertical splits right
 set undofile " keeps undofile
@@ -56,6 +56,7 @@ nnoremap Y yg_
 " Keeping Cursor centered
 nnoremap n nzzzv
 nnoremap N Nzzzv
+" TODO: replace with lua function
 nnoremap <silent> J mzJ`z
 
 " Allow saving of files as sudo when I forgot to start vim using sudo
