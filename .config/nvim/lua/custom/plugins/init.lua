@@ -1,4 +1,6 @@
--- TODO
+-- TODO: this loads all plugins after going into insert mode
+-- better way would be to load them after needed command
+-- see https://github.com/wbthomason/packer.nvim#specifying-plugins
 local lazy = function(plugin)
     return function()
         require("core.utils").packer_lazy_load(plugin)
@@ -7,11 +9,18 @@ end
 
 return {
     -- remove this after master thesis
-    { 
+    {
         "lervag/vimtex",
         ft = { "tex", "bib" },
         setup = lazy("vimtex")
     },
+    {
+        "Mofiqul/dracula.nvim"
+    },
+    -- try dracula.nvim
+    -- {
+    --     "dracula/vim"
+    -- },
     {
         "tpope/vim-unimpaired",
         setup = lazy("vim-unimpaired")
@@ -33,7 +42,6 @@ return {
     },
     {
         "karb94/neoscroll.nvim",
-        opt = true,
         config = function() require("neoscroll").setup() end,
         setup = lazy("neoscroll.nvim")
     },

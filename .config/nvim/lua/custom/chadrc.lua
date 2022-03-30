@@ -1,4 +1,4 @@
--- have a look at `~/.config/nvim/lua/core/default_config.lua`
+ -- have a look at `~/.config/nvim/lua/core/default_config.lua`
 local M = {}
 
 M.options = {
@@ -13,6 +13,7 @@ M.options = {
 
 local userPlugins = require("custom.plugins")
 local treesitterConfig = require("custom.plugins.treesitter")
+local cmpConfig = require("custom.plugins.cmp")
 M.plugins = {
     install = userPlugins,
     options = {
@@ -21,7 +22,11 @@ M.plugins = {
         },
     },
     default_plugin_config_replace = {
-        nvim_treesitter = treesitterConfig
+        nvim_treesitter = treesitterConfig,
+        nvim_cmp = cmpConfig,
+    },
+    default_plugin_remove = {
+        "akinsho/bufferline.nvim",
     }
 }
 
@@ -37,17 +42,17 @@ M.mappings = {
             code_action = "<Leader>aa",
             rename = "<Leader>ar",
             formatting = "<Leader>=",
-        }
+        },
+        nvimtree = {
+            toggle = "<C-t>",
+            focus = nil,
+        },
+        telescope = {
+            git_commits = "<Leader>fgc",
+            git_status = "<Leader>fgs",
+            themes = "<Leader>ft",
+        },
     },
-    nvimtree = {
-        toggle = "<C-t>",
-        focus = nil,
-    },
-    telescope = {
-        git_commits = "<Leader>fgc",
-        git_status = "<Leader>fgs",
-        themes = "<Leader>ft",
-    }
 }
 
 M.ui = {

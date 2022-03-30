@@ -20,32 +20,33 @@ local function join()
     vim.cmd "norm! J"
     vim.api.nvim_win_set_cursor(0, pos)
 end
+
+-- Telescope
+map("n", "<leader>F", ":Telescope <CR>")
+
 -- managing harpoons
 -- TODO: replace with Lua functions
--- nnoremap <silent><Leader>hh :lua require("harpoon.mark").toggle_file()<CR>
--- nnoremap <silent><Leader>ha :lua require("harpoon.mark").add_file()<CR>
--- nnoremap <silent><Leader>hd :lua require("harpoon.mark").add_file()<CR>
--- nnoremap <silent><Leader>hm :lua require("harpoon.ui").toggle_quick_menu()<CR>
--- nnoremap <silent><Leader>hc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
---
--- nnoremap <silent><C-1> :lua require("harpoon.ui").nav_file(1)<CR>
--- nnoremap <silent><C-2> :lua require("harpoon.ui").nav_file(2)<CR>
--- nnoremap <silent><C-3> :lua require("harpoon.ui").nav_file(3)<CR>
--- nnoremap <silent><C-4> :lua require("harpoon.ui").nav_file(4)<CR>
--- nnoremap <silent><C-5> :lua require("harpoon.ui").nav_file(5)<CR>
--- nnoremap <silent><C-6> :lua require("harpoon.ui").nav_file(6)<CR>
--- nnoremap <silent><C-7> :lua require("harpoon.ui").nav_file(7)<CR>
--- nnoremap <silent><C-8> :lua require("harpoon.ui").nav_file(8)<CR>
--- nnoremap <silent><C-9> :lua require("harpoon.ui").nav_file(9)<CR>
--- nnoremap <silent><C-0> :lua require("harpoon.ui").nav_file(0)<CR>
---
--- nnoremap <silent><Leader>h1 :lua require("harpoon.ui").nav_file(1)<CR>
--- nnoremap <silent><Leader>h2 :lua require("harpoon.ui").nav_file(2)<CR>
--- nnoremap <silent><Leader>h3 :lua require("harpoon.ui").nav_file(3)<CR>
--- nnoremap <silent><Leader>h4 :lua require("harpoon.ui").nav_file(4)<CR>
--- nnoremap <silent><Leader>h5 :lua require("harpoon.ui").nav_file(5)<CR>
--- nnoremap <silent><Leader>h6 :lua require("harpoon.ui").nav_file(6)<CR>
--- nnoremap <silent><Leader>h7 :lua require("harpoon.ui").nav_file(7)<CR>
--- nnoremap <silent><Leader>h8 :lua require("harpoon.ui").nav_file(8)<CR>
--- nnoremap <silent><Leader>h9 :lua require("harpoon.ui").nav_file(9)<CR>
--- nnoremap <silent><Leader>h0 :lua require("harpoon.ui").nav_file(0)<CR>
+map("n", "gH", ":lua require('harpoon.mark').toggle_file() <CR>", { silent = true })
+map("n", "gh", ":lua require('harpoon.ui').toggle_quick_menu() <CR>", { silent = true })
+map("n", "gt", ":lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>", { silent = true })
+map("n", "g1", ":lua require('harpoon.ui').nav_file(1) <CR>", { silent = true })
+map("n", "g2", ":lua require('harpoon.ui').nav_file(2) <CR>", { silent = true })
+map("n", "g3", ":lua require('harpoon.ui').nav_file(3) <CR>", { silent = true })
+map("n", "g4", ":lua require('harpoon.ui').nav_file(4) <CR>", { silent = true })
+map("n", "g5", ":lua require('harpoon.ui').nav_file(5) <CR>", { silent = true })
+map("n", "g6", ":lua require('harpoon.ui').nav_file(6) <CR>", { silent = true })
+map("n", "g7", ":lua require('harpoon.ui').nav_file(7) <CR>", { silent = true })
+map("n", "g8", ":lua require('harpoon.ui').nav_file(8) <CR>", { silent = true })
+map("n", "g9", ":lua require('harpoon.ui').nav_file(9) <CR>", { silent = true })
+
+-- these mappings don't work yet...
+-- map("n", "<C-1>", ":lua require('harpoon.ui').nav_file(1) <CR>", { silent = true })
+-- map("n", "<C-2>", ":lua require('harpoon.ui').nav_file(2) <CR>", { silent = true })
+-- map("n", "<C-3>", ":lua require('harpoon.ui').nav_file(3) <CR>", { silent = true })
+-- map("n", "<C-4>", ":lua require('harpoon.ui').nav_file(4) <CR>", { silent = true })
+-- map("n", "<C-5>", ":lua require('harpoon.ui').nav_file(5) <CR>", { silent = true })
+-- map("n", "<C-6>", ":lua require('harpoon.ui').nav_file(6) <CR>", { silent = true })
+-- map("n", "<C-7>", ":lua require('harpoon.ui').nav_file(7) <CR>", { silent = true })
+-- map("n", "<C-8>", ":lua require('harpoon.ui').nav_file(8) <CR>", { silent = true })
+-- map("n", "<C-9>", ":lua require('harpoon.ui').nav_file(9) <CR>", { silent = true })
+
