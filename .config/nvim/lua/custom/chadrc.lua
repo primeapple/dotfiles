@@ -32,8 +32,10 @@ M.plugins = {
 
 M.mappings = {
     misc = {
-        lineNR_toggle = "<Leader>tn", -- toggle line number
-        lineNR_rel_toggle = "<Leader>tr",
+        -- can be done via vim unimpaired: yon
+        lineNR_toggle = nil,
+        -- can be done via vim unimpaired: yor
+        lineNR_rel_toggle = nil,
         new_buffer = "<Leader>B",
         new_tab = nil,
     },
@@ -44,8 +46,9 @@ M.mappings = {
             formatting = "<Leader>=",
         },
         nvimtree = {
+            -- this creates new tab for the tree?
             toggle = "<C-t>",
-            focus = nil,
+            -- focus = nil,
         },
         telescope = {
             git_commits = "<Leader>fgc",

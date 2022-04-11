@@ -57,8 +57,16 @@ return {
             autosave.setup {
                 conditions = {
                     filetype_is_not = { "tex", "log" },
+                    exists = true,
+
+
                 }
             }
         end
+    },
+    {
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && yarn install',
+        cmd = 'MarkdownPreview'
     }
 }

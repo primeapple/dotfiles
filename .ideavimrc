@@ -151,11 +151,13 @@ nnoremap gm :action FileStructurePopup<cr>
 " Navigation
 map <C-o> <Action>(Back)
 map <C-i> <Action>(Forward)
-map <C-/> <Action>(FindInPath)
-map <C-f> <Action>(GotoFile)
-map <C-c> <Action>(GotoClass)
-map <C-e> <Action>(RecentFiles)
-map <C-t> :NERDTreeFind<cr>
+nnoremap <Leader>fw :action FindInPath<cr>
+nnoremap <Leader>ff :action GotoFile<cr>
+nnoremap <Leader>fc :action GotoClass<cr>
+nnoremap <Leader>fo :action RecentFiles<cr>
+" opens current file in NerdTree
+nnoremap <C-T> :NERDTreeFind<cr>
+nnoremap <Leader>tt :NERDTreeToggle<cr>
 
 " Runing stuff
 nnoremap <Leader>r :action Run<cr>
@@ -164,7 +166,7 @@ nnoremap <Leader>d :action Debug<cr>
 nnoremap <Leader>D :action ContextDebug<cr>
 nnoremap <Leader>c :action RunClass<cr>
 nnoremap <Leader>C :action DebugClass<cr>
-nnoremap <Leader>f :action RerunFailedTests<cr>
+" nnoremap <Leader>f :action RerunFailedTests<cr>
 map <C-p> <Action>(RebuildProject)
 map <C-s> <Action>(Stop)
 " TODO?

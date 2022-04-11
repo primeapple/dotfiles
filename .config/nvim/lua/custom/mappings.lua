@@ -24,20 +24,22 @@ end
 -- Telescope
 map("n", "<leader>F", ":Telescope <CR>")
 
+-- 
+
 -- managing harpoons
 -- TODO: replace with Lua functions
 map("n", "gH", ":lua require('harpoon.mark').toggle_file() <CR>", { silent = true })
-map("n", "gh", ":lua require('harpoon.ui').toggle_quick_menu() <CR>", { silent = true })
-map("n", "gt", ":lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>", { silent = true })
-map("n", "g1", ":lua require('harpoon.ui').nav_file(1) <CR>", { silent = true })
-map("n", "g2", ":lua require('harpoon.ui').nav_file(2) <CR>", { silent = true })
-map("n", "g3", ":lua require('harpoon.ui').nav_file(3) <CR>", { silent = true })
-map("n", "g4", ":lua require('harpoon.ui').nav_file(4) <CR>", { silent = true })
-map("n", "g5", ":lua require('harpoon.ui').nav_file(5) <CR>", { silent = true })
-map("n", "g6", ":lua require('harpoon.ui').nav_file(6) <CR>", { silent = true })
-map("n", "g7", ":lua require('harpoon.ui').nav_file(7) <CR>", { silent = true })
-map("n", "g8", ":lua require('harpoon.ui').nav_file(8) <CR>", { silent = true })
-map("n", "g9", ":lua require('harpoon.ui').nav_file(9) <CR>", { silent = true })
+map("n", "ghh", ":lua require('harpoon.ui').toggle_quick_menu() <CR>", { silent = true })
+-- map("n", "gt", ":lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>", { silent = true })
+map("n", "gh1", ":lua require('harpoon.ui').nav_file(1) <CR>", { silent = true })
+map("n", "gh2", ":lua require('harpoon.ui').nav_file(2) <CR>", { silent = true })
+map("n", "gh3", ":lua require('harpoon.ui').nav_file(3) <CR>", { silent = true })
+map("n", "gh4", ":lua require('harpoon.ui').nav_file(4) <CR>", { silent = true })
+map("n", "gh5", ":lua require('harpoon.ui').nav_file(5) <CR>", { silent = true })
+map("n", "gh6", ":lua require('harpoon.ui').nav_file(6) <CR>", { silent = true })
+map("n", "gh7", ":lua require('harpoon.ui').nav_file(7) <CR>", { silent = true })
+map("n", "gh8", ":lua require('harpoon.ui').nav_file(8) <CR>", { silent = true })
+map("n", "gh9", ":lua require('harpoon.ui').nav_file(9) <CR>", { silent = true })
 
 -- these mappings don't work yet...
 -- map("n", "<C-1>", ":lua require('harpoon.ui').nav_file(1) <CR>", { silent = true })
