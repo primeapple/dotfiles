@@ -31,6 +31,23 @@ M.plugins = {
 }
 
 M.mappings = {
+    terminal = {
+        -- get out of terminal mode
+        esc_termmode = { "jk" },
+        -- get out of terminal mode and hide it
+        esc_hide_termmode = { "JK" },
+        -- show & recover hidden terminal buffers in a telescope picker
+        pick_term = "<leader>W",
+        -- spawn a single terminal and toggle it
+        -- this just works like toggleterm kinda
+        new_horizontal = "<Leader>t-",
+        new_vertical = "<Leader>t/",
+        new_float = "<Leader>tf",
+        -- unsure about this, do I really need it?
+        spawn_horizontal = "<Leader>ts-",
+        spawn_vertical = "<Leader>ts/",
+        spawn_window = "<leader>tsw",
+    },
     misc = {
         -- can be done via vim unimpaired: yon
         lineNR_toggle = nil,
@@ -46,9 +63,8 @@ M.mappings = {
             formatting = "<Leader>=",
         },
         nvimtree = {
-            -- this creates new tab for the tree?
-            toggle = "<C-t>",
-            -- focus = nil,
+            toggle = "<Leader>tt",
+            focus = nil,
         },
         telescope = {
             git_commits = "<Leader>fgc",
