@@ -28,10 +28,11 @@ map("n", "<leader>F", ":Telescope <CR>")
 
 -- managing harpoons
 -- TODO: replace with Lua functions
-map("n", "ghh", ":lua require('harpoon.mark').toggle_file() <CR>", { silent = true })
+map("n", "gh", ":lua require('harpoon.mark').toggle_file() <CR>", { silent = true })
 map("n", "]h", ":lua require('harpoon.ui').nav_next() <CR>", { silent = true })
 map("n", "[h", ":lua require('harpoon.ui').nav_prev() <CR>", { silent = true })
 map("n", "gH", ":lua require('harpoon.ui').toggle_quick_menu() <CR>", { silent = true })
+map("n", "<leader>fH", ":Telescope harpoon marks <CR>", { silent = true })
 -- map("n", "gt", ":lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>", { silent = true })
 -- TODO: add an expression, like
 -- map("n", "gh", ":lua require('harpoon.ui').nav_file(vim.v.count) <CR>", { expr = true, silent = true })

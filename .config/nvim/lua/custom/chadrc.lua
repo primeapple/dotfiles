@@ -46,12 +46,12 @@ M.mappings = {
         pick_term = "<leader>W",
         -- spawn a single terminal and toggle it
         -- this just works like toggleterm kinda
-        new_horizontal = "<Leader>t-",
-        new_vertical = "<Leader>t/",
-        new_float = "<Leader>tf",
+        new_horizontal = "<leader>t-",
+        new_vertical = "<leader>t/",
+        new_float = "<leader>tf",
         -- unsure about this, do I really need it?
-        spawn_horizontal = "<Leader>ts-",
-        spawn_vertical = "<Leader>ts/",
+        spawn_horizontal = "<leader>ts-",
+        spawn_vertical = "<leader>ts/",
         spawn_window = "<leader>tsw",
     },
     misc = {
@@ -59,23 +59,23 @@ M.mappings = {
         lineNR_toggle = nil,
         -- can be done via vim unimpaired: yor
         lineNR_rel_toggle = nil,
-        new_buffer = "<Leader>B",
+        new_buffer = "<leader>B",
         new_tab = nil,
     },
     plugins = {
         lspconfig = {
-            code_action = "<Leader>aa",
-            rename = "<Leader>ar",
-            formatting = "<Leader>=",
+            code_action = "<leader>aa",
+            rename = "<leader>ar",
+            formatting = "<leader>=",
         },
         nvimtree = {
-            toggle = "<Leader>tt",
-            focus = nil,
+            focus = "<leader>T",
         },
         telescope = {
-            git_commits = "<Leader>fgc",
-            git_status = "<Leader>fgs",
-            themes = "<Leader>ft",
+            git_commits = "<leader>fgc",
+            git_status = "<leader>fgs",
+            help = "<leader>fgs",
+            themes = "<leader>ft",
         },
     },
 }
