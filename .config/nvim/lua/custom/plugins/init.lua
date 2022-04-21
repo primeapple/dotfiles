@@ -8,16 +8,9 @@ local lazy = function(plugin)
 end
 
 return {
-    -- remove this after master thesis
-    {
-        "lervag/vimtex",
-        ft = { "tex", "bib" },
-        setup = lazy("vimtex")
-    },
-    {
-        "Mofiqul/dracula.nvim"
-    },
-    -- try dracula.nvim
+    -- {
+    --     "Mofiqul/dracula.nvim"
+    -- },
     -- {
     --     "dracula/vim"
     -- },
@@ -25,6 +18,7 @@ return {
         "tpope/vim-unimpaired",
         setup = lazy("vim-unimpaired")
     },
+    -- todo: checkout surround nvim for this, as well as adding keys
     {
         "tpope/vim-surround",
         setup = lazy("vim-surround")
@@ -45,6 +39,7 @@ return {
         config = function() require("neoscroll").setup() end,
         setup = lazy("neoscroll.nvim")
     },
+    -- todo: add keys
     {
         "ThePrimeagen/harpoon",
         requires = "nvim-lua/plenary.nvim",
@@ -65,8 +60,8 @@ return {
         end
     },
     {
-        'iamcco/markdown-preview.nvim',
-        run = 'cd app && yarn install',
-        cmd = 'MarkdownPreview'
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && yarn install",
+        cmd = "MarkdownPreview"
     }
 }

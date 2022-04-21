@@ -20,10 +20,16 @@ M.plugins = {
         lspconfig = {
             setup_lspconf = "custom.plugins.lspconfig",
         },
+        nvimtree = {
+            lazy_load = false,
+        },
     },
     default_plugin_config_replace = {
         nvim_treesitter = treesitterConfig,
         nvim_cmp = cmpConfig,
+        nvim_tree = {
+            open_on_setup = true
+        }
     },
     default_plugin_remove = {
         "akinsho/bufferline.nvim",
