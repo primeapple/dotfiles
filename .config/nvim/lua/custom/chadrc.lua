@@ -28,7 +28,22 @@ M.plugins = {
         nvim_treesitter = treesitterConfig,
         nvim_cmp = cmpConfig,
         nvim_tree = {
-            open_on_setup = true
+            --  the commented stuff is to make nvim-tree more like netrw
+            view = {
+                width = 35,
+                -- mappings = {
+                --     list = {
+                --         { key = "<CR>", action = "edit_in_place" }
+                --     }
+                -- }
+            },
+            -- open_on_setup = true,
+            -- ignore_buffer_on_setup = true,
+            -- actions = {
+            --     change_dir = {
+            --         enable = false,
+            --     }
+            -- }
         }
     },
     default_plugin_remove = {

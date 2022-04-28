@@ -18,10 +18,10 @@ return {
         "tpope/vim-unimpaired",
         keys = { "[", "]" }
     },
-    -- todo: checkout surround nvim for this, as well as adding keys
+    -- todo: checkout surround nvim for this
     {
         "tpope/vim-surround",
-        setup = lazy("vim-surround")
+        keys = { "ys", "cs", "ds", { "v", "S" } }
     },
     {
         "chaoren/vim-wordmotion",

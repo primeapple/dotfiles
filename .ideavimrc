@@ -156,8 +156,8 @@ nnoremap <Leader>ff :action GotoFile<cr>
 nnoremap <Leader>fc :action GotoClass<cr>
 nnoremap <Leader>fo :action RecentFiles<cr>
 " opens current file in NerdTree
-nnoremap <C-T> :NERDTreeFind<cr>
-nnoremap <Leader>tt :NERDTreeToggle<cr>
+nnoremap <Leader>T :NERDTreeFind<cr>
+nnoremap <C-n> :NERDTreeToggle<cr>
 
 " Runing stuff
 nnoremap <Leader>r :action Run<cr>
