@@ -18,16 +18,23 @@ return {
 
     ["nvim-telescope/telescope.nvim"] = {
         setup = function()
-            require("core.mappings").telescope()
-
+            -- require("core.mappings").telescope()
             local map = require("core.utils").map
+
+            -- basic mappings
+            map("n", "<leader>fb", "<cmd> :Telescope buffers <CR>")
+            map("n", "<leader>ff", "<cmd> :Telescope find_files <CR>")
+            map("n", "<leader>fa", "<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>")
+            map("n", "<leader>fh", "<cmd> :Telescope help_tags <CR>")
+            map("n", "<leader>fw", "<cmd> :Telescope live_grep <CR>")
+            map("n", "<leader>fo", function() require("telescope.builtin").oldfiles({only_cwd=true}) end)
+            map("n", "<leader>ft", "<cmd> :Telescope themes <CR>")
 
             -- git mappings
             map("n", "<leader>gc", "<cmd> :Telescope git_commits <CR>")
             map("n", "<leader>gs", "<cmd> :Telescope git_status <CR>")
 
             -- misc mappings
-            map("n", "<leader>ft", "<cmd> :Telescope themes <CR>")
         end,
     },
 

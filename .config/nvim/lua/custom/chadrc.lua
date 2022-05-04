@@ -10,40 +10,18 @@ M.options = {
     end,
 }
 
-local userPlugins = require("custom.plugins")
-local treesitterConfig = require("custom.plugins.treesitter")
-local cmpConfig = require("custom.plugins.cmp")
 M.plugins = {
-    user = userPlugins,
+    user = require("custom.plugins"),
     options = {
         lspconfig = {
             setup_lspconf = "custom.plugins.lspconfig",
         },
-        nvimtree = {
-            lazy_load = false,
-        },
     },
-    default_plugin_config_replace = {
-        ["nvim-treesitter/nvim-treesitter"] = treesitterConfig,
-        ["hrsh7th/nvim-cmp"] = cmpConfig,
-        ["kyazdani42/nvim-tree.lua"] = {
-            --  the commented stuff is to make nvim-tree more like netrw
-            view = {
-                width = 35,
-                -- mappings = {
-                --     list = {
-                --         { key = "<CR>", action = "edit_in_place" }
-                --     }
-                -- }
-            },
-            -- open_on_setup = true,
-            -- ignore_buffer_on_setup = true,
-            -- actions = {
-            --     change_dir = {
-            --         enable = false,
-            --     }
-            -- }
-        }
+    override = {
+        ["nvim-treesitter/nvim-treesitter"] = require("custom.plugins.treesitter"),
+        ["hrsh7th/nvim-cmp"] = require("custom.plugins.cmp"),
+        ["nvim-telescope/telescope.nvim"] = require("custom.plugins.telescope"),
+        ["kyazdani42/nvim-tree.lua"] = require("custom.plugins.nvimtree"),
     },
     remove = {
         "akinsho/bufferline.nvim",
