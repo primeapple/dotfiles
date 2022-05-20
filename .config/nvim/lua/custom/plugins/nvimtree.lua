@@ -1,7 +1,7 @@
 return {
     --  the commented stuff is to make nvim-tree more like netrw
     view = {
-        width = 35,
+        width = 45,
         -- mappings = {
         --     list = {
         --         { key = "<CR>", action = "edit_in_place" }

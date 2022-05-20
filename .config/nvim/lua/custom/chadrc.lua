@@ -18,15 +18,19 @@ M.plugins = {
         },
     },
     override = {
-        ["nvim-treesitter/nvim-treesitter"] = require("custom.plugins.treesitter"),
+        ["NvChad/nvterm"] = require("custom.plugins.nvterm"),
         ["hrsh7th/nvim-cmp"] = require("custom.plugins.cmp"),
-        ["nvim-telescope/telescope.nvim"] = require("custom.plugins.telescope"),
         ["kyazdani42/nvim-tree.lua"] = require("custom.plugins.nvimtree"),
+        ["nvim-telescope/telescope.nvim"] = require("custom.plugins.telescope"),
+        ["nvim-treesitter/nvim-treesitter"] = require("custom.plugins.treesitter"),
     },
     remove = {
         "akinsho/bufferline.nvim",
+        "folke/which-key.nvim"
     }
 }
+
+M.mappings = require("custom.mappings")
 
 -- M.mappings = {
 --     terminal = {
@@ -53,14 +57,6 @@ M.plugins = {
 --         lineNR_rel_toggle = nil,
 --         new_buffer = "<leader>B",
 --         new_tab = nil,
---     },
---     plugins = {
---         lspconfig = {
---             code_action = "<leader>aa",
---             rename = "<leader>ar",
---             formatting = "<leader>=",
---
---         },
 --     },
 -- }
 
