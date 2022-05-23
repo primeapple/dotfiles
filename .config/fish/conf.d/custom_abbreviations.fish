@@ -9,8 +9,5 @@ if status --is-interactive
 	abbr --add --global . 'nvim .'
 	abbr --add --global cat bat
 	abbr --add --global find fd
-	# the following is for conditional abbreviations, but does not work with asdf
-	# if command -q fd
-	# 	abbr --add --global find fd
-	# end
+	abbr --add --global cht cht.sh
 end
