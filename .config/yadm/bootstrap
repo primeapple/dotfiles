@@ -20,10 +20,6 @@ yadm sparse-checkout set '/*' '!README.md' '!LICENSE'
 echo "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:primeapple/dotfiles.git"
 
-### install everything from asdf
-cut -d' ' -f1 .tool-versions | xargs -I {} asdf plugin add {}
-asdf install
-
 ### Execute all files in bootstrap directory ###
 cd "$HOME/.config/yadm"
 BOOTSTRAP_D="${BASH_SOURCE[0]}.d"
