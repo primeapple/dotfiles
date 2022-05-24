@@ -1,20 +1,4 @@
-local function map(mode, keys, command, opt)
-    local options = { silent = true }
-
-    if opt then
-        options = vim.tbl_extend("force", options, opt)
-    end
-
-    if type(keys) == "table" then
-        for _, keymap in ipairs(keys) do
-            map(mode, keymap, command, opt)
-        end
-        return
-    end
-
-    vim.keymap.set(mode, keys, command, opt)
-end
-
+local map = require("utils").map
 
 map("n", "V", "vg_")
 map("n", "vv", "V")

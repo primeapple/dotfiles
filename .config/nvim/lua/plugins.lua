@@ -11,7 +11,38 @@ return require('packer').startup(function(use)
     use 'lewis6991/impatient.nvim'
 
     -- programming
-    -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = function()
+            require('nvim-treesitter.configs').setup {
+                ensure_installed = {
+                    "bash",
+                    "css",
+                    "dockerfile",
+                    "elm",
+                    "fish",
+                    "html",
+                    "java",
+                    "javascript",
+                    "json",
+                    "lua",
+                    "markdown",
+                    "nix",
+                    "python",
+                    "regex",
+                    "ruby",
+                    "rust",
+                    "scss",
+                    "svelte",
+                    "tsx",
+                    "typescript",
+                    "vim",
+                    "yaml",
+                }
+            }
+        end
+    }
     -- use 'neovim/nvim-lspconfig'
     -- use 'hrsh7th/nvim-cmp'
     -- use 'hrsh7th/cmp-nvim-lsp'
@@ -35,7 +66,14 @@ return require('packer').startup(function(use)
         config = function() vim.g.wordmotion_prefix = "<leader>" end
     }
     use 'Pocco81/AutoSave.nvim'
+    use {
+        'numToStr/Comment.nvim',
+        keys = { "gc", "gb" },
+        config = function() require('Comment').setup() end
+    }
+
     -- use 'ggandor/lightspeed.nvim'
+
 
     -- navigating
     use 'christoomey/vim-tmux-navigator'
@@ -45,25 +83,31 @@ return require('packer').startup(function(use)
     }
     use {
         'nvim-telescope/telescope.nvim',
-        requires = 'nvim-lua/plenary.nvim',
-        -- config = function()
-            -- local map = require("core.utils").map
-
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'natecraddock/telescope-zf-native.nvim'
+        },
+        config = function()
+            require('telescope').setup{
+                defaults = {
+                    path_display = { shorten = { len = 3, exclude = {1, -1} } }
+                }
+            }
+            require('telescope').load_extension('zf-native')
+            local map = require("utils").map
             -- basic mappings
-            -- map("n", "<leader>fb", "<cmd> :Telescope buffers <CR>")
-            -- map("n", "<leader>ff", "<cmd> :Telescope find_files <CR>")
-            -- map("n", "<leader>fa", "<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>")
-            -- map("n", "<leader>fh", "<cmd> :Telescope help_tags <CR>")
-            -- map("n", "<leader>fw", "<cmd> :Telescope live_grep <CR>")
-            -- map("n", "<leader>fo", function() require("telescope.builtin").oldfiles({only_cwd=true}) end)
-            -- map("n", "<leader>ft", "<cmd> :Telescope themes <CR>")
-
+            map("n", "<leader>fb", "<cmd> :Telescope buffers <CR>")
+            map("n", "<leader>ff", "<cmd> :Telescope find_files <CR>")
+            map("n", "<leader>fa", "<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>")
+            map("n", "<leader>fh", "<cmd> :Telescope help_tags <CR>")
+            map("n", "<leader>fw", "<cmd> :Telescope live_grep <CR>")
+            map("n", "<leader>fo", function() require("telescope.builtin").oldfiles({only_cwd=true}) end)
+            map("n", "<leader>ft", "<cmd> :Telescope themes <CR>")
             -- git mappings
-            -- map("n", "<leader>gc", "<cmd> :Telescope git_commits <CR>")
-            -- map("n", "<leader>gs", "<cmd> :Telescope git_status <CR>")
-        -- end
+            map("n", "<leader>gc", "<cmd> :Telescope git_commits <CR>")
+            map("n", "<leader>gs", "<cmd> :Telescope git_status <CR>")
+        end
     }
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     -- appearance
     -- use 'chentau/marks.nvim'
