@@ -5,16 +5,13 @@ M.setup_lsp = function(attach, capabilities)
 
     -- lspservers with default config
     local servers = {
-        "bashls",
-        "cssls",
-        "dockerls",
-        "eslint",
-        "html",
-        "pyright",
+        -- "bashls",
+        -- "dockerls",
+        -- "eslint",
         -- special install script needed
         -- "sumneko_lua",
         -- check sqls, it seems to be a better alternative
-        "sqlls",
+        -- "sqlls",
         "tsserver",
     }
     for _, lsp in ipairs(servers) do
