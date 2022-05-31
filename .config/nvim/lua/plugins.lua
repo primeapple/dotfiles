@@ -21,36 +21,50 @@ return require('packer').startup(function(use)
         config = function()
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {
-                    "bash",
-                    "css",
-                    "dockerfile",
-                    "elm",
-                    "fish",
-                    "html",
-                    "java",
-                    "javascript",
-                    "json",
-                    "lua",
-                    "markdown",
-                    "nix",
-                    "python",
-                    "regex",
-                    "ruby",
-                    "rust",
-                    "scss",
-                    "svelte",
-                    "tsx",
-                    "typescript",
-                    "vim",
-                    "yaml",
+                    'bash',
+                    'css',
+                    'dockerfile',
+                    'elm',
+                    'fish',
+                    'html',
+                    'java',
+                    'javascript',
+                    'json',
+                    'lua',
+                    'markdown',
+                    'nix',
+                    'python',
+                    'regex',
+                    'ruby',
+                    'rust',
+                    'scss',
+                    'svelte',
+                    'tsx',
+                    'typescript',
+                    'vim',
+                    'yaml',
                 }
             })
         end
     }
     use {
+        'hrsh7th/cmp-nvim-lsp'
+    }
+    use {
         'neovim/nvim-lspconfig',
-        after = 'cmp_nvim_lsp',
+        requires = 'williamboman/nvim-lsp-installer',
         config = function()
+            require('nvim-lsp-installer').setup({
+                automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+                ui = {
+                    icons = {
+                        server_installed = "✓",
+                        server_pending = "➜",
+                        server_uninstalled = "✗"
+                    }
+                }
+            })
+
             local opts = { noremap=true, silent=true }
             vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
             vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -80,17 +94,13 @@ return require('packer').startup(function(use)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
             end
 
-            -- Use a loop to conveniently call 'setup' on multiple servers and
-            -- map buffer local keybindings when the language server attaches
             local servers = {
-                -- "bashls",
-                -- "dockerls",
-                -- "eslint",
-                -- special install script needed
-                -- "sumneko_lua",
+                'bashls',
+                'dockerls',
+                -- 'eslint',
                 -- check sqls, it seems to be a better alternative
-                -- "sqlls",
-                "tsserver",
+                -- 'sqlls',
+                'tsserver',
             }
             local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
             for _, lsp in pairs(servers) do
@@ -99,11 +109,33 @@ return require('packer').startup(function(use)
                     capabilities = capabilities
                 }
             end
+
+            -- lua lang server config
+            require('lspconfig').sumneko_lua.setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    Lua = {
+                        runtime = {
+                            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                            version = 'LuaJIT',
+                        },
+                        diagnostics = {
+                            -- Get the language server to recognize the `vim` global
+                            globals = { 'vim' },
+                        },
+                        workspace = {
+                            -- Make the server aware of Neovim runtime files
+                            library = vim.api.nvim_get_runtime_file('', true),
+                        },
+                    },
+                },
+            }
         end
     }
     use {
         'rafamadriz/friendly-snippets',
-        event = "InsertEnter",
+        event = 'InsertEnter',
     }
     use {
         'hrsh7th/nvim-cmp',
@@ -122,7 +154,7 @@ return require('packer').startup(function(use)
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    ['<CR>'] = cmp.mapping.confirm({ select = false }),
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
@@ -144,27 +176,27 @@ return require('packer').startup(function(use)
     }
     use {
         'saadparwaiz1/cmp_luasnip',
-        after = "LuaSnip",
+        after = 'LuaSnip',
     }
     use {
         'hrsh7th/cmp-nvim-lua',
-        after = "cmp_luasnip",
-    }
-    use {
-        'hrsh7th/cmp-nvim-lsp',
-        after = "cmp-nvim-lua",
+        after = 'cmp_luasnip',
     }
     use {
         'hrsh7th/cmp-buffer',
-        after = 'cmp-nvim-lsp',
+        after = 'cmp-nvim-lua',
     }
     use {
         'hrsh7th/cmp-path',
-        after = "cmp-buffer",
+        after = 'cmp-buffer',
     }
     -- use {
     -- TODO is this even needed?
     --     'onsails/lspkind-nvim',
+    -- }
+    --use {
+    -- TODO is this even needed?
+    --    ray-x/lsp_signature.nvim
     -- }
 
     -------------------- EDITING --------------------
@@ -173,23 +205,27 @@ return require('packer').startup(function(use)
     }
     use {
         'tpope/vim-surround',
-        keys = { { "n", "ys" }, { "n", "ds" }, { "v", "S" } }
+        keys = { { 'n', 'ys' }, { 'n', 'ds' }, { 'v', 'S' } }
     }
-    use { 
+    use {
         'tpope/vim-unimpaired',
-        keys = { "[", "]" }
+        keys = { '[', ']' }
     }
     use {
         'chaoren/vim-wordmotion',
-        config = function() vim.g.wordmotion_prefix = "<leader>" end
+        config = function() vim.g.wordmotion_prefix = '<leader>' end
     }
     use {
         'Pocco81/AutoSave.nvim',
-        config = function() require('autosave') end
+        config = function()
+            require('autosave').setup({
+                on_off_commands = true
+            })
+        end
     }
     use {
         'numToStr/Comment.nvim',
-        keys = { "gc", "gb" },
+        keys = { 'gc', 'gb' },
         config = function() require('Comment').setup() end
     }
     use {
@@ -212,8 +248,24 @@ return require('packer').startup(function(use)
         'christoomey/vim-tmux-navigator'
     }
     use {
-        "ThePrimeagen/harpoon",
-        requires = "nvim-lua/plenary.nvim"
+        'ThePrimeagen/harpoon',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function()
+            local map = require('utils').map
+            local function toggle_move()
+                if (vim.v.count > 0) then
+                    -- this does not work (yet?)
+                    -- require('harpoon.ui').nav_file(vim.v.count)
+                    return '<cmd>lua require("harpoon.ui").nav_file(vim.v.count) <CR>'
+                else
+                    require('harpoon.mark').toggle_file()
+                end
+            end
+            map('n', 'gh', toggle_move, { expr = true } )
+            map('n', ']h', function() require('harpoon.ui').nav_next() end)
+            map('n', '[h', function() require('harpoon.ui').nav_prev() end)
+            map('n', 'gH', function() require('harpoon.ui').toggle_quick_menu() end)
+        end
     }
     use {
         'nvim-telescope/telescope.nvim',
@@ -228,18 +280,19 @@ return require('packer').startup(function(use)
                 }
             })
             require('telescope').load_extension('zf-native')
-            local map = require("utils").map
+
+            local map = require('utils').map
             -- basic mappings
-            map("n", "<leader>fb", "<cmd> :Telescope buffers <CR>")
-            map("n", "<leader>ff", "<cmd> :Telescope find_files <CR>")
-            map("n", "<leader>fa", "<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>")
-            map("n", "<leader>fh", "<cmd> :Telescope help_tags <CR>")
-            map("n", "<leader>fw", "<cmd> :Telescope live_grep <CR>")
-            map("n", "<leader>fo", function() require("telescope.builtin").oldfiles({only_cwd=true}) end)
-            map("n", "<leader>ft", "<cmd> :Telescope themes <CR>")
+            map('n', '<leader>fb', '<cmd> :Telescope buffers <CR>')
+            map('n', '<leader>ff', '<cmd> :Telescope find_files <CR>')
+            map('n', '<leader>fa', '<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>')
+            map('n', '<leader>fh', '<cmd> :Telescope help_tags <CR>')
+            map('n', '<leader>fw', '<cmd> :Telescope live_grep <CR>')
+            map('n', '<leader>fo', function() require('telescope.builtin').oldfiles({only_cwd=true}) end)
+            map('n', '<leader>ft', '<cmd> :Telescope themes <CR>')
             -- git mappings
-            map("n", "<leader>gc", "<cmd> :Telescope git_commits <CR>")
-            map("n", "<leader>gs", "<cmd> :Telescope git_status <CR>")
+            map('n', '<leader>gc', '<cmd> :Telescope git_commits <CR>')
+            map('n', '<leader>gs', '<cmd> :Telescope git_status <CR>')
         end
     }
 
@@ -252,9 +305,11 @@ return require('packer').startup(function(use)
         'lewis6991/gitsigns.nvim',
         config = function()
             require('gitsigns').setup()
-        end
-    } 
 
+            local map = require('utils').map
+            map('n', '<leader>gb', '<cmd> Gitsigns blame_line <CR>')
+        end
+    }
     -------------------- APPEARANCE --------------------
     use {
         'chentau/marks.nvim',
@@ -267,7 +322,7 @@ return require('packer').startup(function(use)
     }
     use {
         'karb94/neoscroll.nvim',
-        keys = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+        keys = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
         config = function() require('neoscroll').setup() end
     }
     use {
@@ -288,9 +343,9 @@ return require('packer').startup(function(use)
     use {
         'Mofiqul/dracula.nvim',
         config = function()
-            vim.cmd('colorscheme dracula')
             -- show the '~' characters after the end of buffers
             vim.g.dracula_show_end_of_buffer = true
+            vim.cmd('colorscheme dracula')
         end
     }
 

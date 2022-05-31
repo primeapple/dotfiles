@@ -23,6 +23,8 @@ fish -c "fish_config theme save Dracula"
 # fish -c "fisher install IlanCosman/tide@v5"
 # fish -c "fisher install gazorby/fish-abbreviation-tips"
 # fish -c "fisher install jethrokuan/z"
+# fish -c "fisher install jorgebucaran/autopair.fish"
+# fish -c "fisher install jorgebucaran/replay.fish"
 
 # # running tide configure, maybe only do this, if there are no tide settings yet
 # # fish -c "tide configure"
