@@ -201,11 +201,13 @@ return require('packer').startup(function(use)
 
     -------------------- EDITING --------------------
     use {
-        'tpope/vim-repeat'
+        'tpope/vim-repeat',
+        keys = { '.' }
     }
     use {
         'tpope/vim-surround',
-        keys = { { 'n', 'ys' }, { 'n', 'ds' }, { 'v', 'S' } }
+        -- lazy loading with 'cs' made problems before, keep an eye on this
+        keys = { { 'n', 'ys' }, { 'n', 'ds' }, { 'n', 'cs' }, { 'v', 'S' } }
     }
     use {
         'tpope/vim-unimpaired',
@@ -295,12 +297,28 @@ return require('packer').startup(function(use)
             map('n', '<leader>gs', '<cmd> :Telescope git_status <CR>')
         end
     }
-
+    use {
+        -- TODO learn me
+        'justinmk/vim-dirvish',
+    }
+    -- use {
+    --     -- this could be an alternative to vim-dirvish, see https://github.com/justinmk/vim-dirvish/issues/213
+    --     'tamago324/lir.nvim',
+    --     requires = {
+    --         'nvim-lua/plenary.nvim',
+    --         'kyazdani42/nvim-web-devicons'
+    --     }
+    -- }
+    --
     -------------------- INTEGRATION --------------------
     -- use {
     -- TODO learn me
     -- 'tpope/vim-fugitive'
     -- }
+    use {
+        -- TODO learn me
+        'tpope/vim-eunuch'
+    }
     use {
         'lewis6991/gitsigns.nvim',
         config = function()
@@ -310,6 +328,7 @@ return require('packer').startup(function(use)
             map('n', '<leader>gb', '<cmd> Gitsigns blame_line <CR>')
         end
     }
+
     -------------------- APPEARANCE --------------------
     use {
         'chentau/marks.nvim',
@@ -322,7 +341,7 @@ return require('packer').startup(function(use)
     }
     use {
         'karb94/neoscroll.nvim',
-        keys = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+        keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
         config = function() require('neoscroll').setup() end
     }
     use {
@@ -353,7 +372,7 @@ return require('packer').startup(function(use)
     use {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
-        cmd = 'MarkdownPreview'
+        ft = { 'ft' }
     }
 
 
