@@ -10,4 +10,5 @@ if status --is-interactive
 	abbr --add --global cat bat
 	abbr --add --global find fd
 	abbr --add --global cht cht.sh
+    abbr --add --global record 'wf-recorder -g "$(slurp)"'
 end

@@ -43,6 +43,15 @@ return require('packer').startup(function(use)
                     'typescript',
                     'vim',
                     'yaml',
+                },
+                highlight = {
+                    enable = true,
+                    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+                    additional_vim_regex_highlighting = false,
+                },
+                -- EXPERIMENTAL
+                indent = {
+                    enable = true
                 }
             })
         end
