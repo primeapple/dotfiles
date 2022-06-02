@@ -287,7 +287,7 @@ return require('packer').startup(function(use)
         config = function()
             require('telescope').setup({
                 defaults = {
-                    path_display = { shorten = { len = 3, exclude = {1, -1} } }
+                    path_display = { shorten = { len = 3, exclude = {1, -2, -1} } }
                 }
             })
             require('telescope').load_extension('zf-native')
@@ -300,10 +300,9 @@ return require('packer').startup(function(use)
             map('n', '<leader>fh', '<cmd> :Telescope help_tags <CR>')
             map('n', '<leader>fw', '<cmd> :Telescope live_grep <CR>')
             map('n', '<leader>fo', function() require('telescope.builtin').oldfiles({only_cwd=true}) end)
-            map('n', '<leader>ft', '<cmd> :Telescope themes <CR>')
             -- git mappings
-            map('n', '<leader>gc', '<cmd> :Telescope git_commits <CR>')
-            map('n', '<leader>gs', '<cmd> :Telescope git_status <CR>')
+            -- map('n', '<leader>fc', '<cmd> :Telescope git_commits <CR>')
+            map('n', '<leader>fg', '<cmd> :Telescope git_status <CR>')
         end
     }
     use {
@@ -331,10 +330,53 @@ return require('packer').startup(function(use)
     use {
         'lewis6991/gitsigns.nvim',
         config = function()
-            require('gitsigns').setup()
+            require('gitsigns').setup({
+                signs = {
+                    add          = {hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+                    change       = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+                    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+                    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+                    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+                },
+                numhl = true,
+                yadm = {
+                    enable = true
+                },
+                on_attach = function(bufnr)
+                    local gs = package.loaded.gitsigns
 
-            local map = require('utils').map
-            map('n', '<leader>gb', '<cmd> Gitsigns blame_line <CR>')
+                    local function map(mode, l, r, opts)
+                        opts = opts or {}
+                        opts.buffer = bufnr
+                        vim.keymap.set(mode, l, r, opts)
+                    end
+
+                    -- Navigation
+                    map('n', ']c', function()
+                        if vim.wo.diff then return ']c' end
+                        vim.schedule(function() gs.next_hunk() end)
+                        return '<Ignore>'
+                    end, {expr=true})
+
+                    map('n', '[c', function()
+                        if vim.wo.diff then return '[c' end
+                        vim.schedule(function() gs.prev_hunk() end)
+                        return '<Ignore>'
+                    end, {expr=true})
+
+                    -- suggested actions
+                    map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>')
+                    map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>')
+                    map('n', '<leader>gS', gs.stage_buffer)
+                    map('n', '<leader>gu', gs.undo_stage_hunk)
+                    map('n', '<leader>gR', gs.reset_buffer)
+                    map('n', '<leader>gp', gs.preview_hunk)
+                    map('n', '<leader>gb', function() gs.blame_line{full=true} end)
+                    map('n', '<leader>gd', gs.diffthis)
+                    map('n', '<leader>gD', function() gs.diffthis('~') end)
+                    -- map('n', '<leader>td', gs.toggle_deleted)
+                end
+            })
         end
     }
 

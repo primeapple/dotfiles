@@ -4,9 +4,6 @@ map('n', 'V', 'vg_')
 map('n', 'vv', 'V')
 map('n', 'L', 'g_')
 map('n', 'H', '^')
--- move lines up and down in visual mode
--- map('v', 'J', ''>+1<CR>gv=gv')
--- map('v', 'K', ''<-2<CR>gv=gv')
 -- keeping search results centered
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
