@@ -57,6 +57,9 @@ return require('packer').startup(function(use)
         end
     }
     use {
+        'nvim-treesitter/nvim-treesitter-context'
+    }
+    use {
         'hrsh7th/cmp-nvim-lsp'
     }
     use {
@@ -262,6 +265,11 @@ return require('packer').startup(function(use)
         'ThePrimeagen/harpoon',
         requires = 'nvim-lua/plenary.nvim',
         config = function()
+            require('harpoon').setup({
+                -- set branch specific marks
+                mark_branch = true
+            })
+
             local map = require('utils').map
             local function toggle_move()
                 if (vim.v.count > 0) then
@@ -382,11 +390,6 @@ return require('packer').startup(function(use)
 
     -------------------- APPEARANCE --------------------
     use {
-        'chentau/marks.nvim',
-        keys = { 'm' },
-        config = function() require('marks').setup() end
-    }
-    use {
         'luukvbaal/stabilize.nvim',
         config = function() require('stabilize').setup() end
     }
@@ -423,7 +426,7 @@ return require('packer').startup(function(use)
     use {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
-        ft = { 'ft' }
+        ft = { 'markdown' }
     }
 
 
