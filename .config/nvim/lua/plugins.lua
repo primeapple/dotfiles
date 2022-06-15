@@ -210,6 +210,9 @@ return require('packer').startup(function(use)
     -- TODO is this even needed?
     --    ray-x/lsp_signature.nvim
     -- }
+    use {
+        'romainl/vim-qf'
+    }
 
     -------------------- EDITING --------------------
     use {
@@ -317,6 +320,9 @@ return require('packer').startup(function(use)
         -- TODO learn me
         'justinmk/vim-dirvish',
     }
+    use {
+        'tpope/vim-projectionist'
+    }
     -- use {
     --     -- this could be an alternative to vim-dirvish, see https://github.com/justinmk/vim-dirvish/issues/213
     --     'tamago324/lir.nvim',
@@ -386,6 +392,9 @@ return require('packer').startup(function(use)
                 end
             })
         end
+    }
+    use {
+        'tpope/vim-dispatch'
     }
 
     -------------------- APPEARANCE --------------------
