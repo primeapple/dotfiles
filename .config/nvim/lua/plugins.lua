@@ -152,10 +152,23 @@ return require('packer').startup(function(use)
     use {
         'hrsh7th/nvim-cmp',
         after = 'friendly-snippets',
+        requires = 'onsails/lspkind-nvim',
         config = function()
-            local cmp = require'cmp'
-
+            local cmp = require('cmp')
+            local lspkind = require('lspkind')
             cmp.setup({
+                formatting = {
+                    format = lspkind.cmp_format({
+                        mode = 'symbol_text',
+                        menu = {
+                            buffer = '[BUF]',
+                            nvim_lua = '[API]',
+                            nvim_lsp = '[LSP]',
+                            path = '[PATH]',
+                            luasnip = '[SNIP]',
+                        }
+                    })
+                },
                 snippet = {
                     expand = function(args)
                         require('luasnip').lsp_expand(args.body)
@@ -202,14 +215,12 @@ return require('packer').startup(function(use)
         'hrsh7th/cmp-path',
         after = 'cmp-buffer',
     }
-    -- use {
-    -- TODO is this even needed?
-    --     'onsails/lspkind-nvim',
-    -- }
-    --use {
-    -- TODO is this even needed?
-    --    ray-x/lsp_signature.nvim
-    -- }
+    use {
+        'ray-x/lsp_signature.nvim',
+        config = function()
+            require "lsp_signature".setup({})
+        end
+    }
     use {
         'romainl/vim-qf'
     }
@@ -317,30 +328,46 @@ return require('packer').startup(function(use)
         end
     }
     use {
-        -- TODO learn me
-        'justinmk/vim-dirvish',
+        'tamago324/lir.nvim',
+        requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
+        config = function()
+            -- map( 'n', '-', [[<Cmd>execute 'e ' .. expand('%:p:h')<CR>]], { noremap = true })
+            local actions = require('lir.actions')
+            local clipboard_actions = require('lir.clipboard.actions')
+            require('lir').setup({
+                show_hidden_files = true,
+                devicons_enable = true,
+                float = { winblend = 0 }, -- keep float setting even if you don't use it, otherwise it will crash
+                hide_cursor = false,
+
+                mappings = {
+                    ['<CR>'] = actions.edit,
+                    ['q']    = actions.quit,
+                    ['-']    = actions.up,
+
+                    ['M']    = actions.mkdir,
+                    ['N']    = actions.newfile,
+                    ['R']    = actions.rename,
+                    ['Y']    = actions.yank_path,
+                    ['.']    = actions.toggle_show_hidden,
+                    ['D']    = actions.delete,
+
+                    ['C']    = clipboard_actions.copy,
+                    ['X']    = clipboard_actions.cut,
+                    ['P']    = clipboard_actions.paste,
+                }
+            })
+        end
     }
     use {
         'tpope/vim-projectionist'
     }
-    -- use {
-    --     -- this could be an alternative to vim-dirvish, see https://github.com/justinmk/vim-dirvish/issues/213
-    --     'tamago324/lir.nvim',
-    --     requires = {
-    --         'nvim-lua/plenary.nvim',
-    --         'kyazdani42/nvim-web-devicons'
-    --     }
-    -- }
     --
     -------------------- INTEGRATION --------------------
     -- use {
     -- TODO learn me
     -- 'tpope/vim-fugitive'
     -- }
-    use {
-        -- TODO learn me
-        'tpope/vim-eunuch'
-    }
     use {
         'lewis6991/gitsigns.nvim',
         config = function()
@@ -366,14 +393,14 @@ return require('packer').startup(function(use)
                     end
 
                     -- Navigation
-                    map('n', ']c', function()
-                        if vim.wo.diff then return ']c' end
+                    map('n', ']g', function()
+                        if vim.wo.diff then return ']g' end
                         vim.schedule(function() gs.next_hunk() end)
                         return '<Ignore>'
                     end, {expr=true})
 
-                    map('n', '[c', function()
-                        if vim.wo.diff then return '[c' end
+                    map('n', '[g', function()
+                        if vim.wo.diff then return '[g' end
                         vim.schedule(function() gs.prev_hunk() end)
                         return '<Ignore>'
                     end, {expr=true})

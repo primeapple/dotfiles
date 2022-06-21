@@ -11,3 +11,6 @@
 	root = rev-parse --show-toplevel
 	publish = push -u origin HEAD
 	pullother = !git pull origin $1:$1
+    hide = update-index --assume-unchanged
+    unhide = update-index --no-assume-unchanged
+    hidden = ! git ls-files -v | grep '^h' | cut -c3-
