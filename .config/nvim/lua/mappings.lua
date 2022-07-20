@@ -16,8 +16,8 @@ end
 map('n', 'J', join)
 map('n', '<ESC>', '<cmd> noh <CR>')
 
-map({'n', 'x'}, ':', ';')
-map({'n', 'x'}, ';', ':')
+-- map({'n', 'x'}, ':', ';')
+-- map({'n', 'x'}, ';', ':')
 -- disabling q:
 -- map('n', 'q:', '<nop>')
 -- map('n', 'Q', 'q:')

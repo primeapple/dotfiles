@@ -24,7 +24,6 @@ return require('packer').startup(function(use)
                     'bash',
                     'css',
                     'dockerfile',
-                    'elm',
                     'fish',
                     'html',
                     'java',
@@ -32,6 +31,7 @@ return require('packer').startup(function(use)
                     'json',
                     'lua',
                     'markdown',
+                    'markdown_inline',
                     'nix',
                     'python',
                     'regex',
@@ -70,9 +70,9 @@ return require('packer').startup(function(use)
                 automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
                 ui = {
                     icons = {
-                        server_installed = "✓",
-                        server_pending = "➜",
-                        server_uninstalled = "✗"
+                        server_installed = '✓',
+                        server_pending = '➜',
+                        server_uninstalled = '✗'
                     }
                 }
             })
@@ -184,7 +184,7 @@ return require('packer').startup(function(use)
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
-                    { name = 'buffer', keyword_length = 5 },
+                    { name = 'buffer', keyword_length = 3 },
                     { name = 'nvim_lua' },
                     { name = 'path' }
                 })
@@ -218,22 +218,42 @@ return require('packer').startup(function(use)
     use {
         'ray-x/lsp_signature.nvim',
         config = function()
-            require "lsp_signature".setup({})
+            require 'lsp_signature'.setup({})
         end
     }
     use {
-        'romainl/vim-qf'
+        'mfussenegger/nvim-jdtls',
     }
+
+    -------------------- DEBUGGING --------------------
+    use {
+        'mfussenegger/nvim-dap'
+    }
+    use {
+        'David-Kunz/jester',
+        ft = { 'javascript', 'typescript' },
+        config = function()
+            require('jester').setup({
+                path_to_jest_run = './node_modules/.bin/jest',
+                path_to_jest_debug = './node_modules/.bin/jest'
+            })
+            local map = require('utils').map
+            map('n', '<leader>r', function() require('jester').run_last() end)
+            map('n', '<leader>R', function() require('jester').run() end)
+            map('n', '<leader>d', function() require('jester').debug_last() end)
+            map('n', '<leader>D', function() require('jester').debug() end)
+        end
+    }
+    -- checkout later
+    -- use { 'nvim-neotest/neotest' }
 
     -------------------- EDITING --------------------
     use {
-        'tpope/vim-repeat',
-        keys = { '.' }
-    }
-    use {
-        'tpope/vim-surround',
-        -- lazy loading with 'cs' made problems before, keep an eye on this
-        keys = { { 'n', 'ys' }, { 'n', 'ds' }, { 'n', 'cs' }, { 'v', 'S' } }
+        'kylechui/nvim-surround',
+        keys = { { 'n', 'ys' }, { 'n', 'ds' }, { 'n', 'cs' }, { 'v', 'S' } },
+        config = function()
+            require('nvim-surround').setup({})
+        end
     }
     use {
         'tpope/vim-unimpaired',
@@ -302,6 +322,7 @@ return require('packer').startup(function(use)
     }
     use {
         'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
         requires = {
             'nvim-lua/plenary.nvim',
             'natecraddock/telescope-zf-native.nvim'
@@ -329,9 +350,11 @@ return require('packer').startup(function(use)
     }
     use {
         'tamago324/lir.nvim',
-        requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
+        requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'tamago324/lir-git-status.nvim' },
         config = function()
-            -- map( 'n', '-', [[<Cmd>execute 'e ' .. expand('%:p:h')<CR>]], { noremap = true })
+            local map = require('utils').map
+            map( 'n', '-', [[<Cmd>execute 'e ' .. expand('%:p:h')<CR>]])
+
             local actions = require('lir.actions')
             local clipboard_actions = require('lir.clipboard.actions')
             require('lir').setup({
@@ -357,11 +380,17 @@ return require('packer').startup(function(use)
                     ['P']    = clipboard_actions.paste,
                 }
             })
+
+            require('lir.git_status').setup({})
         end
     }
     use {
         'tpope/vim-projectionist'
     }
+    use {
+        'romainl/vim-qf'
+    }
+
     --
     -------------------- INTEGRATION --------------------
     -- use {
@@ -445,6 +474,12 @@ return require('packer').startup(function(use)
             require('lualine').setup({
                 options = { theme = 'dracula-nvim' }
             })
+        end
+    }
+    use {
+        'j-hui/fidget.nvim',
+        config = function ()
+            require('fidget').setup({})
         end
     }
 

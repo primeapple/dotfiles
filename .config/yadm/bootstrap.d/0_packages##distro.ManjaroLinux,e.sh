@@ -3,6 +3,7 @@
 # lazydocker, ctop, yay, neovim?,
 pacman_shell_packages=(
 	"bat"
+    "delta-git"
 	"docker"
 	"docker-compose"
 	"exa"
