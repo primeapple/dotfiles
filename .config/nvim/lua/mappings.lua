@@ -25,7 +25,12 @@ map('n', '<ESC>', '<cmd> noh <CR>')
 -- allows "overpasting" selected blocks and not change the register to the overpasted text
 map('v', 'p', 'p:let @+=@0<CR>')
 
--- close buffer, but leaves it in memory (oldfiles, bufferlist, marks, etc.)
-map('n', '<leader>x', '<cmd> bd <CR>')
--- close buffer, wipeout everything about it
-map('n', '<leader>X', '<cmd> bw <CR>')
+-- close window
+map('n', '<leader>x', '<cmd> q <CR>')
+-- close all windows
+-- map('n', '<leader>X', '<cmd> qa <CR>')
+
+-- open new vertical split
+map('n', '<leader>/', '<cmd> vsp <CR>')
+-- open new horizontal split
+map('n', '<leader>-', '<cmd> sp <CR>')

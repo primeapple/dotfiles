@@ -64,10 +64,9 @@ return require('packer').startup(function(use)
     }
     use {
         'neovim/nvim-lspconfig',
-        requires = 'williamboman/nvim-lsp-installer',
+        requires = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' },
         config = function()
-            require('nvim-lsp-installer').setup({
-                automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+            require('mason').setup({
                 ui = {
                     icons = {
                         server_installed = '✓',
@@ -75,6 +74,9 @@ return require('packer').startup(function(use)
                         server_uninstalled = '✗'
                     }
                 }
+            })
+            require('mason-lspconfig').setup({
+                automatic_installation = true
             })
 
             local opts = { noremap=true, silent=true }
@@ -95,7 +97,7 @@ return require('packer').startup(function(use)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-                vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+                vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
                 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -113,6 +115,7 @@ return require('packer').startup(function(use)
                 -- check sqls, it seems to be a better alternative
                 -- 'sqlls',
                 'tsserver',
+                'rust_analyzer',
             }
             local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
             for _, lsp in pairs(servers) do
@@ -264,10 +267,11 @@ return require('packer').startup(function(use)
         config = function() vim.g.wordmotion_prefix = '<leader>' end
     }
     use {
-        'Pocco81/AutoSave.nvim',
+        'Pocco81/auto-save.nvim',
         config = function()
             require('autosave').setup({
-                on_off_commands = true
+                debounce_delay = 5000
+                -- on_off_commands = true
             })
         end
     }
@@ -357,6 +361,8 @@ return require('packer').startup(function(use)
 
             local actions = require('lir.actions')
             local clipboard_actions = require('lir.clipboard.actions')
+            local mark_actions = require('lir.mark.actions')
+
             require('lir').setup({
                 show_hidden_files = true,
                 devicons_enable = true,
@@ -369,7 +375,7 @@ return require('packer').startup(function(use)
                     ['-']    = actions.up,
 
                     ['M']    = actions.mkdir,
-                    ['N']    = actions.newfile,
+                    ['T']    = actions.newfile,
                     ['R']    = actions.rename,
                     ['Y']    = actions.yank_path,
                     ['.']    = actions.toggle_show_hidden,
@@ -378,6 +384,8 @@ return require('packer').startup(function(use)
                     ['C']    = clipboard_actions.copy,
                     ['X']    = clipboard_actions.cut,
                     ['P']    = clipboard_actions.paste,
+
+                    ['m']    = mark_actions.toggle_mark,
                 }
             })
 
@@ -385,7 +393,20 @@ return require('packer').startup(function(use)
         end
     }
     use {
-        'tpope/vim-projectionist'
+        'tpope/vim-projectionist',
+        config = function ()
+            local map = require('utils').map
+            map('n', 'gP', '<cmd>:A<CR>')
+            local alphabet = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' }
+            -- gp${lowerLetter} opens projection in current window
+            for _, letter in ipairs(alphabet) do
+                map('n', 'gp' .. letter, '<cmd>:E' .. letter .. '<CR>')
+            end
+            -- gp${upperLetter} opens projection in vertical split
+            for _, letter in ipairs(alphabet) do
+                map('n', 'gp' .. string.upper(letter), '<cmd>:V' .. letter .. '<CR>')
+            end
+        end
     }
     use {
         'romainl/vim-qf'
@@ -480,6 +501,17 @@ return require('packer').startup(function(use)
         'j-hui/fidget.nvim',
         config = function ()
             require('fidget').setup({})
+        end
+    }
+    use {
+        'stevearc/dressing.nvim',
+        config = function ()
+            require('dressing').setup({
+                input = {
+                    insert_only = false,
+                    start_in_insert = false,
+                }
+            })
         end
     }
 
