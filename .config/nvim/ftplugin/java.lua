@@ -4,6 +4,7 @@ local workspace_dir = '/home/toni/.cache/jdtls/' .. project_name
 -- local jdtls_install_location = '/usr/share/java/jdtls/'
 -- local version of jdtls
 local jdtls_install_location = '/home/toni/.bin/jdtls/'
+local jdtls = require('jdtls')
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
@@ -67,7 +68,14 @@ local config = {
     init_options = {
         bundles = {}
     },
+
+    on_attach = function (client, buffer)
+        require('config.lsp').on_attach(client, buffer)
+
+        -- jdtls.setup_dap({ hotcodereplace = 'auto' })
+        jdtls.setup.add_commands()
+    end
 }
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
-require('jdtls').start_or_attach(config)
+jdtls.start_or_attach(config)
