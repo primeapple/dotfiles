@@ -157,7 +157,7 @@ return require('packer').startup(function(use)
         'neovim/nvim-lspconfig',
         requires = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', 'ray-x/lsp_signature.nvim' },
         config = function()
-            require('config.lsp').setup()
+            require('toni.plugins.lsp').setup()
         end
     }
     use {
@@ -167,7 +167,24 @@ return require('packer').startup(function(use)
 
     -------------------- DEBUGGING --------------------
     use {
-        'mfussenegger/nvim-dap'
+        'mfussenegger/nvim-dap',
+        requires = {
+            'theHamsta/nvim-dap-virtual-text',
+            'rcarriga/nvim-dap-ui',
+        },
+        config = function()
+            local dap, dapui = require('dap'), require('dapui')
+
+            local map = require('toni.utils').map
+            map('n', 'yod', require('dapui').toggle)
+            map('n', '[od', require('dapui').open)
+            map('n', ']od', require('dapui').close)
+
+            -- starting and ending ui automatically
+            dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+            dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+            dap.listeners.before.event_exited['dapui_config'] = dapui.close
+        end
     }
     use {
         'David-Kunz/jester',
@@ -177,14 +194,16 @@ return require('packer').startup(function(use)
                 path_to_jest_run = './node_modules/.bin/jest',
                 path_to_jest_debug = './node_modules/.bin/jest'
             })
-            local map = require('utils').map
-            map('n', '<leader>r', function() require('jester').run_last() end)
-            map('n', '<leader>R', function() require('jester').run() end)
-            map('n', '<leader>d', function() require('jester').debug_last() end)
-            map('n', '<leader>D', function() require('jester').debug() end)
+            local map = require('toni.utils').map
+            map('n', '<leader>rr', require('jester').run_last)
+            map('n', '<leader>rf', require('jester').run_file)
+            map('n', '<leader>rn', require('jester').run)
+            map('n', '<leader>rR', require('jester').debug_last)
+            map('n', '<leader>rF', require('jester').debug_file)
+            map('n', '<leader>rN', require('jester').debug)
         end
     }
-    -- checkout later
+    -- checkout later, would prefer over jester
     -- use { 'nvim-neotest/neotest' }
 
     -------------------- EDITING --------------------
@@ -206,7 +225,7 @@ return require('packer').startup(function(use)
     use {
         'Pocco81/auto-save.nvim',
         config = function()
-            require('autosave').setup({
+            require('auto-save').setup({
                 debounce_delay = 5000
                 -- on_off_commands = true
             })
@@ -226,6 +245,10 @@ return require('packer').startup(function(use)
         'windwp/nvim-autopairs',
         config = function() require('nvim-autopairs').setup() end
     }
+    use {
+        'bronson/vim-visual-star-search',
+        keys = { { 'v', '*'} }
+    }
     -- use {
     -- TODO learn me
     -- 'ggandor/lightspeed.nvim'
@@ -233,9 +256,6 @@ return require('packer').startup(function(use)
 
 
     -------------------- NAVIGATION --------------------
-    use {
-        'christoomey/vim-tmux-navigator'
-    }
     use {
         'ThePrimeagen/harpoon',
         requires = 'nvim-lua/plenary.nvim',
@@ -245,7 +265,7 @@ return require('packer').startup(function(use)
                 mark_branch = true
             })
 
-            local map = require('utils').map
+            local map = require('toni.utils').map
             local function toggle_move()
                 if (vim.v.count > 0) then
                     -- this does not work (yet?)
@@ -256,9 +276,9 @@ return require('packer').startup(function(use)
                 end
             end
             map('n', 'gh', toggle_move, { expr = true } )
-            map('n', ']h', function() require('harpoon.ui').nav_next() end)
-            map('n', '[h', function() require('harpoon.ui').nav_prev() end)
-            map('n', 'gH', function() require('harpoon.ui').toggle_quick_menu() end)
+            map('n', ']h', require('harpoon.ui').nav_next)
+            map('n', '[h', require('harpoon.ui').nav_prev)
+            map('n', 'gH', require('harpoon.ui').toggle_quick_menu)
         end
     }
     use {
@@ -266,17 +286,44 @@ return require('packer').startup(function(use)
         branch = '0.1.x',
         requires = {
             'nvim-lua/plenary.nvim',
-            'natecraddock/telescope-zf-native.nvim'
+            'natecraddock/telescope-zf-native.nvim',
+            'nvim-telescope/telescope-dap.nvim'
         },
         config = function()
-            require('telescope').setup({
+            local telescope = require('telescope')
+            local actions = require('telescope.actions')
+            telescope.setup({
                 defaults = {
-                    path_display = { shorten = { len = 3, exclude = {1, -2, -1} } }
+                    path_display = { shorten = { len = 3, exclude = {1, -2, -1} } },
+                    mappings = {
+                        i = {
+                            ['<C-D>'] = 'results_scrolling_down',
+                            ['<C-U>'] = 'results_scrolling_up',
+                            ['<C-F>'] = 'preview_scrolling_down',
+                            ['<C-B>'] = 'preview_scrolling_up',
+                            ['<C-X>'] = false,
+                            ['<C-V>'] = false,
+                            ['<C-/>'] = actions.select_vertical,
+                            ['<C-->'] = actions.select_horizontal,
+                        },
+                        n = {
+                            ['<C-D>'] = 'results_scrolling_down',
+                            ['<C-U>'] = 'results_scrolling_up',
+                            ['<C-F>'] = 'preview_scrolling_down',
+                            ['<C-B>'] = 'preview_scrolling_up',
+                            ['<C-X>'] = false,
+                            ['<C-V>'] = false,
+                            ['<C-/>'] = actions.select_vertical,
+                            ['<C-->'] = actions.select_horizontal,
+                        }
+                    }
                 }
             })
-            require('telescope').load_extension('zf-native')
+            telescope.load_extension('zf-native')
+            telescope.load_extension('dap')
 
-            local map = require('utils').map
+            local map = require('toni.utils').map
+
             -- basic mappings
             map('n', '<leader>fb', '<cmd> :Telescope buffers <CR>')
             map('n', '<leader>ff', '<cmd> :Telescope find_files <CR>')
@@ -284,16 +331,26 @@ return require('packer').startup(function(use)
             map('n', '<leader>fh', '<cmd> :Telescope help_tags <CR>')
             map('n', '<leader>fw', '<cmd> :Telescope live_grep <CR>')
             map('n', '<leader>fo', function() require('telescope.builtin').oldfiles({only_cwd=true}) end)
+
             -- git mappings
             -- map('n', '<leader>fc', '<cmd> :Telescope git_commits <CR>')
             map('n', '<leader>fg', '<cmd> :Telescope git_status <CR>')
+
+            -- dap mappings
+            map('n', '<leader>fd', '<cmd> :Telescope dap <CR>')
+            -- there is also:
+            -- :Telescope dap commands
+            -- :Telescope dap configurations
+            -- :Telescope dap list_breakpoints
+            -- :Telescope dap variables
+            -- :Telescope dap frames
         end
     }
     use {
         'tamago324/lir.nvim',
         requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'tamago324/lir-git-status.nvim' },
         config = function()
-            local map = require('utils').map
+            local map = require('toni.utils').map
             map( 'n', '-', [[<Cmd>execute 'e ' .. expand('%:p:h')<CR>]])
 
             local actions = require('lir.actions')
@@ -332,7 +389,7 @@ return require('packer').startup(function(use)
     use {
         'tpope/vim-projectionist',
         config = function ()
-            local map = require('utils').map
+            local map = require('toni.utils').map
             map('n', 'gP', '<cmd>:A<CR>')
             local alphabet = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' }
             -- gp${lowerLetter} opens projection in current window
@@ -407,9 +464,6 @@ return require('packer').startup(function(use)
             })
         end
     }
-    use {
-        'tpope/vim-dispatch'
-    }
 
     -------------------- APPEARANCE --------------------
     use {
@@ -451,6 +505,9 @@ return require('packer').startup(function(use)
             })
         end
     }
+    use {
+        'vimpostor/vim-tpipeline'
+    }
 
     -------------------- COLORSCHEMES --------------------
     use {
@@ -468,7 +525,6 @@ return require('packer').startup(function(use)
         run = 'cd app && yarn install',
         ft = { 'markdown' }
     }
-
 
     -------------------- FINALIZE --------------------
     -- setup config after cloning packer.nvim

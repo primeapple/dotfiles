@@ -1,2 +1,2 @@
 .config/fish/conf.d/custom_abbreviations_work.fish
-.config/fish/functions/datameer.fish
+.config/fish/functions/dm_test.fish

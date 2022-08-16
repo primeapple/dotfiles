@@ -131,7 +131,7 @@ map <C-z> <Action>(ToggleDistractionFreeMode)
 " SourceCodeEditing
 nnoremap <Leader>= :action ReformatCode<cr>
 nnoremap <Leader>o :action OptimizeImports<cr>
-nnoremap <Leader>h :action QuickJavaDoc<cr>
+nnoremap K :action QuickJavaDoc<cr>
 
 "" Goto Stuff ""
 " Data type related

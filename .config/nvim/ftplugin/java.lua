@@ -4,6 +4,10 @@ local workspace_dir = '/home/toni/.cache/jdtls/' .. project_name
 -- local jdtls_install_location = '/usr/share/java/jdtls/'
 -- local version of jdtls
 local jdtls_install_location = '/home/toni/.bin/jdtls/'
+
+local java_debug_jar = '/home/toni/.bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
+local vscode_java_test_jars_location = '/home/toni/.bin/vscode-java-test/server/'
+
 local jdtls = require('jdtls')
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
@@ -65,24 +69,25 @@ local config = {
         }
     },
 
-    -- Language server `initializationOptions`
-    -- You need to extend the `bundles` with paths to jar files
-    -- if you want to use additional eclipse.jdt.ls plugins.
-    --
-    -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-    --
-    -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
-    init_options = {
-        bundles = {}
-    },
-
     on_attach = function (client, buffer)
-        require('config.lsp').on_attach(client, buffer)
+        require('toni.plugins.lsp').on_attach(client, buffer)
 
-        -- jdtls.setup_dap({ hotcodereplace = 'auto' })
+        jdtls.setup_dap({ hotcodereplace = 'auto' })
         jdtls.setup.add_commands()
     end
 }
+
+-- for debugging
+local bundles = {
+    vim.fn.glob(java_debug_jar)
+};
+
+-- for running tests
+vim.list_extend(bundles, vim.split(vim.fn.glob(vscode_java_test_jars_location .. '*.jar'), '\n'))
+config['init_options'] = {
+  bundles = bundles;
+}
+
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 jdtls.start_or_attach(config)

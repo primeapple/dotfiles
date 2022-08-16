@@ -1,4 +1,4 @@
-local map = require('utils').map
+local map = require('toni.utils').map
 
 map('n', 'V', 'vg_')
 map('n', 'vv', 'V')
@@ -34,3 +34,28 @@ map('n', '<leader>x', '<cmd> q <CR>')
 map('n', '<leader>/', '<cmd> vsp <CR>')
 -- open new horizontal split
 map('n', '<leader>-', '<cmd> sp <CR>')
+
+-- get out of terminal mode
+map('t', '<ESC>', '<C-\\><C-n>')
+
+-- moving around splits with <C-hjkl>
+-- Terminal mode:
+map('t', '<C-h>', '<C-\\><C-n><C-w>h')
+map('t', '<C-j>', '<C-\\><C-n><C-w>j')
+map('t', '<C-k>', '<C-\\><C-n><C-w>k')
+map('t', '<C-l>', '<C-\\><C-n><C-w>l')
+-- Insert mode:
+map('i', '<C-h>', '<Esc><C-w>h')
+map('i', '<C-j>', '<Esc><C-w>j')
+map('i', '<C-k>', '<Esc><C-w>k')
+map('i', '<C-l>', '<Esc><C-w>l')
+-- Visual mode:
+map('v', '<C-h>', '<Esc><C-w>h')
+map('v', '<C-j>', '<Esc><C-w>j')
+map('v', '<C-k>', '<Esc><C-w>k')
+map('v', '<C-l>', '<Esc><C-w>l')
+-- Normal mode:
+map('n', '<C-h>', '<C-w>h')
+map('n', '<C-j>', '<C-w>j')
+map('n', '<C-k>', '<C-w>k')
+map('n', '<C-l>', '<C-w>l')

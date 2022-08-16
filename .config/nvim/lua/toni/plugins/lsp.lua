@@ -1,4 +1,4 @@
-local map = require('utils').map
+local map = require('toni.utils').map
 
 local M = {}
 
@@ -25,7 +25,7 @@ M.on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
     -- enable lsp_signature
-    require 'lsp_signature'.on_attach({}, bufnr)
+    require('lsp_signature').on_attach({}, bufnr)
 end
 
 M.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -53,7 +53,7 @@ local mason = function ()
 end
 
 local sumneko = function ()
-    require('lspconfig').sumneko_lua.setup {
+    require('lspconfig').sumneko_lua.setup({
         on_attach = M.on_attach,
         capabilities = M.capabilities,
         settings = {
@@ -72,23 +72,32 @@ local sumneko = function ()
                 },
             },
         },
-    }
+    })
+end
+
+local eslint = function ()
+    -- disables the EslintFixAll command, because it interferes with vim-projectionist
+    require('lspconfig.server_configurations.eslint').commands = {};
+    require('lspconfig').eslint.setup({
+        on_attach = M.on_attach,
+        capabilities = M.capabilities
+    })
 end
 
 local server = function(language_server_name)
-    require('lspconfig')[language_server_name].setup {
+    require('lspconfig')[language_server_name].setup({
         on_attach = M.on_attach,
         capabilities = M.capabilities
-    }
+    })
 end
 
 M.setup = function()
     diagnostic_mappings()
     mason()
     sumneko()
+    eslint()
     server('bashls')
     server('dockerls')
-    server('eslint')
     server('rust_analyzer')
     server('tsserver')
 end
