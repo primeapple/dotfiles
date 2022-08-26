@@ -14,50 +14,18 @@ return require('packer').startup(function(use)
         'lewis6991/impatient.nvim'
     }
 
-    -------------------- PROGRAMMING --------------------
+    -------------------- TREESITTER --------------------
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
+        requires = {
+            'nvim-treesitter/nvim-treesitter-context',
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            'RRethy/nvim-treesitter-textsubjects'
+        },
         config = function()
-            require('nvim-treesitter.configs').setup({
-                ensure_installed = {
-                    'bash',
-                    'css',
-                    'dockerfile',
-                    'fish',
-                    'html',
-                    'java',
-                    'javascript',
-                    'json',
-                    'lua',
-                    'markdown',
-                    'markdown_inline',
-                    'nix',
-                    'python',
-                    'regex',
-                    'ruby',
-                    'rust',
-                    'scss',
-                    'svelte',
-                    'tsx',
-                    'typescript',
-                    'vim',
-                    'yaml',
-                },
-                highlight = {
-                    enable = true,
-                    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-                    additional_vim_regex_highlighting = false,
-                },
-                -- EXPERIMENTAL
-                indent = {
-                    enable = true
-                }
-            })
+            require('toni.plugins.treesitter')
         end
-    }
-    use {
-        'nvim-treesitter/nvim-treesitter-context'
     }
 
     -------------------- CMP --------------------
@@ -188,9 +156,10 @@ return require('packer').startup(function(use)
     }
     use {
         'David-Kunz/jester',
-        ft = { 'javascript', 'typescript' },
+        ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
         config = function()
             require('jester').setup({
+                terminal_cmd = 'ToggleTerm',
                 path_to_jest_run = './node_modules/.bin/jest',
                 path_to_jest_debug = './node_modules/.bin/jest'
             })
@@ -211,7 +180,11 @@ return require('packer').startup(function(use)
         'kylechui/nvim-surround',
         keys = { { 'n', 'ys' }, { 'n', 'ds' }, { 'n', 'cs' }, { 'v', 'S' } },
         config = function()
-            require('nvim-surround').setup({})
+            require('nvim-surround').setup({
+                aliases = {
+                    ["b"] = { ')', ']', '}' }
+                }
+            })
         end
     }
     use {
@@ -290,60 +263,7 @@ return require('packer').startup(function(use)
             'nvim-telescope/telescope-dap.nvim'
         },
         config = function()
-            local telescope = require('telescope')
-            local actions = require('telescope.actions')
-            telescope.setup({
-                defaults = {
-                    path_display = { shorten = { len = 3, exclude = {1, -2, -1} } },
-                    mappings = {
-                        i = {
-                            ['<C-D>'] = 'results_scrolling_down',
-                            ['<C-U>'] = 'results_scrolling_up',
-                            ['<C-F>'] = 'preview_scrolling_down',
-                            ['<C-B>'] = 'preview_scrolling_up',
-                            ['<C-X>'] = false,
-                            ['<C-V>'] = false,
-                            ['<C-/>'] = actions.select_vertical,
-                            ['<C-->'] = actions.select_horizontal,
-                        },
-                        n = {
-                            ['<C-D>'] = 'results_scrolling_down',
-                            ['<C-U>'] = 'results_scrolling_up',
-                            ['<C-F>'] = 'preview_scrolling_down',
-                            ['<C-B>'] = 'preview_scrolling_up',
-                            ['<C-X>'] = false,
-                            ['<C-V>'] = false,
-                            ['<C-/>'] = actions.select_vertical,
-                            ['<C-->'] = actions.select_horizontal,
-                        }
-                    }
-                }
-            })
-            telescope.load_extension('zf-native')
-            telescope.load_extension('dap')
-
-            local map = require('toni.utils').map
-
-            -- basic mappings
-            map('n', '<leader>fb', '<cmd> :Telescope buffers <CR>')
-            map('n', '<leader>ff', '<cmd> :Telescope find_files <CR>')
-            map('n', '<leader>fa', '<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>')
-            map('n', '<leader>fh', '<cmd> :Telescope help_tags <CR>')
-            map('n', '<leader>fw', '<cmd> :Telescope live_grep <CR>')
-            map('n', '<leader>fo', function() require('telescope.builtin').oldfiles({only_cwd=true}) end)
-
-            -- git mappings
-            -- map('n', '<leader>fc', '<cmd> :Telescope git_commits <CR>')
-            map('n', '<leader>fg', '<cmd> :Telescope git_status <CR>')
-
-            -- dap mappings
-            map('n', '<leader>fd', '<cmd> :Telescope dap <CR>')
-            -- there is also:
-            -- :Telescope dap commands
-            -- :Telescope dap configurations
-            -- :Telescope dap list_breakpoints
-            -- :Telescope dap variables
-            -- :Telescope dap frames
+            require('toni.plugins.telescope')
         end
     }
     use {
@@ -351,7 +271,7 @@ return require('packer').startup(function(use)
         requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'tamago324/lir-git-status.nvim' },
         config = function()
             local map = require('toni.utils').map
-            map( 'n', '-', [[<Cmd>execute 'e ' .. expand('%:p:h')<CR>]])
+            map('n', '-', [[<Cmd>execute 'e ' .. expand('%:p:h')<CR>]])
 
             local actions = require('lir.actions')
             local clipboard_actions = require('lir.clipboard.actions')
@@ -369,7 +289,7 @@ return require('packer').startup(function(use)
                     ['-']    = actions.up,
 
                     ['M']    = actions.mkdir,
-                    ['T']    = actions.newfile,
+                    ['T']    = actions.touch,
                     ['R']    = actions.rename,
                     ['Y']    = actions.yank_path,
                     ['.']    = actions.toggle_show_hidden,
@@ -505,9 +425,6 @@ return require('packer').startup(function(use)
             })
         end
     }
-    use {
-        'vimpostor/vim-tpipeline'
-    }
 
     -------------------- COLORSCHEMES --------------------
     use {
@@ -524,6 +441,23 @@ return require('packer').startup(function(use)
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
         ft = { 'markdown' }
+    }
+    use {
+        'akinsho/toggleterm.nvim',
+        tag = 'v2.*',
+        config = function()
+            require('toggleterm').setup({
+                size = function(term)
+                    if term.direction == "horizontal" then
+                        return 15
+                    elseif term.direction == "vertical" then
+                        return vim.o.columns * 0.3
+                    end
+                end,
+                open_mapping = '<C-t>',
+                direction = 'vertical'
+            })
+        end
     }
 
     -------------------- FINALIZE --------------------

@@ -7,9 +7,9 @@ g.do_filetype_lua = 1
 
 opt.confirm = true
 opt.laststatus = 3 -- global statusline
--- opt.cmdheight = 0 -- no commandline, comes in nvim 0.8?
 opt.title = true
 opt.clipboard = "unnamedplus"
+-- opt.cmdheight = 0 -- dont show commandline, comes in nvim 0.8?
 opt.cmdheight = 1
 opt.cul = true -- cursor line
 
