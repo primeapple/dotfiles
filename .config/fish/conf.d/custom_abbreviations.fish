@@ -1,5 +1,5 @@
 if status --is-interactive
-	abbr --add --global .. 'cd ..'
+    # applications
 	abbr --add --global dc docker-compose
 	abbr --add --global mv 'mv -i'
 	abbr --add --global g 'git'
@@ -11,4 +11,11 @@ if status --is-interactive
 	abbr --add --global find fd
 	abbr --add --global cht cht.sh
     abbr --add --global record 'wf-recorder -g "$(slurp)"'
+
+    # npm related ones
+    abbr --add --global nj 'npx jest'
+    abbr --add --global nrt 'npm run test'
+    abbr --add --global nrw 'npm run watch'
+    abbr --add --global nrl 'npm run lint'
+    abbr --add --global nrd 'npm run docs'
 end

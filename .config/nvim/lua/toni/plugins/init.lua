@@ -257,6 +257,7 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
+        after = { 'nvim-dap' },
         requires = {
             'nvim-lua/plenary.nvim',
             'natecraddock/telescope-zf-native.nvim',
@@ -285,6 +286,8 @@ return require('packer').startup(function(use)
 
                 mappings = {
                     ['<CR>'] = actions.edit,
+                    ['<C-->'] = actions.split,
+                    ['<C-/>'] = actions.vsplit,
                     ['q']    = actions.quit,
                     ['-']    = actions.up,
 
@@ -324,6 +327,20 @@ return require('packer').startup(function(use)
     }
     use {
         'romainl/vim-qf'
+    }
+    use {
+        'ggandor/leap.nvim',
+        config = function ()
+            -- TODO: S doesn't work, maybe use s/S for operator mode as well
+            -- s/S for normal, visual mode
+            -- z/Z, x/X for operator mode
+            require('leap').set_default_keymaps()
+            -- local map = require('toni.utils').map
+            -- map({'n', 'o', 'v'}, 't', '<Plug>(leap-forward)')
+            -- map({'n', 'o', 'v'}, 'T', '<Plug>(leap-backward)')
+            -- map({'n', 'o', 'v'}, 'f', '<Plug>(leap-forward-x)')
+            -- map({'n', 'o', 'v'}, 'F', '<Plug>(leap-backward-x)')
+        end
     }
 
     --

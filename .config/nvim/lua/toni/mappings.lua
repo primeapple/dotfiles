@@ -25,6 +25,9 @@ map('n', '<ESC>', '<cmd> noh <CR>')
 -- allows "overpasting" selected blocks and not change the register to the overpasted text
 map('v', 'p', 'p:let @+=@0<CR>')
 
+-- Redo with U
+map('n', 'U', '<C-R>')
+
 -- close window
 map('n', '<leader>x', '<cmd> q <CR>')
 -- close all windows
@@ -36,7 +39,7 @@ map('n', '<leader>/', '<cmd> vsp <CR>')
 map('n', '<leader>-', '<cmd> sp <CR>')
 
 -- get out of terminal mode
-map('t', '<ESC>', '<C-\\><C-n>')
+map('t', '<ESC><ESC>', '<C-\\><C-n>')
 
 -- moving around splits with <C-hjkl>
 -- Terminal mode:
