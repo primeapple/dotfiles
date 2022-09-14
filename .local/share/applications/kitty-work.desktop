@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Kitty Work
+Exec=/usr/bin/kitty --session sessions/work.conf
+Icon=kitty.svg

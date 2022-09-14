@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Kitty Rust
+Exec=/usr/bin/kitty --session sessions/rust.conf
+Icon=kitty.svg

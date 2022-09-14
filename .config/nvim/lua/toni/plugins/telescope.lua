@@ -25,7 +25,7 @@ telescope.setup({
 })
 
 telescope.load_extension('zf-native')
-telescope.load_extension('dap')
+-- telescope.load_extension('dap')
 
 local map = require('toni.utils').map
 

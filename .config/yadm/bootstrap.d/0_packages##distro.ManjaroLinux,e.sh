@@ -12,7 +12,6 @@ pacman_shell_packages=(
 	"jq"
 	"keepassxc"
 	"syncthing"
-	"tmux"
 	"youtube-dl"
 )
 

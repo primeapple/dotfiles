@@ -44,4 +44,12 @@ opt.updatetime = 250
 
 opt.lazyredraw = true
 
+-- Folding
+-- Suggestions by https://github.com/kevinhwang91/nvim-ufo
+opt.foldcolumn = "1"
+opt.foldlevelstart = 99
+opt.foldlevel = 99
+-- opt.foldenable = true -- is on by default
+
 g.mapleader = " "
+

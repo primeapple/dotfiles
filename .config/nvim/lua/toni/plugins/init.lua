@@ -172,7 +172,7 @@ return require('packer').startup(function(use)
             map('n', '<leader>rN', require('jester').debug)
         end
     }
-    -- checkout later, would prefer over jester
+    -- checkout later, would prefer it over jester
     -- use { 'nvim-neotest/neotest' }
 
     -------------------- EDITING --------------------
@@ -190,10 +190,6 @@ return require('packer').startup(function(use)
     use {
         'tpope/vim-unimpaired',
         keys = { '[', ']' }
-    }
-    use {
-        'chaoren/vim-wordmotion',
-        config = function() vim.g.wordmotion_prefix = '<leader>' end
     }
     use {
         'Pocco81/auto-save.nvim',
@@ -218,15 +214,6 @@ return require('packer').startup(function(use)
         'windwp/nvim-autopairs',
         config = function() require('nvim-autopairs').setup() end
     }
-    use {
-        'bronson/vim-visual-star-search',
-        keys = { { 'v', '*'} }
-    }
-    -- use {
-    -- TODO learn me
-    -- 'ggandor/lightspeed.nvim'
-    -- }
-
 
     -------------------- NAVIGATION --------------------
     use {
@@ -234,8 +221,10 @@ return require('packer').startup(function(use)
         requires = 'nvim-lua/plenary.nvim',
         config = function()
             require('harpoon').setup({
-                -- set branch specific marks
-                mark_branch = true
+                global_settings = {
+                    -- set branch specific marks
+                    mark_branch = true
+                }
             })
 
             local map = require('toni.utils').map
@@ -257,7 +246,7 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
-        after = { 'nvim-dap' },
+        after = 'nvim-dap',
         requires = {
             'nvim-lua/plenary.nvim',
             'natecraddock/telescope-zf-native.nvim',
@@ -326,7 +315,44 @@ return require('packer').startup(function(use)
         end
     }
     use {
+        -- TODO: learn me
         'romainl/vim-qf'
+    }
+    use {
+        'knubie/vim-kitty-navigator',
+        run = 'cp ./*.py ~/.config/kitty/plugins',
+        config = function()
+            vim.g.kitty_navigator_no_mappings = 1
+            local map = require('toni.utils').map
+            -- moving around splits with <C-hjkl>
+            -- Terminal mode:
+            map('t', '<C-h>', '<C-\\><C-n>:KittyNavigateLeft<CR>')
+            map('t', '<C-j>', '<C-\\><C-n>:KittyNavigateDown<CR>')
+            map('t', '<C-k>', '<C-\\><C-n>:KittyNavigateUp<CR>')
+            map('t', '<C-l>', '<C-\\><C-n>:KittyNavigateRight<CR>')
+            -- Insert mode:
+            map('i', '<C-h>', '<Esc>:KittyNavigateLeft<CR>')
+            map('i', '<C-j>', '<Esc>:KittyNavigateDown<CR>')
+            map('i', '<C-k>', '<Esc>:KittyNavigateUp<CR>')
+            map('i', '<C-l>', '<Esc>:KittyNavigateRight<CR>')
+            -- Visual mode:
+            map('v', '<C-h>', '<Esc>:KittyNavigateLeft<CR>')
+            map('v', '<C-j>', '<Esc>:KittyNavigateDown<CR>')
+            map('v', '<C-k>', '<Esc>:KittyNavigateUp<CR>')
+            map('v', '<C-l>', '<Esc>:KittyNavigateRight<CR>')
+            -- Normal mode:
+            map('n', '<C-h>', '<cmd>KittyNavigateLeft<CR>')
+            map('n', '<C-j>', '<cmd>KittyNavigateDown<CR>')
+            map('n', '<C-k>', '<cmd>KittyNavigateUp<CR>')
+            map('n', '<C-l>', '<cmd>KittyNavigateRight<CR>')
+        end
+    }
+
+
+    -------------------- MOVEMENTS --------------------
+    use {
+        'chaoren/vim-wordmotion',
+        config = function() vim.g.wordmotion_prefix = '<leader>' end
     }
     use {
         'ggandor/leap.nvim',
@@ -342,8 +368,11 @@ return require('packer').startup(function(use)
             -- map({'n', 'o', 'v'}, 'F', '<Plug>(leap-backward-x)')
         end
     }
+    use {
+        'bronson/vim-visual-star-search',
+        keys = { { 'v', '*'} }
+    }
 
-    --
     -------------------- INTEGRATION --------------------
     -- use {
     -- TODO learn me
@@ -413,6 +442,10 @@ return require('packer').startup(function(use)
         config = function() require('neoscroll').setup() end
     }
     use {
+        'gbprod/stay-in-place.nvim',
+        config = function() require('stay-in-place').setup() end
+    }
+    use {
         'lukas-reineke/indent-blankline.nvim',
         config = function() require('indent_blankline').setup() end
     }
@@ -442,6 +475,20 @@ return require('packer').startup(function(use)
             })
         end
     }
+
+    -------------------- FOLDING --------------------
+    -- This is to buggy and unneeded for now
+    -- use {
+    --     'kevinhwang91/nvim-ufo',
+    --     requires = 'kevinhwang91/promise-async',
+    --     config = function()
+    --         local map = require('toni.utils').map
+    --         local ufo = require('ufo')
+    --         map('n', 'zR', ufo.openAllFolds)
+    --         map('n', 'zM', ufo.closeAllFolds)
+    --         ufo.setup()
+    --     end
+    -- }
 
     -------------------- COLORSCHEMES --------------------
     use {
