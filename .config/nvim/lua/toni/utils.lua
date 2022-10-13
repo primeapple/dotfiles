@@ -14,12 +14,6 @@ M.map = function(modes, keys, command, opt)
         return
     end
 
-    if type(modes) == "table" then
-        for _, mode in ipairs(modes) do
-            M.map(mode, keys, command, opt)
-        end
-    end
-
     vim.keymap.set(modes, keys, command, opt)
 end
 

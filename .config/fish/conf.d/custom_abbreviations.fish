@@ -23,7 +23,7 @@ if status --is-interactive
     abbr --add --global ga 'git add'
     abbr --add --global gaa 'git add --all'
     abbr --add --global gb 'git branch'
-    abbr --add --global gc 'git commit -v -m'
+    abbr --add --global gc 'git commit -v'
     abbr --add --global gcan 'git commit --amend --no-edit'
     abbr --add --global gcb 'git checkout -b'
     abbr --add --global gcd 'git checkout dev'
@@ -44,5 +44,5 @@ if status --is-interactive
     abbr --add --global gp 'git push'
     abbr --add --global gpf 'git push --force'
     abbr --add --global gpb 'git publish'
-    abbr --add --global gst 'git status --short --branch'
+    abbr --add --global gs 'git status --short --branch'
 end

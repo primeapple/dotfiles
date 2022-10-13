@@ -38,6 +38,8 @@ map('n', '<leader>fh', '<cmd> :Telescope help_tags <CR>')
 map('n', '<leader>fw', '<cmd> :Telescope live_grep <CR>')
 map('n', '<leader>fW', '<cmd> :Telescope grep_string <CR>')
 map('n', '<leader>fo', function() require('telescope.builtin').oldfiles({only_cwd=true}) end)
+map('n', '<leader>fq', '<cmd> :Telescope quickfix <CR>')
+map('n', '<leader>fQ', '<cmd> :Telescope quickfixhistory <CR>')
 
 -- git mappings
 -- map('n', '<leader>fc', '<cmd> :Telescope git_commits <CR>')

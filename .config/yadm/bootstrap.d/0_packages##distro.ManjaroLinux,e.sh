@@ -10,6 +10,7 @@ pacman_shell_packages=(
 	"fd"
 	"htop"
 	"jq"
+    "jless"
 	"keepassxc"
 	"syncthing"
 	"youtube-dl"

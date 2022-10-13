@@ -237,7 +237,7 @@ return require('packer').startup(function(use)
                     require('harpoon.mark').toggle_file()
                 end
             end
-            map('n', 'gh', toggle_move, { expr = true } )
+            map('n', 'gh', toggle_move, { expr = true })
             map('n', ']h', require('harpoon.ui').nav_next)
             map('n', '[h', require('harpoon.ui').nav_prev)
             map('n', 'gH', require('harpoon.ui').toggle_quick_menu)
@@ -315,8 +315,18 @@ return require('packer').startup(function(use)
         end
     }
     use {
-        -- TODO: learn me
-        'romainl/vim-qf'
+        'stefandtw/quickfix-reflector.vim',
+        ft = { 'qf' },
+        config = function()
+            -- " Remove all entries from directory/file under cursor
+            -- function GetDir(path)
+            --     let depth = len(split(a:path, '/', 1))
+            --     let current_depth = len(split(trim(a:path[:getpos('.')[2] - 1], '/', 2), '/', 1))
+            --     return escape(fnamemodify(a:path, repeat(':h', depth - current_depth)), '/')
+            -- endfunction
+            -- nnoremap <leader>l<bs> <cmd>exe 'g/^' . GetDir(bufname(getloclist(0)[line('.') - 1]['bufnr'])) . '/d'<bar>w<cr>
+            -- nnoremap <leader>q<bs> <cmd>exe 'g/^' . GetDir(bufname(getqflist()[line('.') - 1]['bufnr'])) . '/d'<bar>w<cr>
+        end
     }
     use {
         'knubie/vim-kitty-navigator',

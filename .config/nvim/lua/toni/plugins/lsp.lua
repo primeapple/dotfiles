@@ -22,7 +22,7 @@ M.on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>=', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 
     -- enable lsp_signature
     require('lsp_signature').on_attach({}, bufnr)
@@ -91,6 +91,24 @@ local eslint = function ()
     })
 end
 
+local rust_analyzer = function ()
+    require('lspconfig').rust_analyzer.setup({
+        settings = {
+            ['rust-analyzer'] = {
+                checkOnSave = {
+                    allFeatures = true,
+                    overrideCommand = {
+                        'cargo', 'clippy', '--workspace', '--message-format=json',
+                        '--all-targets', '--all-features'
+                    }
+                }
+            }
+        },
+        on_attach = M.on_attach,
+        capabilities = M.capabilities
+    })
+end
+
 local server = function(language_server_name)
     require('lspconfig')[language_server_name].setup({
         on_attach = M.on_attach,
@@ -103,9 +121,9 @@ M.setup = function()
     mason()
     sumneko()
     eslint()
+    rust_analyzer()
     server('bashls')
     server('dockerls')
-    server('rust_analyzer')
     server('tsserver')
 end
 
