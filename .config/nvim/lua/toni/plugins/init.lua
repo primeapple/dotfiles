@@ -464,7 +464,8 @@ return require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = true },
         config = function()
             require('lualine').setup({
-                options = { theme = 'dracula-nvim' }
+                -- options = { theme = 'dracula-nvim' }
+                options = { theme = 'catppuccin' }
             })
         end
     }
@@ -501,12 +502,21 @@ return require('packer').startup(function(use)
     -- }
 
     -------------------- COLORSCHEMES --------------------
+    -- use {
+    --     'Mofiqul/dracula.nvim',
+    --     config = function()
+    --         -- show the '~' characters after the end of buffers
+    --         vim.g.dracula_show_end_of_buffer = true
+    --         vim.cmd('colorscheme dracula')
+    --     end
+    -- }
     use {
-        'Mofiqul/dracula.nvim',
+        'catppuccin/nvim',
+        as = 'catppuccin',
         config = function()
-            -- show the '~' characters after the end of buffers
-            vim.g.dracula_show_end_of_buffer = true
-            vim.cmd('colorscheme dracula')
+            vim.g.catppuccin_flavour = 'mocha' -- latte, frappe, macchiato, mocha
+            require('catppuccin').setup()
+            vim.api.nvim_command 'colorscheme catppuccin'
         end
     }
 
