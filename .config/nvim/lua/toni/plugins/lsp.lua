@@ -28,14 +28,7 @@ M.on_attach = function(client, bufnr)
     require('lsp_signature').on_attach({}, bufnr)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
--- this was needed for nvim-ufo
--- capabilities.textDocument.foldingRange = {
---     dynamicRegistration = false,
---     lineFoldingOnly = true
--- }
-
-M.capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+M.capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local diagnostic_mappings = function ()
     map('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
@@ -122,6 +115,7 @@ M.setup = function()
     sumneko()
     eslint()
     rust_analyzer()
+    server('stylelint_lsp')
     server('bashls')
     server('dockerls')
     server('tsserver')

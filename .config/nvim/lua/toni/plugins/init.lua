@@ -543,6 +543,14 @@ return require('packer').startup(function(use)
             })
         end
     }
+    use {
+        'ja-ford/delaytrain.nvim',
+        config = function()
+            require('delaytrain').setup({
+                grace_period = 3
+            })
+        end
+    }
 
     -------------------- FINALIZE --------------------
     -- setup config after cloning packer.nvim

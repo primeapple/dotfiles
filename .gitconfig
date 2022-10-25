@@ -7,7 +7,6 @@
 [init]
 	defaultBranch = main
 [alias]
-	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	root = rev-parse --show-toplevel
 	publish = push -u origin HEAD
 	pullother = !git pull origin $1:$1
