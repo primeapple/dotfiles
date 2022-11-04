@@ -178,11 +178,23 @@ return require('packer').startup(function(use)
     -------------------- EDITING --------------------
     use {
         'kylechui/nvim-surround',
-        keys = { { 'n', 'ys' }, { 'n', 'ds' }, { 'n', 'cs' }, { 'v', 'S' } },
+        keys = { { 'n', 'gz' }, { 'n', 'gZ' }, { 'v', 'gz' }, { 'v', 'gZ' } },
         config = function()
             require('nvim-surround').setup({
                 aliases = {
                     ["b"] = { ')', ']', '}' }
+                },
+                keymaps = {
+                    insert = '<C-g>z',
+                    insert_line = 'gC-ggZ',
+                    normal = 'gz',
+                    normal_cur = 'gZ',
+                    normal_line = 'gzgz',
+                    normal_cur_line = 'gZgZ',
+                    visual = 'gz',
+                    visual_lin = 'gZ',
+                    delete = 'gzd',
+                    change = 'gzc',
                 }
             })
         end
@@ -302,6 +314,7 @@ return require('packer').startup(function(use)
         'tpope/vim-projectionist',
         config = function ()
             local map = require('toni.utils').map
+            map('n', 'gp', '<Nop>')
             map('n', 'gP', '<cmd>:A<CR>')
             local alphabet = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' }
             -- gp${lowerLetter} opens projection in current window
@@ -370,12 +383,13 @@ return require('packer').startup(function(use)
             -- TODO: S doesn't work, maybe use s/S for operator mode as well
             -- s/S for normal, visual mode
             -- z/Z, x/X for operator mode
-            require('leap').set_default_keymaps()
-            -- local map = require('toni.utils').map
-            -- map({'n', 'o', 'v'}, 't', '<Plug>(leap-forward)')
-            -- map({'n', 'o', 'v'}, 'T', '<Plug>(leap-backward)')
-            -- map({'n', 'o', 'v'}, 'f', '<Plug>(leap-forward-x)')
-            -- map({'n', 'o', 'v'}, 'F', '<Plug>(leap-backward-x)')
+            -- require('leap').set_default_keymaps()
+            local map = require('toni.utils').map
+            map({'n', 'o', 'v'}, 's', '<Plug>(leap-forward-to)')
+            map({'n', 'o', 'v'}, 'S', '<Plug>(leap-backward-to)')
+            -- map({'o', 'v'}, 'x', '<Plug>(leap-forward-till)')
+            -- map({'o', 'v'}, 'X', '<Plug>(leap-backward-till)')
+            map({'n', 'o', 'v'}, 'gx', '<Plug>(leap-cross-window)')
         end
     }
     use {
@@ -426,7 +440,7 @@ return require('packer').startup(function(use)
                     end, {expr=true})
 
                     -- suggested actions
-                    map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>')
+                    map({'n', 'v'}, '<leader>ga', ':Gitsigns stage_hunk<CR>')
                     map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>')
                     map('n', '<leader>gS', gs.stage_buffer)
                     map('n', '<leader>gu', gs.undo_stage_hunk)
@@ -547,9 +561,13 @@ return require('packer').startup(function(use)
         'ja-ford/delaytrain.nvim',
         config = function()
             require('delaytrain').setup({
-                grace_period = 3
+                grace_period = 5
             })
         end
+    }
+    -- lazy_load me?
+    use {
+        'LintaoAmons/scratch.nvim',
     }
 
     -------------------- FINALIZE --------------------
