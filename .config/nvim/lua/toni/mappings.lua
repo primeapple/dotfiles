@@ -51,7 +51,6 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
--- toggle quickfix list
 local function toggle_qf()
     local open_buffers = vim.api.nvim_list_bufs()
     for _, buf_num in ipairs(open_buffers) do

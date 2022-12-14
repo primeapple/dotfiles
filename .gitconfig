@@ -13,6 +13,8 @@
     hide = update-index --assume-unchanged
     unhide = update-index --no-assume-unchanged
     hidden = ! git ls-files -v | grep '^h' | cut -c3-
+    # this alias doesn't always work, however printing the command works
+    # current-merge-base = !git merge-base $1 $(git branch --show-current)
 # delta config
 [core]
     pager = delta

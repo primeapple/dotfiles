@@ -22,7 +22,7 @@ M.on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>=', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>af', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 
     -- enable lsp_signature
     require('lsp_signature').on_attach({}, bufnr)
@@ -102,6 +102,24 @@ local rust_analyzer = function ()
     })
 end
 
+local tsserver = function ()
+    local lsp = require('lspconfig')
+    lsp.tsserver.setup({
+        root_dir = lsp.util.root_pattern('package.json'),
+        on_attach = M.on_attach,
+        capabilities = M.capabilities
+    })
+end
+
+local denols = function ()
+    local lsp = require('lspconfig')
+    lsp.denols.setup({
+        root_dir = lsp.util.root_pattern('deno.json', 'deno.jsonc'),
+        on_attach = M.on_attach,
+        capabilities = M.capabilities
+    })
+end
+
 local server = function(language_server_name)
     require('lspconfig')[language_server_name].setup({
         on_attach = M.on_attach,
@@ -115,10 +133,11 @@ M.setup = function()
     sumneko()
     eslint()
     rust_analyzer()
+    tsserver()
+    denols()
     server('stylelint_lsp')
     server('bashls')
     server('dockerls')
-    server('tsserver')
 end
 
 return M

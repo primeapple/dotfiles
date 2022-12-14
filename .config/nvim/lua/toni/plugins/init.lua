@@ -54,7 +54,8 @@ return require('packer').startup(function(use)
                             path = '[PATH]',
                             luasnip = '[SNIP]',
                             calc = '[CALC]',
-                            emoji = '[EMO]'
+                            emoji = '[EMO]',
+                            copilot = '[COP]',
                         }
                     })
                 },
@@ -77,8 +78,12 @@ return require('packer').startup(function(use)
                     { name = 'nvim_lua' },
                     { name = 'path' },
                     { name = 'calc' },
-                    { name = 'emoji' }
+                    { name = 'emoji' },
+                    { name = 'copilot' }
                 }),
+                experimental = {
+                    ghost_text = true,
+                },
             })
         end
     }
@@ -175,6 +180,24 @@ return require('packer').startup(function(use)
     -- checkout later, would prefer it over jester
     -- use { 'nvim-neotest/neotest' }
 
+    -------------------- AI --------------------
+    use {
+        'zbirenbaum/copilot.lua',
+        event = 'VimEnter',
+        config = function()
+            vim.defer_fn(function()
+                require('copilot').setup()
+            end, 100)
+        end,
+    }
+    use {
+        'zbirenbaum/copilot-cmp',
+        after = { 'copilot.lua' },
+        config = function ()
+            require('copilot_cmp').setup()
+        end
+    }
+
     -------------------- EDITING --------------------
     use {
         'kylechui/nvim-surround',
@@ -185,8 +208,8 @@ return require('packer').startup(function(use)
                     ["b"] = { ')', ']', '}' }
                 },
                 keymaps = {
-                    insert = '<C-g>z',
-                    insert_line = 'gC-ggZ',
+                    -- insert = '<C-g>z',
+                    -- insert_line = 'gC-ggZ',
                     normal = 'gz',
                     normal_cur = 'gZ',
                     normal_line = 'gzgz',
@@ -463,7 +486,11 @@ return require('packer').startup(function(use)
     use {
         'karb94/neoscroll.nvim',
         keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        config = function() require('neoscroll').setup() end
+        config = function()
+            -- use the following for centering after C-d/C-u, but doesn't look so nice
+            -- https://www.reddit.com/r/neovim/comments/zjeplx/centering_after_cd_with_neoscroll/
+            require('neoscroll').setup()
+        end
     }
     use {
         'gbprod/stay-in-place.nvim',
@@ -568,6 +595,16 @@ return require('packer').startup(function(use)
     -- lazy_load me?
     use {
         'LintaoAmons/scratch.nvim',
+        config = function()
+            require('scratch').setup()
+        end
+    }
+
+    use {
+        'tamton-aquib/duck.nvim',
+        config = function()
+            require('toni.plugins.duck')
+        end
     }
 
     -------------------- FINALIZE --------------------
