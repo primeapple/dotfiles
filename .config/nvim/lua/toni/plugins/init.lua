@@ -90,9 +90,27 @@ return require('packer').startup(function(use)
                     { name = 'emoji' },
                     { name = 'copilot' }
                 }),
-                experimental = {
-                    ghost_text = true,
-                },
+                -- experimental = {
+                --     ghost_text = true,
+                -- },
+                -- suggested by copilot_cmp
+                -- sorting = {
+                --     priority_weight = 2,
+                --     comparators = {
+                --         require("copilot_cmp.comparators").prioritize,
+                --         -- Below is the default comparitor list and order for nvim-cmp
+                --         cmp.config.compare.offset,
+                --         -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+                --         cmp.config.compare.exact,
+                --         cmp.config.compare.score,
+                --         cmp.config.compare.recently_used,
+                --         cmp.config.compare.locality,
+                --         cmp.config.compare.kind,
+                --         cmp.config.compare.sort_text,
+                --         cmp.config.compare.length,
+                --         cmp.config.compare.order,
+                --     },
+                -- },
             })
         end
     }
@@ -128,6 +146,18 @@ return require('packer').startup(function(use)
         'hrsh7th/cmp-emoji',
         after = 'cmp-calc',
     }
+    use {
+        'zbirenbaum/copilot-cmp',
+        after = { 'copilot.lua', 'cmp-calc' },
+        config = function ()
+            require('copilot_cmp').setup({
+                formatters = {
+                    insert_text = require("copilot_cmp.format").remove_existing
+                },
+            })
+        end
+    }
+
     -- use {
     --     -- this needs some further config check the repo pls
     --     'rcarriga/cmp-dap',
@@ -195,16 +225,17 @@ return require('packer').startup(function(use)
         event = 'VimEnter',
         config = function()
             vim.defer_fn(function()
-                require('copilot').setup()
+                require('copilot').setup({
+                    panel = {
+                        enabled = false
+                    },
+                    suggestion = {
+                        enabled = true,
+                        auto_trigger = true,
+                    }
+                })
             end, 100)
         end,
-    }
-    use {
-        'zbirenbaum/copilot-cmp',
-        after = { 'copilot.lua' },
-        config = function ()
-            require('copilot_cmp').setup()
-        end
     }
 
     -------------------- EDITING --------------------

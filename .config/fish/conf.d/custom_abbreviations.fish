@@ -19,7 +19,7 @@ if status --is-interactive
     abbr --add --global nrw 'npm run watch'
     abbr --add --global nrl 'npm run lint'
     abbr --add --global nrd 'npm run docs'
-    abbr --add --global nrd 'npm run prettify -- .'
+    abbr --add --global nrp 'npm run prettify -- .'
 
     # git related ones
 	abbr --add --global g 'git'
