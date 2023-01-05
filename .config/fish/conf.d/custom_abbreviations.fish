@@ -19,6 +19,7 @@ if status --is-interactive
     abbr --add --global nrw 'npm run watch'
     abbr --add --global nrl 'npm run lint'
     abbr --add --global nrd 'npm run docs'
+    abbr --add --global nrd 'npm run prettify -- .'
 
     # git related ones
 	abbr --add --global g 'git'
@@ -27,6 +28,7 @@ if status --is-interactive
     abbr --add --global gau 'git add -u'
     abbr --add --global gb 'git branch'
     abbr --add --global gbd 'git branch -d'
+    abbr --add --global gbm 'git branch -m'
     abbr --add --global gc 'git commit -v'
     abbr --add --global gcan 'git commit --amend --no-edit'
     abbr --add --global gcb 'git checkout -b'
@@ -46,8 +48,7 @@ if status --is-interactive
     abbr --add --global gd 'git diff'
     abbr --add --global gds 'git diff --staged'
     abbr --add --global gf 'git fetch'
-    abbr --add --global gpl 'git pull --ff-only'
-    abbr --add --global gpr 'git pull --rebase'
+    abbr --add --global gpl 'git pull'
     abbr --add --global gp 'git push'
     abbr --add --global gpf 'git push --force'
     abbr --add --global gpb 'git publish'

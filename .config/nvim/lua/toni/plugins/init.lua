@@ -69,12 +69,21 @@ return require('packer').startup(function(use)
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+                    ['<CR>'] = cmp.mapping.confirm({
+                        behavior = cmp.ConfirmBehavior.Replace,
+                        select = false,
+                    }),
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
-                    { name = 'buffer', keyword_length = 3 },
+                    {
+                        name = 'buffer',
+                        keyword_length = 3,
+                        option = {
+                            keyword_pattern = [[\k\+]],
+                        }
+                    },
                     { name = 'nvim_lua' },
                     { name = 'path' },
                     { name = 'calc' },
@@ -366,7 +375,7 @@ return require('packer').startup(function(use)
     }
     use {
         'knubie/vim-kitty-navigator',
-        run = 'cp ./*.py ~/.config/kitty/plugins',
+        run = 'cp ./*.py ~/.config/kitty/',
         config = function()
             vim.g.kitty_navigator_no_mappings = 1
             local map = require('toni.utils').map
@@ -454,13 +463,13 @@ return require('packer').startup(function(use)
                         if vim.wo.diff then return ']g' end
                         vim.schedule(function() gs.next_hunk() end)
                         return '<Ignore>'
-                    end, {expr=true})
+                    end, { expr = true })
 
                     map('n', '[g', function()
                         if vim.wo.diff then return '[g' end
                         vim.schedule(function() gs.prev_hunk() end)
                         return '<Ignore>'
-                    end, {expr=true})
+                    end, { expr = true })
 
                     -- suggested actions
                     map({'n', 'v'}, '<leader>ga', ':Gitsigns stage_hunk<CR>')
@@ -528,35 +537,21 @@ return require('packer').startup(function(use)
         end
     }
 
-    -------------------- FOLDING --------------------
-    -- This is to buggy and unneeded for now
-    -- use {
-    --     'kevinhwang91/nvim-ufo',
-    --     requires = 'kevinhwang91/promise-async',
-    --     config = function()
-    --         local map = require('toni.utils').map
-    --         local ufo = require('ufo')
-    --         map('n', 'zR', ufo.openAllFolds)
-    --         map('n', 'zM', ufo.closeAllFolds)
-    --         ufo.setup()
-    --     end
-    -- }
-
     -------------------- COLORSCHEMES --------------------
-    -- use {
-    --     'Mofiqul/dracula.nvim',
-    --     config = function()
-    --         -- show the '~' characters after the end of buffers
-    --         vim.g.dracula_show_end_of_buffer = true
-    --         vim.cmd('colorscheme dracula')
-    --     end
-    -- }
     use {
         'catppuccin/nvim',
         as = 'catppuccin',
         config = function()
             vim.g.catppuccin_flavour = 'mocha' -- latte, frappe, macchiato, mocha
-            require('catppuccin').setup()
+            require('catppuccin').setup({
+                highlight_overrides = {
+                    all = function(colors)
+                        return {
+                            EndOfBuffer = { fg = colors.surface1 },
+                        }
+                    end,
+                }
+            })
             vim.api.nvim_command 'colorscheme catppuccin'
         end
     }
@@ -590,13 +585,6 @@ return require('packer').startup(function(use)
             require('delaytrain').setup({
                 grace_period = 5
             })
-        end
-    }
-    -- lazy_load me?
-    use {
-        'LintaoAmons/scratch.nvim',
-        config = function()
-            require('scratch').setup()
         end
     }
 

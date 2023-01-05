@@ -43,9 +43,11 @@ map('n', '<leader>-', '<cmd> sp <CR>')
 -- get out of terminal mode
 map('t', '<ESC><ESC>', '<C-\\><C-n>')
 
---Remap for dealing with visual line wraps
-map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
-map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
+-- Remap for dealing with visual line wraps
+-- Doesn't seem to work?
+-- TODO investigate
+-- map("n", "j", function() return vim.v.count > 0 and 'j' or 'gj' end, { expr = true })
+-- map("n", "k", function() return vim.v.count > 0 and 'k' or 'gk' end, { expr = true })
 
 -- better indenting
 map('v', '<', '<gv')
