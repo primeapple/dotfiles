@@ -12,3 +12,6 @@ export WLR_RENDERER_ALLOW_SOFTWARE=1
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 # export WAYLAND_DISPLAY=wayland-1
+
+# for GnuPG
+export GPG_TTY=$(tty)
