@@ -15,6 +15,7 @@ end
 
 # adding nice fish greeting
 fish -c "set -U fish_greeting 'Welcome to fish 🐟'"
+fish -C "set -U fish_features qmark-noglob"
 fish -c "fish_config theme save Dracula"
 
 # TODO: this does not work yet, it sometimes adds weird filenames to the fish_plugins file

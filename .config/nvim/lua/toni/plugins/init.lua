@@ -90,9 +90,10 @@ return require('packer').startup(function(use)
                     { name = 'emoji' },
                     { name = 'copilot' }
                 }),
-                -- experimental = {
-                --     ghost_text = true,
-                -- },
+                experimental = {
+                    -- this breaks copilot.lua otherwise
+                    ghost_text = false,
+                },
                 -- suggested by copilot_cmp
                 -- sorting = {
                 --     priority_weight = 2,
@@ -218,6 +219,18 @@ return require('packer').startup(function(use)
     }
     -- checkout later, would prefer it over jester
     -- use { 'nvim-neotest/neotest' }
+    use {
+        'andrewferrier/debugprint.nvim',
+        config = function()
+            require('debugprint').setup({
+                create_keymaps = false,
+            })
+            local map = require('toni.utils').map
+            map('n', 'g??', function() return require('debugprint').debugprint({ variable = true }) end, { expr = true })
+            map('n', 'g?', function() return require('debugprint').debugprint({ variable = true, motion = true }) end, { expr = true })
+            map('v', 'g?', function() return require('debugprint').debugprint({ variable = true }) end, { expr = true })
+        end,
+    }
 
     -------------------- AI --------------------
     use {
@@ -289,6 +302,16 @@ return require('packer').startup(function(use)
         'windwp/nvim-autopairs',
         config = function() require('nvim-autopairs').setup() end
     }
+    use {
+        'ckolkey/ts-node-action',
+        requires = { 'nvim-treesitter' },
+        config = function()
+            local ts_node_action = require('ts-node-action')
+            ts_node_action.setup()
+            local map = require('toni.utils').map
+            map('n', '<leader><leader>', ts_node_action.node_action, { desc = "Trigger Node Action" })
+        end
+    }
 
     -------------------- NAVIGATION --------------------
     use {
@@ -344,7 +367,9 @@ return require('packer').startup(function(use)
 
             require('lir').setup({
                 show_hidden_files = true,
-                devicons_enable = true,
+                devicons = {
+                    enable = true,
+                },
                 float = { winblend = 0 }, -- keep float setting even if you don't use it, otherwise it will crash
                 hide_cursor = false,
 
@@ -575,16 +600,16 @@ return require('packer').startup(function(use)
         config = function()
             vim.g.catppuccin_flavour = 'mocha' -- latte, frappe, macchiato, mocha
             require('catppuccin').setup({
-                highlight_overrides = {
-                    all = function(colors)
-                        return {
-                            EndOfBuffer = { fg = colors.surface1 },
-                        }
-                    end,
-                }
+                show_end_of_buffer = true
             })
             vim.api.nvim_command 'colorscheme catppuccin'
         end
+    }
+
+    -------------------- Languages/Tools --------------------
+    use {
+        'lervag/vimtex',
+        ft = { 'tex' }
     }
 
     -------------------- MISC --------------------

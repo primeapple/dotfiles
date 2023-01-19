@@ -27,6 +27,7 @@ data.location=/home/toni/.task
 #include light-16.theme
 #include light-256.theme
 #include dark-16.theme
+# this one is also okayish
 #include dark-256.theme
 #include dark-red-256.theme
 #include dark-green-256.theme
@@ -35,11 +36,12 @@ data.location=/home/toni/.task
 #include dark-yellow-green.theme
 #include dark-gray-256.theme
 #include dark-gray-blue-256.theme
-#include solarized-dark-256.theme
+include solarized-dark-256.theme
 #include solarized-light-256.theme
 #include no-color.theme
 
 news.version=2.6.0
+weekstart=monday
 
 # Sync with inthe.am
 taskd.certificate=/home/toni/.task/private.certificate.pem
@@ -48,3 +50,9 @@ taskd.ca=/home/toni/.task/ca.cert.pem
 taskd.server=inthe.am:53589
 taskd.credentials=inthe_am/toni.mueller99/d4f6be8f-b435-47bd-acae-d9608c5a2fd9
 taskd.trust=strict
+
+# Aliases
+alias.inbox=list pro: -next
+
+# Urgency
+urgency.user.project.someday.coefficient=-1.0

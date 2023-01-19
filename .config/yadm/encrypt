@@ -1,5 +1,2 @@
 .config/fish/conf.d/work.fish
 .config/kitty/sessions/work.conf
-.task/private.certificate.pem
-.task/private.key.pem
-.task/ca.cert.pem

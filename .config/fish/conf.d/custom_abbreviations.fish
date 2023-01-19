@@ -62,4 +62,14 @@ if status --is-interactive
     abbr --add --global gstl 'git stash list'
     abbr --add --global gsts 'git stash show'
     abbr --add --global gsta 'git stash apply'
+
+    # taskwarrior related ones
+    # https://www.reddit.com/r/taskwarrior/comments/uvwqlz/share_your_aliases/
+    abbr --add --global t 'task'
+    abbr --add --global tui 'taskwarrior-tui'
+    abbr --add --global ts 'task sync'
+    abbr --add --global ta 'task add'
+    abbr --add --global tn 'task +next'
+    abbr --add --global tin 'clear; task inbox'
+    abbr --add --global tal 'task add dep:"$(task +LATEST uuids)"'
 end
