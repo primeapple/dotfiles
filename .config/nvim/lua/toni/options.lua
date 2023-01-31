@@ -49,3 +49,5 @@ opt.foldlevel = 99
 
 g.mapleader = " "
 
+-- It's not recommended to use fish for internal terminal
+vim.opt.shell = "/bin/bash"

@@ -98,7 +98,7 @@ return require('packer').startup(function(use)
                 -- sorting = {
                 --     priority_weight = 2,
                 --     comparators = {
-                --         require("copilot_cmp.comparators").prioritize,
+                --         require('copilot_cmp.comparators').prioritize,
                 --         -- Below is the default comparitor list and order for nvim-cmp
                 --         cmp.config.compare.offset,
                 --         -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
@@ -112,6 +112,22 @@ return require('packer').startup(function(use)
                 --         cmp.config.compare.order,
                 --     },
                 -- },
+            })
+
+            -- only need a subset of the default sources in markdown
+            cmp.setup.filetype('markdown', {
+                sources = cmp.config.sources({
+                    {
+                        name = 'buffer',
+                        keyword_length = 3,
+                        option = {
+                            keyword_pattern = [[\k\+]],
+                        }
+                    },
+                    { name = 'path' },
+                    { name = 'calc' },
+                    { name = 'emoji' },
+                })
             })
         end
     }
@@ -153,7 +169,7 @@ return require('packer').startup(function(use)
         config = function ()
             require('copilot_cmp').setup({
                 formatters = {
-                    insert_text = require("copilot_cmp.format").remove_existing
+                    insert_text = require('copilot_cmp.format').remove_existing
                 },
             })
         end
@@ -201,7 +217,7 @@ return require('packer').startup(function(use)
     }
     use {
         'David-Kunz/jester',
-        ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
+        ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
         config = function()
             require('jester').setup({
                 terminal_cmd = 'ToggleTerm',
@@ -245,6 +261,20 @@ return require('packer').startup(function(use)
                     suggestion = {
                         enabled = true,
                         auto_trigger = true,
+                    },
+                    filetypes = {
+                        -- disable for files without filetype
+                        [''] = false,
+                        text = false,
+                        -- because we don't want Copilot in `.env` files
+                        -- see https://github.com/zbirenbaum/copilot.lua/issues/111
+                        sh = function ()
+                            if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '%.env$') then
+                                -- disable for .env files
+                                return false
+                            end
+                            return true
+                        end,
                     }
                 })
             end, 100)
@@ -258,7 +288,7 @@ return require('packer').startup(function(use)
         config = function()
             require('nvim-surround').setup({
                 aliases = {
-                    ["b"] = { ')', ']', '}' }
+                    ['b'] = { ')', ']', '}' }
                 },
                 keymaps = {
                     -- insert = '<C-g>z',
@@ -309,7 +339,7 @@ return require('packer').startup(function(use)
             local ts_node_action = require('ts-node-action')
             ts_node_action.setup()
             local map = require('toni.utils').map
-            map('n', '<leader><leader>', ts_node_action.node_action, { desc = "Trigger Node Action" })
+            map('n', '<leader><leader>', ts_node_action.node_action, { desc = 'Trigger Node Action' })
         end
     }
 
@@ -624,9 +654,9 @@ return require('packer').startup(function(use)
         config = function()
             require('toggleterm').setup({
                 size = function(term)
-                    if term.direction == "horizontal" then
+                    if term.direction == 'horizontal' then
                         return 15
-                    elseif term.direction == "vertical" then
+                    elseif term.direction == 'vertical' then
                         return vim.o.columns * 0.3
                     end
                 end,

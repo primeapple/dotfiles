@@ -15,3 +15,5 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # for GnuPG
 export GPG_TTY=$(tty)
+
+export GTK_USE_PORTAL=0
