@@ -23,9 +23,6 @@ M.on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>af', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-
-    -- enable lsp_signature
-    require('lsp_signature').on_attach({}, bufnr)
 end
 
 M.capabilities = require('cmp_nvim_lsp').default_capabilities()

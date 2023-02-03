@@ -184,7 +184,7 @@ return require('packer').startup(function(use)
     -------------------- LSP --------------------
     use {
         'neovim/nvim-lspconfig',
-        requires = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', 'ray-x/lsp_signature.nvim' },
+        requires = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' },
         config = function()
             require('toni.plugins.lsp').setup()
         end
@@ -425,7 +425,7 @@ return require('packer').startup(function(use)
                 }
             })
 
-            require('lir.git_status').setup({})
+            require('lir.git_status').setup()
         end
     }
     use {
@@ -496,18 +496,13 @@ return require('packer').startup(function(use)
         config = function() vim.g.wordmotion_prefix = '<leader>' end
     }
     use {
-        'ggandor/leap.nvim',
-        config = function ()
-            -- TODO: S doesn't work, maybe use s/S for operator mode as well
-            -- s/S for normal, visual mode
-            -- z/Z, x/X for operator mode
-            -- require('leap').set_default_keymaps()
+        'phaazon/hop.nvim',
+        branch = 'v2',
+        keys = { { 'n', 's' }, { 'v', 's' }, { 'o', 's' } },
+        config = function()
+            require('hop').setup()
             local map = require('toni.utils').map
-            map({'n', 'o', 'v'}, 's', '<Plug>(leap-forward-to)')
-            map({'n', 'o', 'v'}, 'S', '<Plug>(leap-backward-to)')
-            -- map({'o', 'v'}, 'x', '<Plug>(leap-forward-till)')
-            -- map({'o', 'v'}, 'X', '<Plug>(leap-backward-till)')
-            map({'n', 'o', 'v'}, 'gx', '<Plug>(leap-cross-window)')
+            map({'n', 'v', 'o'}, 's', function() require('hop').hint_words() end)
         end
     }
     use {
@@ -608,7 +603,7 @@ return require('packer').startup(function(use)
     use {
         'j-hui/fidget.nvim',
         config = function ()
-            require('fidget').setup({})
+            require('fidget').setup()
         end
     }
     use {
