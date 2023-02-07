@@ -8,4 +8,8 @@ function fish_hybrid_key_bindings --description \
 
     bind yy fish_clipboard_copy
     bind p fish_clipboard_paste
+    bind H beginning-of-line
+    bind L end-of-line
+    bind --mode visual H beginning-of-line
+    bind --mode visual L end-of-line
 end
