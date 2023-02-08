@@ -64,8 +64,8 @@ if status --is-interactive
     abbr --add --global gcb 'git checkout -b'
     abbr --add --global gcd 'git checkout dev'
     abbr --add --global gcm 'git checkout main'
-    abbr --add --global grbd 'rebase dev'
-    abbr --add --global grbm 'rebase main'
+    abbr --add --global grbd 'git rebase dev'
+    abbr --add --global grbm 'git rebase main'
 
     # taskwarrior related ones
     # https://www.reddit.com/r/taskwarrior/comments/uvwqlz/share_your_aliases/
