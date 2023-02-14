@@ -27,6 +27,10 @@ return require('packer').startup(function(use)
             require('toni.plugins.treesitter')
         end
     }
+    use {
+        'nvim-treesitter/playground',
+        cmd = 'TSPlaygroundToggle'
+    }
 
     -------------------- CMP --------------------
     use {
@@ -261,6 +265,11 @@ return require('packer').startup(function(use)
                     suggestion = {
                         enabled = true,
                         auto_trigger = true,
+                        keymap = {
+                            accept = '<M-l>',
+                            accept_word = '<M-f>',
+                            accept_line = '<C-f>',
+                        }
                     },
                     filetypes = {
                         -- disable for files without filetype
@@ -668,7 +677,6 @@ return require('packer').startup(function(use)
             })
         end
     }
-
     use {
         'tamton-aquib/duck.nvim',
         config = function()

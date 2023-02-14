@@ -49,8 +49,8 @@ local mason = function ()
     })
 end
 
-local sumneko = function ()
-    require('lspconfig').sumneko_lua.setup({
+local lua_ls = function ()
+    require('lspconfig').lua_ls.setup({
         on_attach = M.on_attach,
         capabilities = M.capabilities,
         settings = {
@@ -131,7 +131,7 @@ end
 M.setup = function()
     diagnostic_mappings()
     mason()
-    sumneko()
+    lua_ls()
     eslint()
     rust_analyzer()
     tsserver()

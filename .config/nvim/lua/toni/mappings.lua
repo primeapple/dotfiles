@@ -65,3 +65,6 @@ local function toggle_qf()
     vim.api.nvim_command('cwindow')
 end
 map('n', '<leader>q', toggle_qf)
+
+-- rename word under cursor
+-- map('n', '<F4>', ':%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i')

@@ -57,10 +57,42 @@ local config = {
             },
             contentProvider = {
                 preferred = 'fernflower'
+            },
+            import = {
+                gradle = {
+                    enabled = true
+                },
+                maven = {
+                    enabled = true
+                },
+            },
+            eclipse = {
+                downloadSources = true
+            },
+            referencesCodeLens = {
+                enabled = true
+            },
+            signatureHelp = {
+                enabled = true
+            },
+            implementationsCodeLens = {
+                enabled = false
+            },
+            saveActions = {
+                organizeImports = true,
+            },
+            inlayhints = {
+                parameterNames = true
+            },
+            jdt = {
+                ls = {
+                    lombokSupport = {
+                        enabled = true
+                    }
+                }
             }
         }
     },
-
     on_attach = function (client, buffer)
         require('toni.plugins.lsp').on_attach(client, buffer)
 
