@@ -20,7 +20,6 @@ return require('packer').startup(function(use)
         run = ':TSUpdate',
         requires = {
             'nvim-treesitter/nvim-treesitter-context',
-            'nvim-treesitter/nvim-treesitter-textobjects',
             'RRethy/nvim-treesitter-textsubjects'
         },
         config = function()
@@ -498,12 +497,20 @@ return require('packer').startup(function(use)
         end
     }
 
-
-    -------------------- MOVEMENTS --------------------
+    -------------------- TEXT OBJECTS --------------------
     use {
         'chaoren/vim-wordmotion',
         config = function() vim.g.wordmotion_prefix = '<leader>' end
     }
+    use {
+        'chrisgrieser/nvim-various-textobjs',
+        config = function ()
+            -- most important ones are `gG`, `ii`, `ik`, `iv` and `R`
+            require('various-textobjs').setup({ useDefaultKeymaps = true })
+        end,
+    }
+
+    -------------------- MOVEMENTS --------------------
     use {
         'phaazon/hop.nvim',
         branch = 'v2',
