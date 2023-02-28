@@ -512,13 +512,12 @@ return require('packer').startup(function(use)
 
     -------------------- MOVEMENTS --------------------
     use {
-        'phaazon/hop.nvim',
-        branch = 'v2',
-        keys = { { 'n', 's' }, { 'v', 's' }, { 'o', 's' } },
-        config = function()
-            require('hop').setup()
+        'ggandor/leap.nvim',
+        config = function ()
             local map = require('toni.utils').map
-            map({'n', 'v', 'o'}, 's', function() require('hop').hint_words() end)
+            map({'n', 'o', 'v'}, 's', '<Plug>(leap-forward-to)')
+            map({'n', 'o', 'v'}, 'S', '<Plug>(leap-backward-to)')
+            map({'n', 'o', 'v'}, 'gs', '<Plug>(leap-cross-window)')
         end
     }
     use {
@@ -527,10 +526,6 @@ return require('packer').startup(function(use)
     }
 
     -------------------- INTEGRATION --------------------
-    -- use {
-    -- TODO learn me
-    -- 'tpope/vim-fugitive'
-    -- }
     use {
         'lewis6991/gitsigns.nvim',
         config = function()
@@ -585,6 +580,7 @@ return require('packer').startup(function(use)
     }
 
     -------------------- APPEARANCE --------------------
+    -- TODO replace with `set splitkeep=screen`, when using nvim 0.9
     use {
         'luukvbaal/stabilize.nvim',
         config = function() require('stabilize').setup() end
@@ -633,6 +629,12 @@ return require('packer').startup(function(use)
             })
         end
     }
+    use {
+        'vimpostor/vim-tpipeline',
+        config = function ()
+            vim.g.tpipeline_refreshcmd = 'kitty @ set-tab-title refresh_tabbar'
+        end
+    }
 
     -------------------- COLORSCHEMES --------------------
     use {
@@ -652,6 +654,27 @@ return require('packer').startup(function(use)
         'lervag/vimtex',
         ft = { 'tex' }
     }
+    use {
+        'nvim-neorg/neorg',
+        tag = '*',
+        run = ':Neorg sync-parsers',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function()
+            require('neorg').setup {
+                load = {
+                    ['core.defaults'] = {},
+                    ['core.norg.concealer'] = {},
+                    ['core.norg.dirman'] = {
+                        config = {
+                            workspaces = {
+                                notes = '~/Sync/notes',
+                            },
+                        },
+                    },
+                },
+            }
+        end,
+    }
 
     -------------------- MISC --------------------
     use {
@@ -661,7 +684,7 @@ return require('packer').startup(function(use)
     }
     use {
         'akinsho/toggleterm.nvim',
-        tag = 'v2.*',
+        tag = '*',
         config = function()
             require('toggleterm').setup({
                 size = function(term)
