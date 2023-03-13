@@ -22,7 +22,8 @@ opt.mouse = "a"
 -- Numbers
 opt.number = true
 opt.numberwidth = 2
-opt.relativenumber = true
+-- disabling for now to learn leap
+-- opt.relativenumber = true
 opt.ruler = false
 
 opt.signcolumn = "yes"

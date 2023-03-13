@@ -238,18 +238,6 @@ return require('packer').startup(function(use)
     }
     -- checkout later, would prefer it over jester
     -- use { 'nvim-neotest/neotest' }
-    use {
-        'andrewferrier/debugprint.nvim',
-        config = function()
-            require('debugprint').setup({
-                create_keymaps = false,
-            })
-            local map = require('toni.utils').map
-            map('n', 'g??', function() return require('debugprint').debugprint({ variable = true }) end, { expr = true })
-            map('n', 'g?', function() return require('debugprint').debugprint({ variable = true, motion = true }) end, { expr = true })
-            map('v', 'g?', function() return require('debugprint').debugprint({ variable = true }) end, { expr = true })
-        end,
-    }
 
     -------------------- AI --------------------
     use {
@@ -274,6 +262,7 @@ return require('packer').startup(function(use)
                         -- disable for files without filetype
                         [''] = false,
                         text = false,
+                        norg = false,
                         -- because we don't want Copilot in `.env` files
                         -- see https://github.com/zbirenbaum/copilot.lua/issues/111
                         sh = function ()
@@ -322,7 +311,6 @@ return require('packer').startup(function(use)
         config = function()
             require('auto-save').setup({
                 debounce_delay = 5000
-                -- on_off_commands = true
             })
         end
     }
@@ -339,16 +327,6 @@ return require('packer').startup(function(use)
         -- TODO learn me
         'windwp/nvim-autopairs',
         config = function() require('nvim-autopairs').setup() end
-    }
-    use {
-        'ckolkey/ts-node-action',
-        requires = { 'nvim-treesitter' },
-        config = function()
-            local ts_node_action = require('ts-node-action')
-            ts_node_action.setup()
-            local map = require('toni.utils').map
-            map('n', '<leader><leader>', ts_node_action.node_action, { desc = 'Trigger Node Action' })
-        end
     }
 
     -------------------- NAVIGATION --------------------
@@ -603,16 +581,6 @@ return require('packer').startup(function(use)
         config = function() require('indent_blankline').setup() end
     }
     use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-        config = function()
-            require('lualine').setup({
-                -- options = { theme = 'dracula-nvim' }
-                options = { theme = 'catppuccin' }
-            })
-        end
-    }
-    use {
         'j-hui/fidget.nvim',
         config = function ()
             require('fidget').setup()
@@ -630,22 +598,48 @@ return require('packer').startup(function(use)
         end
     }
     use {
+        'NvChad/nvim-colorizer.lua',
+        config = function ()
+            require('colorizer').setup({})
+        end
+    }
+    -------------------- STATUSLINE --------------------
+    -- TODO enable when using nvim 0.9
+    -- use {
+    --     'luukvbaal/statuscol.nvim',
+    --     config = function() require('statuscol').setup() end
+    -- }
+    use {
+        'freddiehaddad/feline.nvim',
+        -- event = 'UiEnter',
+        requires = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' },
+        config = function ()
+            local conf = require('toni.plugins.feline_conf')
+            require('feline').setup({
+                components = conf.components,
+                theme = conf.colors()
+            })
+        end
+    }
+    --[[
+    use {
         'vimpostor/vim-tpipeline',
+        requires = { 'freddiehaddad/feline.nvim' }
         config = function ()
             vim.g.tpipeline_refreshcmd = 'kitty @ set-tab-title refresh_tabbar'
         end
     }
+    --]]
 
     -------------------- COLORSCHEMES --------------------
     use {
-        'catppuccin/nvim',
-        as = 'catppuccin',
+        'rebelot/kanagawa.nvim',
+        run = ':KanagawaCompile',
         config = function()
-            vim.g.catppuccin_flavour = 'mocha' -- latte, frappe, macchiato, mocha
-            require('catppuccin').setup({
-                show_end_of_buffer = true
+            require('kanagawa').setup({
+                compile = true,
             })
-            vim.api.nvim_command 'colorscheme catppuccin'
+            vim.api.nvim_command('colorscheme kanagawa')
         end
     }
 
@@ -667,8 +661,11 @@ return require('packer').startup(function(use)
                     ['core.norg.dirman'] = {
                         config = {
                             workspaces = {
-                                notes = '~/Sync/notes',
+                                general = '~/Sync/notes/general',
+                                goals = '~/Sync/notes/goals',
+                                knowledge = '~/Sync/notes/knowledge',
                             },
+                            default_workspace = 'general'
                         },
                     },
                 },
@@ -705,12 +702,6 @@ return require('packer').startup(function(use)
             require('delaytrain').setup({
                 grace_period = 5
             })
-        end
-    }
-    use {
-        'tamton-aquib/duck.nvim',
-        config = function()
-            require('toni.plugins.duck')
         end
     }
 
