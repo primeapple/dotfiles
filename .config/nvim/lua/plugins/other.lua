@@ -88,12 +88,14 @@ return {
     {
         'chaoren/vim-wordmotion',
         keys = {
-            { '<leader>w', mode = { 'n', 'o', 'v' } },
-            { '<leader>b', mode = { 'n', 'o', 'v' } },
-            { '<leader>e', mode = { 'n', 'o', 'v' } },
-            { '<leader>ge', mode = { 'n', 'o', 'v' } },
+            { '<leader>w', mode = { 'n', 'o', 'x' } },
+            { '<leader>b', mode = { 'n', 'o', 'x' } },
+            { '<leader>e', mode = { 'n', 'o', 'x' } },
+            { '<leader>ge', mode = { 'n', 'o', 'x' } },
+            { '<leader>aw', mode = { 'o', 'x' } },
+            { '<leader>iw', mode = { 'o', 'x' } },
         },
-        config = function()
+        init = function()
             vim.g.wordmotion_prefix = '<leader>'
         end
     },
@@ -106,9 +108,9 @@ return {
             { 'iv', mode = { 'n', 'o', 'v' } },
             { 'R', mode = { 'n', 'o', 'v' } },
         },
-        config = function ()
-            require('various-textobjs').setup({ useDefaultKeymaps = true })
-        end,
+        opts = {
+            useDefaultKeymaps = true,
+        }
     },
 
     -------------------- MOVEMENTS --------------------
@@ -130,34 +132,28 @@ return {
     {
         'luukvbaal/stabilize.nvim',
         event = 'VeryLazy',
-        config = function() require('stabilize').setup() end
+        config = true
     },
     {
         'karb94/neoscroll.nvim',
         keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        config = function()
-            -- use the following for centering after C-d/C-u, but doesn't look so nice
-            -- https://www.reddit.com/r/neovim/comments/zjeplx/centering_after_cd_with_neoscroll/
-            require('neoscroll').setup()
-        end
+        config = true
     },
     {
         -- TODO try if it works with config = true
         'gbprod/stay-in-place.nvim',
         keys = { '=', '<', '>' },
-        config = function() require('stay-in-place').setup() end
+        config = true
     },
     {
         'lukas-reineke/indent-blankline.nvim',
         event = { "BufReadPost", "BufNewFile" },
-        config = function() require('indent_blankline').setup() end
+        config = true
     },
     {
         'j-hui/fidget.nvim',
         event = 'VeryLazy',
-        config = function ()
-            require('fidget').setup()
-        end
+        config = true
     },
     {
         'stevearc/dressing.nvim',
@@ -173,7 +169,7 @@ return {
         'NvChad/nvim-colorizer.lua',
         event = 'VeryLazy',
         opts = {
-            user_default_actions = {
+            user_default_options = {
                 names = false,
                 tailwind = 'lsp',
                 mode = 'virtualtext',
@@ -182,6 +178,11 @@ return {
                 }
             }
         }
+    },
+    {
+        'tzachar/local-highlight.nvim',
+        event = 'VeryLazy',
+        config = true
     },
 
     -------------------- Languages/Tools --------------------
