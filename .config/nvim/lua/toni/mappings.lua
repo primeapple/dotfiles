@@ -30,11 +30,6 @@ map('v', 'p', 'p:let @+=@0<CR>')
 -- Redo with U
 map('n', 'U', '<C-R>')
 
--- close window
-map('n', '<leader>x', '<cmd> q <CR>')
--- close all windows
--- map('n', '<leader>X', '<cmd> qa <CR>')
-
 -- open new vertical split
 map('n', '<leader>/', '<cmd> vsp <CR>')
 -- open new horizontal split

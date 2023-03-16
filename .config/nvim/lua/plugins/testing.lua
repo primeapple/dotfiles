@@ -1,6 +1,7 @@
 return {
     {
         'David-Kunz/jester',
+        enabled = false,
         dependencies = { 'akinsho/toggleterm.nvim' },
         ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
         config = function()
