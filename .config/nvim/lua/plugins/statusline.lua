@@ -198,7 +198,7 @@ return {
     {
         'vimpostor/vim-tpipeline',
         dependencies = { 'freddiehaddad/feline.nvim' }
-        config = function ()
+        init = function ()
             vim.g.tpipeline_refreshcmd = 'kitty @ set-tab-title refresh_tabbar'
         end
     }

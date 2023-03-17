@@ -40,7 +40,7 @@ return {
     {
         'andymass/vim-matchup',
         keys = { '%', 'g%', '[%', ']%' },
-        config = function()
+        init = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
         end
     },
@@ -79,7 +79,7 @@ return {
             { '<C-k>', '<cmd>KittyNavigateUp<CR>', mode = 'n' },
             { '<C-l>', '<cmd>KittyNavigateRight<CR>', mode = 'n' },
         },
-        config = function()
+        init = function()
             vim.g.kitty_navigator_no_mappings = 1
         end
     },
@@ -102,11 +102,11 @@ return {
     {
         'chrisgrieser/nvim-various-textobjs',
         keys = {
-            { 'gG', mode = { 'n', 'o', 'v' } },
-            { 'ii', mode = { 'n', 'o', 'v' } },
-            { 'ik', mode = { 'n', 'o', 'v' } },
-            { 'iv', mode = { 'n', 'o', 'v' } },
-            { 'R', mode = { 'n', 'o', 'v' } },
+            { 'gG', mode = { 'o', 'v' } },
+            { 'ii', mode = { 'o', 'v' } },
+            { 'ik', mode = { 'o', 'v' } },
+            { 'iv', mode = { 'o', 'v' } },
+            { 'R', mode = { 'o', 'v' } },
         },
         opts = {
             useDefaultKeymaps = true,

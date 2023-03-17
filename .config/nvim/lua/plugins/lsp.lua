@@ -86,7 +86,7 @@ return {
             server('denols', {
                 root_dir = lsp.util.root_pattern('deno.json', 'deno.jsonc'),
             })
-            server('stylelint_lsp')
+            server('volar')
             server('bashls')
             server('dockerls')
             server('tailwindcss')
