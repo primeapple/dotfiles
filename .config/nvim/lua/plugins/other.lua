@@ -221,7 +221,10 @@ return {
         }
     },
     {
-        'Pocco81/auto-save.nvim',
+        'okuuva/auto-save.nvim',
         event = 'VeryLazy',
+        opts = {
+            debounce_delay = 2000
+        }
     }
 }
