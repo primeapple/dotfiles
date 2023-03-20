@@ -58,7 +58,11 @@ return {
                         ['a;'] = 'textsubjects-container-outer',
                         ['i;'] = 'textsubjects-container-inner',
                     },
-                }
+                },
+                -- for vim-matchup
+                matchup = {
+                    enable = true
+                },
             })
 
         end

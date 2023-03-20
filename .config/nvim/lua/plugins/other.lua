@@ -39,10 +39,10 @@ return {
     },
     {
         'andymass/vim-matchup',
-        keys = { '%', 'g%', '[%', ']%' },
+        event = 'VeryLazy',
         init = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
-        end
+        end,
     },
     {
         'windwp/nvim-autopairs',
