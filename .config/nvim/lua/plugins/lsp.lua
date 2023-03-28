@@ -31,7 +31,20 @@ return {
             'hrsh7th/cmp-nvim-lsp'
         },
         config = function()
-            local map = require('toni.utils').map
+            -- mason stuff
+            require('mason').setup({
+                ui = {
+                    icons = {
+                        server_installed = '✓',
+                        server_pending = '➜',
+                        server_uninstalled = '✗'
+                    }
+                }
+            })
+            require('mason-lspconfig').setup({
+                automatic_installation = true
+            })
+
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lsp = require('lspconfig')
 
@@ -97,24 +110,12 @@ return {
             server('eslint')
 
             -- diagnostic mappings
+            local map = require('toni.utils').map
             map('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
             map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
             map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
             map('n', '<leader>D', '<cmd>lua vim.diagnostic.setloclist()<CR>')
 
-            -- mason stuff
-            require('mason').setup({
-                ui = {
-                    icons = {
-                        server_installed = '✓',
-                        server_pending = '➜',
-                        server_uninstalled = '✗'
-                    }
-                }
-            })
-            require('mason-lspconfig').setup({
-                automatic_installation = true
-            })
         end
     }
 }
