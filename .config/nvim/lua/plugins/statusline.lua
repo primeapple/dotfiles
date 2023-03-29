@@ -6,7 +6,7 @@ return {
     -- },
     {
         'freddiehaddad/feline.nvim',
-        event = 'UiEnter',
+        lazy = false,
         dependencies = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'rebelot/kanagawa.nvim', 'lewis6991/gitsigns.nvim' },
         config = function ()
             local colors = function ()
