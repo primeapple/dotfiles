@@ -2,7 +2,7 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
-        command = 'Telescope',
+        cmd = 'Telescope',
         keys = {
             -- basic mappings
             { '<leader>F', '<cmd>Telescope resume <CR>' },

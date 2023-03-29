@@ -158,7 +158,7 @@ return {
     {
         'stevearc/dressing.nvim',
         event = 'VeryLazy',
-        config = {
+        opts = {
             input = {
                 insert_only = false,
                 start_in_insert = false,
@@ -194,7 +194,7 @@ return {
     -------------------- MISC --------------------
     {
         'iamcco/markdown-preview.nvim',
-        run = 'cd app && yarn install',
+        build = 'cd app && yarn install',
         ft = { 'markdown' }
     },
     {
