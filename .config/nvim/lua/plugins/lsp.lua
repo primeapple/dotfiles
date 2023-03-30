@@ -28,7 +28,8 @@ return {
         dependencies = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
-            'hrsh7th/cmp-nvim-lsp'
+            'hrsh7th/cmp-nvim-lsp',
+            'b0o/schemastore.nvim'
         },
         config = function()
             -- mason stuff
@@ -81,17 +82,17 @@ return {
                 },
             })
             server('rust_analyzer', {
-                    settings = {
-                        ['rust-analyzer'] = {
-                            checkOnSave = {
-                                allFeatures = true,
-                                overrideCommand = {
-                                    'cargo', 'clippy', '--workspace', '--message-format=json',
-                                    '--all-targets', '--all-features'
-                                }
+                settings = {
+                    ['rust-analyzer'] = {
+                        checkOnSave = {
+                            allFeatures = true,
+                            overrideCommand = {
+                                'cargo', 'clippy', '--workspace', '--message-format=json',
+                                '--all-targets', '--all-features'
                             }
                         }
                     }
+                }
             })
             server('tsserver', {
                 root_dir = lsp.util.root_pattern('package.json'),
@@ -104,6 +105,21 @@ return {
             server('dockerls')
             server('tailwindcss')
             server('pyright')
+            server('jsonls', {
+                settings = {
+                    json = {
+                        schemas = require('schemastore').json.schemas(),
+                        validate = { enable = true },
+                    },
+                },
+            })
+            server('yamlls', {
+                settings = {
+                    yaml = {
+                        schemas = require('schemastore').yaml.schemas(),
+                    },
+                },
+            })
 
             -- disables the EslintFixAll command, because it interferes with vim-projectionist
             require('lspconfig.server_configurations.eslint').commands = {};
