@@ -1,11 +1,11 @@
 return {
     {
         'neovim/nvim-lspconfig',
-        event = { "BufReadPre", "BufNewFile" },
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'williamboman/mason.nvim',
             'hrsh7th/cmp-nvim-lsp',
-            'b0o/schemastore.nvim'
+            'b0o/schemastore.nvim',
         },
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -22,7 +22,7 @@ return {
             local server = function(language_server_name, options)
                 local merged_options = vim.tbl_deep_extend('force', {
                     on_attach = utils.on_attach,
-                    capabilities = capabilities
+                    capabilities = capabilities,
                 }, options or {})
 
                 lsp[language_server_name].setup(merged_options)
@@ -45,7 +45,7 @@ return {
                             checkThirdParty = false,
                         },
                         telemetry = {
-                            enable = false
+                            enable = false,
                         },
                     },
                 },
@@ -56,12 +56,16 @@ return {
                         checkOnSave = {
                             allFeatures = true,
                             overrideCommand = {
-                                'cargo', 'clippy', '--workspace', '--message-format=json',
-                                '--all-targets', '--all-features'
-                            }
-                        }
-                    }
-                }
+                                'cargo',
+                                'clippy',
+                                '--workspace',
+                                '--message-format=json',
+                                '--all-targets',
+                                '--all-features',
+                            },
+                        },
+                    },
+                },
             })
             server('tsserver', {
                 root_dir = lsp.util.root_pattern('package.json'),
@@ -91,8 +95,8 @@ return {
             })
 
             -- disables the EslintFixAll command, because it interferes with vim-projectionist
-            require('lspconfig.server_configurations.eslint').commands = {};
+            require('lspconfig.server_configurations.eslint').commands = {}
             server('eslint')
-        end
-    }
+        end,
+    },
 }

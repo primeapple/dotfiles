@@ -7,9 +7,14 @@ return {
     {
         'freddiehaddad/feline.nvim',
         lazy = false,
-        dependencies = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'rebelot/kanagawa.nvim', 'lewis6991/gitsigns.nvim' },
-        config = function ()
-            local colors = function ()
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'kyazdani42/nvim-web-devicons',
+            'rebelot/kanagawa.nvim',
+            'lewis6991/gitsigns.nvim',
+        },
+        config = function()
+            local colors = function()
                 local theme = require('kanagawa.colors').setup({ theme = 'wave' }).theme
                 return {
                     bg = theme.ui.bg,
@@ -31,127 +36,127 @@ return {
             local c = {
                 fileinfo = {
                     provider = {
-                        name = "file_info",
+                        name = 'file_info',
                         opts = {
-                            type = "relative-short",
+                            type = 'relative-short',
                         },
                     },
                     hl = {
-                        style = "bold",
+                        style = 'bold',
                     },
-                    right_sep = "block",
+                    right_sep = 'block',
                 },
                 gitBranch = {
                     provider = 'git_branch',
-                    left_sep = "block",
-                    right_sep = "block",
+                    left_sep = 'block',
+                    right_sep = 'block',
                     hl = {
-                        fg = "special",
+                        fg = 'special',
                     },
                 },
                 gitDiffAdded = {
-                    provider = "git_diff_added",
+                    provider = 'git_diff_added',
                     hl = {
-                        fg = "git_add",
+                        fg = 'git_add',
                     },
-                    left_sep = "block",
-                    right_sep = "block",
+                    left_sep = 'block',
+                    right_sep = 'block',
                 },
                 gitDiffRemoved = {
-                    provider = "git_diff_removed",
+                    provider = 'git_diff_removed',
                     hl = {
-                        fg = "git_del",
+                        fg = 'git_del',
                     },
-                    left_sep = "block",
-                    right_sep = "block",
+                    left_sep = 'block',
+                    right_sep = 'block',
                 },
                 gitDiffChanged = {
-                    provider = "git_diff_changed",
+                    provider = 'git_diff_changed',
                     hl = {
-                        fg = "git_change",
+                        fg = 'git_change',
                     },
-                    left_sep = "block",
-                    right_sep = "right_filled",
+                    left_sep = 'block',
+                    right_sep = 'right_filled',
                 },
                 separator = {
-                    provider = "",
+                    provider = '',
                 },
                 diagnostic_errors = {
-                    provider = "diagnostic_errors",
+                    provider = 'diagnostic_errors',
                     hl = {
-                        fg = "diag_error"
+                        fg = 'diag_error',
                     },
                 },
                 diagnostic_warnings = {
-                    provider = "diagnostic_warnings",
+                    provider = 'diagnostic_warnings',
                     hl = {
-                        fg = "diag_warn",
+                        fg = 'diag_warn',
                     },
                 },
                 diagnostic_hints = {
-                    provider = "diagnostic_hints",
+                    provider = 'diagnostic_hints',
                     hl = {
-                        fg = "diag_hint",
+                        fg = 'diag_hint',
                     },
                 },
                 diagnostic_info = {
-                    provider = "diagnostic_info",
+                    provider = 'diagnostic_info',
                     hl = {
-                        fg = "diag_info",
+                        fg = 'diag_info',
                     },
                 },
                 lsp_client_names = {
-                    provider = "lsp_client_names",
+                    provider = 'lsp_client_names',
                     hl = {
-                        style = "bold",
-                        fg = "special"
+                        style = 'bold',
+                        fg = 'special',
                     },
-                    left_sep = "left_filled",
-                    right_sep = "block",
+                    left_sep = 'left_filled',
+                    right_sep = 'block',
                 },
                 file_type = {
                     provider = {
-                        name = "file_type",
+                        name = 'file_type',
                         opts = {
                             filetype_icon = false,
-                            case = "uppercase",
+                            case = 'uppercase',
                         },
                     },
                     hl = {
-                        style = "bold",
-                        fg = "fg",
+                        style = 'bold',
+                        fg = 'fg',
                     },
-                    left_sep = "block",
-                    right_sep = "block",
+                    left_sep = 'block',
+                    right_sep = 'block',
                 },
                 position = {
-                    provider = "position",
+                    provider = 'position',
                     hl = {
-                        fg = "fg",
-                        style = "bold",
+                        fg = 'fg',
+                        style = 'bold',
                     },
-                    left_sep = "block",
-                    right_sep = "block",
+                    left_sep = 'block',
+                    right_sep = 'block',
                 },
                 line_percentage = {
-                    provider = "line_percentage",
+                    provider = 'line_percentage',
                     hl = {
-                        style = "bold",
+                        style = 'bold',
                     },
-                    left_sep = "block",
-                    right_sep = "block",
+                    left_sep = 'block',
+                    right_sep = 'block',
                 },
                 scroll_bar = {
                     provider = {
-                        name = "scroll_bar",
+                        name = 'scroll_bar',
                         opts = {
-                            reverse = true
-                        }
+                            reverse = true,
+                        },
                     },
                     hl = {
-                        bg = "fg",
+                        bg = 'fg',
                         fg = 'bg',
-                        style = "bold",
+                        style = 'bold',
                     },
                 },
             }
@@ -190,9 +195,9 @@ return {
 
             require('feline').setup({
                 components = components,
-                theme = colors()
+                theme = colors(),
             })
-        end
+        end,
     },
     --[[
     {

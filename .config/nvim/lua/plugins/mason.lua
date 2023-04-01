@@ -11,17 +11,17 @@ return {
                 icons = {
                     server_installed = '✓',
                     server_pending = '➜',
-                    server_uninstalled = '✗'
-                }
-            }
+                    server_uninstalled = '✗',
+                },
+            },
         })
 
         require('mason-lspconfig').setup({
-            automatic_installation = true
+            automatic_installation = true,
         })
 
         require('mason-null-ls').setup({
-            automatic_installation = true
+            automatic_installation = true,
         })
     end,
 }

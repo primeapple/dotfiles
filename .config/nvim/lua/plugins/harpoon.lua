@@ -3,18 +3,21 @@ return {
         'ThePrimeagen/harpoon',
         dependencies = 'nvim-lua/plenary.nvim',
         keys = {
-            'gh', 'gH', ']h', '[h'
+            'gh',
+            'gH',
+            ']h',
+            '[h',
         },
         config = function()
             require('harpoon').setup({
                 global_settings = {
-                    mark_branch = true
-                }
+                    mark_branch = true,
+                },
             })
 
             local map = require('toni.utils').map
             local function toggle_move()
-                if (vim.v.count > 0) then
+                if vim.v.count > 0 then
                     -- this does not work (yet?)
                     -- require('harpoon.ui').nav_file(vim.v.count)
                     return '<cmd>lua require("harpoon.ui").nav_file(vim.v.count) <CR>'
@@ -26,6 +29,6 @@ return {
             map('n', ']h', require('harpoon.ui').nav_next)
             map('n', '[h', require('harpoon.ui').nav_prev)
             map('n', 'gH', require('harpoon.ui').toggle_quick_menu)
-        end
-    }
+        end,
+    },
 }

@@ -2,8 +2,8 @@ local map = require('toni.utils').map
 
 map('n', 'V', 'vg_')
 map('n', 'vv', 'V')
-map({'n', 'x', 'o'}, 'L', 'g_')
-map({'n', 'x', 'o'}, 'H', '^')
+map({ 'n', 'x', 'o' }, 'L', 'g_')
+map({ 'n', 'x', 'o' }, 'H', '^')
 
 -- keeping search results centered
 map('n', 'n', 'nzzzv')

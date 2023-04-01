@@ -8,7 +8,6 @@ return {
                 compile = true,
             })
             vim.api.nvim_command('colorscheme kanagawa')
-        end
-    }
-
+        end,
+    },
 }

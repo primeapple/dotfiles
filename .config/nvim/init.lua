@@ -17,7 +17,7 @@ local disabled_built_ins = {
     'logipat',
     'rrhelper',
     'spellfile_plugin',
-    'matchit'
+    'matchit',
 }
 for _, plugin in pairs(disabled_built_ins) do
     vim.g['loaded_' .. plugin] = 1
@@ -29,22 +29,22 @@ require('toni.autocmds')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable', -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', {
     defaults = {
-        lazy = true
+        lazy = true,
     },
     dev = {
-        path = "~/git"
-    }
+        path = '~/git',
+    },
 })

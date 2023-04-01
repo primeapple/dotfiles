@@ -4,7 +4,7 @@ return {
         event = 'VeryLazy',
         opts = {
             panel = {
-                enabled = false
+                enabled = false,
             },
             suggestion = {
                 enabled = true,
@@ -13,7 +13,7 @@ return {
                     accept = '<M-l>',
                     accept_word = '<M-f>',
                     accept_line = '<C-f>',
-                }
+                },
             },
             filetypes = {
                 -- disable for files without filetype
@@ -22,14 +22,14 @@ return {
                 norg = false,
                 -- because we don't want Copilot in `.env` files
                 -- see https://github.com/zbirenbaum/copilot.lua/issues/111
-                sh = function ()
+                sh = function()
                     if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '%.env$') then
                         -- disable for .env files
                         return false
                     end
                     return true
                 end,
-            }
-        }
-    }
+            },
+        },
+    },
 }

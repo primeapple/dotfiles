@@ -1,13 +1,13 @@
 local M = {}
 
 M.map = function(modes, keys, command, opt)
-    local options = { silent=true }
+    local options = { silent = true }
 
     if opt then
-        options = vim.tbl_extend("force", options, opt)
+        options = vim.tbl_extend('force', options, opt)
     end
 
-    if type(keys) == "table" then
+    if type(keys) == 'table' then
         for _, keymap in ipairs(keys) do
             M.map(modes, keymap, command, opt)
         end
@@ -17,12 +17,12 @@ M.map = function(modes, keys, command, opt)
     vim.keymap.set(modes, keys, command, opt)
 end
 
-M.on_attach =  function(client, bufnr)
+M.on_attach = function(client, bufnr)
     if client.name == 'tsserver' then
         client.server_capabilities.documentFormattingProvider = false
     end
 
-    local opts = { noremap=true, silent=true }
+    local opts = { noremap = true, silent = true }
 
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -38,7 +38,13 @@ M.on_attach =  function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>t', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    vim.api.nvim_buf_set_keymap(
+        bufnr,
+        'n',
+        '<leader>sl',
+        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+        opts
+    )
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>af', '<cmd>lua vim.lsp.buf.format()<CR>', opts)

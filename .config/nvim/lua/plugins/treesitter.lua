@@ -8,8 +8,8 @@ return {
             'RRethy/nvim-treesitter-textsubjects',
             {
                 'nvim-treesitter/playground',
-                cmd = 'TSPlaygroundToggle'
-            }
+                cmd = 'TSPlaygroundToggle',
+            },
         },
         config = function()
             require('nvim-treesitter.configs').setup({
@@ -47,7 +47,7 @@ return {
                 },
                 -- EXPERIMENTAL
                 indent = {
-                    enable = true
+                    enable = true,
                 },
                 -- for nvim-treesitter-textsubjects
                 textsubjects = {
@@ -61,10 +61,9 @@ return {
                 },
                 -- for vim-matchup
                 matchup = {
-                    enable = true
+                    enable = true,
                 },
             })
-
-        end
-    }
+        end,
+    },
 }

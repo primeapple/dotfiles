@@ -4,7 +4,7 @@ local g = vim.g
 opt.confirm = true
 opt.laststatus = 3 -- global statusline
 opt.title = true
-opt.clipboard = "unnamedplus"
+opt.clipboard = 'unnamedplus'
 -- opt.cmdheight = 0 -- dont show commandline, comes in nvim 0.8?
 opt.cmdheight = 1
 opt.cul = true -- cursor line
@@ -17,7 +17,7 @@ opt.smartindent = true
 opt.hidden = true
 opt.ignorecase = true
 opt.smartcase = true
-opt.mouse = "a"
+opt.mouse = 'a'
 
 -- Numbers
 opt.number = true
@@ -26,7 +26,7 @@ opt.numberwidth = 2
 -- opt.relativenumber = true
 opt.ruler = false
 
-opt.signcolumn = "yes"
+opt.signcolumn = 'yes'
 opt.splitbelow = true
 opt.splitright = true
 opt.tabstop = 4
@@ -43,12 +43,12 @@ opt.lazyredraw = true
 
 -- Folding
 -- Suggestions by https://github.com/kevinhwang91/nvim-ufo
-opt.foldcolumn = "1"
+opt.foldcolumn = '1'
 opt.foldlevelstart = 99
 opt.foldlevel = 99
 -- opt.foldenable = true -- is on by default
 
-g.mapleader = " "
+g.mapleader = ' '
 
 -- It's not recommended to use fish for internal terminal, use it anyways because fish is amazing
 -- opt.shell = "/bin/bash"

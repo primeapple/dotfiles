@@ -5,7 +5,8 @@ local workspace_dir = '/home/toni/.cache/jdtls/' .. project_name
 -- local version of jdtls
 local jdtls_install_location = '/home/toni/.bin/jdtls/'
 
-local java_debug_jar = '/home/toni/.bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
+local java_debug_jar =
+    '/home/toni/.bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
 local vscode_java_test_jars_location = '/home/toni/.bin/vscode-java-test/server/'
 
 local jdtls = require('jdtls')
@@ -26,20 +27,25 @@ local config = {
         '-Dlog.level=ALL',
         '-Xms1g',
         '--add-modules=ALL-SYSTEM',
-        '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-        '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        '--add-opens',
+        'java.base/java.util=ALL-UNNAMED',
+        '--add-opens',
+        'java.base/java.lang=ALL-UNNAMED',
 
         -- 💀
-        '-jar', vim.fn.glob(jdtls_install_location .. 'plugins/org.eclipse.equinox.launcher_*.jar'),
+        '-jar',
+        vim.fn.glob(jdtls_install_location .. 'plugins/org.eclipse.equinox.launcher_*.jar'),
 
         -- 💀
         -- the config for the current platform
         -- this directory has to be writeable to write logs into it
-        '-configuration', jdtls_install_location .. 'config_linux',
+        '-configuration',
+        jdtls_install_location .. 'config_linux',
 
         -- 💀
         -- where the project specific data is stored
-        '-data', workspace_dir,
+        '-data',
+        workspace_dir,
     },
 
     -- Here you can configure eclipse.jdt.ls specific settings
@@ -50,66 +56,66 @@ local config = {
             configuration = {
                 runtimes = {
                     {
-                        name = "JavaSE-17",
-                        path = "/usr/lib/jvm/java-17-openjdk/",
+                        name = 'JavaSE-17',
+                        path = '/usr/lib/jvm/java-17-openjdk/',
                     },
-                }
+                },
             },
             contentProvider = {
-                preferred = 'fernflower'
+                preferred = 'fernflower',
             },
             import = {
                 gradle = {
-                    enabled = true
+                    enabled = true,
                 },
                 maven = {
-                    enabled = true
+                    enabled = true,
                 },
             },
             eclipse = {
-                downloadSources = true
+                downloadSources = true,
             },
             referencesCodeLens = {
-                enabled = true
+                enabled = true,
             },
             signatureHelp = {
-                enabled = true
+                enabled = true,
             },
             implementationsCodeLens = {
-                enabled = false
+                enabled = false,
             },
             saveActions = {
                 organizeImports = true,
             },
             inlayhints = {
-                parameterNames = true
+                parameterNames = true,
             },
             jdt = {
                 ls = {
                     lombokSupport = {
-                        enabled = true
-                    }
-                }
-            }
-        }
+                        enabled = true,
+                    },
+                },
+            },
+        },
     },
-    on_attach = function (client, buffer)
+    on_attach = function(client, buffer)
         require('toni.plugins.lsp').on_attach(client, buffer)
 
         jdtls.setup_dap({ hotcodereplace = 'auto' })
         jdtls.setup.add_commands()
-    end
+    end,
 }
 
 -- for debugging
 local bundles = {
-    vim.fn.glob(java_debug_jar)
-};
+    vim.fn.glob(java_debug_jar),
+}
 
 -- for running tests
 vim.list_extend(bundles, vim.split(vim.fn.glob(vscode_java_test_jars_location .. '*.jar'), '\n'))
 config['init_options'] = {
-  bundles = bundles;
+    bundles = bundles,
 }
 
 -- This starts a new client & server,

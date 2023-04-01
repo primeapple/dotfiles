@@ -12,7 +12,12 @@ return {
             { '<leader>fh', '<cmd>Telescope help_tags <CR>' },
             { '<leader>fw', '<cmd>Telescope live_grep <CR>' },
             { '<leader>fW', '<cmd>Telescope grep_string <CR>' },
-            { '<leader>fo', function() require('telescope.builtin').oldfiles({only_cwd=true}) end },
+            {
+                '<leader>fo',
+                function()
+                    require('telescope.builtin').oldfiles({ only_cwd = true })
+                end,
+            },
             { '<leader>fq', '<cmd>Telescope quickfix <CR>' },
             { '<leader>fQ', '<cmd>Telescope quickfixhistory <CR>' },
 
@@ -32,14 +37,14 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'natecraddock/telescope-zf-native.nvim',
-            'nvim-telescope/telescope-dap.nvim'
+            'nvim-telescope/telescope-dap.nvim',
         },
         config = function()
             local telescope = require('telescope')
 
             telescope.setup({
                 defaults = {
-                    path_display = { shorten = { len = 3, exclude = {1, -2, -1} } },
+                    path_display = { shorten = { len = 3, exclude = { 1, -2, -1 } } },
                     mappings = {
                         i = {
                             ['<C-d>'] = 'results_scrolling_down',
@@ -56,14 +61,13 @@ return {
                             ['<C-b>'] = 'preview_scrolling_up',
                             ['<C-->'] = 'select_horizontal',
                             ['<C-/>'] = 'select_vertical',
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             })
 
             telescope.load_extension('zf-native')
             telescope.load_extension('dap')
-        end
-    }
+        end,
+    },
 }
-

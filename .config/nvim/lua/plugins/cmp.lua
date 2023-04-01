@@ -13,13 +13,13 @@ return {
             {
                 'zbirenbaum/copilot-cmp',
                 dependencies = 'copilot.lua',
-                config = function() 
+                config = function()
                     require('copilot_cmp').setup({
                         formatters = {
-                            insert_text = require('copilot_cmp.format').remove_existing
-                        }
+                            insert_text = require('copilot_cmp.format').remove_existing,
+                        },
                     })
-                end
+                end,
             },
             -- 'rcarriga/cmp-dap',
         },
@@ -40,8 +40,8 @@ return {
                             calc = '[CALC]',
                             emoji = '[EMO]',
                             copilot = '[COP]',
-                        }
-                    })
+                        },
+                    }),
                 },
                 snippet = {
                     expand = function(args)
@@ -66,13 +66,13 @@ return {
                         keyword_length = 3,
                         option = {
                             keyword_pattern = [[\k\+]],
-                        }
+                        },
                     },
                     { name = 'nvim_lua' },
                     { name = 'path' },
                     { name = 'calc' },
                     { name = 'emoji' },
-                    { name = 'copilot' }
+                    { name = 'copilot' },
                 }),
                 experimental = {
                     -- this breaks copilot.lua otherwise
@@ -88,13 +88,13 @@ return {
                         keyword_length = 3,
                         option = {
                             keyword_pattern = [[\k\+]],
-                        }
+                        },
                     },
                     { name = 'path' },
                     { name = 'calc' },
                     { name = 'emoji' },
-                })
+                }),
             })
-        end
-    }
+        end,
+    },
 }

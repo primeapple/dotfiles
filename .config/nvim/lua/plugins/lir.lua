@@ -8,7 +8,7 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'kyazdani42/nvim-web-devicons',
-            'tamago324/lir-git-status.nvim'
+            'tamago324/lir-git-status.nvim',
         },
         config = function()
             local map = require('toni.utils').map
@@ -30,25 +30,25 @@ return {
                     ['<CR>'] = actions.edit,
                     ['<C-->'] = actions.split,
                     ['<C-/>'] = actions.vsplit,
-                    ['q']    = actions.quit,
-                    ['-']    = actions.up,
+                    ['q'] = actions.quit,
+                    ['-'] = actions.up,
 
-                    ['M']    = actions.mkdir,
-                    ['T']    = actions.touch,
-                    ['R']    = actions.rename,
-                    ['Y']    = actions.yank_path,
-                    ['.']    = actions.toggle_show_hidden,
-                    ['D']    = actions.delete,
+                    ['M'] = actions.mkdir,
+                    ['T'] = actions.touch,
+                    ['R'] = actions.rename,
+                    ['Y'] = actions.yank_path,
+                    ['.'] = actions.toggle_show_hidden,
+                    ['D'] = actions.delete,
 
-                    ['C']    = clipboard_actions.copy,
-                    ['X']    = clipboard_actions.cut,
-                    ['P']    = clipboard_actions.paste,
+                    ['C'] = clipboard_actions.copy,
+                    ['X'] = clipboard_actions.cut,
+                    ['P'] = clipboard_actions.paste,
 
-                    ['m']    = mark_actions.toggle_mark,
-                }
+                    ['m'] = mark_actions.toggle_mark,
+                },
             })
 
             require('lir.git_status').setup()
-        end
-    }
+        end,
+    },
 }

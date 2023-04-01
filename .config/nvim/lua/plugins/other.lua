@@ -7,7 +7,7 @@ return {
         config = function()
             require('nvim-surround').setup({
                 aliases = {
-                    ['b'] = { ')', ']', '}' }
+                    ['b'] = { ')', ']', '}' },
                 },
                 keymaps = {
                     -- insert = '<C-g>z',
@@ -20,28 +20,30 @@ return {
                     visual_lin = 'gZ',
                     delete = 'gzd',
                     change = 'gzc',
-                }
+                },
             })
-        end
+        end,
     },
     {
         'tpope/vim-unimpaired',
-        keys = { '[', ']' }
+        keys = { '[', ']' },
     },
     -- TODO replace with mini
     {
         'numToStr/Comment.nvim',
         keys = {
-            { 'gc', mode={ 'n', 'v' } },
-            { 'gb', mode={ 'n', 'v' } },
+            { 'gc', mode = { 'n', 'v' } },
+            { 'gb', mode = { 'n', 'v' } },
         },
-        config = function() require('Comment').setup() end
+        config = function()
+            require('Comment').setup()
+        end,
     },
     {
         'andymass/vim-matchup',
         event = 'VeryLazy',
         init = function()
-            vim.g.matchup_matchparen_offscreen = { method = "popup" }
+            vim.g.matchup_matchparen_offscreen = { method = 'popup' }
         end,
     },
     {
@@ -49,9 +51,8 @@ return {
         event = 'VeryLazy',
         opts = {
             disable_in_macro = true,
-        }
+        },
     },
-
 
     -------------------- NAVIGATION --------------------
     {
@@ -81,7 +82,7 @@ return {
         },
         init = function()
             vim.g.kitty_navigator_no_mappings = 1
-        end
+        end,
     },
 
     -------------------- TEXT OBJECTS --------------------
@@ -97,7 +98,7 @@ return {
         },
         init = function()
             vim.g.wordmotion_prefix = '<leader>'
-        end
+        end,
     },
     {
         'chrisgrieser/nvim-various-textobjs',
@@ -110,7 +111,7 @@ return {
         },
         opts = {
             useDefaultKeymaps = true,
-        }
+        },
     },
 
     -------------------- MOVEMENTS --------------------
@@ -120,11 +121,11 @@ return {
             { 's', '<Plug>(leap-forward-to)', mode = { 'n', 'o', 'v' } },
             { 'S', '<Plug>(leap-backward-to)', mode = { 'n', 'o', 'v' } },
             { 'gs', '<Plug>(leap-cross-window)', mode = { 'n', 'o', 'v' } },
-        }
+        },
     },
     {
         'bronson/vim-visual-star-search',
-        keys = { { '*', mode = 'v' } }
+        keys = { { '*', mode = 'v' } },
     },
 
     -------------------- APPEARANCE --------------------
@@ -132,28 +133,28 @@ return {
     {
         'luukvbaal/stabilize.nvim',
         event = 'VeryLazy',
-        config = true
+        config = true,
     },
     {
         'karb94/neoscroll.nvim',
         keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        config = true
+        config = true,
     },
     {
         -- TODO try if it works with config = true
         'gbprod/stay-in-place.nvim',
         keys = { '=', '<', '>' },
-        config = true
+        config = true,
     },
     {
         'lukas-reineke/indent-blankline.nvim',
-        event = { "BufReadPost", "BufNewFile" },
-        config = true
+        event = { 'BufReadPost', 'BufNewFile' },
+        config = true,
     },
     {
         'j-hui/fidget.nvim',
         event = 'VeryLazy',
-        config = true
+        config = true,
     },
     {
         'stevearc/dressing.nvim',
@@ -162,8 +163,8 @@ return {
             input = {
                 insert_only = false,
                 start_in_insert = false,
-            }
-        }
+            },
+        },
     },
     {
         'NvChad/nvim-colorizer.lua',
@@ -174,28 +175,28 @@ return {
                 tailwind = 'lsp',
                 mode = 'virtualtext',
                 sass = {
-                    enable = true
-                }
-            }
-        }
+                    enable = true,
+                },
+            },
+        },
     },
     {
         'tzachar/local-highlight.nvim',
         event = 'VeryLazy',
-        config = true
+        config = true,
     },
 
     -------------------- Languages/Tools --------------------
     {
         'lervag/vimtex',
-        ft = 'tex'
+        ft = 'tex',
     },
 
     -------------------- MISC --------------------
     {
         'iamcco/markdown-preview.nvim',
         build = 'cd app && yarn install',
-        ft = { 'markdown' }
+        ft = { 'markdown' },
     },
     {
         'akinsho/toggleterm.nvim',
@@ -210,15 +211,15 @@ return {
                 end
             end,
             open_mapping = '<C-t>',
-            direction = 'vertical'
-        }
+            direction = 'vertical',
+        },
     },
     {
         'ja-ford/delaytrain.nvim',
         event = 'VeryLazy',
         opts = {
-            grace_period = 5
-        }
+            grace_period = 5,
+        },
     },
     {
         'okuuva/auto-save.nvim',
@@ -226,7 +227,7 @@ return {
         -- branch = 'my-local-branch',
         event = 'VeryLazy',
         opts = {
-            debounce_delay = 2000
-        }
-    }
+            debounce_delay = 2000,
+        },
+    },
 }

@@ -7,7 +7,7 @@ return {
         dependencies = 'nvim-lua/plenary.nvim',
         event = 'VeryLazy',
         config = function()
-            require('neorg').setup {
+            require('neorg').setup({
                 load = {
                     ['core.defaults'] = {},
                     ['core.norg.concealer'] = {},
@@ -18,11 +18,11 @@ return {
                                 goals = '~/Sync/notes/goals',
                                 knowledge = '~/Sync/notes/knowledge',
                             },
-                            default_workspace = 'general'
+                            default_workspace = 'general',
                         },
                     },
                 },
-            }
+            })
         end,
-    }
+    },
 }
