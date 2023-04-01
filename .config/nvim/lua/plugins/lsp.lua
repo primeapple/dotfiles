@@ -1,58 +1,27 @@
-local on_attach = function(client, bufnr)
-    local opts = { noremap=true, silent=true }
-
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>af', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-end
-
 return {
     {
         'neovim/nvim-lspconfig',
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
             'hrsh7th/cmp-nvim-lsp',
             'b0o/schemastore.nvim'
         },
         config = function()
-            -- mason stuff
-            require('mason').setup({
-                ui = {
-                    icons = {
-                        server_installed = '✓',
-                        server_pending = '➜',
-                        server_uninstalled = '✗'
-                    }
-                }
-            })
-            require('mason-lspconfig').setup({
-                automatic_installation = true
-            })
-
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lsp = require('lspconfig')
+            local utils = require('toni.utils')
+
+            -- diagnostic mappings
+            utils.map('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
+            utils.map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+            utils.map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+            utils.map('n', '<leader>D', '<cmd>lua vim.diagnostic.setloclist()<CR>')
 
             -- lsp stuff
             local server = function(language_server_name, options)
                 local merged_options = vim.tbl_deep_extend('force', {
-                    on_attach = on_attach,
+                    on_attach = utils.on_attach,
                     capabilities = capabilities
                 }, options or {})
 
@@ -124,14 +93,6 @@ return {
             -- disables the EslintFixAll command, because it interferes with vim-projectionist
             require('lspconfig.server_configurations.eslint').commands = {};
             server('eslint')
-
-            -- diagnostic mappings
-            local map = require('toni.utils').map
-            map('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
-            map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-            map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-            map('n', '<leader>D', '<cmd>lua vim.diagnostic.setloclist()<CR>')
-
         end
     }
 }
