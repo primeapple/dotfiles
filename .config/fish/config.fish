@@ -9,4 +9,3 @@ if status is-interactive
     # default is 50 iirc
     set -g fish_escape_delay_ms 10
 end
-
