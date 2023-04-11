@@ -221,13 +221,4 @@ return {
             grace_period = 5,
         },
     },
-    {
-        'okuuva/auto-save.nvim',
-        -- dev = true,
-        -- branch = 'my-local-branch',
-        event = 'VeryLazy',
-        opts = {
-            debounce_delay = 2000,
-        },
-    },
 }

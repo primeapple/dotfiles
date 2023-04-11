@@ -20,6 +20,12 @@ return {
             },
             { '<leader>fq', '<cmd>Telescope quickfix <CR>' },
             { '<leader>fQ', '<cmd>Telescope quickfixhistory <CR>' },
+            {
+                '<leader>fl',
+                function()
+                    require('telescope').extensions.live_grep_args.live_grep_args()
+                end,
+            },
 
             -- git mappings
             -- { '<leader>fc', '<cmd>Telescope git_commits <CR>' },
@@ -38,9 +44,11 @@ return {
             'nvim-lua/plenary.nvim',
             'natecraddock/telescope-zf-native.nvim',
             'nvim-telescope/telescope-dap.nvim',
+            'nvim-telescope/telescope-live-grep-args.nvim',
         },
         config = function()
             local telescope = require('telescope')
+            local lga_actions = require('telescope-live-grep-args.actions')
 
             telescope.setup({
                 defaults = {
@@ -64,10 +72,22 @@ return {
                         },
                     },
                 },
+                extensions = {
+                    live_grep_args = {
+                        auto_quoting = true, -- enable/disable auto-quoting
+                        mappings = {
+                            i = {
+                                ['<C-k>'] = lga_actions.quote_prompt(),
+                                ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
+                            },
+                        },
+                    },
+                },
             })
 
             telescope.load_extension('zf-native')
             telescope.load_extension('dap')
+            telescope.load_extension('live_grep_args')
         end,
     },
 }

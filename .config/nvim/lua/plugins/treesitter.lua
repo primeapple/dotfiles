@@ -5,11 +5,7 @@ return {
         event = { 'BufReadPost', 'BufNewFile' },
         dependencies = {
             'nvim-treesitter/nvim-treesitter-context',
-            'RRethy/nvim-treesitter-textsubjects',
-            {
-                'nvim-treesitter/playground',
-                cmd = 'TSPlaygroundToggle',
-            },
+            'RRethy/nvim-treesitter-textsubjects'
         },
         config = function()
             require('nvim-treesitter.configs').setup({

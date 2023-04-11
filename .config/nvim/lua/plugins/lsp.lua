@@ -69,6 +69,11 @@ return {
             })
             server('tsserver', {
                 root_dir = lsp.util.root_pattern('package.json'),
+                init_options = {
+                    preferences = {
+                        importModuleSpecifierPreference = 'project-relative',
+                    },
+                },
             })
             server('denols', {
                 root_dir = lsp.util.root_pattern('deno.json', 'deno.jsonc'),

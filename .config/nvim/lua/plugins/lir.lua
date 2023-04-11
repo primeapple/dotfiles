@@ -4,6 +4,7 @@
 return {
     {
         'tamago324/lir.nvim',
+        enable = false,
         lazy = false,
         dependencies = {
             'nvim-lua/plenary.nvim',

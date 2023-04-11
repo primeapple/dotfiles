@@ -59,7 +59,11 @@ local function toggle_qf()
     end
     vim.api.nvim_command('cwindow')
 end
-map('n', '<leader>q', toggle_qf)
+map('n', 'ZC', toggle_qf)
 
 -- rename word under cursor
 -- map('n', '<F4>', ':%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i')
+
+-- nicer save
+map('n', 'ZW', '<cmd> w <CR>')
+map('n', 'ZA', '<cmd> wa <CR>')
