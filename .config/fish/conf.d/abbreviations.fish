@@ -26,7 +26,6 @@ if status --is-interactive
         echo $tuples | read -d , abb cmd
         abbr --add $abb $cmd
         abbr --add $abb'a' $cmd add
-        abbr --add $abb'aa' $cmd 'add --all'
         abbr --add $abb'au' $cmd 'add -u'
         abbr --add $abb'c' $cmd 'commit -v'
         abbr --add $abb'can' $cmd 'commit --amend --no-edit'
@@ -50,6 +49,7 @@ if status --is-interactive
         abbr --add $abb'sta' $cmd 'stash apply'
     end
     # only git
+    abbr --add gaa 'git add --all'
     abbr --add gpb 'git publish'
     abbr --add gpf 'git push --force-with-lease --force-if-includes'
     abbr --add gb 'git branch'
@@ -66,6 +66,8 @@ if status --is-interactive
     abbr --add grba 'git rebase --abort'
     abbr --add grbc 'git rebase --continue'
     abbr --add grc 'git recent'
+    abbr --add gcl 'git clean -nd'
+    abbr --add gclf 'git clean -fd'
 
     # taskwarrior related ones
     # https://www.reddit.com/r/taskwarrior/comments/uvwqlz/share_your_aliases/

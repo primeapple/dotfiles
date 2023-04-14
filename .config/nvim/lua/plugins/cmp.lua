@@ -40,6 +40,7 @@ return {
                             calc = '[CALC]',
                             emoji = '[EMO]',
                             copilot = '[COP]',
+                            neorg = '[NORG]',
                         },
                     }),
                 },
@@ -93,6 +94,22 @@ return {
                     { name = 'path' },
                     { name = 'calc' },
                     { name = 'emoji' },
+                }),
+            })
+            -- only need a subset of the default sources in neorg
+            cmp.setup.filetype('norg', {
+                sources = cmp.config.sources({
+                    {
+                        name = 'buffer',
+                        keyword_length = 3,
+                        option = {
+                            keyword_pattern = [[\k\+]],
+                        },
+                    },
+                    { name = 'path' },
+                    { name = 'calc' },
+                    { name = 'emoji' },
+                    { name = 'neorg' },
                 }),
             })
         end,
