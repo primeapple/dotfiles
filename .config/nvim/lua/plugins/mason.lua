@@ -3,6 +3,7 @@ return {
     cmd = 'Mason',
     dependencies = {
         'jay-babu/mason-null-ls.nvim',
+        'jay-babu/mason-nvim-dap.nvim',
         'williamboman/mason-lspconfig.nvim',
     },
     config = function()
@@ -21,6 +22,10 @@ return {
         })
 
         require('mason-null-ls').setup({
+            automatic_installation = true,
+        })
+
+        require('mason-nvim-dap').setup({
             automatic_installation = true,
         })
     end,

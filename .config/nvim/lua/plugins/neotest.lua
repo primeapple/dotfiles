@@ -6,6 +6,7 @@ return {
             'nvim-treesitter/nvim-treesitter',
             'antoinemadec/FixCursorHold.nvim',
             'haydenmeade/neotest-jest',
+            'mfussenegger/nvim-dap',
         },
         keys = {
             {
@@ -24,6 +25,12 @@ return {
                 '<leader>rr',
                 function()
                     require('neotest').run.run_last()
+                end,
+            },
+            {
+                '<leader>rd',
+                function()
+                    require('neotest').run.run_last({strategy = 'dap'})
                 end,
             },
             {

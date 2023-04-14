@@ -27,6 +27,4 @@ return {
             map('n', '<leader>rN', require('jester').debug)
         end,
     },
-    -- TODO: checkout later, would prefer it over jester
-    -- use { 'nvim-neotest/neotest' }
 }

@@ -37,6 +37,7 @@ if status --is-interactive
         abbr --add $abb'f' $cmd fetch
         abbr --add $abb'pl' $cmd pull
         abbr --add $abb'p' $cmd push
+        abbr --add $abb'pf' $cmd 'push --force-with-lease --force-if-includes'
         abbr --add $abb'l' $cmd 'log --pretty=format:"%C(yellow)%h %ad%Cred%d %Creset%s%Cblue [%cn]" --decorate --date=relative'
         abbr --add $abb'lg' $cmd 'log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
         abbr --add $abb'ls' $cmd 'log --pretty=format:"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]" --decorate --numstat'
@@ -51,7 +52,6 @@ if status --is-interactive
     # only git
     abbr --add gaa 'git add --all'
     abbr --add gpb 'git publish'
-    abbr --add gpf 'git push --force-with-lease --force-if-includes'
     abbr --add gb 'git branch'
     abbr --add gbd 'git branch -d'
     abbr --add gbm 'git branch -m'

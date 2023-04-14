@@ -129,19 +129,12 @@ return {
     },
 
     -------------------- APPEARANCE --------------------
-    -- TODO replace with `set splitkeep=screen`, when using nvim 0.9
-    {
-        'luukvbaal/stabilize.nvim',
-        event = 'VeryLazy',
-        config = true,
-    },
     {
         'karb94/neoscroll.nvim',
         keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
         config = true,
     },
     {
-        -- TODO try if it works with config = true
         'gbprod/stay-in-place.nvim',
         keys = { '=', '<', '>' },
         config = true,

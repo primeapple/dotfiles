@@ -29,6 +29,7 @@ opt.ruler = false
 opt.signcolumn = 'yes'
 opt.splitbelow = true
 opt.splitright = true
+opt.splitkeep = 'screen'
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.termguicolors = true

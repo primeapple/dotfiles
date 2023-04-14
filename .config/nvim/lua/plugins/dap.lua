@@ -1,5 +1,4 @@
 -- TODO find some nice hotkeys
--- TODO add mason bridge
 return {
     {
         'mfussenegger/nvim-dap',

@@ -60,6 +60,7 @@ return {
                     enable = true,
                 },
             })
+            require('treesitter-context').setup()
         end,
     },
 }

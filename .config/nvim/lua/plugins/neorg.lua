@@ -1,7 +1,6 @@
 return {
     {
         'nvim-neorg/neorg',
-        version = '*',
         build = ':Neorg sync-parsers',
         dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
         ft = 'norg',
