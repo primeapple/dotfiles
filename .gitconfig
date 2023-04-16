@@ -12,7 +12,8 @@
 	pullother = !git pull origin $1:$1
     hide = update-index --assume-unchanged
     unhide = update-index --no-assume-unchanged
-    hidden = ! git ls-files -v | grep '^h' | cut -c3-
+    hidden = !git ls-files -v | grep '^h' | cut -c3-
+    cleaner = !git clean -nd && read -rsp $'Press any key to continue...\n' -n 1 key && git clean -fd
     # this alias doesn't always work, however printing the command works
     # current-merge-base = !git merge-base $1 $(git branch --show-current)
 # delta config

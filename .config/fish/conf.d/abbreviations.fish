@@ -66,8 +66,7 @@ if status --is-interactive
     abbr --add grba 'git rebase --abort'
     abbr --add grbc 'git rebase --continue'
     abbr --add grc 'git recent'
-    abbr --add gcl 'git clean -nd'
-    abbr --add gclf 'git clean -fd'
+    abbr --add gcl 'git cleaner'
 
     # taskwarrior related ones
     # https://www.reddit.com/r/taskwarrior/comments/uvwqlz/share_your_aliases/

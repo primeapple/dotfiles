@@ -19,9 +19,9 @@ return {
                     ['core.keybinds'] = {
                         config = {
                             hook = function(keybinds)
-                                keybinds.map('norg', 'n', 'i', '<cmd> Neorg inject-metadata <CR>')
-                                keybinds.map('norg', 'n', 'u', '<cmd> Neorg update-metadata <CR>')
-                                keybinds.map('norg', 'n', 'e', '<cmd> Neorg export to-file <CR>')
+                                keybinds.map('norg', 'n', '<LocalLeader>i', '<cmd> Neorg inject-metadata <CR>')
+                                keybinds.map('norg', 'n', '<LocalLeader>u', '<cmd> Neorg update-metadata <CR>')
+                                keybinds.map('norg', 'n', '<LocalLeader>e', '<cmd> Neorg export to-file <CR>')
                             end,
                         },
                     },
@@ -45,7 +45,6 @@ return {
                     ['core.integrations.nvim-cmp'] = {},
                     ['core.export'] = {},
                     ['core.export.markdown'] = {},
-
                 },
             })
         end,
