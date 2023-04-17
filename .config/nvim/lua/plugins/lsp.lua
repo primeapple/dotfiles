@@ -81,7 +81,9 @@ return {
             server('volar')
             server('bashls')
             server('dockerls')
-            server('tailwindcss')
+            server('tailwindcss', {
+                root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
+            })
             server('pyright')
             server('jsonls', {
                 settings = {
