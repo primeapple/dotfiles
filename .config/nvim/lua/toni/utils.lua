@@ -9,12 +9,12 @@ M.map = function(modes, keys, command, opt)
 
     if type(keys) == 'table' then
         for _, keymap in ipairs(keys) do
-            M.map(modes, keymap, command, opt)
+            M.map(modes, keymap, command, options)
         end
         return
     end
 
-    vim.keymap.set(modes, keys, command, opt)
+    vim.keymap.set(modes, keys, command, options)
 end
 
 M.on_attach = function(client, bufnr)
@@ -48,6 +48,15 @@ M.on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>af', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+end
+
+local ft_augroup = vim.api.nvim_create_augroup('ft_augroup', { clear = true })
+M.ft_autocmd = function(filetypes, callback)
+    vim.api.nvim_create_autocmd('FileType', {
+        group = ft_augroup,
+        pattern = filetypes,
+        callback = callback,
+    })
 end
 
 return M
