@@ -9,6 +9,12 @@ return {
         },
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            -- use lsp as folding provider for `nvim-ufo`
+            capabilities.textDocument.foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+            }
+
             local lsp = require('lspconfig')
             local utils = require('toni.utils')
 
