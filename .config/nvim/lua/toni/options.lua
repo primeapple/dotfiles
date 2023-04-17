@@ -42,13 +42,6 @@ opt.updatetime = 250
 
 opt.lazyredraw = true
 
--- Folding
--- Suggestions by https://github.com/kevinhwang91/nvim-ufo
-opt.foldcolumn = '1'
-opt.foldlevelstart = 99
-opt.foldlevel = 99
--- opt.foldenable = true -- is on by default
-
 g.mapleader = ' '
 
 -- It's not recommended to use fish for internal terminal, use it anyways because fish is amazing

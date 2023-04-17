@@ -1,12 +1,14 @@
 return {
     {
         'kevinhwang91/nvim-ufo',
-        depencencies = {
-            'kevinhwang91/promise-async'
+        event = 'VeryLazy',
+        dependencies = {
+            'kevinhwang91/promise-async',
         },
         keys = {
-            { 'zR', require('ufo').openAllFolds },
-            { 'zM', require('ufo').openAllFolds },
+            { 'zR',               '<cmd>lua require("ufo").openAllFolds() <CR>' },
+            { 'zM',               '<cmd>lua require("ufo").closeAllFolds() <CR>' },
+            { '<leader><leader>', 'zA' },
         },
         config = function()
             vim.o.foldcolumn = '1'
