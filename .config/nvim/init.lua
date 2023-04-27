@@ -1,3 +1,20 @@
+require('toni.options')
+require('toni.mappings')
+require('toni.autocmds')
+
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable', -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
+
 -- disable built in plugins
 local disabled_built_ins = {
     'netrw',
@@ -19,26 +36,6 @@ local disabled_built_ins = {
     'spellfile_plugin',
     'matchit',
 }
-for _, plugin in pairs(disabled_built_ins) do
-    vim.g['loaded_' .. plugin] = 1
-end
-
-require('toni.options')
-require('toni.mappings')
-require('toni.autocmds')
-
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        'git',
-        'clone',
-        '--filter=blob:none',
-        'https://github.com/folke/lazy.nvim.git',
-        '--branch=stable', -- latest stable release
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', {
     defaults = {
@@ -47,4 +44,9 @@ require('lazy').setup('plugins', {
     dev = {
         path = '~/git',
     },
+    performance = {
+        rtp = {
+            disabled_plugins  = disabled_built_ins
+        }
+    }
 })

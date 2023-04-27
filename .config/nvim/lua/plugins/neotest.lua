@@ -5,7 +5,7 @@ return {
             'nvim-lua/plenary.nvim',
             'nvim-treesitter/nvim-treesitter',
             'antoinemadec/FixCursorHold.nvim',
-            'haydenmeade/neotest-jest',
+            'nvim-neotest/neotest-jest',
             'mfussenegger/nvim-dap',
         },
         keys = {

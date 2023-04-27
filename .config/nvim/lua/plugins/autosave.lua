@@ -1,7 +1,7 @@
 return {
     {
         'okuuva/auto-save.nvim',
-        dev = true,
+        -- dev = true,
         event = 'VeryLazy',
         opts = {
             debounce_delay = 1000,
@@ -18,6 +18,7 @@ return {
                 end
                 return false
             end,
+            debug = false,
         },
     },
 }

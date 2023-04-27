@@ -26,7 +26,7 @@ return {
     },
     {
         'tpope/vim-unimpaired',
-        keys = { '[', ']' },
+        keys = { '[', ']', 'yo' },
     },
     -- TODO replace with mini
     {

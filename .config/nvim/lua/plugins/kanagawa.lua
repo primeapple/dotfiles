@@ -6,6 +6,7 @@ return {
         config = function()
             require('kanagawa').setup({
                 compile = true,
+                dimInactive = true,
                 overrides = function(colors)
                     return {
                         -- this is originally set to `CONSTANT`, which totally kills JavaScript development 

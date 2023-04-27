@@ -25,6 +25,7 @@ return {
                     ['<C-->'] = 'actions.select_split',
                     ['<M-y>'] = 'actions.copy_entry_path',
                     ['<C-l>'] = false,
+                    ['<C-h>'] = false,
                     ['<C-r>'] = 'actions.refresh',
                     ['<C-y>'] = copy_entry_relative_path,
                 },

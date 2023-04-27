@@ -25,8 +25,8 @@ return {
                             end,
                         },
                     },
-                    ['core.norg.concealer'] = {},
-                    ['core.norg.dirman'] = {
+                    ['core.concealer'] = {},
+                    ['core.dirman'] = {
                         config = {
                             workspaces = {
                                 notes = '~/Sync/notes/notes',
@@ -37,7 +37,7 @@ return {
                         },
                     },
                     ['core.integrations.treesitter'] = {},
-                    ['core.norg.completion'] = {
+                    ['core.completion'] = {
                         config = {
                             engine = 'nvim-cmp',
                         },

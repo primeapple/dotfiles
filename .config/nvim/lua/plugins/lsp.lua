@@ -77,7 +77,7 @@ return {
                 root_dir = lsp.util.root_pattern('package.json'),
                 init_options = {
                     preferences = {
-                        importModuleSpecifierPreference = 'project-relative',
+                        importModuleSpecifierPreference = 'shortest',
                     },
                 },
             })
