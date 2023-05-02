@@ -1,0 +1,74 @@
+# Assign workspaces
+
+## Fun Browser
+assign [app_id="firefox"] 1
+assign [class="firefox"] 1
+
+## Work Browser
+assign [app_id="chromium"] 2
+
+## Terminal
+assign [app_id="kitty"] 3
+
+## Communication
+assign [class="Signal"] 4
+assign [app_id="thunderbird"] 4
+
+## Misc
+assign [class="Spotify"] 5
+assign [class="Logseq"] 5
+
+
+## Scratchpad
+for_window [class="superProductivity"] move to scratchpad
+for_window [app_id="thunar"] move to scratchpad
+for_window [app_id="xfce4-terminal"] move to scratchpad
+
+
+# Fullscreen Apps
+for_window [app_id="kitty"] fullscreen enable
+
+
+# Focussed Apps
+for_window [app_id="firefox"] focus
+for_window [class="firefox"] focus
+for_window [app_id="kitty"] focus
+for_window [app_id="xed"] focus
+# just for documentation on how to `no_focus`
+# for_window [app_id="chromium"] no_focus
+
+
+# set floating (nontiling)for apps needing it:
+for_window [class="Yad" instance="yad"] floating enable
+for_window [app_id="yad"] floating enable
+for_window [app_id="blueman-manager"] floating enable,  resize set width 40 ppt height 30 ppt
+
+# set floating (nontiling) for special apps:
+for_window [class="Xsane" instance="xsane"] floating enable
+for_window [app_id="pavucontrol" ] floating enable, resize set width 40 ppt height 30 ppt
+for_window [class="qt5ct" instance="qt5ct"] floating enable, resize set width 60 ppt height 50 ppt
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [app_id="pamac-manager"] floating enable, resize set width 80 ppt height 70 ppt
+for_window [class="Lxappearance"] floating enable, resize set width 60 ppt height 50 ppt
+
+# set floating for window roles
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_role="About"] floating enable
+for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
+for_window [title="Picture in picture"] floating enable, sticky enable
+for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
+for_window [title="htop"] floating enable, resize set width 50 ppt height 70 ppt
+for_window [app_id="xsensors"] floating enable
+for_window [title="Save File"] floating enable
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
+
+# Inhibit idle
+for_window [app_id="firefox"] inhibit_idle fullscreen
+for_window [app_id="Chromium"] inhibit_idle fullscreen
