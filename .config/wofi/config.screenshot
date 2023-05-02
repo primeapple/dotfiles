@@ -1,0 +1,11 @@
+hide_search=true
+hide_scroll=true
+insensitive=true
+width=1
+show=dmenu
+lines=5
+location=centre
+x=870
+y=455
+key_forward=Control_L-n
+key_backward=Control_L-p
