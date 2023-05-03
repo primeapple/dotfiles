@@ -39,6 +39,10 @@ return {
             -- :Telescope dap list_breakpoints
             -- :Telescope dap variables
             -- :Telescope dap frames
+
+            -- lsp mappings
+            { 'gd', '<cmd>Telescope lsp_implementations <CR>'},
+            { 'gr', '<cmd>Telescope lsp_references <CR>'},
         },
         dependencies = {
             'nvim-lua/plenary.nvim',
