@@ -41,7 +41,7 @@ return {
             -- :Telescope dap frames
 
             -- lsp mappings
-            { 'gd', '<cmd>Telescope lsp_implementations <CR>'},
+            { 'gd', '<cmd>Telescope lsp_definitions <CR>'},
             { 'gr', '<cmd>Telescope lsp_references <CR>'},
         },
         dependencies = {

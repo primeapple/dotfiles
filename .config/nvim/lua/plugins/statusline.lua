@@ -9,7 +9,7 @@ return {
         lazy = false,
         dependencies = {
             'nvim-lua/plenary.nvim',
-            'kyazdani42/nvim-web-devicons',
+            'nvim-tree/nvim-web-devicons',
             'rebelot/kanagawa.nvim',
             'lewis6991/gitsigns.nvim',
         },
