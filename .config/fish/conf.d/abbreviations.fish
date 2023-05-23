@@ -43,11 +43,13 @@ if status --is-interactive
         abbr --add $abb'ls' $cmd 'log --pretty=format:"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]" --decorate --numstat'
         abbr --add $abb's' $cmd 'status --short --branch'
         abbr --add $abb'st' $cmd stash
+        abbr --add $abb'stpu' $cmd 'stash push -m'
         abbr --add $abb'stp' $cmd 'stash pop'
         abbr --add $abb'std' $cmd 'stash drop'
         abbr --add $abb'stl' $cmd 'stash list'
         abbr --add $abb'sts' $cmd 'stash show'
         abbr --add $abb'sta' $cmd 'stash apply'
+        abbr --add $abb'stu' $cmd 'stash -u'
     end
     # only git
     abbr --add gaa 'git add --all'
@@ -69,6 +71,8 @@ if status --is-interactive
     abbr --add grbc 'git rebase --continue'
     abbr --add grc 'git recent'
     abbr --add gcl 'git cleaner'
+    abbr --add gcp 'git cherry-pick'
+    abbr --add gcpn 'git cherry-pick --no-commit'
 
     # taskwarrior related ones
     # https://www.reddit.com/r/taskwarrior/comments/uvwqlz/share_your_aliases/
