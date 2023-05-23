@@ -1,29 +1,5 @@
 return {
     -------------------- EDITING --------------------
-    -- TODO replace with mini
-    {
-        'kylechui/nvim-surround',
-        keys = { 'gz', 'gZ' },
-        config = function()
-            require('nvim-surround').setup({
-                aliases = {
-                    ['b'] = { ')', ']', '}' },
-                },
-                keymaps = {
-                    -- insert = '<C-g>z',
-                    -- insert_line = 'gC-ggZ',
-                    normal = 'gz',
-                    normal_cur = 'gZ',
-                    normal_line = 'gzgz',
-                    normal_cur_line = 'gZgZ',
-                    visual = 'gz',
-                    visual_lin = 'gZ',
-                    delete = 'gzd',
-                    change = 'gzc',
-                },
-            })
-        end,
-    },
     {
         'tpope/vim-unimpaired',
         keys = { '[', ']', 'yo' },

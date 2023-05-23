@@ -73,6 +73,12 @@ return {
                     },
                 },
             })
+
+            -- disables the EslintFixAll command, because it interferes with vim-projectionist
+            require('lspconfig.server_configurations.eslint').commands = {}
+            server('eslint')
+
+            server('stylelint_lsp')
             server('tsserver', {
                 root_dir = lsp.util.root_pattern('package.json'),
                 init_options = {
@@ -106,10 +112,6 @@ return {
                     },
                 },
             })
-
-            -- disables the EslintFixAll command, because it interferes with vim-projectionist
-            require('lspconfig.server_configurations.eslint').commands = {}
-            server('eslint')
         end,
     },
 }

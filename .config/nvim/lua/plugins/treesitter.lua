@@ -5,7 +5,7 @@ return {
         event = { 'BufReadPost', 'BufNewFile' },
         dependencies = {
             'nvim-treesitter/nvim-treesitter-context',
-            'RRethy/nvim-treesitter-textsubjects'
+            'RRethy/nvim-treesitter-textsubjects',
         },
         config = function()
             require('nvim-treesitter.configs').setup({
@@ -14,12 +14,12 @@ return {
                     'css',
                     'dockerfile',
                     'fish',
-                    'help',
                     'html',
                     'java',
                     'javascript',
                     'json',
                     'lua',
+                    'luap',
                     'markdown',
                     'markdown_inline',
                     'nix',
@@ -33,6 +33,7 @@ return {
                     'tsx',
                     'typescript',
                     'vim',
+                    'vimdoc',
                     'vue',
                     'yaml',
                 },
@@ -41,7 +42,6 @@ return {
                     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
                     additional_vim_regex_highlighting = false,
                 },
-                -- EXPERIMENTAL
                 indent = {
                     enable = true,
                 },
