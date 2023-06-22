@@ -11,6 +11,9 @@ if status --is-interactive
     abbr --add cht cht.sh
     abbr --add record 'wf-recorder -g "$(slurp)"'
     abbr --add screen 'grim -g "$(slurp)" screenshot.png'
+    abbr --add fz 'fd . | fzy | xargs'
+    abbr --add fzz "cd (z --list | sort -g -r | awk '{print \$2}' | fzy)"
+
 
     # npm related ones
     abbr --add n npm
@@ -20,6 +23,7 @@ if status --is-interactive
     abbr --add nrl 'npm run lint'
     abbr --add nrd 'npm run docs'
     abbr --add nrp 'npm run prettify -- .'
+    abbr --add nrj 'fd "\.test\." -e js -e ts -e jsx | fzy | xargs -r npx jest'
 
     # git/yadm related ones
     for tuples in g,git y,yadm
@@ -53,6 +57,7 @@ if status --is-interactive
     end
     # only git
     abbr --add gaa 'git add --all'
+    abbr --add gaf 'git ls-files -m -o --exclude-standard | fzf | xargs --no-run-if-empty git add'
     abbr --add gpb 'git publish'
     abbr --add gb 'git branch'
     abbr --add gbd 'git branch -d'
@@ -73,6 +78,8 @@ if status --is-interactive
     abbr --add gcl 'git cleaner'
     abbr --add gcp 'git cherry-pick'
     abbr --add gcpn 'git cherry-pick --no-commit'
+    # only yadm
+    abbr --add yaf 'yadm diff --name-only | awk -v home=(echo $HOME) \'{print home "/" $1}\' | fzf | xargs --no-run-if-empty yadm add'
 
     # taskwarrior related ones
     # https://www.reddit.com/r/taskwarrior/comments/uvwqlz/share_your_aliases/
