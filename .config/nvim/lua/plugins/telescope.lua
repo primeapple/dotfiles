@@ -46,6 +46,7 @@ return {
         },
         dependencies = {
             'nvim-lua/plenary.nvim',
+            'nvim-treesitter/nvim-treesitter',
             'natecraddock/telescope-zf-native.nvim',
             'nvim-telescope/telescope-dap.nvim',
             'nvim-telescope/telescope-live-grep-args.nvim',

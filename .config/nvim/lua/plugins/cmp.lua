@@ -96,6 +96,21 @@ return {
                     { name = 'emoji' },
                 }),
             })
+
+            cmp.setup.filetype('gitcommit', {
+                sources = cmp.config.sources({
+                    {
+                        name = 'buffer',
+                        option = {
+                            keyword_pattern = [[\k\+]],
+                        },
+                    },
+                    { name = 'path' },
+                    { name = 'emoji' },
+                    -- maybe add cmp-gitcommit ?
+                }),
+            })
+
             -- only need a subset of the default sources in neorg
             cmp.setup.filetype('norg', {
                 sources = cmp.config.sources({
