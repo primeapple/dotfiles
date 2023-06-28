@@ -17,8 +17,5 @@ function fish_hybrid_key_bindings --description \
     bind L end-of-line
     bind --mode visual H beginning-of-line
     bind --mode visual L end-of-line
-    bind  _fzf_search_directory
     bind ZZ exit
-
-    fzf_configure_bindings --directory=\ev
 end
