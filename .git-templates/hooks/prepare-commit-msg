@@ -1,0 +1,42 @@
+#!/usr/bin/env fish
+# This script is used by git to generate a commit message template based on the current branch name
+# Supported parts are conventional commit types (`type`) and ticket numbers (`123` or `GH-123`)
+# The branch name will result in a commit message template like this:
+#  - type/some-description -> type:
+#  - type/GH-123/description -> type: [GH-123]
+#  - type/123/description -> type: [#123]
+#  - 123/description -> [#123]
+#  - some-description -> 
+
+set -l COMMIT_MSG_FILE $argv[1]
+
+set -l EXCLUDE_BRANCHES master main dev
+set -l BRANCH (git symbolic-ref --short HEAD)
+if contains $BRANCH $EXCLUDE_BRANCHES
+    exit 0
+end
+
+set -l PARTS (string split --max 3 '/' $BRANCH)
+
+# checking if it includes conventional commit (scope not supported)
+set CONVENTIONAL_COMMIT_TYPES build chore ci docs feat fix perf refactor revert style test
+for TYPE in $CONVENTIONAL_COMMIT_TYPES
+    set -a CONVENTIONAL_COMMIT_TYPES "$TYPE!"
+end
+if contains $PARTS[1] $CONVENTIONAL_COMMIT_TYPES
+    set CC_TYPE "$PARTS[1]: "
+    set -e PARTS[1]
+else
+    set CC_TYPE ''
+end
+
+# checking if it includes ticket number
+if string match -q -r '^[A-Z]+-[0-9]+$' $PARTS[1]
+    set TICKET "[$PARTS[1]] "
+else if string match -q -r '^[0-9]+$' $PARTS[1]
+    set TICKET "[#$PARTS[1]] "
+else
+    set TICKET ''
+end
+
+sed -i "1s/.*/$CC_TYPE$TICKET/" $COMMIT_MSG_FILE

@@ -6,6 +6,7 @@
 	email = toni.mueller.web@mailbox.org
 [init]
 	defaultBranch = main
+	templatedir = ~/.git-templates
 [alias]
 	root = rev-parse --show-toplevel
 	publish = push -u origin HEAD
