@@ -17,6 +17,7 @@ assign [app_id="thunderbird"] 4
 ## Misc
 assign [class="Spotify"] 5
 assign [class="Logseq"] 5
+assign [class="FreeTube"] 5
 
 
 ## Scratchpad
