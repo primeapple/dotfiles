@@ -4,7 +4,6 @@ return {
         lazy = false,
         dependencies = {
             'nvim-tree/nvim-web-devicons',
-            
         },
         config = function()
             local oil = require('oil')

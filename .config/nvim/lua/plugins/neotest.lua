@@ -30,7 +30,7 @@ return {
             {
                 '<leader>rd',
                 function()
-                    require('neotest').run.run_last({strategy = 'dap'})
+                    require('neotest').run.run_last({ strategy = 'dap' })
                 end,
             },
             {

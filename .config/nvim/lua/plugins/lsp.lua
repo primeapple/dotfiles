@@ -5,7 +5,11 @@ return {
         dependencies = {
             'williamboman/mason.nvim',
             'hrsh7th/cmp-nvim-lsp',
+
+            -- language specific tooling
             'b0o/schemastore.nvim',
+            'simrat39/rust-tools.nvim',
+            { 'folke/neodev.nvim', opts = {} },
         },
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -37,38 +41,11 @@ return {
             server('lua_ls', {
                 settings = {
                     Lua = {
-                        runtime = {
-                            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                            version = 'LuaJIT',
-                        },
-                        diagnostics = {
-                            -- Get the language server to recognize the `vim` global
-                            globals = { 'vim' },
-                        },
                         workspace = {
-                            -- Make the server aware of Neovim runtime files
-                            library = vim.api.nvim_get_runtime_file('', true),
                             checkThirdParty = false,
                         },
                         telemetry = {
                             enable = false,
-                        },
-                    },
-                },
-            })
-            server('rust_analyzer', {
-                settings = {
-                    ['rust-analyzer'] = {
-                        checkOnSave = {
-                            allFeatures = true,
-                            overrideCommand = {
-                                'cargo',
-                                'clippy',
-                                '--workspace',
-                                '--message-format=json',
-                                '--all-targets',
-                                '--all-features',
-                            },
                         },
                     },
                 },
@@ -110,6 +87,17 @@ return {
                     yaml = {
                         schemas = require('schemastore').yaml.schemas(),
                     },
+                },
+            })
+            server('rome', {
+                -- does not work yet...
+                root_dir = lsp.util.root_pattern('rome.json'),
+            })
+
+            local rust_tools = require('rust-tools')
+            rust_tools.setup({
+                server = {
+                    on_attach = utils.on_attach,
                 },
             })
         end,

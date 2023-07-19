@@ -46,7 +46,7 @@ require('lazy').setup('plugins', {
     },
     performance = {
         rtp = {
-            disabled_plugins  = disabled_built_ins
-        }
-    }
+            disabled_plugins = disabled_built_ins,
+        },
+    },
 })
