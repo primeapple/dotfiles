@@ -1,3 +1,5 @@
+local with_pre_save = require('toni.utils').with_pre_save
+
 return {
     {
         'nvim-neotest/neotest',
@@ -7,31 +9,32 @@ return {
             'antoinemadec/FixCursorHold.nvim',
             'nvim-neotest/neotest-jest',
             'mfussenegger/nvim-dap',
+            'okuuva/auto-save.nvim',
         },
         keys = {
             {
                 '<leader>rn',
-                function()
+                with_pre_save(function()
                     require('neotest').run.run()
-                end,
+                end),
             },
             {
                 '<leader>rf',
-                function()
+                with_pre_save(function()
                     require('neotest').run.run(vim.fn.expand('%'))
-                end,
+                end),
             },
             {
                 '<leader>rr',
-                function()
+                with_pre_save(function()
                     require('neotest').run.run_last()
-                end,
+                end),
             },
             {
                 '<leader>rd',
-                function()
+                with_pre_save(function()
                     require('neotest').run.run_last({ strategy = 'dap' })
-                end,
+                end),
             },
             {
                 '<leader>rp',
@@ -66,7 +69,7 @@ return {
             {
                 '<leader>R',
                 function()
-                    require('neotest').stop()
+                    require('neotest').run.stop()
                 end,
             },
         },

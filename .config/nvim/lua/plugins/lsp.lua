@@ -90,8 +90,8 @@ return {
                 },
             })
             server('rome', {
-                -- does not work yet...
                 root_dir = lsp.util.root_pattern('rome.json'),
+                single_file_support = false,
             })
 
             local rust_tools = require('rust-tools')

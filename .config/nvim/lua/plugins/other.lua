@@ -150,6 +150,15 @@ return {
             },
         },
     },
+    {
+        'tzachar/highlight-undo.nvim',
+        keys = { 'u', 'U' },
+        opts = {
+            redo = {
+                lhs = 'U',
+            },
+        },
+    },
 
     -------------------- Languages/Tools --------------------
     {

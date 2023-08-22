@@ -1,3 +1,5 @@
+local with_pre_save = require('toni.utils').with_pre_save
+
 return {
     {
         'nvim-telescope/telescope.nvim',
@@ -5,7 +7,7 @@ return {
         cmd = 'Telescope',
         keys = {
             -- basic mappings
-            { '<leader>F', '<cmd>Telescope resume <CR>' },
+            { '<leader>F',  '<cmd>Telescope resume <CR>' },
             { '<leader>fb', '<cmd>Telescope buffers <CR>' },
             { '<leader>ff', '<cmd>Telescope find_files <CR>' },
             { '<leader>fa', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>' },
@@ -26,10 +28,21 @@ return {
                     require('telescope').extensions.live_grep_args.live_grep_args()
                 end,
             },
+            {
+                '<leader>fu',
+                with_pre_save(function()
+                    require('telescope').extensions.undo.undo()
+                end),
+            },
 
             -- git mappings
             -- { '<leader>fc', '<cmd>Telescope git_commits <CR>' },
-            { '<leader>fg', '<cmd>Telescope git_status <CR>' },
+            {
+                '<leader>fg',
+                with_pre_save(function()
+                    require('telescope.builtin').git_status()
+                end),
+            },
 
             -- dap mappings
             { '<leader>fd', '<cmd>Telescope dap <CR>' },
@@ -41,8 +54,8 @@ return {
             -- :Telescope dap frames
 
             -- lsp mappings
-            { 'gd', '<cmd>Telescope lsp_definitions <CR>' },
-            { 'gr', '<cmd>Telescope lsp_references <CR>' },
+            { 'gd',         '<cmd>Telescope lsp_definitions <CR>' },
+            { 'gr',         '<cmd>Telescope lsp_references <CR>' },
         },
         dependencies = {
             'nvim-lua/plenary.nvim',
@@ -50,6 +63,7 @@ return {
             'natecraddock/telescope-zf-native.nvim',
             'nvim-telescope/telescope-dap.nvim',
             'nvim-telescope/telescope-live-grep-args.nvim',
+            'debugloop/telescope-undo.nvim',
         },
         config = function()
             local telescope = require('telescope')
@@ -93,6 +107,7 @@ return {
             telescope.load_extension('zf-native')
             telescope.load_extension('dap')
             telescope.load_extension('live_grep_args')
+            telescope.load_extension('undo')
         end,
     },
 }
