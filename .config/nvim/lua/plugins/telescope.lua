@@ -7,7 +7,7 @@ return {
         cmd = 'Telescope',
         keys = {
             -- basic mappings
-            { '<leader>F',  '<cmd>Telescope resume <CR>' },
+            { '<leader>F', '<cmd>Telescope resume <CR>' },
             { '<leader>fb', '<cmd>Telescope buffers <CR>' },
             { '<leader>ff', '<cmd>Telescope find_files <CR>' },
             { '<leader>fa', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>' },
@@ -54,8 +54,8 @@ return {
             -- :Telescope dap frames
 
             -- lsp mappings
-            { 'gd',         '<cmd>Telescope lsp_definitions <CR>' },
-            { 'gr',         '<cmd>Telescope lsp_references <CR>' },
+            { 'gd', '<cmd>Telescope lsp_definitions <CR>' },
+            { 'gr', '<cmd>Telescope lsp_references <CR>' },
         },
         dependencies = {
             'nvim-lua/plenary.nvim',

@@ -44,5 +44,5 @@ opt.lazyredraw = true
 
 g.mapleader = ' '
 
--- It's not recommended to use fish for internal terminal, use it anyways because fish is amazing
+-- It's not recommended to use fish for internal terminal, we use it anyways because fish is amazing
 -- opt.shell = "/bin/bash"
