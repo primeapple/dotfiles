@@ -17,6 +17,7 @@
     cleaner = !git clean -nd && read -rsp $'Press any key to continue...\n' -n 1 key && git clean -fd
     # this alias doesn't always work, however printing the command works
     # current-merge-base = !git merge-base $1 $(git branch --show-current)
+    reset-origin=reset --hard @{u}
 # delta config
 [core]
     pager = delta
