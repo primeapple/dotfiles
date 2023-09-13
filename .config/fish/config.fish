@@ -9,3 +9,7 @@ if status is-interactive
     # default is 50 iirc
     set -g fish_escape_delay_ms 10
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

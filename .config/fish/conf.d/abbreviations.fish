@@ -9,7 +9,7 @@ if status --is-interactive
     abbr --add cat bat
     abbr --add find fd
     abbr --add cht cht.sh
-    abbr --add record 'wf-recorder -g "$(slurp)"'
+    abbr --add record 'wf-recorder -g "$(slurp)" -f recording.mp4'
     abbr --add screen 'grim -g "$(slurp)" screenshot.png'
     abbr --add fz 'fd . | fzy | xargs'
     abbr --add fzz "cd (z --list | sort -g -r | awk '{print \$2}' | fzy)"

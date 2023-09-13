@@ -15,6 +15,10 @@ return {
                     update_n_lines = 'gzn',
                 },
             })
+
+            require('mini.comment').setup()
+
+            require('mini.animate').setup()
         end,
     },
 }

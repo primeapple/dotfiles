@@ -4,9 +4,10 @@ return {
         'tpope/vim-unimpaired',
         keys = { '[', ']', 'yo' },
     },
-    -- TODO replace with mini
     {
+        -- TODO replaced by mini
         'numToStr/Comment.nvim',
+        enable = false,
         keys = {
             { 'gc', mode = { 'n', 'v' } },
             { 'gb', mode = { 'n', 'v' } },
@@ -23,6 +24,7 @@ return {
         end,
     },
     {
+        -- TODO replace with mini
         'windwp/nvim-autopairs',
         event = 'VeryLazy',
         opts = {
@@ -40,21 +42,37 @@ return {
             { '<C-j>', '<C-\\><C-n>:KittyNavigateDown<CR>', mode = 't' },
             { '<C-k>', '<C-\\><C-n>:KittyNavigateUp<CR>', mode = 't' },
             { '<C-l>', '<C-\\><C-n>:KittyNavigateRight<CR>', mode = 't' },
+            { '<C-Left>', '<C-\\><C-n>:KittyNavigateLeft<CR>', mode = 't' },
+            { '<C-Down>', '<C-\\><C-n>:KittyNavigateDown<CR>', mode = 't' },
+            { '<C-Up>', '<C-\\><C-n>:KittyNavigateUp<CR>', mode = 't' },
+            { '<C-Right>', '<C-\\><C-n>:KittyNavigateRight<CR>', mode = 't' },
             -- Insert mode:
             { '<C-h>', '<Esc>:KittyNavigateLeft<CR>', mode = 'i' },
             { '<C-j>', '<Esc>:KittyNavigateDown<CR>', mode = 'i' },
             { '<C-k>', '<Esc>:KittyNavigateUp<CR>', mode = 'i' },
             { '<C-l>', '<Esc>:KittyNavigateRight<CR>', mode = 'i' },
+            { '<C-Left>', '<Esc>:KittyNavigateLeft<CR>', mode = 'i' },
+            { '<C-Down>', '<Esc>:KittyNavigateDown<CR>', mode = 'i' },
+            { '<C-Up>', '<Esc>:KittyNavigateUp<CR>', mode = 'i' },
+            { '<C-Right>', '<Esc>:KittyNavigateRight<CR>', mode = 'i' },
             -- Visual mode:
             { '<C-h>', '<Esc>:KittyNavigateLeft<CR>', mode = 'v' },
             { '<C-j>', '<Esc>:KittyNavigateDown<CR>', mode = 'v' },
             { '<C-k>', '<Esc>:KittyNavigateUp<CR>', mode = 'v' },
             { '<C-l>', '<Esc>:KittyNavigateRight<CR>', mode = 'v' },
+            { '<C-Left>', '<Esc>:KittyNavigateLeft<CR>', mode = 'v' },
+            { '<C-Down>', '<Esc>:KittyNavigateDown<CR>', mode = 'v' },
+            { '<C-Up>', '<Esc>:KittyNavigateUp<CR>', mode = 'v' },
+            { '<C-Right>', '<Esc>:KittyNavigateRight<CR>', mode = 'v' },
             -- Normal mode:
             { '<C-h>', '<cmd>KittyNavigateLeft<CR>', mode = 'n' },
             { '<C-j>', '<cmd>KittyNavigateDown<CR>', mode = 'n' },
             { '<C-k>', '<cmd>KittyNavigateUp<CR>', mode = 'n' },
             { '<C-l>', '<cmd>KittyNavigateRight<CR>', mode = 'n' },
+            { '<C-Left>', '<cmd>KittyNavigateLeft<CR>', mode = 'n' },
+            { '<C-Down>', '<cmd>KittyNavigateDown<CR>', mode = 'n' },
+            { '<C-Up>', '<cmd>KittyNavigateUp<CR>', mode = 'n' },
+            { '<C-Right>', '<cmd>KittyNavigateRight<CR>', mode = 'n' },
         },
         init = function()
             vim.g.kitty_navigator_no_mappings = 1
@@ -106,7 +124,9 @@ return {
 
     -------------------- APPEARANCE --------------------
     {
+        -- TODO replaced by mini
         'karb94/neoscroll.nvim',
+        enable = false,
         keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
         config = true,
     },
@@ -116,6 +136,7 @@ return {
         config = true,
     },
     {
+        -- TODO replace with mini
         'lukas-reineke/indent-blankline.nvim',
         event = { 'BufReadPost', 'BufNewFile' },
         config = true,
@@ -147,15 +168,6 @@ return {
                 sass = {
                     enable = true,
                 },
-            },
-        },
-    },
-    {
-        'tzachar/highlight-undo.nvim',
-        keys = { 'u', 'U' },
-        opts = {
-            redo = {
-                lhs = 'U',
             },
         },
     },
