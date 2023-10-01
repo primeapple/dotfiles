@@ -18,6 +18,11 @@ if test $status -ne 0 || contains $BRANCH $EXCLUDE_BRANCHES
     exit 0
 end
 
+# abort if first line of commit message is not empty (merges, amend, etc.)
+if test -n (head -n 1 $COMMIT_MSG_FILE)
+    exit 0
+end
+
 set -l PARTS (string split --max 3 '-' $BRANCH)
 
 # building list of conventional commit types
