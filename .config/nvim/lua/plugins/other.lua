@@ -136,9 +136,10 @@ return {
         config = true,
     },
     {
-        -- TODO replace with mini
         'lukas-reineke/indent-blankline.nvim',
+        enable = false,
         event = { 'BufReadPost', 'BufNewFile' },
+        main = 'ibl',
         config = true,
     },
     {
