@@ -29,6 +29,12 @@ return {
                 execution_message = {
                     dim = 0.2,
                 },
+                -- trigger_events = {
+                --     immediate_save = {
+                --         'FocusLost',
+                --         { 'BufLeave', pattern = { '*.lua' } },
+                --     },
+                -- },
                 debounce_delay = 3000,
                 condition = function(buf)
                     local fn = vim.fn

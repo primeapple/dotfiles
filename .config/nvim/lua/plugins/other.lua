@@ -140,7 +140,11 @@ return {
         enable = false,
         event = { 'BufReadPost', 'BufNewFile' },
         main = 'ibl',
-        config = true,
+        opts = {
+            scope = {
+                show_start = false,
+            }
+        }
     },
     {
         'j-hui/fidget.nvim',

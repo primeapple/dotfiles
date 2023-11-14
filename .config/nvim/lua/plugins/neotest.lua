@@ -7,11 +7,7 @@ return {
             'nvim-lua/plenary.nvim',
             'nvim-treesitter/nvim-treesitter',
             'antoinemadec/FixCursorHold.nvim',
-            -- 'nvim-neotest/neotest-jest',
-            {
-                'KostkaBrukowa/neotest-jest',
-                branch = 'parameterized-tests-final',
-            },
+            'nvim-neotest/neotest-jest',
             'mfussenegger/nvim-dap',
             'okuuva/auto-save.nvim',
         },
