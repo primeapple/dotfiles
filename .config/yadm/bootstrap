@@ -12,9 +12,9 @@ echo "Init all submodules"
 cd "$HOME"
 yadm submodule update --recursive --init --rebase
 
-### hide README and LICENSE ###
+### hide README and LICENSE and workflow files ###
 yadm gitconfig core.sparseCheckout true
-yadm sparse-checkout set '/*' '!README.md' '!LICENSE'
+yadm sparse-checkout set '/*' '!README.md' '!LICENSE' '!.github'
 
 ### change https to git repo url ###
 echo "Updating the yadm repo origin URL"
