@@ -31,5 +31,5 @@ aur_packages=(
 
 
 ## Installing pacman packages ##
-#pacman -S "${pacman_packages[@]}"
-which "${pacman_packages[@]}"
+# pacman -S "${pacman_packages[@]}"
+# which "${pacman_packages[@]}"

@@ -100,6 +100,8 @@ return {
                     on_attach = utils.on_attach,
                 },
             })
+
+            server('gopls')
         end,
     },
 }

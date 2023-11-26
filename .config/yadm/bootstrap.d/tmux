@@ -1,9 +1,0 @@
-#!/bin/bash
-# plugin list is in ~/.tmux.conf, they start with `set -g @plugin`
-# first delete all plugins not in plugin list
-~/.tmux/plugins/tpm/bin/clean_plugins
-# update all installed plugins that are in plugin list
-~/.tmux/plugins/tpm/bin/update_plugins all
-# lastly install all plugins that are in plugin list but not on pc
-~/.tmux/plugins/tpm/bin/install_plugins
-

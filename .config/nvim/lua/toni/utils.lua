@@ -20,10 +20,6 @@ M.map = function(modes, keys, command, opt)
 end
 
 M.on_attach = function(client, bufnr)
-    if client.name == 'tsserver' then
-        client.server_capabilities.documentFormattingProvider = false
-    end
-
     local opts = { noremap = true, silent = true }
 
     -- Enable completion triggered by <c-x><c-o>
@@ -52,7 +48,6 @@ M.on_attach = function(client, bufnr)
     )
     api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     api.nvim_buf_set_keymap(bufnr, 'n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', '<leader>af', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 end
 
 local ft_augroup = api.nvim_create_augroup('ft_augroup', { clear = true })

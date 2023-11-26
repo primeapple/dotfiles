@@ -22,7 +22,7 @@ if status --is-interactive
     abbr --add nrw 'npm run watch'
     abbr --add nrl 'npm run lint'
     abbr --add nrd 'npm run docs'
-    abbr --add nrp 'npm run prettify -- .'
+    abbr --add nrp 'npm run prettify'
     abbr --add nrj 'fd "\.test\." -e js -e ts -e jsx | fzy | xargs -r npx jest'
 
     # git/yadm related ones
@@ -32,6 +32,7 @@ if status --is-interactive
         abbr --add $abb'a' $cmd add
         abbr --add $abb'au' $cmd 'add -u'
         abbr --add $abb'c' $cmd 'commit -v'
+        abbr --add $abb'ca' $cmd 'commit --amend'
         abbr --add $abb'can' $cmd 'commit --amend --no-edit'
         abbr --add $abb'r' $cmd reset
         abbr --add $abb'rs' $cmd restore
@@ -78,7 +79,7 @@ if status --is-interactive
     abbr --add grba 'git rebase --abort'
     abbr --add grbc 'git rebase --continue'
     abbr --add grc 'git recent'
-    abbr --add gcl 'git clean -i'
+    abbr --add gcl 'git clean -id'
     abbr --add gcp 'git cherry-pick'
     abbr --add gcpn 'git cherry-pick --no-commit'
     # only yadm

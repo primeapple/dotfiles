@@ -28,8 +28,7 @@ map('n', '<ESC>', '<cmd> noh <CR>')
 map('v', 'p', 'p:let @+=@0<CR>')
 
 -- Redo with U
--- Done via highlight-undo.nvim plugin
--- map('n', 'U', '<C-R>')
+map('n', 'U', '<C-R>')
 
 -- open new vertical split
 map('n', '<leader>/', '<cmd> vsp <CR>')

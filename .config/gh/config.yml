@@ -9,8 +9,7 @@ pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
     co: pr checkout
-    pr fast: pr create -a @me --fill-first
-    # pr fast: '!pr create -a @me -t $(git log $1..HEAD --oneline --format="%s" | head -n 1)'
+    pr fast: '!pr create -a @me -t $(git log $1..HEAD --oneline --format="%s" | head -n 1)'
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
