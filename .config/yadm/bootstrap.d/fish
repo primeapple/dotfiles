@@ -16,18 +16,15 @@ end
 # adding nice fish greeting
 fish -c "set -U fish_greeting 'Welcome to fish 🐟'"
 fish -C "set -U fish_features qmark-noglob"
-fish -c "fish_config theme save Dracula"
+fish -c "fish_config theme save kanagawa"
 
 # TODO: this does not work yet, it sometimes adds weird filenames to the fish_plugins file
 # # manage fisher plugins, this should normally work through the fish_plugins file, but sadly does not
 # fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
-# fish -c "fisher install IlanCosman/tide@v5"
 # fish -c "fisher install gazorby/fish-abbreviation-tips"
 # fish -c "fisher install jethrokuan/z"
 # fish -c "fisher install jorgebucaran/autopair.fish"
 # fish -c "fisher install jorgebucaran/replay.fish"
 # fish -c "fisher install nickeb96/puffer-fish
-
-# # running tide configure, maybe only do this, if there are no tide settings yet
-# # fish -c "tide configure"
-
+# fish -c "fisher install IlanCosman/tide@v6"
+# fish -c "tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Dotted --prompt_connection_andor_frame_color=Dark --prompt_spacing=Sparse --icons='Few icons' --transient=No"
