@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# settings shell to fish, if it isn't yet
-# CURRENT_SHELL=${SHELL##*/}
-# if [[ ! "$CURRENT_SHELL" == "fish" ]]; then
-	# chsh -s "/bin/fish"
-# fi
+# setting default shell to fish, if it isn't yet
+if [ $(basename "$SHELL") != "fish" ]; then
+    echo "Setting default shell to fish"
+    chsh -s $(which fish)
+fi
+
 
 # adding .bin folder to path
 fish -c "
@@ -16,7 +17,7 @@ end
 # adding nice fish greeting
 fish -c "set -U fish_greeting 'Welcome to fish 🐟'"
 fish -c "set -U fish_features qmark-noglob"
-fish -c "fish_config theme save kanagawa"
+fish -c "echo y | fish_config theme save kanagawa"
 
 # TODO: this does not work yet, it sometimes adds weird filenames to the fish_plugins file
 # # manage fisher plugins, this should normally work through the fish_plugins file, but sadly does not

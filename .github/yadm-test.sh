@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -eu
+
 echo "## TEST: Cloning the dotfiles via YADM ##"
 yadm clone --no-bootstrap https://github.com/primeapple/dotfiles
 echo '## DONE'
@@ -25,13 +29,13 @@ echo '## DONE'
 
 ###############################################################################
 
-echo "##TEST: Executing bootstrap"
+echo "## TEST: Executing bootstrap"
 yadm bootstrap
 echo '## DONE'
 
 ###############################################################################
 
-echo "##TEST: README.md and LICENSE and .github/ should not be checked out"
+echo "## TEST: README.md and LICENSE and .github/ should not be checked out"
 if [ -f "README.md" ]; then
   echo "Error: README.md should not be checked out."
   exit 1
@@ -50,8 +54,8 @@ echo '## DONE'
 
 ###############################################################################
 
-echo "##TEST: fish is the default shell"
-if [ "$(basename "$SHELL")" != "fish" ]; then
+echo "## TEST: fish is the default shell"
+if [ $(basename "$SHELL") != "fish" ]; then
   echo "Error: fish is not the default shell."
   exit 1
 fi
@@ -59,7 +63,7 @@ echo '## DONE'
 
 ###############################################################################
 
-echo "##TEST: fisher is installed"
+echo "## TEST: fisher is installed"
 if ! fish -c "fisher --version" >/dev/null 2>&1; then
   echo "Error: fisher is not installed."
   exit 1
