@@ -19,7 +19,7 @@ return {
                 svelte = { { 'prettierd', 'prettier' } },
                 typescript = { { 'biome', 'prettierd', 'prettier' } },
                 typescriptreact = { { 'biome', 'prettierd', 'prettier' } },
-                yaml = { { 'prettierd', 'prettier' } },
+                yaml = { { 'prettierd', 'prettier', 'yamlfmt' } },
             },
         })
 

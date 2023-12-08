@@ -143,8 +143,8 @@ return {
         opts = {
             scope = {
                 show_start = false,
-            }
-        }
+            },
+        },
     },
     {
         'j-hui/fidget.nvim',
@@ -211,5 +211,10 @@ return {
         opts = {
             grace_period = 5,
         },
+    },
+    {
+        'stevearc/stickybuf.nvim',
+        event = 'BufReadPre',
+        opts = {},
     },
 }
