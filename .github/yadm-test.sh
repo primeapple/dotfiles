@@ -68,3 +68,4 @@ if ! fish -c "fisher --version" >/dev/null 2>&1; then
   echo "Error: fisher is not installed."
   exit 1
 fi
+echo '## DONE'
