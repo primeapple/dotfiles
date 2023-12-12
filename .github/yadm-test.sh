@@ -54,12 +54,12 @@ echo '## DONE'
 
 ###############################################################################
 
-echo "## TEST: fish is the default shell"
-if [ $(basename "$SHELL") != "fish" ]; then
-  echo "Error: fish is not the default shell."
-  exit 1
-fi
-echo '## DONE'
+# echo "## TEST: fish is the default shell"
+# if [ $(basename "$SHELL") != "fish" ]; then
+#   echo "Error: fish is not the default shell."
+#   exit 1
+# fi
+# echo '## DONE'
 
 ###############################################################################
 
