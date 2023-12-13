@@ -6,7 +6,7 @@ if status --is-interactive
     abbr --add dcud 'docker compose down -d'
     abbr --add mv 'mv -i'
     abbr --add reload 'source ~/.config/fish/config.fish'
-    abbr --add ls exa
+    abbr --add ls eza
     abbr --add vim nvim
     abbr --add . 'nvim .'
     abbr --add cat bat
