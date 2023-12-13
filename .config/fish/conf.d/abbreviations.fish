@@ -1,6 +1,9 @@
 if status --is-interactive
     # applications
-    abbr --add dc docker-compose
+    abbr --add d docker
+    abbr --add dc 'docker compose'
+    abbr --add dcu 'docker compose up'
+    abbr --add dcud 'docker compose down -d'
     abbr --add mv 'mv -i'
     abbr --add reload 'source ~/.config/fish/config.fish'
     abbr --add ls exa
@@ -13,7 +16,7 @@ if status --is-interactive
     abbr --add screen 'grim -g "$(slurp)" screenshot.png'
     abbr --add fz 'fd . | fzy | xargs'
     abbr --add fzz "cd (z --list | sort -g -r | awk '{print \$2}' | fzy)"
-
+    abbr --add ssh "kitten ssh"
 
     # npm related ones
     abbr --add n npm

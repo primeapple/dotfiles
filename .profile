@@ -1,1 +1,0 @@
-.profile##distro_family.arch
