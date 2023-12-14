@@ -25,3 +25,12 @@ You may now need to do some more things:
 yadm decrypt
 chsh -s $(which fish)
 ```
+
+### SSH Key Generation
+From fish run the following commands
+```shell
+ssh-keygen -t ed25519 -C "toni.mueller.web@mailbox.org"
+eval (ssh-agent -c)
+ssh-add ~/.ssh/id_ed25519
+```
+
