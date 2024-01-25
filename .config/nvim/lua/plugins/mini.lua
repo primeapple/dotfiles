@@ -17,8 +17,6 @@ return {
             })
 
             require('mini.comment').setup()
-
-            require('mini.animate').setup()
         end,
     },
 }

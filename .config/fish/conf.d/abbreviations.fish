@@ -6,17 +6,33 @@ if status --is-interactive
     abbr --add dcud 'docker compose down -d'
     abbr --add mv 'mv -i'
     abbr --add reload 'source ~/.config/fish/config.fish'
-    abbr --add ls eza
-    abbr --add vim nvim
-    abbr --add . 'nvim .'
-    abbr --add cat bat
-    abbr --add find fd
+
+    if command -v eza >/dev/null
+        abbr -a l eza
+        abbr -a ls eza
+        abbr -a ll 'eza -l'
+        abbr -a lll 'eza -la'
+    else
+        abbr -a l ls
+        abbr -a ll 'ls -l'
+        abbr -a lll 'ls -la'
+    end
+    if command -v nvim >/dev/null
+        abbr -a vim nvim
+        abbr --add . 'nvim .'
+    end
+    if command -v bat >/dev/null
+        abbr --add cat bat
+    end
+    if command -v fd >/dev/null
+        abbr --add find fd
+    end
     abbr --add cht cht.sh
     abbr --add record 'wf-recorder -g "$(slurp)" -f recording.mp4'
     abbr --add screen 'grim -g "$(slurp)" screenshot.png'
     abbr --add fz 'fd . | fzy | xargs'
     abbr --add fzz "cd (z --list | sort -g -r | awk '{print \$2}' | fzy)"
-    abbr --add ssh "kitten ssh"
+    abbr --add kssh "kitten ssh"
 
     # npm related ones
     abbr --add n npm
@@ -97,4 +113,10 @@ if status --is-interactive
     abbr --add tn 'task +next'
     abbr --add tin 'clear; task inbox'
     abbr --add tal 'task add dep:"$(task +LATEST uuids)"'
+
+    # fuzzy finder
+    function __zf_wrapper
+        fd | zf
+    end
+    abbr --add zf_in_directory --position anywhere --regex "\S*\*\*" --function __zf_wrapper
 end

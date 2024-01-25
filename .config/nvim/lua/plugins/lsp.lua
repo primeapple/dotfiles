@@ -64,6 +64,7 @@ return {
                     },
                 },
             })
+            server('astro')
             server('denols', {
                 root_dir = lsp.util.root_pattern('deno.json', 'deno.jsonc'),
             })
