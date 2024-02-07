@@ -34,58 +34,35 @@ return {
 
     -------------------- NAVIGATION --------------------
     {
-        'knubie/vim-kitty-navigator',
-        build = 'cp ./*.py ~/.config/kitty/',
-        keys = {
-            -- Terminal mode:
-            { '<C-h>', '<C-\\><C-n>:KittyNavigateLeft<CR>', mode = 't' },
-            { '<C-j>', '<C-\\><C-n>:KittyNavigateDown<CR>', mode = 't' },
-            { '<C-k>', '<C-\\><C-n>:KittyNavigateUp<CR>', mode = 't' },
-            { '<C-l>', '<C-\\><C-n>:KittyNavigateRight<CR>', mode = 't' },
-            { '<C-Left>', '<C-\\><C-n>:KittyNavigateLeft<CR>', mode = 't' },
-            { '<C-Down>', '<C-\\><C-n>:KittyNavigateDown<CR>', mode = 't' },
-            { '<C-Up>', '<C-\\><C-n>:KittyNavigateUp<CR>', mode = 't' },
-            { '<C-Right>', '<C-\\><C-n>:KittyNavigateRight<CR>', mode = 't' },
-            -- Insert mode:
-            { '<C-h>', '<Esc>:KittyNavigateLeft<CR>', mode = 'i' },
-            { '<C-j>', '<Esc>:KittyNavigateDown<CR>', mode = 'i' },
-            { '<C-k>', '<Esc>:KittyNavigateUp<CR>', mode = 'i' },
-            { '<C-l>', '<Esc>:KittyNavigateRight<CR>', mode = 'i' },
-            { '<C-Left>', '<Esc>:KittyNavigateLeft<CR>', mode = 'i' },
-            { '<C-Down>', '<Esc>:KittyNavigateDown<CR>', mode = 'i' },
-            { '<C-Up>', '<Esc>:KittyNavigateUp<CR>', mode = 'i' },
-            { '<C-Right>', '<Esc>:KittyNavigateRight<CR>', mode = 'i' },
-            -- Visual mode:
-            { '<C-h>', '<Esc>:KittyNavigateLeft<CR>', mode = 'v' },
-            { '<C-j>', '<Esc>:KittyNavigateDown<CR>', mode = 'v' },
-            { '<C-k>', '<Esc>:KittyNavigateUp<CR>', mode = 'v' },
-            { '<C-l>', '<Esc>:KittyNavigateRight<CR>', mode = 'v' },
-            { '<C-Left>', '<Esc>:KittyNavigateLeft<CR>', mode = 'v' },
-            { '<C-Down>', '<Esc>:KittyNavigateDown<CR>', mode = 'v' },
-            { '<C-Up>', '<Esc>:KittyNavigateUp<CR>', mode = 'v' },
-            { '<C-Right>', '<Esc>:KittyNavigateRight<CR>', mode = 'v' },
-            -- Normal mode:
-            { '<C-h>', '<cmd>KittyNavigateLeft<CR>', mode = 'n' },
-            { '<C-j>', '<cmd>KittyNavigateDown<CR>', mode = 'n' },
-            { '<C-k>', '<cmd>KittyNavigateUp<CR>', mode = 'n' },
-            { '<C-l>', '<cmd>KittyNavigateRight<CR>', mode = 'n' },
-            { '<C-Left>', '<cmd>KittyNavigateLeft<CR>', mode = 'n' },
-            { '<C-Down>', '<cmd>KittyNavigateDown<CR>', mode = 'n' },
-            { '<C-Up>', '<cmd>KittyNavigateUp<CR>', mode = 'n' },
-            { '<C-Right>', '<cmd>KittyNavigateRight<CR>', mode = 'n' },
-        },
-        init = function()
-            vim.g.kitty_navigator_no_mappings = 1
-        end,
+        'mrjones2014/smart-splits.nvim',
+        -- TODO use `keys`
+        event = 'VeryLazy',
+        build = './kitty/install-kittens.bash',
+        config = function()
+            local map = require('toni.utils').map
+            map({ 'n', 'i', 'v', 't' }, { '<C-h>', '<C-Left>' }, require('smart-splits').move_cursor_left)
+            map({ 'n', 'i', 'v', 't' }, { '<C-j>', '<C-Down>' }, require('smart-splits').move_cursor_down)
+            map({ 'n', 'i', 'v', 't' }, { '<C-k>', '<C-Up>' }, require('smart-splits').move_cursor_up)
+            map({ 'n', 'i', 'v', 't' }, { '<C-l>', '<C-Right>' }, require('smart-splits').move_cursor_right)
+            -- TODO maybe use <leader>s hjkl/HJKL
+            -- map({ 'n', 'i', 'v', 't' }, { '<A-Left>' }, require('smart-splits').resize_left)
+            -- map({ 'n', 'i', 'v', 't' }, { '<A-Down>' }, require('smart-splits').resize_down)
+            -- map({ 'n', 'i', 'v', 't' }, { '<A-Up>' }, require('smart-splits').resize_up)
+            -- map({ 'n', 'i', 'v', 't' }, { '<A-Right>' }, require('smart-splits').resize_right)
+            -- map('n', { 'h', 'Left' }, require('smart-splits').swap_buf_left)
+            -- map('n', { 'j', 'Down' }, require('smart-splits').swap_buf_down)
+            -- map('n', { 'k', 'Up' }, require('smart-splits').swap_buf_up)
+            -- map('n', { 'l', 'Right' }, require('smart-splits').swap_buf_right)
+        end
     },
 
     -------------------- TEXT OBJECTS --------------------
     {
         'chaoren/vim-wordmotion',
         keys = {
-            { '<leader>w', mode = { 'n', 'o', 'x' } },
-            { '<leader>b', mode = { 'n', 'o', 'x' } },
-            { '<leader>e', mode = { 'n', 'o', 'x' } },
+            { '<leader>w',  mode = { 'n', 'o', 'x' } },
+            { '<leader>b',  mode = { 'n', 'o', 'x' } },
+            { '<leader>e',  mode = { 'n', 'o', 'x' } },
             { '<leader>ge', mode = { 'n', 'o', 'x' } },
             { '<leader>aw', mode = { 'o', 'x' } },
             { '<leader>iw', mode = { 'o', 'x' } },
@@ -101,7 +78,7 @@ return {
             { 'ii', mode = { 'o', 'v' } },
             { 'ik', mode = { 'o', 'v' } },
             { 'iv', mode = { 'o', 'v' } },
-            { 'R', mode = { 'o', 'v' } },
+            { 'R',  mode = { 'o', 'v' } },
         },
         opts = {
             useDefaultKeymaps = true,
@@ -112,8 +89,8 @@ return {
     {
         'ggandor/leap.nvim',
         keys = {
-            { 's', '<Plug>(leap-forward-to)', mode = { 'n', 'o', 'v' } },
-            { 'S', '<Plug>(leap-backward-to)', mode = { 'n', 'o', 'v' } },
+            { 's',  '<Plug>(leap-forward-to)',   mode = { 'n', 'o', 'v' } },
+            { 'S',  '<Plug>(leap-backward-to)',  mode = { 'n', 'o', 'v' } },
             { 'gs', '<Plug>(leap-cross-window)', mode = { 'n', 'o', 'v' } },
         },
     },

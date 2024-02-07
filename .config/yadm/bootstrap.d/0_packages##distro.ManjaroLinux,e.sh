@@ -2,6 +2,8 @@
 
 # lazydocker, ctop, yay, neovim?,
 pacman_shell_packages=(
+    "zip"
+    "unzip"
 	"bat"
     "delta-git"
 	"docker"
@@ -14,6 +16,9 @@ pacman_shell_packages=(
 	"keepassxc"
 	"syncthing"
 	"youtube-dl"
+    "node"
+    "npm"
+    "ripgrep"
 )
 
 # vscode

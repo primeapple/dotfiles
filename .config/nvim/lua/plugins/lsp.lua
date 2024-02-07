@@ -5,10 +5,8 @@ return {
         dependencies = {
             'williamboman/mason.nvim',
             'hrsh7th/cmp-nvim-lsp',
-
             -- language specific tooling
             'b0o/schemastore.nvim',
-            'simrat39/rust-tools.nvim',
             { 'folke/neodev.nvim', opts = {} },
         },
         config = function()
@@ -28,7 +26,6 @@ return {
             utils.map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
             utils.map('n', '<leader>D', '<cmd>lua vim.diagnostic.setloclist()<CR>')
 
-            -- lsp stuff
             local server = function(language_server_name, options)
                 local merged_options = vim.tbl_deep_extend('force', {
                     on_attach = utils.on_attach,
@@ -38,6 +35,22 @@ return {
                 lsp[language_server_name].setup(merged_options)
             end
 
+            server('angularls')
+            server('astro')
+            server('bashls')
+            server('dockerls')
+            -- disables the EslintFixAll command, because it interferes with vim-projectionist
+            require('lspconfig.server_configurations.eslint').commands = {}
+            server('eslint')
+            server('gopls')
+            server('jsonls', {
+                settings = {
+                    json = {
+                        schemas = require('schemastore').json.schemas(),
+                        validate = { enable = true },
+                    },
+                },
+            })
             server('lua_ls', {
                 settings = {
                     Lua = {
@@ -50,12 +63,15 @@ return {
                     },
                 },
             })
-
-            -- disables the EslintFixAll command, because it interferes with vim-projectionist
-            require('lspconfig.server_configurations.eslint').commands = {}
-            server('eslint')
-
+            server('pyright')
+            server('rome', {
+                root_dir = lsp.util.root_pattern('rome.json'),
+                single_file_support = false,
+            })
             server('stylelint_lsp')
+            server('tailwindcss', {
+                root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
+            })
             server('tsserver', {
                 root_dir = lsp.util.root_pattern('package.json'),
                 init_options = {
@@ -64,25 +80,7 @@ return {
                     },
                 },
             })
-            server('astro')
-            server('denols', {
-                root_dir = lsp.util.root_pattern('deno.json', 'deno.jsonc'),
-            })
             server('volar')
-            server('bashls')
-            server('dockerls')
-            server('tailwindcss', {
-                root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
-            })
-            server('pyright')
-            server('jsonls', {
-                settings = {
-                    json = {
-                        schemas = require('schemastore').json.schemas(),
-                        validate = { enable = true },
-                    },
-                },
-            })
             server('yamlls', {
                 settings = {
                     yaml = {
@@ -90,19 +88,19 @@ return {
                     },
                 },
             })
-            server('rome', {
-                root_dir = lsp.util.root_pattern('rome.json'),
-                single_file_support = false,
-            })
-
-            local rust_tools = require('rust-tools')
-            rust_tools.setup({
-                server = {
-                    on_attach = utils.on_attach,
-                },
-            })
-
-            server('gopls')
         end,
     },
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4',
+        ft = { 'rust' },
+        config = function()
+            local utils = require('toni.utils')
+            vim.g.rustaceanvim = {
+                server = {
+                    on_attach = utils.on_attach
+                },
+            }
+        end
+    }
 }

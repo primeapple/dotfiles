@@ -166,14 +166,6 @@
         "on-scroll-down": "pamixer -ud 2",
     },
 
-    // to use the weather module replace <your_location> with your city or town
-    // note: do not use spaces: new york would be newyork
-    "custom/weather": {
-        "exec": "~/.config/waybar/scripts/weather.sh <your_location>", 
-        "return-type": "json",
-        "interval": 600,
-    },
-
     "tray": {
         "icon-size": 14,
         "spacing":10,
@@ -195,18 +187,6 @@
     "custom/firefox": {
         "format": " ",
         "on-click": "exec firefox",
-        "tooltip": false
-    },
-
-    "custom/terminal": {
-        "format": " ",
-        "on-click": "exec alacritty",
-        "tooltip": false
-    },
-
-    "custom/files": {
-        "format": "󰉋 ",
-        "on-click": "exec thunar",
         "tooltip": false
     },
 
