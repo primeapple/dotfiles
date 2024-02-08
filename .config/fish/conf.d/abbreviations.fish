@@ -37,12 +37,14 @@ if status --is-interactive
     # npm related ones
     abbr --add n npm
     abbr --add nt 'npm test --'
+    abbr --add nrd 'npm run build'
+    abbr --add nrd 'npm run docs'
+    abbr --add nrj 'fd "\.test\." -e js -e ts -e jsx | fzy | xargs -r npx jest'
+    abbr --add nrl 'npm run lint'
+    abbr --add nrp 'npm run prettify'
+    abbr --add nrs 'npm run start'
     abbr --add nrt 'npm run test'
     abbr --add nrw 'npm run watch'
-    abbr --add nrl 'npm run lint'
-    abbr --add nrd 'npm run docs'
-    abbr --add nrp 'npm run prettify'
-    abbr --add nrj 'fd "\.test\." -e js -e ts -e jsx | fzy | xargs -r npx jest'
 
     # git/yadm related ones
     for tuples in g,git y,yadm
@@ -87,6 +89,7 @@ if status --is-interactive
     abbr --add gcb 'git checkout -b'
     abbr --add gcd 'git checkout dev'
     abbr --add gcm 'git checkout main'
+    abbr --add gcma 'git checkout master'
     abbr --add grb 'git rebase'
     abbr --add grbd 'git rebase dev'
     abbr --add grbm 'git rebase main'
