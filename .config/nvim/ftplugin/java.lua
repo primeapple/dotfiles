@@ -1,13 +1,39 @@
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = '/home/toni/.cache/jdtls/' .. project_name
-
+local jdtls_dir = '/home/toni/.local/share/nvim/mason/packages/jdtls/'
 
 local config = {
+    -- for mason jdtls
     cmd = {
-        'jdtls',
+        'java',
+        '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+        '-Dosgi.bundles.defaultStartLevel=4',
+        '-Declipse.product=org.eclipse.jdt.ls.core.product',
+        '-Dlog.protocol=true',
+        '-Dlog.level=ALL',
+        '-Xmx1g',
+        '--add-modules=ALL-SYSTEM',
+        '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+        '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        -- '-javaagent:' .. jdtls_dir .. 'lombok.jar',
+        '-jar', vim.fn.glob(jdtls_dir .. 'plugins/org.eclipse.equinox.launcher_*.jar'),
+        '-configuration', jdtls_dir .. 'config_linux',
         '-data',
         workspace_dir,
+        -- LATER check if this is still relevant
+        -- rely on edge lombok because of this bug
+        -- https://github.com/projectlombok/lombok/issues/3585
+        -- '-javaagent:' .. jdtls_dir .. 'lombok.jar',
+        '--jvm-arg=' .. '-javaagent:' .. '/home/toni/Downloads/lombok-edge.jar',
     },
+
+    -- for aur jdtls
+    -- cmd = {
+    --     'jdtls',
+    --     '-data',
+    --     workspace_dir,
+    --     "--jvm-arg=" .. "-javaagent:" .. lombok_path
+    -- },
 
     settings = {
         java = {
@@ -56,13 +82,6 @@ local config = {
             inlayhints = {
                 parameterNames = true
             },
-            jdt = {
-                ls = {
-                    lombokSupport = {
-                        enabled = true
-                    }
-                }
-            }
         }
     },
 
