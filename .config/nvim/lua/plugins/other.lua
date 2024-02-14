@@ -7,7 +7,7 @@ return {
     {
         -- TODO replaced by mini
         'numToStr/Comment.nvim',
-        enable = false,
+        enabled = false,
         keys = {
             { 'gc', mode = { 'n', 'v' } },
             { 'gb', mode = { 'n', 'v' } },
@@ -112,7 +112,6 @@ return {
     },
     {
         'lukas-reineke/indent-blankline.nvim',
-        enable = false,
         event = { 'BufReadPost', 'BufNewFile' },
         main = 'ibl',
         opts = {
