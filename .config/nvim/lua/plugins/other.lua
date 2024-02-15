@@ -55,6 +55,36 @@ return {
             -- map('n', { 'l', 'Right' }, require('smart-splits').swap_buf_right)
         end
     },
+    {
+        'rgroli/other.nvim',
+        -- event = 'VeryLazy',
+        keys = { 'gp', 'gP' },
+        config = function()
+            local map = require('toni.utils').map
+            require("other-nvim").setup({
+                mappings = {
+                    'angular'
+                }
+            })
+            map('n', 'gp', '<Nop>')
+            map('n', 'gP', '<cmd>Other<CR>')
+            local context_mappings = {
+                c = 'component',
+                i = 'implementation',
+                h = 'html',
+                s = 'scss',
+                e = 'service',
+                t = 'test',
+                v = 'view',
+            }
+            for letter, context in pairs(context_mappings) do
+                -- gp${lowerLetter} opens other in current window
+                map('n', 'gp' .. letter, '<cmd>:Other ' .. context .. '<CR>')
+                -- gp${upperLetter} opens other in vertical split
+                map('n', 'gp' .. string.upper(letter), '<cmd>:OtherVSplit ' .. context .. '<CR>')
+            end
+        end
+    },
 
     -------------------- TEXT OBJECTS --------------------
     {

@@ -1,5 +1,6 @@
 return {
     {
+        enabled = false,
         'tpope/vim-projectionist',
         event = 'VeryLazy',
         -- keys = { 'gp', 'gP' },
