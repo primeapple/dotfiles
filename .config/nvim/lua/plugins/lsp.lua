@@ -39,8 +39,6 @@ return {
             server('astro')
             server('bashls')
             server('dockerls')
-            -- disables the EslintFixAll command, because it interferes with vim-projectionist
-            require('lspconfig.server_configurations.eslint').commands = {}
             server('eslint')
             server('gopls')
             server('jsonls', {
