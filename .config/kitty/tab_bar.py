@@ -1,12 +1,8 @@
 import os
 from dataclasses import dataclass
 from typing import List, Optional
-from kitty.boss import get_boss
-from kitty.fast_data_types import Screen, add_timer
-from kitty.tab_bar import DrawData, ExtraData, TabBarData, draw_title, as_rgb
-
-timer_id = None
-
+from kitty.fast_data_types import Screen
+from kitty.tab_bar import DrawData, ExtraData, TabBarData, as_rgb
 
 @dataclass
 class ItemFormat:
@@ -14,12 +10,10 @@ class ItemFormat:
     bg: str
     other: Optional[str]
 
-
 @dataclass
 class StatusItem:
     text: str
     format: ItemFormat
-
 
 def parse_statusline(draw_data: DrawData, statusline: str) -> List[StatusItem]:
     stl_items = statusline.split("#[")
@@ -53,13 +47,8 @@ def draw_tpipeline(screen: Screen, draw_data: DrawData):
         screen.cursor.fg = item.format.fg
         screen.cursor.bg = item.format.bg
         screen.draw(item.text)
+    # TODO doesn't work yet
     # stl = open("/tmp/tmux-" + str(os.getuid()) + "/default-$0-vimbridge-R").readline()
-
-
-def redraw_tab_bar(timer_id):
-    tm = get_boss().active_tab_manager
-    if tm is not None:
-        tm.mark_tab_bar_dirty()
 
 
 def draw_tab(
@@ -72,10 +61,6 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    global timer_id
-    if timer_id is None:
-        timer_id = add_timer(redraw_tab_bar, 0.3, True)
-
     if index == 1:
         draw_tpipeline(screen, draw_data)
 
