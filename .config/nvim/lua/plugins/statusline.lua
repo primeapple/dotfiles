@@ -199,13 +199,12 @@ return {
             })
         end,
     },
-    --[[
     {
         'vimpostor/vim-tpipeline',
-        dependencies = { 'freddiehaddad/feline.nvim' }
+        lazy = false,
+        dependencies = { 'freddiehaddad/feline.nvim' },
         init = function ()
             vim.g.tpipeline_refreshcmd = 'kitty @ set-tab-title refresh_tabbar'
         end
     }
-    --]]
 }

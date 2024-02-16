@@ -14,6 +14,7 @@ return {
                 json = { { 'biome', 'prettierd', 'prettier' } },
                 lua = { 'stylua' },
                 markdown = { { 'prettierd', 'prettier' } },
+                python = { 'ruff_format' },
                 rust = { 'rustfmt' },
                 sql = { 'sql_formatter' },
                 svelte = { { 'prettierd', 'prettier' } },
