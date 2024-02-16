@@ -88,7 +88,7 @@ if status --is-interactive
         abbr --add 'gpu'$abb 'git pull upstream' $branch
     end
     abbr --add gaa 'git add --all'
-    abbr --add gaf 'git ls-files -m -o --exclude-standard | fzf | xargs --no-run-if-empty git add'
+    abbr --add gaf 'git ls-files -m -o --exclude-standard | zf | xargs --no-run-if-empty git add'
     abbr --add gpb 'git publish'
     abbr --add gb 'git branch'
     abbr --add gbd 'git branch -d'
@@ -105,7 +105,7 @@ if status --is-interactive
     abbr --add gcp 'git cherry-pick'
     abbr --add gcpn 'git cherry-pick --no-commit'
     # only yadm
-    abbr --add yaf 'yadm diff --name-only | awk -v home=(echo $HOME) \'{print home "/" $1}\' | fzf | xargs --no-run-if-empty yadm add'
+    abbr --add yaf 'yadm diff --name-only | awk -v home=(echo $HOME) \'{print home "/" $1}\' | zf | xargs --no-run-if-empty yadm add'
 
     # taskwarrior related ones
     abbr --add t task
