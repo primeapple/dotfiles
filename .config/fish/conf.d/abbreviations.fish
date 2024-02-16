@@ -56,6 +56,7 @@ if status --is-interactive
         abbr --add $abb'ca' $cmd 'commit --amend'
         abbr --add $abb'can' $cmd 'commit --amend --no-edit'
         abbr --add $abb'r' $cmd reset
+        abbr --add $abb'rh' $cmd reset --hard
         abbr --add $abb'rs' $cmd restore
         abbr --add $abb'rst' $cmd 'restore --staged'
         abbr --add $abb'd' $cmd diff
@@ -78,6 +79,14 @@ if status --is-interactive
         abbr --add $abb'sta' $cmd 'stash apply'
     end
     # only git
+    # branch specific commands
+    for tuples in m,main ma,master d,dev
+        echo $tuples | read -d , abb branch
+        abbr --add 'gc'$abb 'git checkout' $branch
+        abbr --add 'grb'$abb 'git rebase' $branch
+        abbr --add 'gm'$abb 'git merge' $branch
+        abbr --add 'gpu'$abb 'git pull upstream' $branch
+    end
     abbr --add gaa 'git add --all'
     abbr --add gaf 'git ls-files -m -o --exclude-standard | fzf | xargs --no-run-if-empty git add'
     abbr --add gpb 'git publish'
@@ -87,17 +96,8 @@ if status --is-interactive
     abbr --add gco 'git checkout'
     abbr --add gc- 'git checkout -'
     abbr --add gcb 'git checkout -b'
-    abbr --add gcd 'git checkout dev'
-    abbr --add gcm 'git checkout main'
-    abbr --add gcma 'git checkout master'
     abbr --add grb 'git rebase'
-    abbr --add grbd 'git rebase dev'
-    abbr --add grbm 'git rebase main'
-    abbr --add gmm 'git merge main'
-    abbr --add gmd 'git merge dev'
     abbr --add gma 'git merge --abort'
-    abbr --add gpud 'git pull upstream dev'
-    abbr --add gpum 'git pull upstream main'
     abbr --add grba 'git rebase --abort'
     abbr --add grbc 'git rebase --continue'
     abbr --add grc 'git recent'
@@ -108,7 +108,6 @@ if status --is-interactive
     abbr --add yaf 'yadm diff --name-only | awk -v home=(echo $HOME) \'{print home "/" $1}\' | fzf | xargs --no-run-if-empty yadm add'
 
     # taskwarrior related ones
-    # https://www.reddit.com/r/taskwarrior/comments/uvwqlz/share_your_aliases/
     abbr --add t task
     abbr --add tui taskwarrior-tui
     abbr --add ts 'task sync'
