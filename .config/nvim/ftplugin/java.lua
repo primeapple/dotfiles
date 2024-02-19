@@ -24,7 +24,7 @@ local config = {
         -- rely on edge lombok because of this bug
         -- https://github.com/projectlombok/lombok/issues/3585
         -- '-javaagent:' .. jdtls_dir .. 'lombok.jar',
-        '--jvm-arg=' .. '-javaagent:' .. '/home/toni/Downloads/lombok-edge.jar',
+        '--jvm-arg=' .. 'javaagent:' .. '/home/toni/Downloads/lombok-edge.jar',
     },
 
     -- for aur jdtls
