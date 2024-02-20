@@ -15,16 +15,14 @@ local config = {
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-        -- '-javaagent:' .. jdtls_dir .. 'lombok.jar',
+        -- LATER check if this is still relevant
+        -- rely on edge lombok because of this bug
+        -- https://github.com/projectlombok/lombok/issues/3585
+        '-javaagent:' .. '/home/toni/Downloads/lombok-edge.jar',
         '-jar', vim.fn.glob(jdtls_dir .. 'plugins/org.eclipse.equinox.launcher_*.jar'),
         '-configuration', jdtls_dir .. 'config_linux',
         '-data',
         workspace_dir,
-        -- LATER check if this is still relevant
-        -- rely on edge lombok because of this bug
-        -- https://github.com/projectlombok/lombok/issues/3585
-        -- '-javaagent:' .. jdtls_dir .. 'lombok.jar',
-        '--jvm-arg=' .. 'javaagent:' .. '/home/toni/Downloads/lombok-edge.jar',
     },
 
     -- for aur jdtls
