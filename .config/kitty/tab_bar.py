@@ -9,8 +9,9 @@ from kitty.utils import color_as_int
 
 # TODOS:
 # - With 2 kitty windows, the left one has vim open, the right one doesn't, Selecting the right one still shows the statusbar
-# - Somehow the unicode characters don't match, aka drawing some emojis takes 2 width but has only length of one
-# - Sometimes in vim the tabs are not getting drawed even though they should fit in
+# --> We could get the current kitty os id of the one hat has neovim running and set that id as the title name. So we could figure out if we want to draw the Vim statusbar
+# - When multiple tabs are open, all except for the last one have 3 red dots in the very right of the tabbar
+# - We would like to implement the font options, see man tmux about that one
 
 
 ##### Kitty settings #####
@@ -30,7 +31,6 @@ INACTIVE_TAB_BG = as_rgb(color_as_int(options.inactive_tab_background))
 class ComponentOptions:
     fg: int
     bg: int
-    # TODO Read about this one
     other: Optional[str]
 
 
@@ -81,19 +81,18 @@ def all_tab_components(
     screen: Screen,
     text_size_before: int,
     text_size_after: int,
-    max_title_length: int,
     active_tab_id: int,
 ) -> List[Component]:
     max_text_size = max(text_size_before, text_size_after)
-    available_space_in_center = screen.columns - (2 * max_text_size) - 1
+    available_space_in_center = screen.columns - (2 * max_text_size)
 
-    # inserting as much tabs as possible
+    # inserting as much tabs as possible fit without overlapping
     tab_components = [space_component(1)]
-    tabs_length = components_len(tab_components)
+    tabs_length = simple_components_len(tab_components)
     for tab in get_boss().all_tabs:
         next_tab_components = single_tab_components(tab, tab.id == active_tab_id)
         next_tab_components.append(space_component(1))
-        next_tab_length = components_len(next_tab_components)
+        next_tab_length = simple_components_len(next_tab_components)
         if tabs_length + next_tab_length >= available_space_in_center:
             break
         tab_components += next_tab_components
@@ -102,6 +101,12 @@ def all_tab_components(
     total_padding = available_space_in_center - tabs_length
     padding_left = total_padding // 2
     padding_right = total_padding - padding_left
+    tab_components.insert(
+        0, space_component(padding_left + max_text_size - text_size_before)
+    )
+    tab_components.append(
+        space_component(padding_right + max_text_size - text_size_after)
+    )
     print(
         {
             "total": screen.columns,
@@ -111,22 +116,27 @@ def all_tab_components(
             "padleft": padding_left,
             "padright": padding_right,
             "tabs_length": tabs_length,
+            "simple_length": simple_components_len(tab_components),
+            # "draw_lenth": drawing_components_len(screen, tab_components),
         }
-    )
-    tab_components.insert(
-        0, space_component(padding_left + max_text_size - text_size_before)
-    )
-    tab_components.append(
-        space_component(padding_right + max_text_size - text_size_after)
     )
     return tab_components
 
 
-def components_len(components: List[Component]):
+# this is not always correct, since some symbols take multiple columns but their `len` is only 1
+def simple_components_len(components: List[Component]):
     length = 0
     for component in components:
         length += len(component)
     return length
+
+# this is always correct but may require more resources and might produce bugs
+def drawing_components_len(screen: Screen, components: List[Component]):
+    old_cursor_x = screen.cursor.x
+    draw_components(screen, components)
+    new_cursor_x = screen.cursor.x
+    screen.cursor.x = old_cursor_x
+    return new_cursor_x - old_cursor_x
 
 
 def draw_components(screen: Screen, components: List[Component]) -> None:
@@ -199,9 +209,7 @@ def draw_tab(
         right_text_size = screen.cursor.x - left_text_size
         screen.cursor.x = left_text_size
 
-        tabs = all_tab_components(
-            screen, left_text_size, right_text_size, max_title_length, tab.tab_id
-        )
+        tabs = all_tab_components(screen, left_text_size, right_text_size, tab.tab_id)
         draw_components(screen, tabs)
 
         draw_components(screen, right_statusline)
