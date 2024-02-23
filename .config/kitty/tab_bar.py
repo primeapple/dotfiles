@@ -11,7 +11,6 @@ from kitty.utils import color_as_int
 # - With 2 kitty windows, the left one has vim open, the right one doesn't, Selecting the right one still shows the statusbar
 # --> We could get the current kitty os id of the one hat has neovim running and set that id as the title name. So we could figure out if we want to draw the Vim statusbar
 # - When multiple tabs are open, all except for the last one have 3 red dots in the very right of the tabbar
-# - We would like to implement the font options, see man tmux about that one
 
 
 ##### Kitty settings #####
@@ -31,7 +30,9 @@ INACTIVE_TAB_BG = as_rgb(color_as_int(options.inactive_tab_background))
 class ComponentOptions:
     fg: int
     bg: int
-    other: Optional[str]
+    bold: bool = False
+    blink: bool = False
+    italic: bool = False
 
 
 @dataclass
@@ -44,16 +45,16 @@ class Component:
 
 
 def space_component(size: int) -> Component:
-    return Component(" " * size, ComponentOptions(DEFAULT_FG, DEFAULT_BG, None))
+    return Component(" " * size, ComponentOptions(DEFAULT_FG, DEFAULT_BG))
 
 
 def tab_left_components(is_active: bool) -> List[Component]:
     fg = ACTIVE_TAB_BG if is_active else INACTIVE_TAB_BG
     bg = ACTIVE_TAB_FG if is_active else INACTIVE_TAB_FG
     return [
-        Component("", ComponentOptions(bg, fg, None)),
-        Component("", ComponentOptions(fg, bg, None)),
-        Component(" ", ComponentOptions(bg, fg, None)),
+        Component("", ComponentOptions(bg, fg)),
+        Component("", ComponentOptions(fg, bg)),
+        Component(" ", ComponentOptions(bg, fg)),
     ]
 
 
@@ -61,9 +62,9 @@ def tab_right_components(is_active: bool) -> List[Component]:
     fg = ACTIVE_TAB_BG if is_active else INACTIVE_TAB_BG
     bg = ACTIVE_TAB_FG if is_active else INACTIVE_TAB_FG
     return [
-        Component(" ", ComponentOptions(bg, fg, None)),
-        Component("", ComponentOptions(fg, bg, None)),
-        Component("", ComponentOptions(bg, fg, None)),
+        Component(" ", ComponentOptions(bg, fg)),
+        Component("", ComponentOptions(fg, bg)),
+        Component("", ComponentOptions(bg, fg)),
     ]
 
 
@@ -72,7 +73,7 @@ def single_tab_components(tab: Tab, is_active: bool) -> List[Component]:
     bg = ACTIVE_TAB_BG if is_active else INACTIVE_TAB_BG
     return (
         tab_left_components(is_active)
-        + [Component(tab.title.split().pop(), ComponentOptions(fg, bg, None))]
+        + [Component(tab.title.split().pop(), ComponentOptions(fg, bg))]
         + tab_right_components(is_active)
     )
 
@@ -107,19 +108,20 @@ def all_tab_components(
     tab_components.append(
         space_component(padding_right + max_text_size - text_size_after)
     )
-    print(
-        {
-            "total": screen.columns,
-            "before": text_size_before,
-            "after": text_size_after,
-            "total_padding": total_padding,
-            "padleft": padding_left,
-            "padright": padding_right,
-            "tabs_length": tabs_length,
-            "simple_length": simple_components_len(tab_components),
-            # "draw_lenth": drawing_components_len(screen, tab_components),
-        }
-    )
+    # debugging
+    # print(
+    #     {
+    #         "total": screen.columns,
+    #         "before": text_size_before,
+    #         "after": text_size_after,
+    #         "total_padding": total_padding,
+    #         "padleft": padding_left,
+    #         "padright": padding_right,
+    #         "tabs_length": tabs_length,
+    #         "simple_length": simple_components_len(tab_components),
+    #         "draw_lenth": drawing_components_len(screen, tab_components),
+    #     }
+    # )
     return tab_components
 
 
@@ -129,6 +131,7 @@ def simple_components_len(components: List[Component]):
     for component in components:
         length += len(component)
     return length
+
 
 # this is always correct but may require more resources and might produce bugs
 def drawing_components_len(screen: Screen, components: List[Component]):
@@ -143,6 +146,9 @@ def draw_components(screen: Screen, components: List[Component]) -> None:
     for component in components:
         screen.cursor.fg = component.options.fg
         screen.cursor.bg = component.options.bg
+        screen.cursor.bold = component.options.bold
+        screen.cursor.blink = component.options.blink
+        screen.cursor.italic = component.options.italic
         screen.draw(component.text)
 
 
@@ -162,7 +168,9 @@ def parse_statusline_str(statusline_str) -> List[Component]:
         [format, text] = item.split("]", 1)
         fg = DEFAULT_FG
         bg = DEFAULT_BG
-        other = None
+        bold = False
+        blink = False
+        italic = False
         for item_format in format.split(","):
             if item_format.startswith("fg="):
                 if item_format != "fg=default":
@@ -170,9 +178,15 @@ def parse_statusline_str(statusline_str) -> List[Component]:
             elif item_format.startswith("bg="):
                 if item_format != "bg=default":
                     bg = as_rgb(int(item_format[4:10], 16))
-            else:
-                other = item_format
-        parsed_statusline.append(Component(text, ComponentOptions(fg, bg, other)))
+            elif item_format == "bold":
+                bold = True
+            elif item_format == "blink":
+                blink = True
+            elif item_format == "italics":
+                italic = True
+        parsed_statusline.append(
+            Component(text, ComponentOptions(fg, bg, bold, blink, italic))
+        )
     return parsed_statusline
 
 
