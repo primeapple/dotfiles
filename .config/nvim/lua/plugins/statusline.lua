@@ -205,11 +205,9 @@ return {
         dependencies = { 'freddiehaddad/feline.nvim' },
         init = function ()
             vim.cmd('let g:tpipeline_size = &co')
-            vim.g.tpipeline_autoembed = 0
             vim.g.tpipeline_refreshcmd = 'kitty @ set-tab-title refresh_tabbar'
-
-            vim.api.nvim_create_autocmd('VimResized', {
-                group = group,
+            vim.api.nvim_create_autocmd('User', {
+                pattern = 'TpipelineSize',
                 command = 'let g:tpipeline_size = &co',
             })
         end

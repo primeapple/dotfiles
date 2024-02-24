@@ -5,8 +5,7 @@ opt.confirm = true
 opt.laststatus = 3 -- global statusline
 opt.title = true
 opt.clipboard = 'unnamedplus'
--- opt.cmdheight = 0 -- dont show commandline, comes in nvim 0.8?
-opt.cmdheight = 1
+opt.cmdheight = 0 -- dont show commandline, for more space
 opt.cul = true -- cursor line
 
 -- Indentline
