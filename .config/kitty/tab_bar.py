@@ -1,7 +1,7 @@
 import os
 import os.path
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List
 from kitty.fast_data_types import Screen, get_boss, get_options
 from kitty.tab_bar import DrawData, ExtraData, TabBarData, as_rgb
 from kitty.tabs import Tab
@@ -10,7 +10,6 @@ from kitty.utils import color_as_int
 # TODOS:
 # - With 2 kitty windows, the left one has vim open, the right one doesn't, Selecting the right one still shows the statusbar
 # --> We could get the current kitty os id of the one hat has neovim running and set that id as the title name. So we could figure out if we want to draw the Vim statusbar
-# - When multiple tabs are open, all except for the last one have 3 red dots in the very right of the tabbar
 
 
 ##### Kitty settings #####
@@ -90,6 +89,7 @@ def all_tab_components(
     # inserting as much tabs as possible fit without overlapping
     tab_components = [space_component(1)]
     tabs_length = simple_components_len(tab_components)
+    get_boss().active_tab_manager.list_tabs()
     for tab in get_boss().all_tabs:
         next_tab_components = single_tab_components(tab, tab.id == active_tab_id)
         next_tab_components.append(space_component(1))
@@ -108,20 +108,6 @@ def all_tab_components(
     tab_components.append(
         space_component(padding_right + max_text_size - text_size_after)
     )
-    # debugging
-    # print(
-    #     {
-    #         "total": screen.columns,
-    #         "before": text_size_before,
-    #         "after": text_size_after,
-    #         "total_padding": total_padding,
-    #         "padleft": padding_left,
-    #         "padright": padding_right,
-    #         "tabs_length": tabs_length,
-    #         "simple_length": simple_components_len(tab_components),
-    #         "draw_lenth": drawing_components_len(screen, tab_components),
-    #     }
-    # )
     return tab_components
 
 
@@ -203,6 +189,9 @@ def right_statusline_components() -> List[Component]:
 
 
 ##### Kitty API #####
+active_tab_id = 0
+
+
 def draw_tab(
     draw_data: DrawData,
     screen: Screen,
@@ -214,6 +203,13 @@ def draw_tab(
     extra_data: ExtraData,
 ) -> int:
     if tab.is_active:
+        # a better solution would be to draw the whole tab bar on the active tab
+        # but that produces an error (3 red dots in the most right corner),
+        # since kitty expects only the last `draw_tab` function call to pruduce an element on the last column
+        global active_tab_id
+        active_tab_id = tab.tab_id
+
+    if is_last:
         left_statusline = left_statusline_components()
         right_statusline = right_statusline_components()
 
@@ -223,7 +219,9 @@ def draw_tab(
         right_text_size = screen.cursor.x - left_text_size
         screen.cursor.x = left_text_size
 
-        tabs = all_tab_components(screen, left_text_size, right_text_size, tab.tab_id)
+        tabs = all_tab_components(
+            screen, left_text_size, right_text_size, active_tab_id
+        )
         draw_components(screen, tabs)
 
         draw_components(screen, right_statusline)
