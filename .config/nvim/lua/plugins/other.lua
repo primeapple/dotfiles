@@ -5,7 +5,7 @@ return {
         keys = { '[', ']', 'yo' },
     },
     {
-        -- TODO replaced by mini
+        -- TODO: replaced by mini
         'numToStr/Comment.nvim',
         enabled = false,
         keys = {
@@ -24,7 +24,7 @@ return {
         end,
     },
     {
-        -- TODO replace with mini
+        -- TODO: replace with mini
         'windwp/nvim-autopairs',
         event = 'VeryLazy',
         opts = {
@@ -35,7 +35,7 @@ return {
     -------------------- NAVIGATION --------------------
     {
         'mrjones2014/smart-splits.nvim',
-        -- TODO use `keys`
+        -- TODO: use `keys`
         event = 'VeryLazy',
         build = './kitty/install-kittens.bash',
         config = function()
@@ -44,7 +44,7 @@ return {
             map({ 'n', 'i', 'v', 't' }, { '<C-j>', '<C-Down>' }, require('smart-splits').move_cursor_down)
             map({ 'n', 'i', 'v', 't' }, { '<C-k>', '<C-Up>' }, require('smart-splits').move_cursor_up)
             map({ 'n', 'i', 'v', 't' }, { '<C-l>', '<C-Right>' }, require('smart-splits').move_cursor_right)
-            -- TODO maybe use <leader>s hjkl/HJKL
+            -- TODO: maybe use <leader>s hjkl/HJKL
             -- map({ 'n', 'i', 'v', 't' }, { '<A-Left>' }, require('smart-splits').resize_left)
             -- map({ 'n', 'i', 'v', 't' }, { '<A-Down>' }, require('smart-splits').resize_down)
             -- map({ 'n', 'i', 'v', 't' }, { '<A-Up>' }, require('smart-splits').resize_up)
@@ -53,7 +53,7 @@ return {
             -- map('n', { 'j', 'Down' }, require('smart-splits').swap_buf_down)
             -- map('n', { 'k', 'Up' }, require('smart-splits').swap_buf_up)
             -- map('n', { 'l', 'Right' }, require('smart-splits').swap_buf_right)
-        end
+        end,
     },
     {
         'rgroli/other.nvim',
@@ -61,10 +61,10 @@ return {
         keys = { 'gp', 'gP' },
         config = function()
             local map = require('toni.utils').map
-            require("other-nvim").setup({
+            require('other-nvim').setup({
                 mappings = {
-                    'angular'
-                }
+                    'angular',
+                },
             })
             map('n', 'gp', '<Nop>')
             map('n', 'gP', '<cmd>Other<CR>')
@@ -83,16 +83,16 @@ return {
                 -- gp${upperLetter} opens other in vertical split
                 map('n', 'gp' .. string.upper(letter), '<cmd>:OtherVSplit ' .. context .. '<CR>')
             end
-        end
+        end,
     },
 
     -------------------- TEXT OBJECTS --------------------
     {
         'chaoren/vim-wordmotion',
         keys = {
-            { '<leader>w',  mode = { 'n', 'o', 'x' } },
-            { '<leader>b',  mode = { 'n', 'o', 'x' } },
-            { '<leader>e',  mode = { 'n', 'o', 'x' } },
+            { '<leader>w', mode = { 'n', 'o', 'x' } },
+            { '<leader>b', mode = { 'n', 'o', 'x' } },
+            { '<leader>e', mode = { 'n', 'o', 'x' } },
             { '<leader>ge', mode = { 'n', 'o', 'x' } },
             { '<leader>aw', mode = { 'o', 'x' } },
             { '<leader>iw', mode = { 'o', 'x' } },
@@ -108,7 +108,7 @@ return {
             { 'ii', mode = { 'o', 'v' } },
             { 'ik', mode = { 'o', 'v' } },
             { 'iv', mode = { 'o', 'v' } },
-            { 'R',  mode = { 'o', 'v' } },
+            { 'R', mode = { 'o', 'v' } },
         },
         opts = {
             useDefaultKeymaps = true,
@@ -117,10 +117,60 @@ return {
 
     -------------------- MOVEMENTS --------------------
     {
-        'ggandor/leap.nvim',
+        'folke/flash.nvim',
+        event = 'VeryLazy',
+        ---@type Flash.Config
+        opts = {},
         keys = {
-            { 's',  '<Plug>(leap-forward-to)',   mode = { 'n', 'o', 'v' } },
-            { 'S',  '<Plug>(leap-backward-to)',  mode = { 'n', 'o', 'v' } },
+            {
+                's',
+                mode = { 'n', 'x', 'o' },
+                function()
+                    require('flash').jump()
+                end,
+                desc = 'Flash',
+            },
+            {
+                'S',
+                mode = { 'n', 'x', 'o' },
+                function()
+                    require('flash').treesitter()
+                end,
+                desc = 'Flash Treesitter',
+            },
+            {
+                'r',
+                mode = 'o',
+                function()
+                    require('flash').remote()
+                end,
+                desc = 'Remote Flash',
+            },
+            {
+                'R',
+                mode = { 'o', 'x' },
+                function()
+                    require('flash').treesitter_search()
+                end,
+                desc = 'Treesitter Search',
+            },
+            {
+                '<c-s>',
+                mode = { 'c' },
+                function()
+                    require('flash').toggle()
+                end,
+                desc = 'Toggle Flash Search',
+            },
+        },
+    },
+    -- TODO: if flash is nicer, use that and remove leap
+    {
+        'ggandor/leap.nvim',
+        enabled = false,
+        keys = {
+            { 's', '<Plug>(leap-forward-to)', mode = { 'n', 'o', 'v' } },
+            { 'S', '<Plug>(leap-backward-to)', mode = { 'n', 'o', 'v' } },
             { 'gs', '<Plug>(leap-cross-window)', mode = { 'n', 'o', 'v' } },
         },
     },
@@ -179,6 +229,12 @@ return {
                 },
             },
         },
+    },
+    {
+        'folke/todo-comments.nvim',
+        event = 'VeryLazy',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = {},
     },
 
     -------------------- Languages/Tools --------------------

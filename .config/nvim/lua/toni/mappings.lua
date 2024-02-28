@@ -40,7 +40,7 @@ map('t', '<ESC><ESC>', '<C-\\><C-n>')
 
 -- Remap for dealing with visual line wraps
 -- Doesn't seem to work?
--- TODO investigate
+-- TODO: investigate
 -- map("n", "j", function() return vim.v.count > 0 and 'j' or 'gj' end, { expr = true })
 -- map("n", "k", function() return vim.v.count > 0 and 'k' or 'gk' end, { expr = true })
 

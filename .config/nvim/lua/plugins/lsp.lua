@@ -7,9 +7,11 @@ return {
             'hrsh7th/cmp-nvim-lsp',
             -- language specific tooling
             'b0o/schemastore.nvim',
-            { 'folke/neodev.nvim', opts = {} },
+            'folke/neodev.nvim'
         },
         config = function()
+            require('neodev').setup({})
+
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             -- use lsp as folding provider for `nvim-ufo`
             capabilities.textDocument.foldingRange = {

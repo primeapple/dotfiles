@@ -1,4 +1,4 @@
--- TODO find some nice hotkeys
+-- TODO: find some nice hotkeys
 return {
     {
         'mfussenegger/nvim-dap',
