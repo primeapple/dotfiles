@@ -7,7 +7,7 @@ return {
             'hrsh7th/cmp-nvim-lsp',
             -- language specific tooling
             'b0o/schemastore.nvim',
-            'folke/neodev.nvim'
+            'folke/neodev.nvim',
         },
         config = function()
             require('neodev').setup({})
@@ -98,12 +98,12 @@ return {
             local utils = require('toni.utils')
             vim.g.rustaceanvim = {
                 server = {
-                    on_attach = utils.on_attach
+                    on_attach = utils.on_attach,
                 },
             }
-        end
+        end,
     },
     {
-        'mfussenegger/nvim-jdtls'
-    }
+        'mfussenegger/nvim-jdtls',
+    },
 }

@@ -4,6 +4,6 @@ return {
         event = 'VeryLazy',
         config = function()
             require('gp').setup()
-        end
-    }
+        end,
+    },
 }

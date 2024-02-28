@@ -80,8 +80,8 @@ return {
                         jestConfigFile = 'jest.config.js',
                         env = { CI = true },
                     }),
-                    -- require("neotest-vim-test")({
-                    --     ignore_file_types = { "python", "vim", "lua" },
+                    -- require('neotest-vim-test')({
+                    --     ignore_file_types = { 'python', 'vim', 'lua' },
                     -- }),
                 },
                 quickfix = {

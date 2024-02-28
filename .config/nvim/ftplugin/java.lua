@@ -13,14 +13,18 @@ local config = {
         '-Dlog.level=ALL',
         '-Xmx1g',
         '--add-modules=ALL-SYSTEM',
-        '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-        '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        '--add-opens',
+        'java.base/java.util=ALL-UNNAMED',
+        '--add-opens',
+        'java.base/java.lang=ALL-UNNAMED',
         -- LATER check if this is still relevant
         -- rely on edge lombok because of this bug
         -- https://github.com/projectlombok/lombok/issues/3585
         '-javaagent:' .. '/home/toni/downloads/lombok-edge.jar',
-        '-jar', vim.fn.glob(jdtls_dir .. 'plugins/org.eclipse.equinox.launcher_*.jar'),
-        '-configuration', jdtls_dir .. 'config_linux',
+        '-jar',
+        vim.fn.glob(jdtls_dir .. 'plugins/org.eclipse.equinox.launcher_*.jar'),
+        '-configuration',
+        jdtls_dir .. 'config_linux',
         '-data',
         workspace_dir,
     },
@@ -30,7 +34,7 @@ local config = {
     --     'jdtls',
     --     '-data',
     --     workspace_dir,
-    --     "--jvm-arg=" .. "-javaagent:" .. lombok_path
+    --     '--jvm-arg=' .. '-javaagent:' .. lombok_path
     -- },
 
     settings = {
@@ -43,28 +47,28 @@ local config = {
             },
             import = {
                 gradle = {
-                    enabled = true
+                    enabled = true,
                 },
                 maven = {
-                    enabled = true
+                    enabled = true,
                 },
             },
             completion = {
                 enabled = true,
-                importOrder = { '' }
+                importOrder = { '' },
             },
             eclipse = {
-                downloadSources = true
+                downloadSources = true,
             },
             maven = {
                 downloadSources = true,
-                updateSnapshotts = true
+                updateSnapshotts = true,
             },
             referencesCodeLens = {
-                enabled = true
+                enabled = true,
             },
             implementationsCodeLens = {
-                enabled = false
+                enabled = false,
             },
             format = {
                 enabled = true,
@@ -72,19 +76,19 @@ local config = {
                 tabSize = 4,
             },
             signatureHelp = {
-                enabled = true
+                enabled = true,
             },
             saveActions = {
                 organizeImports = false,
             },
             inlayhints = {
-                parameterNames = true
+                parameterNames = true,
             },
-        }
+        },
     },
 
     init_options = {
-        bundles = {}
+        bundles = {},
     },
     on_attach = function(client, buffer)
         require('toni.utils').on_attach(client, buffer)
