@@ -18,7 +18,7 @@ local config = {
         -- LATER check if this is still relevant
         -- rely on edge lombok because of this bug
         -- https://github.com/projectlombok/lombok/issues/3585
-        '-javaagent:' .. '/home/toni/Downloads/lombok-edge.jar',
+        '-javaagent:' .. '/home/toni/downloads/lombok-edge.jar',
         '-jar', vim.fn.glob(jdtls_dir .. 'plugins/org.eclipse.equinox.launcher_*.jar'),
         '-configuration', jdtls_dir .. 'config_linux',
         '-data',

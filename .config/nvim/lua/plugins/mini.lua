@@ -6,13 +6,13 @@ return {
         config = function()
             require('mini.surround').setup({
                 mappings = {
-                    add = 'gza',
-                    delete = 'gzd',
-                    replace = 'gzc',
-                    highlight = 'gzh',
-                    find = 'gzf',
-                    find_left = 'gzF',
-                    update_n_lines = 'gzn',
+                    add = 'gsa',
+                    delete = 'gsd',
+                    replace = 'gsc',
+                    highlight = 'gsh',
+                    find = 'gsf',
+                    find_left = 'gsF',
+                    update_n_lines = 'gsn',
                 },
             })
 
