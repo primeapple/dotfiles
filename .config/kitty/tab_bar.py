@@ -7,11 +7,6 @@ from kitty.tab_bar import DrawData, ExtraData, TabBarData, as_rgb
 from kitty.tabs import Tab
 from kitty.utils import color_as_int
 
-# TODOS:
-# - With 2 kitty windows, the left one has vim open, the right one doesn't, Selecting the right one still shows the statusbar
-# --> We could get the current kitty os id of the one hat has neovim running and set that id as the title name. So we could figure out if we want to draw the Vim statusbar
-
-
 ##### Kitty settings #####
 options = get_options()
 
@@ -67,12 +62,19 @@ def tab_right_components(is_active: bool) -> List[Component]:
     ]
 
 
+def decorated_tab_title(tab_title: str) -> str:
+    last_segment = tab_title.split().pop()
+    if "/" in last_segment:
+        return "[" + last_segment.split("/").pop() + "]"
+    return last_segment
+
+
 def single_tab_components(tab: Tab, is_active: bool) -> List[Component]:
     fg = ACTIVE_TAB_FG if is_active else INACTIVE_TAB_FG
     bg = ACTIVE_TAB_BG if is_active else INACTIVE_TAB_BG
     return (
         tab_left_components(is_active)
-        + [Component(tab.title.split().pop(), ComponentOptions(fg, bg))]
+        + [Component(decorated_tab_title(tab.title), ComponentOptions(fg, bg, True))]
         + tab_right_components(is_active)
     )
 
@@ -89,7 +91,6 @@ def all_tab_components(
     # inserting as much tabs as possible fit without overlapping
     tab_components = [space_component(1)]
     tabs_length = simple_components_len(tab_components)
-    get_boss().active_tab_manager.list_tabs()
     for tab in get_boss().all_tabs:
         next_tab_components = single_tab_components(tab, tab.id == active_tab_id)
         next_tab_components.append(space_component(1))
@@ -188,6 +189,14 @@ def right_statusline_components() -> List[Component]:
     )
 
 
+##### Utils #####
+def is_nvim_active_in_tab(tab_id: int):
+    tab = get_boss().tab_for_id(tab_id)
+    if tab != None:
+        return tab.get_exe_of_active_window() == "nvim"
+    return False
+
+
 ##### Kitty API #####
 active_tab_id = 0
 
@@ -210,20 +219,30 @@ def draw_tab(
         active_tab_id = tab.tab_id
 
     if is_last:
-        left_statusline = left_statusline_components()
-        right_statusline = right_statusline_components()
+        left_text_size = 0
+        right_text_size = 0
 
-        draw_components(screen, left_statusline)
-        left_text_size = screen.cursor.x
-        draw_components(screen, right_statusline)
-        right_text_size = screen.cursor.x - left_text_size
-        screen.cursor.x = left_text_size
+        active_tab_has_nvim_running = is_nvim_active_in_tab(active_tab_id)
+        if active_tab_has_nvim_running:
+            print('has nvim')
+            left_statusline = left_statusline_components()
+            right_statusline = right_statusline_components()
 
-        tabs = all_tab_components(
-            screen, left_text_size, right_text_size, active_tab_id
-        )
-        draw_components(screen, tabs)
-
-        draw_components(screen, right_statusline)
+            draw_components(screen, left_statusline)
+            left_text_size = screen.cursor.x
+            draw_components(screen, right_statusline)
+            right_text_size = screen.cursor.x - left_text_size
+            screen.cursor.x = left_text_size
+            tabs = all_tab_components(
+                screen, left_text_size, right_text_size, active_tab_id
+            )
+            draw_components(screen, tabs)
+            draw_components(screen, right_statusline)
+        else:
+            print('not nvim')
+            tabs = all_tab_components(
+                screen, left_text_size, right_text_size, active_tab_id
+            )
+            draw_components(screen, tabs)
 
     return screen.cursor.x
