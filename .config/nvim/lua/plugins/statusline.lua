@@ -1,9 +1,4 @@
 return {
-    -- TODO enable when using nvim 0.9
-    -- {
-    --     'luukvbaal/statuscol.nvim',
-    --     config = function() require('statuscol').setup() end
-    -- },
     {
         'freddiehaddad/feline.nvim',
         lazy = false,
@@ -38,7 +33,8 @@ return {
                     provider = {
                         name = 'file_info',
                         opts = {
-                            type = 'relative-short',
+                            -- type = 'relative-short',
+                            type = 'base-only',
                         },
                     },
                     hl = {
@@ -47,7 +43,7 @@ return {
                     right_sep = 'block',
                 },
                 gitBranch = {
-                    provider = 'git_branch',
+                    provider = 'shortened_git_branch',
                     left_sep = 'block',
                     right_sep = 'block',
                     hl = {
@@ -59,27 +55,18 @@ return {
                     hl = {
                         fg = 'git_add',
                     },
-                    left_sep = 'block',
-                    right_sep = 'block',
                 },
                 gitDiffRemoved = {
                     provider = 'git_diff_removed',
                     hl = {
                         fg = 'git_del',
                     },
-                    left_sep = 'block',
-                    right_sep = 'block',
                 },
                 gitDiffChanged = {
                     provider = 'git_diff_changed',
                     hl = {
                         fg = 'git_change',
                     },
-                    left_sep = 'block',
-                    right_sep = 'right_filled',
-                },
-                separator = {
-                    provider = '',
                 },
                 diagnostic_errors = {
                     provider = 'diagnostic_errors',
@@ -167,7 +154,6 @@ return {
                 c.gitDiffAdded,
                 c.gitDiffRemoved,
                 c.gitDiffChanged,
-                c.separator,
             }
 
             local right = {
@@ -196,6 +182,14 @@ return {
             require('feline').setup({
                 components = components,
                 theme = colors(),
+                custom_providers = {
+                    shortened_git_branch = function()
+                        ---@diagnostic disable-next-line: undefined-field
+                        local branch = vim.b.gitsigns_head or ''
+                        return branch or '', ' '
+
+                    end,
+                },
             })
         end,
     },
@@ -203,13 +197,13 @@ return {
         'vimpostor/vim-tpipeline',
         lazy = false,
         dependencies = { 'freddiehaddad/feline.nvim' },
-        init = function ()
+        init = function()
             vim.cmd('let g:tpipeline_size = &co')
             vim.g.tpipeline_refreshcmd = 'kitty @ set-tab-title refresh_tabbar'
             vim.api.nvim_create_autocmd('User', {
                 pattern = 'TpipelineSize',
                 command = 'let g:tpipeline_size = &co',
             })
-        end
-    }
+        end,
+    },
 }
