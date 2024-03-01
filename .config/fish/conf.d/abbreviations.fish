@@ -4,8 +4,12 @@ if status --is-interactive
     abbr --add dc 'docker compose'
     abbr --add dcu 'docker compose up'
     abbr --add dcud 'docker compose down -d'
-    abbr --add mv 'mv -i'
     abbr --add reload 'source ~/.config/fish/config.fish'
+
+    abbr --add mv 'mv -i'
+    abbr --add mkdir 'mkdir -pv'
+    abbr --add e exit
+    abbr --add o xdg-open
 
     if command -v eza >/dev/null
         abbr -a l eza
