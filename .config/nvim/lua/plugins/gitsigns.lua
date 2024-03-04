@@ -40,7 +40,7 @@ return {
 
                     local map = require('toni.utils').map
                     -- Navigation
-                    map('n', ']g', function()
+                    map({ 'n', 'v' }, ']g', function()
                         if vim.wo.diff then
                             return ']g'
                         end
@@ -50,7 +50,7 @@ return {
                         return '<Ignore>'
                     end, { expr = true })
 
-                    map('n', '[g', function()
+                    map({ 'n', 'v' }, '[g', function()
                         if vim.wo.diff then
                             return '[g'
                         end

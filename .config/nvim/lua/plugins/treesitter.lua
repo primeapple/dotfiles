@@ -11,11 +11,14 @@ return {
         config = function()
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {
+                    'angular',
                     'bash',
                     'c',
                     'css',
                     'dockerfile',
                     'fish',
+                    'gitcommit',
+                    'gitignore',
                     'html',
                     'java',
                     'javascript',
@@ -23,9 +26,8 @@ return {
                     'lua',
                     'luadoc',
                     'luap',
-                    -- disabled these for now until they fix the bug with `jsx` codeblocks in markdown
-                    -- 'markdown',
-                    -- 'markdown_inline',
+                    'markdown',
+                    'markdown_inline',
                     'nix',
                     'python',
                     'query',
@@ -34,6 +36,7 @@ return {
                     'rust',
                     'scss',
                     'svelte',
+                    'toml',
                     'tsx',
                     'typescript',
                     'vim',

@@ -1,7 +1,7 @@
 return {
     {
         'freddiehaddad/feline.nvim',
-        lazy = false,
+        event = 'UIEnter',
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-tree/nvim-web-devicons',

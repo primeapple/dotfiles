@@ -1,3 +1,4 @@
+-- TODO move to harpoon 2
 return {
     {
         'ThePrimeagen/harpoon',
@@ -23,13 +24,6 @@ return {
                     return '<cmd>lua require("harpoon.ui").nav_file(vim.v.count)<CR>'
                 else
                     require('harpoon.mark').toggle_file()
-                end
-            end
-            local function toggle_move_or_quick_menu()
-                if vim.v.count > 0 then
-                    return '<cmd>vsplit | lua require("harpoon.ui").nav_file(vim.v.count)<CR>'
-                else
-                    require('harpoon.ui').toggle_quick_menu()
                 end
             end
             map('n', 'gh', toggle_move, { expr = true })
