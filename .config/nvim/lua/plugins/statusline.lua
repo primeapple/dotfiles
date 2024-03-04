@@ -186,8 +186,10 @@ return {
                     shortened_git_branch = function()
                         ---@diagnostic disable-next-line: undefined-field
                         local branch = vim.b.gitsigns_head or ''
-                        return branch or '', ' '
-
+                        if #branch > 14 then
+                            branch = string.sub(branch, 1, 14) .. '…'
+                        end
+                        return branch, ' '
                     end,
                 },
             })
