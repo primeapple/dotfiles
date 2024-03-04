@@ -10,18 +10,6 @@ return {
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-calc',
             'hrsh7th/cmp-emoji',
-            'hrsh7th/cmp-cmdline',
-            {
-                'zbirenbaum/copilot-cmp',
-                dependencies = 'copilot.lua',
-                config = function()
-                    require('copilot_cmp').setup({
-                        formatters = {
-                            insert_text = require('copilot_cmp.format').remove_existing,
-                        },
-                    })
-                end,
-            },
             -- 'rcarriga/cmp-dap',
         },
         event = 'InsertEnter',
@@ -43,7 +31,6 @@ return {
                             luasnip = '[SNIP]',
                             calc = '[CALC]',
                             emoji = '[EMO]',
-                            copilot = '[COP]',
                             neorg = '[NORG]',
                         },
                     }),
@@ -77,11 +64,10 @@ return {
                     { name = 'path' },
                     { name = 'calc' },
                     { name = 'emoji' },
-                    { name = 'copilot' },
                 }),
                 experimental = {
-                    -- this breaks copilot.lua otherwise
-                    ghost_text = false,
+                    -- this breaks copilot.lua if enabled
+                    ghost_text = true,
                 },
             })
 
@@ -129,24 +115,6 @@ return {
                     { name = 'calc' },
                     { name = 'emoji' },
                     { name = 'neorg' },
-                }),
-            })
-
-            -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-            cmp.setup.cmdline({ '/', '?' }, {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = {
-                    { name = 'buffer' },
-                },
-            })
-
-            -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-            cmp.setup.cmdline(':', {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
-                    { name = 'path' },
-                }, {
-                    { name = 'cmdline' },
                 }),
             })
         end,
