@@ -3,7 +3,8 @@ if status --is-interactive
     abbr --add d docker
     abbr --add dc 'docker compose'
     abbr --add dcu 'docker compose up'
-    abbr --add dcud 'docker compose down -d'
+    abbr --add dcud 'docker compose up -d'
+    abbr --add dcu 'docker compose down'
     abbr --add reload 'source ~/.config/fish/config.fish'
 
     abbr --add mv 'mv -i'
