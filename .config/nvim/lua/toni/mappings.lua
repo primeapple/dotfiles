@@ -8,6 +8,7 @@ map({ 'n', 'x', 'o' }, { 'H', '<S-Left>' }, '^')
 -- keeping search results centered
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
+
 -- keeping cursor on join centered
 -- local function join()
 --     local pos = vim.api.nvim_win_get_cursor(0)

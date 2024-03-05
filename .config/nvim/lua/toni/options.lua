@@ -6,6 +6,7 @@ opt.laststatus = 3 -- global statusline
 opt.title = true
 opt.clipboard = 'unnamedplus'
 opt.cmdheight = 0 -- dont show commandline, for more space
+opt.modeline = false
 opt.cul = true -- cursor line
 
 -- Indentline
