@@ -17,8 +17,6 @@ return {
                     'css',
                     'dockerfile',
                     'fish',
-                    'gitcommit',
-                    'gitignore',
                     'html',
                     'java',
                     'javascript',
