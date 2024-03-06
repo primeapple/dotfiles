@@ -79,8 +79,29 @@ return {
                         importModuleSpecifierPreference = 'shortest',
                     },
                 },
+                autostart = false,
             })
-            server('volar')
+            -- to avoid having tsserver run together with angularls, only start it if there is no `angular.json` found
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = 'typescript',
+                callback = function(opt)
+                    local current_file_dir = vim.fn.expand('%:p')
+                    local client
+                    for _, item in ipairs(vim.lsp.get_active_clients()) do
+                        if item.name == 'tsserver' then
+                            client = item
+                            break
+                        end
+                    end
+                    local should_start = lsp.util.root_pattern('angular.json')(current_file_dir) == nil
+                    if client and should_start then
+                        vim.lsp.buf_attach_client(opt.buf, client)
+                    elseif not client and should_start then
+                        require('lspconfig.configs')['tsserver'].launch()
+                    end
+                end,
+            })
+
             server('yamlls', {
                 settings = {
                     yaml = {
