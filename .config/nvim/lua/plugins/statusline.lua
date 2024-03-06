@@ -197,10 +197,11 @@ return {
     },
     {
         'vimpostor/vim-tpipeline',
-        lazy = false,
+        event = 'UIEnter',
         dependencies = { 'freddiehaddad/feline.nvim' },
         init = function()
             vim.cmd('let g:tpipeline_size = &co')
+            vim.g.tpipeline_clearstl = 1
             vim.g.tpipeline_refreshcmd = 'kitty @ set-tab-title refresh_tabbar'
             vim.api.nvim_create_autocmd('User', {
                 pattern = 'TpipelineSize',

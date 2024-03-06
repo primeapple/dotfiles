@@ -35,7 +35,7 @@ return {
             })
             map('n', 'zR', ufo.openAllFolds)
             map('n', 'zM', ufo.closeAllFolds)
-            map('n', '<leader><space>', 'zA')
+            map('n', '<leader><space>', 'za')
             map('n', 'K', function()
                 local winid = ufo.peekFoldedLinesUnderCursor()
                 if not winid then
