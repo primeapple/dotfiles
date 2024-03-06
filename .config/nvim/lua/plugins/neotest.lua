@@ -8,8 +8,8 @@ return {
             'nvim-treesitter/nvim-treesitter',
             'antoinemadec/FixCursorHold.nvim',
             'nvim-neotest/neotest-jest',
+            'marilari88/neotest-vitest',
             'mfussenegger/nvim-dap',
-            'okuuva/auto-save.nvim',
         },
         keys = {
             {
@@ -80,6 +80,7 @@ return {
                         jestConfigFile = 'jest.config.js',
                         env = { CI = true },
                     }),
+                    require('neotest-vitest'),
                     -- require('neotest-vim-test')({
                     --     ignore_file_types = { 'python', 'vim', 'lua' },
                     -- }),

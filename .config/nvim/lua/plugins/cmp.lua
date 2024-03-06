@@ -10,12 +10,14 @@ return {
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-calc',
             'hrsh7th/cmp-emoji',
+            'buschco/nvim-cmp-ts-tag-close',
             -- 'rcarriga/cmp-dap',
         },
         event = 'InsertEnter',
         config = function()
             local cmp = require('cmp')
             local lspkind = require('lspkind')
+            require('nvim-cmp-ts-tag-close').setup({ skip_tags = { 'img' } })
             cmp.setup({
                 completion = {
                     autocomplete = false,
@@ -32,6 +34,7 @@ return {
                             calc = '[CALC]',
                             emoji = '[EMO]',
                             neorg = '[NORG]',
+                            ['nvim-cmp-ts-tag-close'] = '[TAG]',
                         },
                     }),
                 },
@@ -64,6 +67,7 @@ return {
                     { name = 'path' },
                     { name = 'calc' },
                     { name = 'emoji' },
+                    { name = 'nvim-cmp-ts-tag-close' },
                 }),
                 experimental = {
                     -- this breaks copilot.lua if enabled
