@@ -20,6 +20,7 @@ return {
                 python = { 'ruff_format' },
                 rust = { 'rustfmt' },
                 sql = { 'sql_formatter' },
+                sh = { 'shellcheck' },
                 svelte = { { 'prettierd', 'prettier' } },
                 typescript = { { 'biome', 'prettierd', 'prettier' } },
                 typescriptreact = { { 'biome', 'prettierd', 'prettier' } },
