@@ -27,7 +27,7 @@ return {
             require('auto-save').setup({
                 enabled = true,
                 execution_message = {
-                    dim = 0.2,
+                    enabled = false,
                 },
                 -- trigger_events = {
                 --     immediate_save = {
