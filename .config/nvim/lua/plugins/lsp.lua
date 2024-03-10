@@ -8,6 +8,17 @@ return {
             -- language specific tooling
             'b0o/schemastore.nvim',
             'folke/neodev.nvim',
+            {
+                'SmiteshP/nvim-navbuddy',
+                keys = {
+                    { 'gm', '<cmd>Navbuddy<CR>'  },
+                },
+                dependencies = {
+                    'SmiteshP/nvim-navic',
+                    'MunifTanjim/nui.nvim',
+                },
+                opts = { lsp = { auto_attach = true } },
+            },
         },
         config = function()
             require('neodev').setup({})
@@ -79,28 +90,28 @@ return {
                         importModuleSpecifierPreference = 'shortest',
                     },
                 },
-            --     autostart = false,
-            -- })
-            -- -- to avoid having tsserver run together with angularls, only start it if there is no `angular.json` found
-            -- vim.api.nvim_create_autocmd('FileType', {
-            --     pattern = 'typescript',
-            --     callback = function(opt)
-            --         local current_file_dir = vim.fn.expand('%:p')
-            --         local client
-            --         for _, item in ipairs(vim.lsp.get_active_clients()) do
-            --             if item.name == 'tsserver' then
-            --                 client = item
-            --                 break
-            --             end
-            --         end
-            --         local should_start = lsp.util.root_pattern('angular.json')(current_file_dir) == nil
-            --         if client and should_start then
-            --             vim.lsp.buf_attach_client(opt.buf, client)
-            --         elseif not client and should_start then
-            --             require('lspconfig.configs')['tsserver'].launch()
-            --         end
-            --     end,
-            -- })
+                --     autostart = false,
+                -- })
+                -- -- to avoid having tsserver run together with angularls, only start it if there is no `angular.json` found
+                -- vim.api.nvim_create_autocmd('FileType', {
+                --     pattern = 'typescript',
+                --     callback = function(opt)
+                --         local current_file_dir = vim.fn.expand('%:p')
+                --         local client
+                --         for _, item in ipairs(vim.lsp.get_active_clients()) do
+                --             if item.name == 'tsserver' then
+                --                 client = item
+                --                 break
+                --             end
+                --         end
+                --         local should_start = lsp.util.root_pattern('angular.json')(current_file_dir) == nil
+                --         if client and should_start then
+                --             vim.lsp.buf_attach_client(opt.buf, client)
+                --         elseif not client and should_start then
+                --             require('lspconfig.configs')['tsserver'].launch()
+                --         end
+                --     end,
+                -- })
             })
 
             server('yamlls', {
