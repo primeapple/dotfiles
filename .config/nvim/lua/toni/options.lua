@@ -40,7 +40,8 @@ opt.scrolloff = 5
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
 
-opt.lazyredraw = true
+-- disable for noice
+-- opt.lazyredraw = true
 
 g.mapleader = ' '
 

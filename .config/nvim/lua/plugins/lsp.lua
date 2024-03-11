@@ -11,15 +11,29 @@ return {
             {
                 'SmiteshP/nvim-navbuddy',
                 keys = {
-                    { 'gm', '<cmd>Navbuddy<CR>'  },
+                    { 'gm', '<cmd>Navbuddy<CR>' },
                 },
                 dependencies = {
                     'SmiteshP/nvim-navic',
                     'MunifTanjim/nui.nvim',
                 },
-                opts = { lsp = { auto_attach = true } },
+                config = function()
+                    local actions = require('nvim-navbuddy.actions')
+                    require('nvim-navbuddy').setup({
+                        lsp = { auto_attach = true },
+                        mappings = {
+                            ['Down'] = actions.next_sibling(),
+                            ['Up'] = actions.previous_sibling(),
+                            ['Left'] = actions.parent(),
+                            ['Right'] = actions.children(),
+                            ['<S-Down>'] = actions.move_down(),
+                            ['<S-Up>'] = actions.move_up(),
+                        },
+                    })
+                end,
             },
         },
+
         config = function()
             require('neodev').setup({})
 
