@@ -26,7 +26,7 @@ map('n', '<ESC>', '<cmd> noh <CR>')
 -- map('n', 'Q', 'q:')
 
 -- allows 'overpasting' selected blocks and not change the register to the overpasted text
-map('v', 'p', 'p:let @+=@0<CR>')
+map('x', 'p', 'p:let @+=@0<CR>')
 
 -- Redo with U
 map('n', 'U', '<C-R>')
@@ -46,8 +46,8 @@ map('t', '<ESC><ESC>', '<C-\\><C-n>')
 -- map('n', 'k', function() return vim.v.count > 0 and 'k' or 'gk' end, { expr = true })
 
 -- better indenting
-map('v', '<', '<gv')
-map('v', '>', '>gv')
+map('x', '<', '<gv')
+map('x', '>', '>gv')
 
 local function toggle_qf()
     local open_buffers = vim.api.nvim_list_bufs()

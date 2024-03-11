@@ -40,7 +40,7 @@ return {
 
                     local map = require('toni.utils').map
                     -- Navigation
-                    map({ 'n', 'v' }, ']g', function()
+                    map({ 'n', 'x' }, ']g', function()
                         if vim.wo.diff then
                             return ']g'
                         end
@@ -50,7 +50,7 @@ return {
                         return '<Ignore>'
                     end, { expr = true })
 
-                    map({ 'n', 'v' }, '[g', function()
+                    map({ 'n', 'x' }, '[g', function()
                         if vim.wo.diff then
                             return '[g'
                         end
@@ -62,12 +62,12 @@ return {
 
                     -- suggested actions
                     map('n', '<leader>ga', gs.stage_hunk)
-                    map('v', '<leader>ga', function()
+                    map('x', '<leader>ga', function()
                         gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
                     end)
                     map('n', '<leader>gA', gs.stage_buffer)
                     map('n', '<leader>gr', gs.reset_hunk)
-                    map('v', '<leader>gr', function()
+                    map('x', '<leader>gr', function()
                         gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
                     end)
                     map('n', '<leader>gR', gs.reset_buffer)

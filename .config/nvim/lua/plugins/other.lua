@@ -9,8 +9,8 @@ return {
         'numToStr/Comment.nvim',
         enabled = false,
         keys = {
-            { 'gc', mode = { 'n', 'v' } },
-            { 'gb', mode = { 'n', 'v' } },
+            { 'gc', mode = { 'n', 'x' } },
+            { 'gb', mode = { 'n', 'x' } },
         },
         config = function()
             require('Comment').setup()
@@ -40,15 +40,15 @@ return {
         build = './kitty/install-kittens.bash',
         config = function()
             local map = require('toni.utils').map
-            map({ 'n', 'i', 'v', 't' }, { '<C-h>', '<C-Left>' }, require('smart-splits').move_cursor_left)
-            map({ 'n', 'i', 'v', 't' }, { '<C-j>', '<C-Down>' }, require('smart-splits').move_cursor_down)
-            map({ 'n', 'i', 'v', 't' }, { '<C-k>', '<C-Up>' }, require('smart-splits').move_cursor_up)
-            map({ 'n', 'i', 'v', 't' }, { '<C-l>', '<C-Right>' }, require('smart-splits').move_cursor_right)
+            map({ 'n', 'i', 'x', 't' }, { '<C-h>', '<C-Left>' }, require('smart-splits').move_cursor_left)
+            map({ 'n', 'i', 'x', 't' }, { '<C-j>', '<C-Down>' }, require('smart-splits').move_cursor_down)
+            map({ 'n', 'i', 'x', 't' }, { '<C-k>', '<C-Up>' }, require('smart-splits').move_cursor_up)
+            map({ 'n', 'i', 'x', 't' }, { '<C-l>', '<C-Right>' }, require('smart-splits').move_cursor_right)
             -- TODO: maybe use <leader>s hjkl/HJKL
-            -- map({ 'n', 'i', 'v', 't' }, { '<A-Left>' }, require('smart-splits').resize_left)
-            -- map({ 'n', 'i', 'v', 't' }, { '<A-Down>' }, require('smart-splits').resize_down)
-            -- map({ 'n', 'i', 'v', 't' }, { '<A-Up>' }, require('smart-splits').resize_up)
-            -- map({ 'n', 'i', 'v', 't' }, { '<A-Right>' }, require('smart-splits').resize_right)
+            -- map({ 'n', 'i', 'x', 't' }, { '<A-Left>' }, require('smart-splits').resize_left)
+            -- map({ 'n', 'i', 'x', 't' }, { '<A-Down>' }, require('smart-splits').resize_down)
+            -- map({ 'n', 'i', 'x', 't' }, { '<A-Up>' }, require('smart-splits').resize_up)
+            -- map({ 'n', 'i', 'x', 't' }, { '<A-Right>' }, require('smart-splits').resize_right)
             -- map('n', { 'h', 'Left' }, require('smart-splits').swap_buf_left)
             -- map('n', { 'j', 'Down' }, require('smart-splits').swap_buf_down)
             -- map('n', { 'k', 'Up' }, require('smart-splits').swap_buf_up)
@@ -104,11 +104,11 @@ return {
     {
         'chrisgrieser/nvim-various-textobjs',
         keys = {
-            { 'gG', mode = { 'o', 'v' } },
-            { 'ii', mode = { 'o', 'v' } },
-            { 'ik', mode = { 'o', 'v' } },
-            { 'iv', mode = { 'o', 'v' } },
-            { 'R', mode = { 'o', 'v' } },
+            { 'gG', mode = { 'o', 'x' } },
+            { 'ii', mode = { 'o', 'x' } },
+            { 'ik', mode = { 'o', 'x' } },
+            { 'iv', mode = { 'o', 'x' } },
+            { 'R', mode = { 'o', 'x' } },
         },
         opts = {
             useDefaultKeymaps = true,
@@ -165,19 +165,9 @@ return {
             },
         },
     },
-    -- TODO: if flash is nicer, use that and remove leap
-    {
-        'ggandor/leap.nvim',
-        enabled = false,
-        keys = {
-            { 's', '<Plug>(leap-forward-to)', mode = { 'n', 'o', 'v' } },
-            { 'S', '<Plug>(leap-backward-to)', mode = { 'n', 'o', 'v' } },
-            { 'gs', '<Plug>(leap-cross-window)', mode = { 'n', 'o', 'v' } },
-        },
-    },
     {
         'bronson/vim-visual-star-search',
-        keys = { { '*', mode = 'v' } },
+        keys = { { '*', mode = 'x' } },
     },
 
     -------------------- APPEARANCE --------------------
