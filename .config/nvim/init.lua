@@ -38,6 +38,9 @@ local disabled_built_ins = {
 }
 
 require('lazy').setup('plugins', {
+    change_detection = {
+        enabled = false
+    },
     defaults = {
         lazy = true,
     },

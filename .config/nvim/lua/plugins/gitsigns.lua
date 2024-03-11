@@ -45,7 +45,7 @@ return {
                             return ']g'
                         end
                         vim.schedule(function()
-                            gs.next_hunk()
+                            gs.next_hunk({ navigation_message = false })
                         end)
                         return '<Ignore>'
                     end, { expr = true })
@@ -55,7 +55,7 @@ return {
                             return '[g'
                         end
                         vim.schedule(function()
-                            gs.prev_hunk()
+                            gs.prev_hunk({navigation_message = false})
                         end)
                         return '<Ignore>'
                     end, { expr = true })

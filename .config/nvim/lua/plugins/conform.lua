@@ -26,6 +26,7 @@ return {
                 typescriptreact = { { 'biome', 'prettierd', 'prettier' } },
                 yaml = { { 'prettierd', 'prettier', 'yamlfmt' } },
             },
+            notify_on_error = false
         })
 
         require('toni.utils').map({ 'n', 'v' }, '<leader>af', function()
