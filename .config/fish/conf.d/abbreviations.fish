@@ -45,7 +45,7 @@ if status --is-interactive
     abbr --add nt 'npm test --'
     abbr --add nrd 'npm run build'
     abbr --add nrd 'npm run docs'
-    abbr --add nrj 'fd "\.test\." -e js -e ts -e jsx | fzy | xargs -r npx jest'
+    # abbr --add nrj 'fd "\.test\." -e js -e ts -e jsx | fzy | xargs -r npx jest'
     abbr --add nrl 'npm run lint'
     abbr --add nrp 'npm run prettify'
     abbr --add nrs 'npm run start'
@@ -122,9 +122,8 @@ if status --is-interactive
     abbr --add tin 'clear; task inbox'
     abbr --add tal 'task add dep:"$(task +LATEST uuids)"'
 
-    # fuzzy finder
-    function __zf_wrapper
-        fd | zf
+    function __zf_file
+        zfd --type file
     end
-    abbr --add zf_in_directory --position anywhere --regex "\S*\*\*" --function __zf_wrapper
+    abbr --add zf_file --position anywhere --regex "\S*\*\*" --function __zf_file
 end
