@@ -1,20 +1,10 @@
+local todo_keywords = { 'FIX', 'TODO', 'HACK', 'WARN', 'PERF', 'NOTE', 'TEST' }
+
 return {
     -------------------- EDITING --------------------
     {
         'tpope/vim-unimpaired',
         keys = { '[', ']', 'yo' },
-    },
-    {
-        -- TODO: replaced by mini
-        'numToStr/Comment.nvim',
-        enabled = false,
-        keys = {
-            { 'gc', mode = { 'n', 'x' } },
-            { 'gb', mode = { 'n', 'x' } },
-        },
-        config = function()
-            require('Comment').setup()
-        end,
     },
     {
         'andymass/vim-matchup',
@@ -57,7 +47,6 @@ return {
     },
     {
         'rgroli/other.nvim',
-        -- event = 'VeryLazy',
         keys = { 'gp', 'gP' },
         config = function()
             local map = require('toni.utils').map
@@ -123,12 +112,12 @@ return {
         opts = {
             modes = {
                 search = {
-                    enabled = false
+                    enabled = false,
                 },
                 char = {
-                    enabled = false
-                }
-            }
+                    enabled = false,
+                },
+            },
         },
         keys = {
             {
@@ -225,42 +214,36 @@ return {
         'folke/todo-comments.nvim',
         event = 'VeryLazy',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        opts = {},
-    },
-
-    -------------------- Languages/Tools --------------------
-    {
-        'lervag/vimtex',
-        ft = 'tex',
+        keys = {
+            {
+                ']t',
+                function()
+                    require('todo-comments').jump_next({ keywords = todo_keywords })
+                end,
+            },
+            {
+                '[t',
+                function()
+                    require('todo-comments').jump_prev({ keywords = todo_keywords })
+                end,
+            },
+        },
+        opts = {
+            highlight = {
+                pattern = [[.* <(KEYWORDS)\s*]],
+            },
+            search = {
+                pattern = [[ \b(KEYWORDS)\b]],
+            },
+        },
     },
 
     -------------------- MISC --------------------
     {
-        'iamcco/markdown-preview.nvim',
-        build = 'cd app && yarn install',
-        ft = { 'markdown' },
-    },
-    {
-        'akinsho/toggleterm.nvim',
-        version = '*',
-        keys = { '<C-t>', '<leader>r' },
-        opts = {
-            size = function(term)
-                if term.direction == 'horizontal' then
-                    return 15
-                elseif term.direction == 'vertical' then
-                    return vim.o.columns * 0.3
-                end
-            end,
-            open_mapping = '<C-t>',
-            direction = 'vertical',
-        },
-    },
-    {
         'ja-ford/delaytrain.nvim',
         event = 'VeryLazy',
         opts = {
-            grace_period = 5,
+            grace_period = 10,
         },
     },
     {

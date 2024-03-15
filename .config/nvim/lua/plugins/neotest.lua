@@ -55,13 +55,13 @@ return {
                 end,
             },
             {
-                '[t',
+                '[r',
                 function()
                     require('neotest').jump.prev({ status = 'failed' })
                 end,
             },
             {
-                ']t',
+                ']r',
                 function()
                     require('neotest').jump.next({ status = 'failed' })
                 end,

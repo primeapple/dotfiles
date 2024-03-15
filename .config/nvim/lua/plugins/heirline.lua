@@ -336,7 +336,7 @@ return {
                 -- %c = column number
                 -- %P = percentage through file of displayed window
                 provider = '%l:%c %P',
-                hl = { bg = 'bright_bg'}
+                hl = { bg = 'bright_bg' },
             }
 
             local ScrollBar = {
