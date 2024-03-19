@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 FILE_NAME="screenshot-$(date +%F-%T).png"
 FILE_PATH="${HOME}/pictures/screenshots/${FILE_NAME}"
