@@ -224,7 +224,6 @@ def draw_tab(
 
         active_tab_has_nvim_running = is_nvim_active_in_tab(active_tab_id)
         if active_tab_has_nvim_running:
-            print('has nvim')
             left_statusline = left_statusline_components()
             right_statusline = right_statusline_components()
 
@@ -239,7 +238,6 @@ def draw_tab(
             draw_components(screen, tabs)
             draw_components(screen, right_statusline)
         else:
-            print('not nvim')
             tabs = all_tab_components(
                 screen, left_text_size, right_text_size, active_tab_id
             )

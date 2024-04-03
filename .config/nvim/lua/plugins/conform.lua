@@ -7,23 +7,33 @@ return {
     config = function()
         local conform = require('conform')
 
+        local js_formatter = function(bufnr)
+            if conform.get_formatter_info('prettierd', bufnr).available then
+                return { 'prettierd' }
+            elseif  conform.get_formatter_info('prettier', bufnr).available then
+                return { 'prettier' }
+            else
+                return { 'biome' }
+            end
+        end
+
         conform.setup({
             formatters_by_ft = {
                 css = { { 'prettierd', 'prettier' } },
                 fish = { 'fish_indent' },
                 html = { { 'prettierd', 'prettier' } },
-                javascript = { { 'prettierd', 'prettier' } },
-                javascriptreact = { { 'biome', 'prettierd', 'prettier' } },
-                json = { { 'biome', 'prettierd', 'prettier' } },
+                javascript = js_formatter,
+                javascriptreact = js_formatter,
+                json = js_formatter,
                 lua = { 'stylua' },
                 markdown = { { 'prettierd', 'prettier' } },
                 python = { 'ruff_format' },
                 rust = { 'rustfmt' },
                 sql = { 'sql_formatter' },
                 sh = { 'shellcheck' },
-                svelte = { { 'prettierd', 'prettier' } },
-                typescript = { { 'biome', 'prettierd', 'prettier' } },
-                typescriptreact = { { 'biome', 'prettierd', 'prettier' } },
+                svelte = js_formatter,
+                typescript = js_formatter,
+                typescriptreact = js_formatter,
                 yaml = { { 'prettierd', 'prettier', 'yamlfmt' } },
             },
             notify_on_error = false,

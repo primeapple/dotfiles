@@ -3,9 +3,6 @@ return {
     cmd = 'Mason',
     dependencies = {
         'williamboman/mason-lspconfig.nvim',
-        'jay-babu/mason-nvim-dap.nvim',
-        'zapling/mason-conform.nvim',
-        'rshkarin/mason-nvim-lint',
     },
     config = function()
         require('mason').setup({
@@ -24,7 +21,5 @@ return {
             },
             automatic_installation = true,
         })
-        require('mason-conform').setup()
-        require('mason-nvim-lint').setup()
     end,
 }
