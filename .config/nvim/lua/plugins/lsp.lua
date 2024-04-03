@@ -89,6 +89,7 @@ return {
                 },
             })
             server('pyright')
+            server('racket_langserver')
             server('rome', {
                 root_dir = lsp.util.root_pattern('rome.json'),
                 single_file_support = false,
@@ -160,5 +161,10 @@ return {
     {
         'mfussenegger/nvim-jdtls',
         ft = { 'java' },
+    },
+    {
+        'Olical/conjure',
+        dependencies = { 'benknoble/vim-racket' },
+        ft = { 'racket' },
     },
 }
