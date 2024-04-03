@@ -4,10 +4,11 @@ return {
     {
         'nvim-neotest/neotest',
         dependencies = {
+            'nvim-neotest/nvim-nio',
             'nvim-lua/plenary.nvim',
+            'nvim-neotest/neotest-jest',
             'nvim-treesitter/nvim-treesitter',
             'antoinemadec/FixCursorHold.nvim',
-            'nvim-neotest/neotest-jest',
             'marilari88/neotest-vitest',
             'mfussenegger/nvim-dap',
         },
@@ -90,9 +91,11 @@ return {
                     open = false,
                 },
                 output_panel = {
+                    enabled = true,
                     open = 'rightbelow vsplit | resize 30',
                 },
                 status = {
+                    enabled = true,
                     virtual_text = false,
                     signs = true,
                 },

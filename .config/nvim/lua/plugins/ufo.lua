@@ -31,7 +31,9 @@ return {
             local map = require('toni.utils').map
             local ufo = require('ufo')
             ufo.setup({
-                close_fold_kinds = { 'imports', 'comment' },
+                close_fold_kinds_for_ft = {
+                    default = { 'imports', 'comment' },
+                },
             })
             map('n', 'zR', ufo.openAllFolds)
             map('n', 'zM', ufo.closeAllFolds)
