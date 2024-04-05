@@ -182,7 +182,6 @@ return {
     },
     {
         'j-hui/fidget.nvim',
-        tag = 'legacy',
         event = 'VeryLazy',
         config = true,
     },
@@ -239,13 +238,7 @@ return {
     },
 
     -------------------- MISC --------------------
-    {
-        'ja-ford/delaytrain.nvim',
-        event = 'VeryLazy',
-        opts = {
-            grace_period = 10,
-        },
-    },
+    -- TODO use option `winfixbuf` when upgrading to v0.10 and remove this plugin
     {
         'stevearc/stickybuf.nvim',
         event = 'BufReadPre',

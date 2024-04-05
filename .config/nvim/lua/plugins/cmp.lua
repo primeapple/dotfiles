@@ -10,14 +10,12 @@ return {
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-calc',
             'hrsh7th/cmp-emoji',
-            'buschco/nvim-cmp-ts-tag-close',
             -- 'rcarriga/cmp-dap',
         },
         event = 'InsertEnter',
         config = function()
             local cmp = require('cmp')
             local lspkind = require('lspkind')
-            require('nvim-cmp-ts-tag-close').setup({ skip_tags = { 'img' } })
             cmp.setup({
                 completion = {
                     autocomplete = false,
