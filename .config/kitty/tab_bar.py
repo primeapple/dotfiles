@@ -1,5 +1,5 @@
 import os
-import os.path
+from pathlib import Path
 from dataclasses import dataclass
 from typing import List
 from kitty.fast_data_types import Screen, get_boss, get_options
@@ -141,8 +141,9 @@ def draw_components(screen: Screen, components: List[Component]) -> None:
 
 ##### TPIPELINE #####
 def get_tpipeline_str(path: str) -> str:
-    if os.path.exists(path):
-        return open(path).readline()
+    file = Path(path)
+    if file.is_file():
+        return file.read_text().rstrip("\n")
     else:
         return ""
 
@@ -214,7 +215,7 @@ def draw_tab(
     if tab.is_active:
         # a better solution would be to draw the whole tab bar on the active tab
         # but that produces an error (3 red dots in the most right corner),
-        # since kitty expects only the last `draw_tab` function call to pruduce an element on the last column
+        # since kitty expects only the last `draw_tab` function call to produce an element on the last column
         global active_tab_id
         active_tab_id = tab.tab_id
 
