@@ -1,3 +1,6 @@
+local api = vim.api
+local fn = vim.fn
+
 return {
     {
         'okuuva/auto-save.nvim',
@@ -37,7 +40,6 @@ return {
                 -- },
                 debounce_delay = 3000,
                 condition = function(buf)
-                    local fn = vim.fn
                     local utils = require('auto-save.utils.data')
 
                     -- don't save for special-buffers
@@ -51,6 +53,16 @@ return {
                 end,
                 noautocmd = false,
                 debug = false,
+            })
+
+            local group = api.nvim_create_augroup('autosave', {})
+            -- udate tpipeline after save
+            api.nvim_create_autocmd('User', {
+                pattern = 'AutoSaveWritePost',
+                group = group,
+                callback = function()
+                    fn['tpipeline#update']()
+                end,
             })
         end,
     },
