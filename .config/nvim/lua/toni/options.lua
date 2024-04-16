@@ -46,5 +46,5 @@ opt.updatetime = 250
 g.mapleader = ' '
 g.maplocalleader = ','
 
--- It's not recommended to use fish for internal terminal, we use it anyways because fish is amazing
+-- It's not recommended to use fish for internal terminal, therefore let's set it to bash
 opt.shell = '/bin/bash'
