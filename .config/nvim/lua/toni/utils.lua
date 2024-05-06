@@ -3,7 +3,7 @@ local api = vim.api
 local M = {}
 
 M.map = function(modes, keys, command, opt)
-    local options = { silent = true }
+    local options = { silent = true, unique = true }
 
     if opt then
         options = vim.tbl_extend('force', options, opt)

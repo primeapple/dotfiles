@@ -17,7 +17,7 @@ map('n', 'N', 'Nzzzv')
 -- end
 -- map('n', 'J', join)
 
-map('n', '<ESC>', '<cmd> noh <CR>')
+map('n', '<ESC>', '<cmd> noh <CR> <cmd> echo <CR>')
 
 -- map({'n', 'x'}, ':', ';')
 -- map({'n', 'x'}, ';', ':')

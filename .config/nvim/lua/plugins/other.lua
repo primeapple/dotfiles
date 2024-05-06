@@ -33,7 +33,8 @@ return {
             map({ 'n', 'i', 'x', 't' }, { '<C-h>', '<C-Left>' }, require('smart-splits').move_cursor_left)
             map({ 'n', 'i', 'x', 't' }, { '<C-j>', '<C-Down>' }, require('smart-splits').move_cursor_down)
             map({ 'n', 'i', 'x', 't' }, { '<C-k>', '<C-Up>' }, require('smart-splits').move_cursor_up)
-            map({ 'n', 'i', 'x', 't' }, { '<C-l>', '<C-Right>' }, require('smart-splits').move_cursor_right)
+            -- Unsure where `C-l` is already mapped
+            map({ 'n', 'i', 'x', 't' }, { '<C-l>', '<C-Right>' }, require('smart-splits').move_cursor_right, {unique=false})
             -- TODO: maybe use <leader>s hjkl/HJKL
             -- map({ 'n', 'i', 'x', 't' }, { '<A-Left>' }, require('smart-splits').resize_left)
             -- map({ 'n', 'i', 'x', 't' }, { '<A-Down>' }, require('smart-splits').resize_down)
@@ -219,6 +220,10 @@ return {
                 pattern = [[ \b(KEYWORDS)\b]],
             },
         },
+    },
+    {
+        'Bekaboo/deadcolumn.nvim',
+        event = 'VeryLazy',
     },
 
     -------------------- MISC --------------------

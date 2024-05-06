@@ -28,7 +28,7 @@ return {
             map('n', '<leader>U', function()
                 dap.toggle_breakpoint()
             end)
-            map('n', '<leader>up', function()
+            map('n', '<leader>ub', function()
                 dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
             end)
             map('n', '<leader>ur', function()
