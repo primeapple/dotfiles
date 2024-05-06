@@ -4,6 +4,7 @@ return {
         lazy = false,
         dependencies = {
             'nvim-tree/nvim-web-devicons',
+            'refractalize/oil-git-status.nvim',
         },
         config = function()
             local oil = require('oil')
@@ -29,9 +30,14 @@ return {
                     ['<C-r>'] = 'actions.refresh',
                     ['<C-y>'] = copy_entry_relative_path,
                 },
+                win_options = {
+                    signcolumn = "yes:2"
+                }
             })
             local map = require('toni.utils').map
             map('n', '-', oil.open)
+
+            require('oil-git-status').setup()
         end,
     },
 }
