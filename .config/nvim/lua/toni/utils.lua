@@ -46,8 +46,9 @@ M.on_attach = function(client, bufnr)
         '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
         opts
     )
-    api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ac', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    -- TODO is the default in nvim 0.10
+    api.nvim_buf_set_keymap(bufnr, 'n', 'crn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    api.nvim_buf_set_keymap(bufnr, 'n', 'crr', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
 local ft_augroup = api.nvim_create_augroup('ft_augroup', { clear = true })

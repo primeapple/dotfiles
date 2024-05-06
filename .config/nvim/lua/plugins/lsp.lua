@@ -51,9 +51,10 @@ return {
 
             -- diagnostic mappings
             utils.map('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
+            utils.map('n', '<leader>D', '<cmd>lua vim.diagnostic.setloclist()<CR>')
+            -- TODO this is the default in nvim 0.10
             utils.map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
             utils.map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-            utils.map('n', '<leader>D', '<cmd>lua vim.diagnostic.setloclist()<CR>')
 
             local server = function(language_server_name, options)
                 local merged_options = vim.tbl_deep_extend('force', {

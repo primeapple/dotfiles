@@ -39,7 +39,7 @@ return {
             notify_on_error = false,
         })
 
-        require('toni.utils').map({ 'n', 'x' }, '<leader>af', function()
+        require('toni.utils').map({ 'n', 'x' }, 'crf', function()
             conform.format({
                 lsp_fallback = true,
                 async = false,
