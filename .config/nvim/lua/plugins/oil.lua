@@ -37,7 +37,9 @@ return {
             local map = require('toni.utils').map
             map('n', '-', oil.open)
 
-            require('oil-git-status').setup()
+            require('oil-git-status').setup({
+                show_ignored = false
+            })
         end,
     },
 }

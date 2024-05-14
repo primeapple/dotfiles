@@ -34,12 +34,16 @@ return {
             map({ 'n', 'i', 'x', 't' }, { '<C-j>', '<C-Down>' }, require('smart-splits').move_cursor_down)
             map({ 'n', 'i', 'x', 't' }, { '<C-k>', '<C-Up>' }, require('smart-splits').move_cursor_up)
             -- Unsure where `C-l` is already mapped
-            map({ 'n', 'i', 'x', 't' }, { '<C-l>', '<C-Right>' }, require('smart-splits').move_cursor_right, {unique=false})
-            -- TODO: maybe use <leader>s hjkl/HJKL
-            -- map({ 'n', 'i', 'x', 't' }, { '<A-Left>' }, require('smart-splits').resize_left)
-            -- map({ 'n', 'i', 'x', 't' }, { '<A-Down>' }, require('smart-splits').resize_down)
-            -- map({ 'n', 'i', 'x', 't' }, { '<A-Up>' }, require('smart-splits').resize_up)
-            -- map({ 'n', 'i', 'x', 't' }, { '<A-Right>' }, require('smart-splits').resize_right)
+            map(
+                { 'n', 'i', 'x', 't' },
+                { '<C-l>', '<C-Right>' },
+                require('smart-splits').move_cursor_right,
+                { unique = false }
+            )
+            map({ 'n', 'i', 'x', 't' }, { '<A-,>' }, require('smart-splits').resize_left)
+            map({ 'n', 'i', 'x', 't' }, { '<A-]>' }, require('smart-splits').resize_down)
+            map({ 'n', 'i', 'x', 't' }, { '<A-[>' }, require('smart-splits').resize_up)
+            map({ 'n', 'i', 'x', 't' }, { '<A-.>' }, require('smart-splits').resize_right)
             -- map('n', { 'h', 'Left' }, require('smart-splits').swap_buf_left)
             -- map('n', { 'j', 'Down' }, require('smart-splits').swap_buf_down)
             -- map('n', { 'k', 'Up' }, require('smart-splits').swap_buf_up)
