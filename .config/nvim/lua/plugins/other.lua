@@ -26,6 +26,7 @@ return {
     {
         'mrjones2014/smart-splits.nvim',
         -- TODO: use `keys`
+        version = '>=1.0.0',
         event = 'VeryLazy',
         build = './kitty/install-kittens.bash',
         config = function()
