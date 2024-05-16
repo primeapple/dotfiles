@@ -3,7 +3,7 @@ local with_pre_save = require('toni.utils').with_pre_save
 return {
     {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
+        version = '>=0.1.0',
         cmd = 'Telescope',
         keys = {
             -- basic mappings
@@ -75,6 +75,8 @@ return {
 
             telescope.setup({
                 defaults = {
+                    -- TODO try this one after update
+                    -- path_display = { "filename_first" },
                     path_display = { shorten = { len = 3, exclude = { 1, -2, -1 } } },
                     mappings = {
                         i = {

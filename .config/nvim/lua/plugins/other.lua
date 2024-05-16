@@ -226,10 +226,6 @@ return {
             },
         },
     },
-    {
-        'Bekaboo/deadcolumn.nvim',
-        event = 'VeryLazy',
-    },
 
     -------------------- MISC --------------------
     -- TODO use option `winfixbuf` when upgrading to v0.10 and remove this plugin
