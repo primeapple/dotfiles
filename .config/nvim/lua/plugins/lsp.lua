@@ -93,7 +93,6 @@ return {
                 },
             })
             server('pyright')
-            server('racket_langserver')
             server('stylelint_lsp')
             server('tailwindcss', {
                 root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
@@ -166,5 +165,9 @@ return {
         'Olical/conjure',
         dependencies = { 'benknoble/vim-racket' },
         ft = { 'racket' },
+        config = function(_, opts)
+            require('conjure.main').main()
+            require('conjure.mapping')['on-filetype']()
+        end,
     },
 }
