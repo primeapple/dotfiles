@@ -1,10 +1,14 @@
 if status --is-interactive
     # applications
-    abbr --add d docker
-    abbr --add dc 'docker compose'
-    abbr --add dcu 'docker compose up'
-    abbr --add dcud 'docker compose up -d'
-    abbr --add dcd 'docker compose down'
+    if command -v docker >/dev/null
+        abbr --add d docker
+        abbr --add dr 'docker run'
+        abbr --add db 'docker build'
+        abbr --add dc 'docker compose'
+        abbr --add dcu 'docker compose up'
+        abbr --add dcud 'docker compose up --detach'
+        abbr --add dcd 'docker compose down'
+    end
 
     abbr --add reload 'source ~/.config/fish/config.fish'
 
