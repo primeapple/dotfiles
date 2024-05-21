@@ -11,5 +11,5 @@ RUN chmod +x yadm-test.sh && chown primeapple:primeapple yadm-test.sh
 
 USER primeapple
 # this is to run the script as root
-# CMD ["echo", "password", "|", "sudo", "-S", "./yadm-test.sh"]
-CMD ["./yadm-test.sh"]
+CMD ["echo", "password", "|", "sudo", "-S", "./yadm-test.sh"]
+# CMD ["./yadm-test.sh"]
