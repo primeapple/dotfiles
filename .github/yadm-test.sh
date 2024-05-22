@@ -4,7 +4,7 @@ set -eu
 
 echo "## TEST: Cloning the dotfiles via YADM ##"
 yadm clone --no-bootstrap https://github.com/primeapple/dotfiles
-echo '## DONE'
+echo "## DONE"
 
 ###############################################################################
 
@@ -25,13 +25,13 @@ for file in "${files[@]}"; do
     exit 1
   fi
 done
-echo '## DONE'
+echo "## DONE"
 
 ###############################################################################
 
 echo "## TEST: Executing bootstrap"
 yadm bootstrap
-echo '## DONE'
+echo "## DONE"
 
 ###############################################################################
 
@@ -50,7 +50,7 @@ if [ -d ".github" ]; then
   echo "Error: .github/ should not be checked out."
   exit 1
 fi
-echo '## DONE'
+echo "## DONE"
 
 ###############################################################################
 
@@ -59,7 +59,7 @@ echo '## DONE'
 #   echo "Error: fish is not the default shell."
 #   exit 1
 # fi
-# echo '## DONE'
+# echo "## DONE"
 
 ###############################################################################
 
@@ -68,4 +68,23 @@ if ! fish -c "fisher --version" >/dev/null 2>&1; then
   echo "Error: fisher is not installed."
   exit 1
 fi
-echo '## DONE'
+echo "## DONE"
+
+###############################################################################
+
+echo "## TEST: pacman installed specified applications"
+apps=("nvim" "bat" "eza")
+
+for app in "${apps[@]}"; do
+  if ! command -v "$app"; then
+    echo "Error: App $app was not installed by pacman."
+    exit 1
+  fi
+done
+echo "## DONE"
+
+###############################################################################
+
+echo "## TEST: xdg config dirs are created"
+# TODO
+echo "## DONE"

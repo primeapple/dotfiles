@@ -22,4 +22,4 @@ pacman_packages=(
     "zip"
 )
 
-pacman -S "${pacman_packages[@]}"
+sudo pacman -S --noconfirm "${pacman_packages[@]}"
