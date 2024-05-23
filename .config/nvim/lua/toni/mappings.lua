@@ -28,9 +28,6 @@ map('n', '<ESC>', '<cmd> noh <CR> <cmd> echo <CR>')
 -- allows 'overpasting' selected blocks and not change the register to the overpasted text
 map('x', 'p', 'p:let @+=@0<CR>')
 
--- Redo with U
-map('n', 'U', '<C-R>')
-
 -- open new vertical split
 map('n', '<leader>/', '<cmd> vsp <CR>')
 -- open new horizontal split
@@ -42,10 +39,8 @@ map('n', '<leader>=', '<C-w>=')
 map('t', '<ESC><ESC>', '<C-\\><C-n>')
 
 -- Remap for dealing with visual line wraps
--- Doesn't seem to work?
--- TODO: investigate
--- map('n', 'j', function() return vim.v.count > 0 and 'j' or 'gj' end, { expr = true })
--- map('n', 'k', function() return vim.v.count > 0 and 'k' or 'gk' end, { expr = true })
+map('n', 'j', function() return vim.v.count > 0 and 'j' or 'gj' end, { expr = true })
+map('n', 'k', function() return vim.v.count > 0 and 'k' or 'gk' end, { expr = true })
 
 -- better indenting
 map('x', '<', '<gv')
@@ -70,3 +65,7 @@ map('n', 'ZC', toggle_qf)
 -- nicer save
 map('n', 'ZW', '<cmd> w <CR>')
 map('n', 'ZA', '<cmd> wa <CR>')
+
+-- stolen from mini.basics
+map('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
+map('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")

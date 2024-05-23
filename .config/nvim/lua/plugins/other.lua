@@ -3,23 +3,11 @@ local todo_keywords = { 'FIX', 'TODO', 'HACK', 'WARN', 'PERF', 'NOTE', 'TEST' }
 return {
     -------------------- EDITING --------------------
     {
-        'tpope/vim-unimpaired',
-        keys = { '[', ']', 'yo' },
-    },
-    {
         'andymass/vim-matchup',
         event = 'VeryLazy',
         init = function()
             vim.g.matchup_matchparen_offscreen = { method = 'popup' }
         end,
-    },
-    {
-        -- TODO: replace with mini
-        'windwp/nvim-autopairs',
-        event = 'VeryLazy',
-        opts = {
-            disable_in_macro = true,
-        },
     },
 
     -------------------- NAVIGATION --------------------
@@ -96,19 +84,6 @@ return {
             vim.g.wordmotion_prefix = '<leader>'
         end,
     },
-    {
-        'chrisgrieser/nvim-various-textobjs',
-        keys = {
-            { 'gG', mode = { 'o', 'x' } },
-            { 'ii', mode = { 'o', 'x' } },
-            { 'ik', mode = { 'o', 'x' } },
-            { 'iv', mode = { 'o', 'x' } },
-            { 'R', mode = { 'o', 'x' } },
-        },
-        opts = {
-            useDefaultKeymaps = true,
-        },
-    },
 
     -------------------- MOVEMENTS --------------------
     {
@@ -144,6 +119,7 @@ return {
             },
         },
     },
+    -- TODO this may be already working ootb with nvim 0.10
     {
         'bronson/vim-visual-star-search',
         keys = { { '*', mode = 'x' } },
@@ -153,11 +129,6 @@ return {
     {
         'karb94/neoscroll.nvim',
         keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        config = true,
-    },
-    {
-        'gbprod/stay-in-place.nvim',
-        keys = { '=', '<', '>' },
         config = true,
     },
     {
