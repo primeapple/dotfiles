@@ -32,10 +32,11 @@ opt.splitright = true
 opt.splitkeep = 'screen'
 opt.tabstop = 4
 opt.softtabstop = 4
-opt.termguicolors = true
 -- opt.timeoutlen = 400
 opt.undofile = true
 opt.scrolloff = 5
+-- TODO only enable that for qf windows and so on 
+-- opt.winfixbuf = true
 
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250

@@ -24,6 +24,7 @@ return {
             -- Redo with U
             map('n', 'U', '<C-R><Cmd>lua MiniBracketed.register_undo_state()<CR>')
 
+            -- TODO remove with nvim 0.10
             require('mini.comment').setup()
             require('mini.cursorword').setup()
             require('mini.move').setup({

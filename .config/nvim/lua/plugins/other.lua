@@ -119,11 +119,6 @@ return {
             },
         },
     },
-    -- TODO this may be already working ootb with nvim 0.10
-    {
-        'bronson/vim-visual-star-search',
-        keys = { { '*', mode = 'x' } },
-    },
 
     -------------------- APPEARANCE --------------------
     {
@@ -199,7 +194,7 @@ return {
     },
 
     -------------------- MISC --------------------
-    -- TODO use option `winfixbuf` when upgrading to v0.10 and remove this plugin
+    -- TODO use option `winfixbuf` for specific buffers 
     {
         'stevearc/stickybuf.nvim',
         event = 'BufReadPre',

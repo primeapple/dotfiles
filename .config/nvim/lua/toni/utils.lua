@@ -33,7 +33,6 @@ M.on_attach = function(client, bufnr)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     -- api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     api.nvim_buf_set_keymap(bufnr, 'n', '<leader>t', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -46,7 +45,7 @@ M.on_attach = function(client, bufnr)
         '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
         opts
     )
-    -- TODO is the default in nvim 0.10
+    -- TODO is the default in nvim 0.11
     api.nvim_buf_set_keymap(bufnr, 'n', 'crn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'crr', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
