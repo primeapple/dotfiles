@@ -69,6 +69,5 @@
   "vim-qf": { "branch": "master", "commit": "7e65325651ff5a0b06af8df3980d2ee54cf10e14" },
   "vim-racket": { "branch": "master", "commit": "f994a9165ae17206cc48d02eb4a0b76988cd36db" },
   "vim-tpipeline": { "branch": "master", "commit": "5dd3832bd6e239feccb11cadca583cdcf9d5bda1" },
-  "vim-visual-star-search": { "branch": "master", "commit": "7c32edb9e3c85d473d9be4dec721a4c9d5d4d69c" },
   "vim-wordmotion": { "branch": "master", "commit": "81d9bd298376ab0dc465c85d55afa4cb8d5f47a1" }
 }
