@@ -20,6 +20,10 @@ M.map = function(modes, keys, command, opt)
 end
 
 M.on_attach = function(client, bufnr)
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true, { bufnr })
+    end
+
     local opts = { noremap = true, silent = true }
 
     -- Enable completion triggered by <c-x><c-o>

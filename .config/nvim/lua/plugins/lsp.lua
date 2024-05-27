@@ -80,6 +80,10 @@ return {
             server('lua_ls', {
                 settings = {
                     Lua = {
+                        hint = {
+                            enable = true,
+                            setType = true,
+                        },
                         workspace = {
                             checkThirdParty = false,
                         },
@@ -98,7 +102,14 @@ return {
                 root_dir = lsp.util.root_pattern('package.json'),
                 init_options = {
                     preferences = {
-                        importModuleSpecifierPreference = 'shortest',
+                        importModuleSpecifierPreference = 'non-relative',
+                        includeInlayParameterNameHints = 'all',
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = true,
                     },
                 },
                 --     autostart = false,
