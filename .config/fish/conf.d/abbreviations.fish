@@ -32,7 +32,7 @@ if status --is-interactive
         abbr --add . 'nvim .'
     end
     if command -v bat >/dev/null
-        abbr --add cat bat
+        abbr --add cat 'bat -p'
     end
     if command -v fd >/dev/null
         abbr --add find fd
