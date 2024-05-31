@@ -1,5 +1,9 @@
 if status --is-interactive
-    # applications
+    if command -v qmk >/dev/null
+        abbr --add qmkc 'qmk compile -kb splitkb/kyria/rev2 -km primeapple'
+        abbr --add qmkf 'qmk flash -kb splitkb/kyria/rev2 -km primeapple -bl avrdude'
+    end
+
     if command -v docker >/dev/null
         abbr --add d docker
         abbr --add dr 'docker run'
