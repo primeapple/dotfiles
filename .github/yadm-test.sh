@@ -74,7 +74,6 @@ echo "## DONE"
 
 echo "## TEST: pacman installed specified applications"
 apps=("nvim" "bat" "eza")
-
 for app in "${apps[@]}"; do
   if ! command -v "$app"; then
     echo "Error: App $app was not installed by pacman."
@@ -86,5 +85,11 @@ echo "## DONE"
 ###############################################################################
 
 echo "## TEST: xdg config dirs are created"
-# TODO
+directories=("documents" "downloads" "music")
+for directory in "${directories[@]}"; do
+  if ! [ -d "$directory" ]; then
+    echo "Error: Directory $directory was not created by xdg-config-dirs."
+    exit 1
+  fi
+done
 echo "## DONE"
