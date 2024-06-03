@@ -7,6 +7,7 @@ return {
             'hrsh7th/cmp-nvim-lsp',
             -- language specific tooling
             'b0o/schemastore.nvim',
+            -- TODO replace with https://github.com/folke/lazydev.nvim
             'folke/neodev.nvim',
             {
                 'SmiteshP/nvim-navbuddy',
