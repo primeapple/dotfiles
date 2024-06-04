@@ -31,6 +31,7 @@ if status --is-interactive
         abbr -a ll 'ls -l'
         abbr -a lll 'ls -la'
     end
+
     if command -v nvim >/dev/null
         abbr -a vim nvim
         abbr --add . 'nvim .'
@@ -41,12 +42,20 @@ if status --is-interactive
     if command -v fd >/dev/null
         abbr --add find fd
     end
+
+    if command -v pacman >/dev/null
+        abbr --add pm 'pacman'
+        abbr --add pmi 'sudo pacman -S'
+        abbr --add pms 'pacman -Ss'
+        abbr --add pmu 'sudo pacman -Syu'
+        abbr --add pmr 'sudo pacman -R'
+        abbr --add pmq 'pacman -Qs'
+    end
+
     abbr --add cht cht.sh
     abbr --add record 'wf-recorder -g "$(slurp)" -f recording.mp4'
     abbr --add screen 'grim -g "$(slurp)" screenshot.png'
-    abbr --add fz 'fd . | fzy | xargs'
-    abbr --add fzz "cd (z --list | sort -g -r | awk '{print \$2}' | fzy)"
-    abbr --add kssh "kitten ssh"
+    abbr --add kssh 'kitten ssh'
 
     # npm related ones
     abbr --add n npm
