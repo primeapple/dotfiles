@@ -114,7 +114,7 @@
             "car": "",
             "default": [""]
         },
-        "on-click": "pavucontrol",
+        "on-click": "pavucontrol-qt",
         "on-scroll-up": "pamixer -ui 2",
         "on-scroll-down": "pamixer -ud 2",
     },
