@@ -7,13 +7,6 @@
 # fi
 
 
-# adding .bin folder to path
-fish -c "
-if not contains ~/.bin \$PATH
-	fish_add_path ~/.bin
-end
-"
-
 # adding nice fish greeting
 fish -c "set -U fish_greeting 'Welcome to fish 🐟'"
 fish -c "set -U fish_features qmark-noglob"

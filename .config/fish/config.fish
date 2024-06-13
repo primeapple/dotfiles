@@ -8,6 +8,12 @@ if status is-interactive
 
     # default is 50 iirc
     set -g fish_escape_delay_ms 10
+
+    for path_to_add in ~/.local/share/JetBrains/Toolbox/scripts ~/bin
+        if test -d $path_to_add
+            fish_add_path -g $path_to_add
+        end
+    end
 end
 
 # bun
