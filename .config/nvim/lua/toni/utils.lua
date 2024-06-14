@@ -26,12 +26,6 @@ M.on_attach = function(client, bufnr)
 
     local opts = { noremap = true, silent = true }
 
-    -- Enable completion triggered by <c-x><c-o>
-    api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-
     -- api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 
     api.nvim_buf_set_keymap(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
@@ -49,6 +43,14 @@ M.on_attach = function(client, bufnr)
         '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
         opts
     )
+    api.nvim_buf_set_keymap(
+        bufnr,
+        'n',
+        'yoi',
+        '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>',
+        opts
+    )
+
     -- TODO is the default in nvim 0.11
     api.nvim_buf_set_keymap(bufnr, 'n', 'crn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     api.nvim_buf_set_keymap(bufnr, 'n', 'crr', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)

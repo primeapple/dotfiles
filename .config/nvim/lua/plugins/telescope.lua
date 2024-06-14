@@ -12,6 +12,7 @@ return {
             { '<leader>ff', '<cmd>Telescope find_files <CR>' },
             { '<leader>fa', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>' },
             { '<leader>fh', '<cmd>Telescope help_tags <CR>' },
+            { '<leader>fm', '<cmd>Telescope keymaps <CR>' },
             { '<leader>fw', '<cmd>Telescope live_grep <CR>' },
             { '<leader>fW', '<cmd>Telescope grep_string <CR>' },
             {

@@ -32,7 +32,6 @@ return {
                             calc = '[CALC]',
                             emoji = '[EMO]',
                             neorg = '[NORG]',
-                            ['nvim-cmp-ts-tag-close'] = '[TAG]',
                         },
                     }),
                 },
@@ -50,13 +49,14 @@ return {
                         behavior = cmp.ConfirmBehavior.Replace,
                         select = false,
                     }),
+                    ['<C-y>']= cmp.mapping.confirm()
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
                     {
                         name = 'buffer',
-                        keyword_length = 3,
+                        keyword_length = 5,
                         option = {
                             keyword_pattern = [[\k\+]],
                         },

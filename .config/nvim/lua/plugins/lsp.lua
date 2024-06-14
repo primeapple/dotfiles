@@ -5,34 +5,9 @@ return {
         dependencies = {
             'williamboman/mason.nvim',
             'hrsh7th/cmp-nvim-lsp',
-            -- language specific tooling
             'b0o/schemastore.nvim',
             -- TODO replace with https://github.com/folke/lazydev.nvim
             'folke/neodev.nvim',
-            {
-                'SmiteshP/nvim-navbuddy',
-                keys = {
-                    { 'gm', '<cmd>Navbuddy<CR>' },
-                },
-                dependencies = {
-                    'SmiteshP/nvim-navic',
-                    'MunifTanjim/nui.nvim',
-                },
-                config = function()
-                    local actions = require('nvim-navbuddy.actions')
-                    require('nvim-navbuddy').setup({
-                        lsp = { auto_attach = true },
-                        mappings = {
-                            ['Down'] = actions.next_sibling(),
-                            ['Up'] = actions.previous_sibling(),
-                            ['Left'] = actions.parent(),
-                            ['Right'] = actions.children(),
-                            ['<S-Down>'] = actions.move_down(),
-                            ['<S-Up>'] = actions.move_up(),
-                        },
-                    })
-                end,
-            },
         },
 
         config = function()
@@ -54,13 +29,15 @@ return {
             utils.map('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
             utils.map('n', '<leader>D', '<cmd>lua vim.diagnostic.setloclist()<CR>')
 
-            local server = function(language_server_name, options)
+            --- @param name string
+            --- @param opts table?
+            local server = function(name, opts)
                 local merged_options = vim.tbl_deep_extend('force', {
                     on_attach = utils.on_attach,
                     capabilities = capabilities,
-                }, options or {})
+                }, opts or {})
 
-                lsp[language_server_name].setup(merged_options)
+                lsp[name].setup(merged_options)
             end
 
             server('angularls')
@@ -68,7 +45,20 @@ return {
             server('bashls')
             server('biome')
             server('dockerls')
-            server('eslint')
+            server('eslint', {
+                filetypes = {
+                    'javascript',
+                    'javascriptreact',
+                    'javascript.jsx',
+                    'typescript',
+                    'typescriptreact',
+                    'typescript.tsx',
+                    'vue',
+                    'svelte',
+                    'astro',
+                    'html',
+                },
+            })
             server('gopls')
             server('jsonls', {
                 settings = {

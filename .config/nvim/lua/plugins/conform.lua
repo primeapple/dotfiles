@@ -10,7 +10,7 @@ return {
         local js_formatter = function(bufnr)
             if conform.get_formatter_info('prettierd', bufnr).available then
                 return { 'prettierd' }
-            elseif  conform.get_formatter_info('prettier', bufnr).available then
+            elseif conform.get_formatter_info('prettier', bufnr).available then
                 return { 'prettier' }
             else
                 return { 'biome' }
@@ -39,7 +39,8 @@ return {
             notify_on_error = false,
         })
 
-        require('toni.utils').map({ 'n', 'x' }, 'crf', function()
+        -- Maybe use `gq` as a keymap? Would also enable formatting for `x` mode
+        require('toni.utils').map('n', 'crf', function()
             conform.format({
                 lsp_fallback = true,
                 async = false,
