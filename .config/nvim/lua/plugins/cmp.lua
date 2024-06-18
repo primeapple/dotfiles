@@ -3,6 +3,7 @@ return {
         'hrsh7th/nvim-cmp',
         dependencies = {
             'onsails/lspkind-nvim',
+            'L3MON4D3/LuaSnip',
             -- sources
             'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lua',
@@ -16,6 +17,8 @@ return {
         config = function()
             local cmp = require('cmp')
             local lspkind = require('lspkind')
+            local ls = require('luasnip')
+
             cmp.setup({
                 completion = {
                     autocomplete = false,
@@ -45,11 +48,39 @@ return {
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = false,
-                    }),
-                    ['<C-y>']= cmp.mapping.confirm()
+                    ['<CR>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            if ls.expandable() then
+                                ls.expand()
+                            else
+                                cmp.confirm({
+                                    behavior = cmp.ConfirmBehavior.Insert,
+                                    select = true,
+                                })
+                            end
+                        else
+                            fallback()
+                        end
+                    end, { 'i' }),
+                    ['<Tab>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif ls.locally_jumpable(1) then
+                            ls.jump(1)
+                        else
+                            fallback()
+                        end
+                    end, { 'i' }),
+
+                    ['<S-Tab>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif ls.locally_jumpable(-1) then
+                            ls.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { 'i' }),
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
