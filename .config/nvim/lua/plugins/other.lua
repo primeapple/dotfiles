@@ -193,10 +193,15 @@ return {
     },
 
     -------------------- MISC --------------------
-    -- TODO use option `winfixbuf` for specific buffers 
+    -- TODO use option `winfixbuf` for specific buffers
     {
         'stevearc/stickybuf.nvim',
         event = 'BufReadPre',
+        opts = {},
+    },
+    {
+        'Aasim-A/scrollEOF.nvim',
+        event = { 'CursorMoved', 'WinScrolled' },
         opts = {},
     },
 }
