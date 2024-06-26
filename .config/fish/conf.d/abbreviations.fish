@@ -120,14 +120,18 @@ if status --is-interactive
     abbr --add gco 'git checkout'
     abbr --add gc- 'git checkout -'
     abbr --add gcb 'git checkout -b'
-    abbr --add grb 'git rebase'
+    abbr --add gm 'git merge'
     abbr --add gma 'git merge --abort'
+    abbr --add grb 'git rebase'
     abbr --add grba 'git rebase --abort'
     abbr --add grbc 'git rebase --continue'
     abbr --add grc 'git recent'
     abbr --add gcl 'git clean -id'
     abbr --add gcp 'git cherry-pick'
     abbr --add gcpn 'git cherry-pick --no-commit'
+    abbr --add gclo 'git clone'
+    abbr --add gcon 'git config user.name "Toni Müller" && git config user.email "toni.mueller.web@mailbox.org"'
+
     # only yadm
     abbr --add yaf 'yadm diff --name-only | awk -v home=(echo $HOME) \'{print home "/" $1}\' | zf | xargs --no-run-if-empty yadm add'
 
