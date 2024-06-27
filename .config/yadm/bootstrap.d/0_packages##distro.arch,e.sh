@@ -17,6 +17,7 @@ pacman_packages=(
     "nodejs"
     "npm"
     "ripgrep"
+    "trash-cli"
     "unzip"
     "xdg-user-dirs"
     "zip"

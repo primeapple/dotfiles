@@ -16,6 +16,11 @@ if status --is-interactive
 
     abbr --add reload 'source ~/.config/fish/config.fish'
 
+    if command -v trash-put >/dev/null
+        abbr --add rm 'Did you mean trash-put/trash/tp?'
+        abbr --add tp 'trash-put'
+        abbr --add trash 'trash-put'
+    end
     abbr --add mv 'mv -i'
     abbr --add mkdir 'mkdir -pv'
     abbr --add e exit
@@ -23,7 +28,7 @@ if status --is-interactive
 
     if command -v eza >/dev/null
         abbr -a l eza
-        abbr -a ls eza
+        abbr -a ls 'Did you mean eza/l/ll/lll?'
         abbr -a ll 'eza -l'
         abbr -a lll 'eza -la'
     else
@@ -33,14 +38,11 @@ if status --is-interactive
     end
 
     if command -v nvim >/dev/null
-        abbr -a vim nvim
+        abbr -a vim 'Did you mean nvim?'
         abbr --add . 'nvim .'
     end
     if command -v bat >/dev/null
-        abbr --add cat 'bat -p'
-    end
-    if command -v fd >/dev/null
-        abbr --add find fd
+        abbr --add cat 'Did you mean bat?'
     end
 
     if command -v pacman >/dev/null
