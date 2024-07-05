@@ -27,18 +27,18 @@ if status --is-interactive
     abbr --add o xdg-open
 
     if command -v eza >/dev/null
-        abbr -a l eza
-        abbr -a ls 'Did you mean eza/l/ll/lll?'
-        abbr -a ll 'eza -l'
-        abbr -a lll 'eza -la'
+        abbr --add l eza
+        abbr --add ls 'Did you mean eza/l/ll/lll?'
+        abbr --add ll 'eza -l'
+        abbr --add lll 'eza -la'
     else
-        abbr -a l ls
-        abbr -a ll 'ls -l'
-        abbr -a lll 'ls -la'
+        abbr --add l ls
+        abbr --add ll 'ls -l'
+        abbr --add lll 'ls -la'
     end
 
     if command -v nvim >/dev/null
-        abbr -a vim 'Did you mean nvim?'
+        abbr --add vim 'Did you mean nvim?'
         abbr --add . 'nvim .'
     end
     if command -v bat >/dev/null
