@@ -19,7 +19,11 @@ return {
             ensure_installed = {
                 'jdtls',
             },
-            automatic_installation = true,
+            automatic_installation = {
+                exclude = {
+                    "tsserver"
+                }
+            }
         })
     end,
 }

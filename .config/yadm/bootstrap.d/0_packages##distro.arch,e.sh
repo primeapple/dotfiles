@@ -8,7 +8,6 @@ pacman_packages=(
     "keyd"
     "nodejs"
     "npm"
-    "trash-cli"
     "unzip"
     "xdg-user-dirs"
     "zip"

@@ -27,7 +27,10 @@
     jless
     jq
     neovim
+    nodePackages.typescript-language-server
     ripgrep
+    trash-cli
+    zf
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
