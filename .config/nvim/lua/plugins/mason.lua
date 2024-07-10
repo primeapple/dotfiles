@@ -1,6 +1,7 @@
 return {
     'williamboman/mason.nvim',
     cmd = 'Mason',
+    cond = require('toni.utils').is_workstation,
     dependencies = {
         'williamboman/mason-lspconfig.nvim',
     },
@@ -21,9 +22,9 @@ return {
             },
             automatic_installation = {
                 exclude = {
-                    "tsserver"
-                }
-            }
+                    'tsserver',
+                },
+            },
         })
     end,
 }

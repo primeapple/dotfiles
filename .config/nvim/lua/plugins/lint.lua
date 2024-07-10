@@ -1,5 +1,6 @@
 return {
     'mfussenegger/nvim-lint',
+    cond = require('toni.utils').is_workstation,
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
         'williamboman/mason.nvim',

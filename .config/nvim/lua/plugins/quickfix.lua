@@ -1,6 +1,4 @@
 return {
-    {
-        'romainl/vim-qf',
-        ft = 'qf',
-    },
+    'romainl/vim-qf',
+    ft = 'qf',
 }

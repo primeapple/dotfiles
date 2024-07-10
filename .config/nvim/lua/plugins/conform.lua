@@ -1,5 +1,6 @@
 return {
     'stevearc/conform.nvim',
+    cond = require('toni.utils').is_workstation,
     dependencies = {
         'williamboman/mason.nvim',
     },

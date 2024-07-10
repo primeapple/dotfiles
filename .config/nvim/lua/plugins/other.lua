@@ -1,4 +1,5 @@
 local todo_keywords = { 'FIX', 'TODO', 'HACK', 'WARN', 'PERF', 'NOTE', 'TEST' }
+local is_workstation = require('toni.utils').is_workstation
 
 return {
     -------------------- EDITING --------------------
@@ -13,6 +14,8 @@ return {
     -------------------- NAVIGATION --------------------
     {
         'mrjones2014/smart-splits.nvim',
+        -- TODO: works for now, but may be better with a check if the current terminal is kitty
+        cond = is_workstation,
         -- TODO: use `keys`
         event = 'VeryLazy',
         build = './kitty/install-kittens.bash',
@@ -122,6 +125,7 @@ return {
     -------------------- APPEARANCE --------------------
     {
         'karb94/neoscroll.nvim',
+        cond = is_workstation,
         keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
         config = true,
     },
@@ -137,6 +141,7 @@ return {
     },
     {
         'j-hui/fidget.nvim',
+        cond = is_workstation,
         event = 'VeryLazy',
         config = true,
     },

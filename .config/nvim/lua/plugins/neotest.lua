@@ -12,6 +12,7 @@ return {
             'marilari88/neotest-vitest',
             'mfussenegger/nvim-dap',
         },
+        cond = require('toni.utils').is_workstation,
         keys = {
             {
                 '<leader>rn',

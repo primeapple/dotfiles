@@ -75,4 +75,22 @@ M.with_pre_save = function(callback)
     end
 end
 
+local is_workstation_cache = nil
+--- @return boolean
+M.is_workstation = function()
+    if (is_workstation_cache ~= nil) then
+        return is_workstation_cache
+    end
+
+    local output = vim.system({ 'yadm', 'config', '--get-all', 'local.class' }):wait()
+    if output.code ~= 0 then
+        is_workstation_cache = false
+    elseif output.stdout:find('workstation') then
+        is_workstation_cache = true
+    else
+        is_workstation_cache = false
+    end
+    return is_workstation_cache
+end
+
 return M
