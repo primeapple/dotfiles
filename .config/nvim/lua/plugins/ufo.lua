@@ -1,5 +1,6 @@
 return {
     'kevinhwang91/nvim-ufo',
+    cond = require('toni.utils').is_workstation,
     event = 'VeryLazy',
     dependencies = {
         'kevinhwang91/promise-async',

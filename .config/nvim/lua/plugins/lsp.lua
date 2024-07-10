@@ -1,6 +1,9 @@
+local is_workstation = require('toni.utils').is_workstation
+
 return {
     {
         'neovim/nvim-lspconfig',
+        cond = is_workstation,
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'williamboman/mason.nvim',
@@ -145,6 +148,7 @@ return {
     },
     {
         'mrcjkb/rustaceanvim',
+        cond = is_workstation,
         version = '^4',
         ft = { 'rust' },
         config = function()
@@ -158,10 +162,12 @@ return {
     },
     {
         'mfussenegger/nvim-jdtls',
+        cond = is_workstation,
         ft = { 'java' },
     },
     {
         'Olical/conjure',
+        cond = is_workstation,
         dependencies = { 'benknoble/vim-racket' },
         ft = { 'racket' },
         config = function(_, opts)
