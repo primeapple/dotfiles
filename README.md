@@ -15,6 +15,14 @@ To install the Dotfiles, install `yadm` and run:
 yadm clone --no-bootstrap https://github.com/primeapple/dotfiles
 ```
 
+Set the corresponding classes of the machine, if needed:
+```shell
+# if the machine run on nvidia gpu and needs graphical user interface
+yadm config --add local.class nvidia
+# if the machine needs graphical user interfaces
+yadm config --add local.class workstation
+```
+
 Now run the bootstrap script:
 ```shell
 yadm bootstrap
