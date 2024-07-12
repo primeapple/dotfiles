@@ -1,4 +1,5 @@
 local with_pre_save = require('toni.utils').with_pre_save
+local is_workstation = require('toni.utils').is_workstation
 
 return {
     'nvim-telescope/telescope.nvim',
@@ -126,8 +127,10 @@ return {
         })
 
         telescope.load_extension('zf-native')
-        telescope.load_extension('dap')
         telescope.load_extension('live_grep_args')
         telescope.load_extension('undo')
+        if is_workstation() then
+            telescope.load_extension('dap')
+        end
     end,
 }
