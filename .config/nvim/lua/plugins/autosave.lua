@@ -55,15 +55,17 @@ return {
                 debug = false,
             })
 
-            local group = api.nvim_create_augroup('autosave', {})
-            -- udate tpipeline after save
-            api.nvim_create_autocmd('User', {
-                pattern = 'AutoSaveWritePost',
-                group = group,
-                callback = function()
-                    fn['tpipeline#update']()
-                end,
-            })
+            if require('toni.utils').is_workstation() then
+                local group = api.nvim_create_augroup('autosave', {})
+                -- udate tpipeline after save
+                api.nvim_create_autocmd('User', {
+                    pattern = 'AutoSaveWritePost',
+                    group = group,
+                    callback = function()
+                        fn['tpipeline#update']()
+                    end,
+                })
+            end
         end,
     },
 }
