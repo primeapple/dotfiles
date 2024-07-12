@@ -31,14 +31,14 @@ return {
                     ['<C-y>'] = copy_entry_relative_path,
                 },
                 win_options = {
-                    signcolumn = "yes:2"
-                }
+                    signcolumn = 'yes:2',
+                },
             })
             local map = require('toni.utils').map
             map('n', '-', oil.open)
 
             require('oil-git-status').setup({
-                show_ignored = false
+                show_ignored = false,
             })
         end,
     },

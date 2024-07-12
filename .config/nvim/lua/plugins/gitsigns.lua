@@ -1,12 +1,19 @@
 return {
     'lewis6991/gitsigns.nvim',
     event = 'VeryLazy',
+    dependencies = {
+        'seanbreckenridge/gitsigns-yadm.nvim',
+    },
     config = function()
         require('gitsigns').setup({
             numhl = true,
-            yadm = {
-                enable = true,
-            },
+            _on_attach_pre = function(_, callback)
+                if vim.fn.executable('yadm') == 1 then
+                    require('gitsigns-yadm').yadm_signs(callback)
+                else
+                    callback()
+                end
+            end,
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 

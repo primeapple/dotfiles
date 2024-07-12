@@ -78,7 +78,7 @@ end
 local is_workstation_cache = nil
 --- @return boolean
 M.is_workstation = function()
-    if (is_workstation_cache ~= nil) then
+    if is_workstation_cache ~= nil then
         return is_workstation_cache
     end
 
