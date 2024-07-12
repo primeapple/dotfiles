@@ -55,4 +55,7 @@ require('lazy').setup('plugins', {
             disabled_plugins = disabled_built_ins,
         },
     },
+    rocks = {
+        enabled = false
+    }
 })
