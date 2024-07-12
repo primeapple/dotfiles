@@ -56,6 +56,9 @@ require('lazy').setup('plugins', {
         },
     },
     rocks = {
-        enabled = false
-    }
+        -- enabled = vim.fn.executable('luarocks') == 1,
+        -- for now lazy requires lua 5.1, disable luarocks so far:
+        -- https://github.com/folke/lazy.nvim/issues/1570
+        enabled = false,
+    },
 })
