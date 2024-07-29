@@ -26,6 +26,7 @@ return {
                 'markdown',
                 'markdown_inline',
                 'nix',
+                'php',
                 'python',
                 'query',
                 'regex',

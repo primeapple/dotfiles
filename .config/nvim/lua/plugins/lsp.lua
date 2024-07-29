@@ -87,6 +87,7 @@ return {
                     },
                 },
             })
+            server('phpactor')
             server('pyright')
             server('stylelint_lsp')
             server('tailwindcss', {
