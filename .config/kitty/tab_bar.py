@@ -194,7 +194,7 @@ def right_statusline_components() -> List[Component]:
 def is_nvim_active_in_tab(tab_id: int):
     tab = get_boss().tab_for_id(tab_id)
     if tab != None:
-        return tab.get_exe_of_active_window() == "nvim"
+        return tab.get_exe_of_active_window().endswith("nvim")
     return False
 
 
