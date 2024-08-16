@@ -25,9 +25,6 @@ map('n', '<ESC>', '<cmd> noh <CR> <cmd> echo <CR>')
 -- map('n', 'q:', '<nop>')
 -- map('n', 'Q', 'q:')
 
--- allows 'overpasting' selected blocks and not change the register to the overpasted text
-map('x', 'p', 'p:let @+=@0<CR>')
-
 -- open new vertical split
 map('n', '<leader>/', '<cmd> vsp <CR>')
 -- open new horizontal split
@@ -73,3 +70,14 @@ map('n', 'ZA', '<cmd> wa <CR>')
 -- stolen from mini.basics
 map('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
 map('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")
+
+-- Yank/Paste to system clipboard via prefixed <leader>
+map({'n', 'x', 'o'}, '<leader>y', '"+y')
+map('n', '<leader>yy', '"+yy')
+map('n', '<leader>Y', '"+y$')
+map('n', '<leader>p', '"+p')
+map('n', '<leader>P', '"+P')
+-- allows 'overpasting' selected blocks and not change the register to the overpasted text
+map('x', 'p', 'p:let @+=@0<CR>')
+map('x', '<leader>p', '"+p:let @+=@0<CR>')
+

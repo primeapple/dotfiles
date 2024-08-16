@@ -27,7 +27,6 @@
     jless
     jq
     neovim
-    nodePackages.typescript-language-server
     ripgrep
     trash-cli
     zf

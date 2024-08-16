@@ -82,7 +82,9 @@ return {
                         jestConfigFile = 'jest.config.js',
                         env = { CI = true },
                     }),
-                    require('neotest-vitest'),
+                    require('neotest-vitest')({
+                        vitestCommand = 'npx vitest',
+                    }),
                     -- require('neotest-vim-test')({
                     --     ignore_file_types = { 'python', 'vim', 'lua' },
                     -- }),
