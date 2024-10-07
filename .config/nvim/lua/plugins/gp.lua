@@ -8,6 +8,14 @@ return {
         { 'ga', '<cmd>GpChatToggle <CR>', { mode = { 'n', 'x' } } },
     },
     config = function()
-        require('gp').setup()
+        require('gp').setup({
+            providers = {
+                anthropic = {
+                    endpoint = 'https://api.anthropic.com/v1/messages',
+                    secret = os.getenv('ANTHROPIC_API_KEY'),
+                    disable = false,
+                },
+            },
+        })
     end,
 }

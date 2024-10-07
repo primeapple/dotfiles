@@ -29,15 +29,14 @@ return {
         config = function()
             require('auto-save').setup({
                 enabled = true,
-                execution_message = {
-                    enabled = false,
+                trigger_events = {
+                    -- defer_save = { 'InsertEnter' },
+                    -- cancel_deferred_save = { 'InsertEnter' },
+                    -- immediate_save = {
+                    --     'FocusLost',
+                    --     { 'BufLeave', pattern = { '*.lua' } },
+                    -- },
                 },
-                -- trigger_events = {
-                --     immediate_save = {
-                --         'FocusLost',
-                --         { 'BufLeave', pattern = { '*.lua' } },
-                --     },
-                -- },
                 debounce_delay = 3000,
                 condition = function(buf)
                     local utils = require('auto-save.utils.data')
@@ -52,7 +51,7 @@ return {
                     return false
                 end,
                 noautocmd = false,
-                debug = false,
+                -- debug = true,
             })
 
             if require('toni.utils').is_workstation() then
