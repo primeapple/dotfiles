@@ -4,49 +4,42 @@ return {
     dependencies = {
         'williamboman/mason.nvim',
     },
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    keys = {
+        {
+            -- Maybe use `gq` as a keymap? Would also enable formatting for `x` mode
+            'crf',
+            function()
+                require('conform').format({ async = true, lsp_format = 'fallback' })
+            end,
+            mode = '',
+            desc = 'Format buffer',
+        },
+    },
     config = function()
         local conform = require('conform')
 
-        local js_formatter = function(bufnr)
-            if conform.get_formatter_info('prettierd', bufnr).available then
-                return { 'prettierd' }
-            elseif conform.get_formatter_info('prettier', bufnr).available then
-                return { 'prettier' }
-            else
-                return { 'biome' }
-            end
-        end
-
         conform.setup({
             formatters_by_ft = {
-                css = { { 'prettierd', 'prettier' } },
+                css = { 'prettierd', 'prettier', stop_after_first = true },
                 fish = { 'fish_indent' },
-                html = { { 'prettierd', 'prettier' } },
-                javascript = js_formatter,
-                javascriptreact = js_formatter,
-                json = js_formatter,
+                html = { 'prettierd', 'prettier', stop_after_first = true },
+                javascript = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
+                javascriptreact = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
+                json = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
                 lua = { 'stylua' },
-                markdown = { { 'prettierd', 'prettier' } },
+                markdown = { 'prettierd', 'prettier', stop_after_first = true },
                 python = { 'ruff_format' },
                 rust = { 'rustfmt' },
                 sql = { 'sql_formatter' },
                 sh = { 'shellcheck' },
-                svelte = js_formatter,
-                typescript = js_formatter,
-                typescriptreact = js_formatter,
-                yaml = { { 'prettierd', 'prettier', 'yamlfmt' } },
+                svelte = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
+                typescript = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
+                typescriptreact = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
+                yaml = { 'prettierd', 'prettier', 'yamlfmt', stop_after_first = true },
             },
             notify_on_error = false,
         })
-
-        -- Maybe use `gq` as a keymap? Would also enable formatting for `x` mode
-        require('toni.utils').map('n', 'crf', function()
-            conform.format({
-                lsp_fallback = true,
-                async = false,
-                timeout_ms = 500,
-            })
-        end)
     end,
 }
