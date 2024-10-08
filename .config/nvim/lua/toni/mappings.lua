@@ -47,19 +47,6 @@ end, { expr = true })
 map('x', '<', '<gv')
 map('x', '>', '>gv')
 
-local function toggle_qf()
-    local open_buffers = vim.api.nvim_list_bufs()
-    for _, buf_num in ipairs(open_buffers) do
-        if vim.api.nvim_buf_get_option(buf_num, 'filetype') == 'qf' then
-            local buf_loaded = vim.api.nvim_buf_is_loaded(buf_num)
-            vim.api.nvim_command(buf_loaded and 'cclose' or 'cwindow')
-            return
-        end
-    end
-    vim.api.nvim_command('cwindow')
-end
-map('n', 'ZC', toggle_qf)
-
 -- rename word under cursor
 -- map('n', '<F4>', ':%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i')
 
