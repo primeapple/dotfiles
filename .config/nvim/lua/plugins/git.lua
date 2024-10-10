@@ -69,15 +69,15 @@ return {
         'sindrets/diffview.nvim',
         cmd = { 'DiffviewOpen' },
         keys = {
-            { '<leader>gh', '<cmd>DiffviewFileHistory --follow %<cr>', mode = '', desc = 'History of file' },
-            { '<leader>gH', '<cmd>DiffviewFileHistory<cr>', mode = '', desc = 'History of repository' },
+            { '<leader>gh', '<cmd>DiffviewFileHistory --follow %<cr>', mode = 'n', desc = 'History of file' },
+            { '<leader>gH', '<cmd>DiffviewFileHistory<cr>', mode = 'n', desc = 'History of repository' },
             {
                 '<leader>gh',
                 "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>",
                 mode = 'x',
                 desc = 'History of selection',
             },
-            { '<leader>gl', '<Cmd>.DiffviewFileHistory --follow<CR>', mode = '', desc = 'History of line' },
+            { '<leader>gl', '<Cmd>.DiffviewFileHistory --follow<CR>', mode = 'n', desc = 'History of line' },
         },
     },
 }
