@@ -15,6 +15,7 @@ return {
                 'c',
                 'css',
                 'dockerfile',
+                'diff',
                 'fish',
                 'html',
                 'java',
