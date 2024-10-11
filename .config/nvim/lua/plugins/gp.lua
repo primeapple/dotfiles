@@ -30,12 +30,14 @@ return {
         -- Chat commands
         vim.keymap.set('n', 'gac', '<cmd>GpChatNew<cr>', keymapOptions('New Chat'))
         vim.keymap.set('n', 'gaC', '<cmd>GpChatNew vsplit<cr>', keymapOptions('New Chat vsplit'))
-        vim.keymap.set('n', 'gat', '<cmd>GpChatToggle<cr>', keymapOptions('Toggle Chat'))
+        vim.keymap.set('n', 'gaa', '<cmd>GpChatToggle<cr>', keymapOptions('Toggle Chat'))
+        vim.keymap.set('n', 'gaA', '<cmd>GpChatToggle popup<cr>', keymapOptions('Toggle Chat'))
         vim.keymap.set('n', 'gaf', '<cmd>GpChatFinder<cr>', keymapOptions('Chat Finder'))
 
         vim.keymap.set('v', 'gac', ":<C-u>'<,'>GpChatNew<cr>", keymapOptions('Visual Chat New'))
         vim.keymap.set('v', 'gaC', ":<C-u>'<,'>GpChatNew split<cr>", keymapOptions('Visual Chat New split'))
+        vim.keymap.set('v', 'gaa', ":<C-u>'<,'>GpChatToggle<cr>", keymapOptions('Visual Toggle Chat'))
+        vim.keymap.set('v', 'gaA', ":<C-u>'<,'>GpChatToggle popup<cr>", keymapOptions('Visual Toggle Chat'))
         vim.keymap.set('v', 'gap', ":<C-u>'<,'>GpChatPaste<cr>", keymapOptions('Visual Chat Paste'))
-        vim.keymap.set('v', 'gat', ":<C-u>'<,'>GpChatToggle<cr>", keymapOptions('Visual Toggle Chat'))
     end,
 }
