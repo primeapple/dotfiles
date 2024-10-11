@@ -3,6 +3,9 @@ return {
     event = 'FileType qf',
     config = function()
         require('quicker').setup({
+            opts = {
+                number = true,
+            },
             keys = {
                 {
                     '>',
