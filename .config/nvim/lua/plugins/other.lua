@@ -48,16 +48,7 @@ return {
             local map = require('toni.utils').map
             require('other-nvim').setup({
                 mappings = {
-                    {
-                        pattern = '(.*).([tj]sx?)$',
-                        target = '%1.test.%2',
-                        context = 'test',
-                    },
-                    {
-                        pattern = '(.*).test.([tj]sx?)$',
-                        target = '%1.%2',
-                        context = 'implementation',
-                    },
+                    'react',
                 },
             })
             map('n', 'gp', '<Nop>')
