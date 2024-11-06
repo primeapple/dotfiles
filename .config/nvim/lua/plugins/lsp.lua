@@ -140,32 +140,8 @@ return {
         end,
     },
     {
-        'mrcjkb/rustaceanvim',
-        cond = is_workstation,
-        version = '^4',
-        ft = { 'rust' },
-        config = function()
-            local utils = require('toni.utils')
-            vim.g.rustaceanvim = {
-                server = {
-                    on_attach = utils.on_attach,
-                },
-            }
-        end,
-    },
-    {
         'mfussenegger/nvim-jdtls',
         cond = is_workstation,
         ft = { 'java' },
-    },
-    {
-        'Olical/conjure',
-        cond = is_workstation,
-        dependencies = { 'benknoble/vim-racket' },
-        ft = { 'racket' },
-        config = function(_, opts)
-            require('conjure.main').main()
-            require('conjure.mapping')['on-filetype']()
-        end,
     },
 }
