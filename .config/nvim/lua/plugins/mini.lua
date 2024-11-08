@@ -19,6 +19,8 @@ return {
                 },
             })
             require('mini.bracketed').setup({
+                -- per default this is `c`, but that's needed for next diff
+                comment = { suffix = '', options = {} },
                 treesitter = { suffix = 'n', options = {} },
             })
             -- Redo with U
