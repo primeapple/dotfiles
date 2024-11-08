@@ -39,16 +39,14 @@ return {
                 },
                 debounce_delay = 3000,
                 condition = function(buf)
-                    local utils = require('auto-save.utils.data')
-
                     -- don't save for special-buffers
                     if fn.getbufvar(buf, '&buftype') ~= '' then
                         return false
                     end
-                    if utils.not_in(fn.getbufvar(buf, '&filetype'), { '' }) then
-                        return true
+                    if vim.list_contains({ "" }, fn.getbufvar(buf, '&filetype')) then
+                        return false
                     end
-                    return false
+                    return true
                 end,
                 noautocmd = false,
                 -- debug = true,
@@ -62,6 +60,22 @@ return {
                     group = group,
                     callback = function()
                         fn['tpipeline#update']()
+                    end,
+                })
+
+                api.nvim_create_autocmd('User', {
+                    pattern = 'AutoSaveEnable',
+                    group = group,
+                    callback = function()
+                        vim.notify('AutoSave enabled', vim.log.levels.INFO)
+                    end,
+                })
+
+                api.nvim_create_autocmd('User', {
+                    pattern = 'AutoSaveDisable',
+                    group = group,
+                    callback = function()
+                        vim.notify('AutoSave disabled', vim.log.levels.INFO)
                     end,
                 })
             end
