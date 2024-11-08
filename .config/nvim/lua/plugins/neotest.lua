@@ -11,6 +11,7 @@ return {
             'antoinemadec/FixCursorHold.nvim',
             'marilari88/neotest-vitest',
             'mfussenegger/nvim-dap',
+            { 'fredrikaverpil/neotest-golang', version = '*' },
         },
         cond = require('toni.utils').is_workstation,
         keys = {
@@ -85,6 +86,7 @@ return {
                     require('neotest-vitest')({
                         vitestCommand = 'npx vitest',
                     }),
+                    require('neotest-golang'),
                     -- require('neotest-vim-test')({
                     --     ignore_file_types = { 'python', 'vim', 'lua' },
                     -- }),
