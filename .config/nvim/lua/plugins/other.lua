@@ -48,6 +48,7 @@ return {
             local map = require('toni.utils').map
             require('other-nvim').setup({
                 mappings = {
+                    'golang',
                     'react',
                 },
             })

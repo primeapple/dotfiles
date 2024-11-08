@@ -17,6 +17,7 @@ return {
                 'dockerfile',
                 'diff',
                 'fish',
+                'go',
                 'html',
                 'java',
                 'javascript',
