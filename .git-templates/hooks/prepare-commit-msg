@@ -1,5 +1,5 @@
-#!/usr/bin/env fish
-# This script is used by git to generate a commit message template based on the current branch name
+#!/bin/bash
+# This script is used by git to generate a commit message template based on the current branch name.
 # Supported parts are conventional commit types (`type`) and ticket numbers (`123` or `GH-123`)
 # The branch name will result in a commit message template like this:
 #  - type-some-description -> type:
@@ -9,48 +9,50 @@
 #  - 123-GH-124-description -> #123 GH-124
 #  - some-description -> 
 
+LAST_EXIT_CODE=$?
+COMMIT_MSG_FILE="$1"
 
-set -l COMMIT_MSG_FILE $argv[1]
+EXCLUDED_BRANCHES=("master" "main" "dev")
+CURRENT_BRANCH=$(git symbolic-ref --quiet --short HEAD)
 
-set -l EXCLUDE_BRANCHES master main dev
-set -l BRANCH (git symbolic-ref --quiet --short HEAD)
-
-# abort during merges/rebases and on excluded branches
-if test $status -ne 0 || contains $BRANCH $EXCLUDE_BRANCHES
+# Abort during merges/rebases and on excluded branches
+if [ $LAST_EXIT_CODE -ne 0 ] || [[ ${EXCLUDED_BRANCHES[*]} =~ $CURRENT_BRANCH ]]; then
     exit 0
-end
+fi
 
-# abort if first line of commit message is not empty (merges, amend, etc.)
-if test -n (head -n 1 $COMMIT_MSG_FILE)
+# Abort if first line of commit message is not empty (merges, amend, etc.)
+if [ -n "$(head -n 1 "$COMMIT_MSG_FILE")" ]; then
     exit 0
-end
+fi
 
-set -l PARTS (string split '-' $BRANCH)
+CONVENTIONAL_COMMIT_TYPES=("build" "chore" "ci" "docs" "feat" "fix" "perf" "refactor" "revert" "style" "test")
+for type in "${CONVENTIONAL_COMMIT_TYPES[@]}"; do
+    CONVENTIONAL_COMMIT_TYPES+=("$type!")
+done
 
-# building list of conventional commit types
-set CONVENTIONAL_COMMIT_TYPES build chore ci docs feat fix perf refactor revert style test
-for TYPE in $CONVENTIONAL_COMMIT_TYPES
-    set --append CONVENTIONAL_COMMIT_TYPES "$TYPE!"
-end
+# Split branchname by "-" char and store in PARTS
+IFS='-' read -ra PARTS <<< "$CURRENT_BRANCH"
 
-# checking if it includes conventional commit (scope not supported)
-if contains $PARTS[1] $CONVENTIONAL_COMMIT_TYPES
-    set --append MESSAGE "$PARTS[1]:"
-    set --erase PARTS[1]
-end
+MESSAGE=""
 
-# checking if it includes ticket number
-while test (count $PARTS) -ge 2
-    echo $PARTS
-    if string match -q -r '^[A-Z]+$' $PARTS[1] && string match -q -r '^[0-9]+$' $PARTS[2]
-        set --append MESSAGE "$PARTS[1]-$PARTS[2]"
-        set --erase PARTS[1 2]
-    else if string match -q -r '^[0-9]+$' $PARTS[1]
-        set --append MESSAGE "#$PARTS[1]"
-        set --erase PARTS[1]
+# Checking if it includes conventional commit (scope not supported)
+if [[ ${CONVENTIONAL_COMMIT_TYPES[*]} =~ ${PARTS[0]} ]]; then
+    MESSAGE="${PARTS[0]}: "
+    PARTS=("${PARTS[@]:1}")
+fi
+
+# Checking and constructing the message if it includes ticket number
+while [ ${#PARTS[@]} -ge 2 ]; do
+    if [[ ${PARTS[0]} =~ ^[A-Z0-9]+$ ]] && [[ ${PARTS[1]} =~ ^[0-9]+$ ]]; then
+        MESSAGE+="${PARTS[0]}-${PARTS[1]} "
+        PARTS=("${PARTS[@]:2}")
+    elif [[ ${PARTS[0]} =~ ^[0-9]+$ ]]; then
+        MESSAGE+="#${PARTS[0]} "
+        PARTS=("${PARTS[@]:1}")
     else
         break
-    end
-end
+    fi
+done
 
-sed -i "1s/.*/$MESSAGE/" $COMMIT_MSG_FILE
+# Write MESSAGE to the commit message file
+sed -i "1s/.*/$MESSAGE/" "$COMMIT_MSG_FILE"
