@@ -190,10 +190,12 @@ return {
         },
         opts = {
             highlight = {
-                pattern = [[.* <(KEYWORDS)\s*]],
+                -- vim regex
+                pattern = [[.*<(KEYWORDS)\s*:?]],
             },
             search = {
-                pattern = [[ \b(KEYWORDS)\b]],
+                -- ripgrep regex
+                pattern = [[\b(KEYWORDS)\b]],
             },
         },
     },
