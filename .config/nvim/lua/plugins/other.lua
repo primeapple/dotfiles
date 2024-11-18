@@ -10,6 +10,15 @@ return {
             vim.g.matchup_matchparen_offscreen = { method = 'popup' }
         end,
     },
+    {
+        'gregorias/coerce.nvim',
+        version = '*',
+        keys = {
+            { 'cr' },
+            { 'gcr', mode = { 'n', 'x' } },
+        },
+        config = true,
+    },
 
     -------------------- NAVIGATION --------------------
     {
