@@ -17,7 +17,14 @@ return {
             { 'cr' },
             { 'gcr', mode = { 'n', 'x' } },
         },
-        config = true,
+        opts = {
+            default_mode_keymap_prefixes = {
+                normal_mode = 'cr',
+                -- I don't like them but at least they don't break anything
+                motion_mode = 'gC',
+                visual_mode = 'gC',
+            },
+        },
     },
 
     -------------------- NAVIGATION --------------------
