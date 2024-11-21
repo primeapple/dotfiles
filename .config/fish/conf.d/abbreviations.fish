@@ -69,6 +69,8 @@ if status --is-interactive
     abbr --add nrp 'npm run prettify'
     abbr --add nrs 'npm run start'
     abbr --add nrt 'npm run test'
+    # Maybe add `--testTimeout=1000000`
+    abbr --add nrtd 'npm run test --  --inspect-brk --no-file-parallelism'
     abbr --add nrw 'npm run watch'
 
     # git/yadm related ones
