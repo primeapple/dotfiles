@@ -7,16 +7,13 @@
 #  - type-123-description -> type: #123
 #  - 123-description -> #123
 #  - 123-GH-124-description -> #123 GH-124
-#  - some-description -> 
+#  - some-description ->
 
-LAST_EXIT_CODE=$?
 COMMIT_MSG_FILE="$1"
 
-EXCLUDED_BRANCHES=("master" "main" "dev")
-CURRENT_BRANCH=$(git symbolic-ref --quiet --short HEAD)
-
-# Abort during merges/rebases and on excluded branches
-if [ $LAST_EXIT_CODE -ne 0 ] || [[ ${EXCLUDED_BRANCHES[*]} =~ $CURRENT_BRANCH ]]; then
+# Abort during merges/rebases
+LAST_EXIT_CODE=$?
+if [ $LAST_EXIT_CODE -ne 0 ]; then
     exit 0
 fi
 
@@ -25,6 +22,14 @@ if [ -n "$(head -n 1 "$COMMIT_MSG_FILE")" ]; then
     exit 0
 fi
 
+# Abort on excluded branches
+EXCLUDED_BRANCHES=("master" "main" "dev")
+CURRENT_BRANCH=$(git symbolic-ref --quiet --short HEAD)
+if [[ ${EXCLUDED_BRANCHES[*]} =~ $CURRENT_BRANCH ]]; then
+    exit 0
+fi
+
+# Build array of conventional commit types
 CONVENTIONAL_COMMIT_TYPES=("build" "chore" "ci" "docs" "feat" "fix" "perf" "refactor" "revert" "style" "test")
 for type in "${CONVENTIONAL_COMMIT_TYPES[@]}"; do
     CONVENTIONAL_COMMIT_TYPES+=("$type!")
