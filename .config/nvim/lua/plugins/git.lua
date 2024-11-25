@@ -3,7 +3,7 @@ return {
         'lewis6991/gitsigns.nvim',
         event = 'VeryLazy',
         dependencies = {
-            'seanbreckenridge/gitsigns-yadm.nvim',
+            'purarue/gitsigns-yadm.nvim',
         },
         config = function()
             require('gitsigns').setup({
