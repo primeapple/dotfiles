@@ -18,8 +18,8 @@ if status --is-interactive
 
     if command -v trash-put >/dev/null
         abbr --add rm 'Did you mean trash-put/trash/tp?'
-        abbr --add tp 'trash-put'
-        abbr --add trash 'trash-put'
+        abbr --add tp trash-put
+        abbr --add trash trash-put
     end
     abbr --add mv 'mv -i'
     abbr --add mkdir 'mkdir -pv'
@@ -64,7 +64,6 @@ if status --is-interactive
     abbr --add nt 'npm test --'
     abbr --add nrd 'npm run build'
     abbr --add nrd 'npm run docs'
-    # abbr --add nrj 'fd "\.test\." -e js -e ts -e jsx | fzy | xargs -r npx jest'
     abbr --add nrl 'npm run lint'
     abbr --add nrp 'npm run prettify'
     abbr --add nrs 'npm run start'
