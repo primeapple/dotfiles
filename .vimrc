@@ -83,9 +83,6 @@ nnoremap <silent> <CR> :noh<CR>
 
 nnoremap H ^
 nnoremap L g_
-" move lines up and down in visual mode
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
 
 " Omnicomplete with C-Space
-imap <c-space> <c-x><c-o>
+" imap <c-space> <c-x><c-o>

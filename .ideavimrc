@@ -79,11 +79,6 @@ nnoremap v<Leader>ge v]b
 " nnoremap ci<Leader>w di[w
 
 
-" vim-unimpaired
-nnoremap ]q :action GotoNextError<cr>
-nnoremap [q :action GotoPreviousError<cr>
-
-
 """"""""""""""""""""
 """ IDEA setings """
 """"""""""""""""""""
@@ -142,7 +137,7 @@ nnoremap gi :action GotoImplementation<cr>
 nnoremap gp :action GotoSuperMethod<cr>
 nnoremap gr :action GotoRelated<cr>
 nnoremap gs :action GotoSymbol<cr>
-nnoremap gt :action GotoTest<cr>
+nnoremap gpt :action GotoTest<cr>
 nnoremap gh :action TypeHierarchy<cr>
 nnoremap gm :action FileStructurePopup<cr>
 
@@ -156,26 +151,45 @@ nnoremap <Leader>ff :action GotoFile<cr>
 nnoremap <Leader>fc :action GotoClass<cr>
 nnoremap <Leader>fo :action RecentFiles<cr>
 " opens current file in NerdTree
-nnoremap <Leader>T :NERDTreeFind<cr>
+nnoremap - :NERDTreeFind<cr>
 nnoremap <C-n> :NERDTreeToggle<cr>
 
+" windows
+nnoremap <Leader>/ :vsp<CR>
+nnoremap <Leader>- :sp<CR>
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Right> <C-w>l
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Down> <C-w>j
+
 " Runing stuff
-nnoremap <Leader>r :action Run<cr>
-nnoremap <Leader>R :action ContextRun<cr>
-nnoremap <Leader>d :action Debug<cr>
-nnoremap <Leader>D :action ContextDebug<cr>
-nnoremap <Leader>c :action RunClass<cr>
-nnoremap <Leader>C :action DebugClass<cr>
-" nnoremap <Leader>f :action RerunFailedTests<cr>
+nnoremap <Leader>rr :action Run<cr>
+nnoremap <Leader>rn :action ContextRun<cr>
+nnoremap <Leader>rf :action RunClass<cr>
 map <C-p> <Action>(RebuildProject)
-map <C-s> <Action>(Stop)
+map <Leader>R <Action>(Stop)
+
 " TODO?
 " nnoremap <Leader>rt :action ActivateRunToolWindow<cr>
 " nnoremap ,l :action ChooseRunConfiguration<cr>
+" nnoremap <Leader>rd :action Debug<cr>
+" nnoremap <Leader>D :action ContextDebug<cr>
+" nnoremap <Leader>C :action DebugClass<cr>
+" nnoremap <Leader>f :action RerunFailedTests<cr>
 
 " Debugging
-nnoremap <Leader>db :action ToggleLineBreakpoint<cr>
-nnoremap <Leader>dB :action EditBreakpoint<cr>
+nnoremap <Leader>rb :action ToggleLineBreakpoint<cr>
+nnoremap <Leader>rB :action EditBreakpoint<cr>
 
 " Git Integration
-nnoremap <Leader>vb :action Annotate<cr>
+nnoremap <Leader>gb :action Annotate<cr>
+nnoremap ]g :action VcsShowNextChangeMarker<cr>
+nnoremap [g :action VcsShowPrevChangeMarker<cr>
+
+" Code Actions
+nnoremap crr :action ShowIntentionActions<cr>
+nnoremap crf :action ReformatCode<cr>
+nnoremap crn :action RenameElement<cr>
+nnoremap ]d :action GotoNextError<cr>
+nnoremap [d :action GotoPreviousError<cr>
+
