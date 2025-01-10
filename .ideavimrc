@@ -183,6 +183,7 @@ nnoremap <Leader>rB :action EditBreakpoint<cr>
 
 " Git Integration
 nnoremap <Leader>gb :action Annotate<cr>
+nnoremap <Leader>gr :action Vcs.RollbackChangedLines<cr>
 nnoremap ]g :action VcsShowNextChangeMarker<cr>
 nnoremap [g :action VcsShowPrevChangeMarker<cr>
 
