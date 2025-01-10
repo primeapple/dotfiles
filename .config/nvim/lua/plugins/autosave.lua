@@ -43,7 +43,7 @@ return {
                     if fn.getbufvar(buf, '&buftype') ~= '' then
                         return false
                     end
-                    if vim.list_contains({ "" }, fn.getbufvar(buf, '&filetype')) then
+                    if vim.list_contains({ '' }, fn.getbufvar(buf, '&filetype')) then
                         return false
                     end
                     return true

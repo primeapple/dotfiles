@@ -11,6 +11,7 @@ return {
         end,
     },
     {
+        -- TODO remove and replace with https://github.com/johmsalas/text-case.nvim
         'gregorias/coerce.nvim',
         version = '*',
         keys = {
@@ -173,18 +174,15 @@ return {
         },
     },
     {
-        'NvChad/nvim-colorizer.lua',
+        'norcalli/nvim-colorizer.lua',
         event = 'VeryLazy',
-        opts = {
-            user_default_options = {
-                names = false,
-                tailwind = 'lsp',
-                mode = 'virtualtext',
-                sass = {
-                    enable = true,
+        config = function()
+            require('colorizer').setup({
+                opts = {
+                    names = false,
                 },
-            },
-        },
+            })
+        end,
     },
     {
         'folke/todo-comments.nvim',
