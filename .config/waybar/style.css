@@ -30,10 +30,6 @@ window#waybar.hidden {
   border-radius: 0;
 }
 
-#workspaces button.focused {
-  color: #bf616a;
-}
-
 #workspaces button.active {
   color: #6a92d7;
 }
