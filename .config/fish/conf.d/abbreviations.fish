@@ -38,7 +38,6 @@ if status --is-interactive
     end
 
     if command -v nvim >/dev/null
-        abbr --add vim 'Did you mean nvim?'
         abbr --add . 'nvim .'
     end
     if command -v bat >/dev/null
@@ -46,7 +45,7 @@ if status --is-interactive
     end
 
     if command -v pacman >/dev/null
-        abbr --add pm 'pacman'
+        abbr --add pm pacman
         abbr --add pmi 'sudo pacman -S'
         abbr --add pms 'pacman -Ss'
         abbr --add pmu 'sudo pacman -Syu'
@@ -105,15 +104,22 @@ if status --is-interactive
         abbr --add $abb'sts' $cmd 'stash show'
         abbr --add $abb'sta' $cmd 'stash apply'
     end
+
     # only git
-    # branch specific commands
-    for tuples in m,main ma,master d,dev
-        echo $tuples | read -d , abb branch
-        abbr --add 'gc'$abb 'git checkout' $branch
-        abbr --add 'grb'$abb 'git rebase' $branch
-        abbr --add 'gm'$abb 'git merge' $branch
-        abbr --add 'gpu'$abb 'git pull upstream' $branch
+    # default branch specific commands
+    for tuples in gc,'git checkout' gm,'git merge' grb,'git rebase'
+        echo $tuples | read -d , abb cmd
+        function _abbr_git_default_branch_$abb --inherit-variable cmd
+            if git rev-parse --verify main &> /dev/null
+                echo $cmd main
+            else
+                echo $cmd master
+            end
+        end
+        abbr --add $abb'm' --function _abbr_git_default_branch_$abb
+        abbr --add $abb'd' $cmd 'dev'
     end
+
     abbr --add gaa 'git add --all'
     abbr --add gaf 'git ls-files -m -o --exclude-standard | zf | xargs --no-run-if-empty git add'
     abbr --add gpb 'git publish'
