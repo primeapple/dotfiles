@@ -11,20 +11,49 @@ return {
         end,
     },
     {
-        -- TODO remove and replace with https://github.com/johmsalas/text-case.nvim
-        'gregorias/coerce.nvim',
-        version = '*',
+        'johmsalas/text-case.nvim',
         keys = {
-            { 'cr' },
-            { 'gcr', mode = { 'n', 'x' } },
+            {
+                -- k for "kebab-case"
+                'crk',
+                function()
+                    require('textcase').current_word('to_dash_case')
+                end,
+            },
+            {
+                'crc',
+                function()
+                    require('textcase').current_word('to_camel_case')
+                end,
+            },
+            {
+                'crl',
+                function()
+                    require('textcase').current_word('to_snake_case')
+                end,
+            },
+            {
+                'crp',
+                function()
+                    require('textcase').current_word('to_pascal_case')
+                end,
+            },
+            {
+                'cru',
+                function()
+                    require('textcase').current_word('to_constant_case')
+                end,
+            },
+            -- this does not fully work yet
+            {
+                'crt',
+                function()
+                    require('textcase').current_word('to_title_case')
+                end,
+            },
         },
         opts = {
-            default_mode_keymap_prefixes = {
-                normal_mode = 'cr',
-                -- I don't like them but at least they don't break anything
-                motion_mode = 'gC',
-                visual_mode = 'gC',
-            },
+            default_keymappings_enabled = false,
         },
     },
 
