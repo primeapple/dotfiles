@@ -14,6 +14,15 @@ if status --is-interactive
         abbr --add dcd 'docker compose down'
     end
 
+    function __maven_abbr
+        if test -f './mvnw'
+            echo './mvnw'
+        else
+            echo mvn
+        end
+    end
+    abbr --add mvn --function __maven_abbr
+
     abbr --add reload 'source ~/.config/fish/config.fish'
 
     if command -v trash-put >/dev/null
@@ -110,14 +119,14 @@ if status --is-interactive
     for tuples in gc,'git checkout' gm,'git merge' grb,'git rebase'
         echo $tuples | read -d , abb cmd
         function _abbr_git_default_branch_$abb --inherit-variable cmd
-            if git rev-parse --verify main &> /dev/null
+            if git rev-parse --verify main &>/dev/null
                 echo $cmd main
             else
                 echo $cmd master
             end
         end
         abbr --add $abb'm' --function _abbr_git_default_branch_$abb
-        abbr --add $abb'd' $cmd 'dev'
+        abbr --add $abb'd' $cmd dev
     end
 
     abbr --add gaa 'git add --all'
