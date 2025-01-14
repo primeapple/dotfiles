@@ -13,7 +13,7 @@ fish -c "set -U fish_features qmark-noglob"
 fish -c "echo y | fish_config theme save kanagawa"
 
 # manage fisher plugins, this should normally work through the fish_plugins file, but sadly does not work yet
-fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
 fish -c "fisher install jethrokuan/z"
 fish -c "fisher install jorgebucaran/autopair.fish"
 fish -c "fisher install jorgebucaran/nvm.fish"
