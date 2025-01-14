@@ -73,7 +73,7 @@ echo "## DONE"
 ###############################################################################
 
 echo "## TEST: pacman installed specified applications"
-apps=("nvim" "bat" "eza")
+apps=("docker" "syncthing" "zip")
 for app in "${apps[@]}"; do
   if ! command -v "$app"; then
     echo "Error: App $app was not installed by pacman."
