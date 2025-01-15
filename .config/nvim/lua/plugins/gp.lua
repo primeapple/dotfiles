@@ -13,13 +13,11 @@ return {
     },
     config = function()
         require('gp').setup({
-            -- providers = {
-            --     anthropic = {
-            --         endpoint = 'https://api.anthropic.com/v1/messages',
-            --         secret = os.getenv('ANTHROPIC_API_KEY'),
-            --         disable = false,
-            --     },
-            -- },
+            providers = {
+                anthropic = {
+                    disable = false,
+                },
+            },
         })
     end,
 }

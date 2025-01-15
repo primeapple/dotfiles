@@ -24,7 +24,6 @@ set autoindent " automatically indents
 set backspace=indent,eol,start " Backspacing over everything
 set history=500 " keep 500 lines of command line history
 set number " enable line numbering
-set relativenumber " enable relative line numbers
 set nostartofline " keep cursor positioning
 set shiftwidth=4 " 4 spaces for identation
 set softtabstop=4 " Tab und Backspace use the correct number of spaces

@@ -22,6 +22,7 @@ return {
                 'java',
                 'javascript',
                 'json',
+                'kotlin',
                 'lua',
                 'luadoc',
                 'luap',
