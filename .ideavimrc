@@ -135,7 +135,7 @@ nnoremap gb :action ShowNavBar<cr>
 nnoremap gd :action GotoDeclaration<cr>
 nnoremap gi :action GotoImplementation<cr>
 nnoremap gp :action GotoSuperMethod<cr>
-nnoremap gr :action GotoRelated<cr>
+nnoremap gr :action FindUsages<cr>
 nnoremap gs :action GotoSymbol<cr>
 nnoremap gpt :action GotoTest<cr>
 nnoremap gh :action TypeHierarchy<cr>
@@ -146,6 +146,10 @@ nnoremap gm :action FileStructurePopup<cr>
 " Navigation
 map <C-o> <Action>(Back)
 map <C-i> <Action>(Forward)
+nnoremap ]d :action GotoNextError<cr>
+nnoremap [d :action GotoPreviousError<cr>
+nnoremap ]q :action NextOccurence<cr>
+nnoremap [q :action PreviousOccurence<cr>
 nnoremap <Leader>fw :action FindInPath<cr>
 nnoremap <Leader>ff :action GotoFile<cr>
 nnoremap <Leader>fc :action GotoClass<cr>
@@ -191,6 +195,4 @@ nnoremap [g :action VcsShowPrevChangeMarker<cr>
 nnoremap crr :action ShowIntentionActions<cr>
 nnoremap crf :action ReformatCode<cr>
 nnoremap crn :action RenameElement<cr>
-nnoremap ]d :action GotoNextError<cr>
-nnoremap [d :action GotoPreviousError<cr>
 
