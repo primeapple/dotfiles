@@ -165,6 +165,8 @@ nnoremap <C-Left> <C-w>h
 nnoremap <C-Right> <C-w>l
 nnoremap <C-Up> <C-w>k
 nnoremap <C-Down> <C-w>j
+nnoremap ZZ :action CloseAllEditors<cr>
+nnoremap ZQ :action CloseAllEditors<cr>
 
 " Runing stuff
 nnoremap <Leader>rr :action Run<cr>
