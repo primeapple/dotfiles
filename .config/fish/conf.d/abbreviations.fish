@@ -23,6 +23,8 @@ if status --is-interactive
     end
     abbr --add mvn --function __maven_abbr
 
+    abbr --add sudoedit 'EDITOR=(which nvim) sudoedit'
+
     abbr --add reload 'source ~/.config/fish/config.fish'
 
     if command -v trash-put >/dev/null
