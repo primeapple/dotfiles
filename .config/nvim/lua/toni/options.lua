@@ -1,5 +1,6 @@
 local opt = vim.opt
 local g = vim.g
+local o = vim.o
 
 opt.confirm = true
 opt.laststatus = 3 -- global statusline
@@ -49,3 +50,6 @@ g.maplocalleader = ','
 
 -- It's not recommended to use fish for internal terminal, therefore let's set it to bash
 opt.shell = '/bin/bash'
+
+-- Since I use AutoSave this should be save to use
+o.autoread = true

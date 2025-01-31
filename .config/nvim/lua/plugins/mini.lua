@@ -82,8 +82,8 @@ return {
             })
             require('mini.align').setup({
                 mappings = {
-                    start = 'cra',
-                    start_with_preview = 'crA',
+                    start = 'Cra',
+                    start_with_preview = 'CrA',
                 },
             })
         end,
