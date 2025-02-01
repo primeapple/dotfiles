@@ -80,12 +80,6 @@ return {
                     update_n_lines = 'gsn',
                 },
             })
-            require('mini.align').setup({
-                mappings = {
-                    start = 'Cra',
-                    start_with_preview = 'CrA',
-                },
-            })
         end,
     },
 }
