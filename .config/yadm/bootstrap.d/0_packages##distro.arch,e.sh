@@ -3,6 +3,7 @@
 pacman_packages=(
     "docker"
     "docker-compose"
+    "gcc"
     "syncthing"
     "kitty"
     "keyd"
