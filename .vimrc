@@ -85,3 +85,19 @@ nnoremap L g_
 
 " Omnicomplete with C-Space
 " imap <c-space> <c-x><c-o>
+
+nnoremap U <C-R>
+
+" Window navigation
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Right> <C-w>l
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Down> <C-w>j
+inoremap <C-Left> <Esc><C-w>h
+inoremap <C-Right> <Esc><C-w>l
+inoremap <C-Up> <Esc><C-w>k
+inoremap <C-Down> <Esc><C-w>j
+xnoremap <C-Left> <Esc><C-w>h
+xnoremap <C-Right> <Esc><C-w>l
+xnoremap <C-Up> <Esc><C-w>k
+xnoremap <C-Down> <Esc><C-w>j

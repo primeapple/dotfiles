@@ -130,16 +130,17 @@ nnoremap K :action QuickJavaDoc<cr>
 
 "" Goto Stuff ""
 " Data type related
-" nnoremap <Leader>h :action CallHierarchy<cr>
-nnoremap gb :action ShowNavBar<cr>
 nnoremap gd :action GotoDeclaration<cr>
-nnoremap gi :action GotoImplementation<cr>
-nnoremap gp :action GotoSuperMethod<cr>
+nnoremap gD :vsplit<CR>:action GotoDeclaration<CR>
 nnoremap gr :action FindUsages<cr>
-nnoremap gs :action GotoSymbol<cr>
 nnoremap gpt :action GotoTest<cr>
-nnoremap gh :action TypeHierarchy<cr>
-nnoremap gm :action FileStructurePopup<cr>
+" nnoremap <Leader>h :action CallHierarchy<cr>
+" nnoremap gb :action ShowNavBar<cr>
+" nnoremap gi :action GotoImplementation<cr>
+" nnoremap gp :action GotoSuperMethod<cr>
+" nnoremap gs :action GotoSymbol<cr>
+" nnoremap gh :action TypeHierarchy<cr>
+" nnoremap gm :action FileStructurePopup<cr>
 
 "" Show stuff
 
@@ -161,10 +162,6 @@ nnoremap <C-n> :NERDTreeToggle<cr>
 " windows
 nnoremap <Leader>/ :vsp<CR>
 nnoremap <Leader>- :sp<CR>
-nnoremap <C-Left> <C-w>h
-nnoremap <C-Right> <C-w>l
-nnoremap <C-Up> <C-w>k
-nnoremap <C-Down> <C-w>j
 nnoremap ZZ :action CloseAllEditors<cr>
 nnoremap ZQ :action CloseAllEditors<cr>
 nnoremap ZC :action HideActiveWindow<cr>
