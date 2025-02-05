@@ -8,14 +8,14 @@ if status is-interactive
 
     # default is 50 iirc
     set -g fish_escape_delay_ms 10
+end
 
-    for path_to_add in ~/.local/share/JetBrains/Toolbox/scripts ~/bin
-        if test -d $path_to_add
-            fish_add_path -g $path_to_add
-        end
+set --export BUN_INSTALL "$HOME/.bun"
+set --export GOPATH "$HOME/go"
+
+for path_to_add in ~/.local/share/JetBrains/Toolbox/scripts ~/bin $BUN_INSTALL/bin $GOPATH/bin
+    if test -d $path_to_add
+        fish_add_path -g $path_to_add
     end
 end
 
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
