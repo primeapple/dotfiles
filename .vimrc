@@ -78,7 +78,7 @@ nnoremap vv V
 
 " This unsets the 'last search pattern' register by hitting return
 " https://stackoverflow.com/a/662914
-nnoremap <silent> <CR> :noh<CR>
+nnoremap <silent> <ESC> :noh<CR>
 
 nnoremap H ^
 nnoremap L g_
