@@ -26,31 +26,6 @@ set highlightedyank
 " alternative to xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR>
 xnoremap p "_dP
 
-" Imitating Harpoon
-" Setting - only for lines. To use it with files we have to call
-" :NERDTreeFind<cr> and then <A-0>...<A-9> - these have to be set in Idea
-" nnoremap m1 :action SetFileBookmark1<cr>
-" nnoremap m2 :action SetFileBookmark2<cr>
-" nnoremap m3 :action SetFileBookmark3<cr>
-" nnoremap m4 :action SetFileBookmark4<cr>
-" nnoremap m5 :action SetFileBookmark5<cr>
-" nnoremap m6 :action SetFileBookmark6<cr>
-" nnoremap m7 :action SetFileBookmark7<cr>
-" nnoremap m8 :action SetFileBookmark8<cr>
-" nnoremap m9 :action SetFileBookmark9<cr>
-" nnoremap m0 :action SetFileBookmark0<cr>
-" Jumping - should work
-nnoremap '1 :action GotoBookmark1<cr>
-nnoremap '2 :action GotoBookmark2<cr>
-nnoremap '3 :action GotoBookmark3<cr>
-nnoremap '4 :action GotoBookmark4<cr>
-nnoremap '5 :action GotoBookmark5<cr>
-nnoremap '6 :action GotoBookmark6<cr>
-nnoremap '7 :action GotoBookmark7<cr>
-nnoremap '8 :action GotoBookmark8<cr>
-nnoremap '9 :action GotoBookmark9<cr>
-nnoremap '0 :action GotoBookmark0<cr>
-
 " Vim Wordmotion, move over camelCases, under_scores, etc.
 nnoremap <Leader>w [w
 nnoremap d<Leader>w d[w
@@ -158,6 +133,16 @@ nnoremap <Leader>fo :action RecentFiles<cr>
 " opens current file in NerdTree
 nnoremap - :NERDTreeFind<cr>
 nnoremap <C-n> :NERDTreeToggle<cr>
+
+" Imitating Harpoon, using the HarpoonIJ plugin
+nnoremap 1gh :action GotoHarpoon1<cr>
+nnoremap 2gh :action GotoHarpoon2<cr>
+nnoremap 3gh :action GotoHarpoon3<cr>
+nnoremap 4gh :action GotoHarpoon4<cr>
+nnoremap 5gh :action GotoHarpoon5<cr>
+
+nnoremap gH :action ShowHarpoon<cr>
+nnoremap gh :action AddToHarpoon<cr>
 
 " windows
 nnoremap <Leader>/ :vsp<CR>
