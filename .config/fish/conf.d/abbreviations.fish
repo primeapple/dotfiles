@@ -12,6 +12,10 @@ if status --is-interactive
         abbr --add dcu 'docker compose up'
         abbr --add dcud 'docker compose up --detach'
         abbr --add dcd 'docker compose down'
+        abbr --add dcp 'docker compose ps'
+        abbr --add dcpl 'docker compose pull'
+        abbr --add dcl 'docker compose logs'
+        abbr --add dcls 'docker compose ls'
     end
 
     function __maven_abbr
