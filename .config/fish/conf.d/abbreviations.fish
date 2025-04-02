@@ -34,7 +34,7 @@ if status --is-interactive
     abbr --add reload 'source ~/.config/fish/config.fish'
 
     if command -v trash-put >/dev/null
-        abbr --add rm 'Did you mean trash-put/trash/tp?'
+        abbr --add rm 'echo Did you mean trash-put/trash/tp? && rm'
         abbr --add tp trash-put
         abbr --add trash trash-put
     end
