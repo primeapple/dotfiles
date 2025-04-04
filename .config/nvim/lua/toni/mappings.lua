@@ -54,10 +54,6 @@ map('x', '>', '>gv')
 map('n', 'ZW', '<cmd> w <CR>')
 map('n', 'ZA', '<cmd> wa <CR>')
 
--- stolen from mini.basics
-map('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
-map('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")
-
 -- allows 'overpasting' selected blocks and not change the register to the overpasted text
 map('x', 'p', 'p:let @+=@0<CR>')
 
