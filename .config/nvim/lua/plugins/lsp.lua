@@ -19,11 +19,6 @@ return {
             })
 
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            -- use lsp as folding provider for `nvim-ufo`
-            capabilities.textDocument.foldingRange = {
-                dynamicRegistration = false,
-                lineFoldingOnly = true,
-            }
 
             local lsp = require('lspconfig')
             local utils = require('toni.utils')
@@ -95,35 +90,35 @@ return {
             server('tailwindcss', {
                 root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
             })
-            server('vtsls', {
-                settings = {
-                    complete_function_calls = true,
-                    vtsls = {
-                        enableMoveToFileCodeAction = true,
-                        autoUseWorkspaceTsdk = true,
-                        experimental = {
-                            completion = {
-                                enableServerSideFuzzyMatch = true,
-                            },
-                            -- maxInlayHintLength = 100,
-                        },
-                    },
-                    typescript = {
-                        updateImportsOnFileMove = { enabled = 'always' },
-                        suggest = {
-                            completeFunctionCalls = true,
-                        },
-                        inlayHints = {
-                            enumMemberValues = { enabled = true },
-                            functionLikeReturnTypes = { enabled = true },
-                            parameterNames = { enabled = 'literals' },
-                            parameterTypes = { enabled = true },
-                            propertyDeclarationTypes = { enabled = true },
-                            variableTypes = { enabled = false },
-                        },
-                    },
-                },
-            })
+            -- server('vtsls', {
+            --     settings = {
+            --         complete_function_calls = true,
+            --         vtsls = {
+            --             enableMoveToFileCodeAction = true,
+            --             autoUseWorkspaceTsdk = true,
+            --             experimental = {
+            --                 completion = {
+            --                     enableServerSideFuzzyMatch = true,
+            --                 },
+            --                 -- maxInlayHintLength = 100,
+            --             },
+            --         },
+            --         typescript = {
+            --             updateImportsOnFileMove = { enabled = 'always' },
+            --             suggest = {
+            --                 completeFunctionCalls = true,
+            --             },
+            --             inlayHints = {
+            --                 enumMemberValues = { enabled = true },
+            --                 functionLikeReturnTypes = { enabled = true },
+            --                 parameterNames = { enabled = 'literals' },
+            --                 parameterTypes = { enabled = true },
+            --                 propertyDeclarationTypes = { enabled = true },
+            --                 variableTypes = { enabled = false },
+            --             },
+            --         },
+            --     },
+            -- })
 
             server('yamlls', {
                 settings = {
