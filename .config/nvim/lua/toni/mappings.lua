@@ -57,3 +57,5 @@ map('n', 'ZA', '<cmd> wa <CR>')
 -- allows 'overpasting' selected blocks and not change the register to the overpasted text
 map('x', 'p', 'p:let @+=@0<CR>')
 
+-- folding
+map('n', '<leader><leader>', 'za')
