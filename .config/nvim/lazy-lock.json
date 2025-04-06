@@ -1,6 +1,7 @@
 {
   "FixCursorHold.nvim": { "branch": "master", "commit": "1900f89dc17c603eec29960f57c00bd9ae696495" },
   "LuaSnip": { "branch": "master", "commit": "c9b9a22904c97d0eb69ccb9bab76037838326817" },
+  "auto-cmdheight.nvim": { "branch": "main", "commit": "f0565f28e159d49c7719098a34b891691b73ecfc" },
   "auto-save.nvim": { "branch": "main", "commit": "29f793a3a7f98129387590269ffe3ad61ab5e509" },
   "cmp-buffer": { "branch": "main", "commit": "b74fab3656eea9de20a9b8116afa3cfc4ec09657" },
   "cmp-calc": { "branch": "main", "commit": "5947b412da67306c5b68698a02a846760059be2e" },
@@ -69,5 +70,6 @@
   "typescript-tools.nvim": { "branch": "master", "commit": "e0887c1e336edbb01243e9f1e60d74b0bc0a2bed" },
   "vim-matchup": { "branch": "master", "commit": "ea2ff43e09e68b63fc6d9268fc5d82d82d433cb3" },
   "vim-tpipeline": { "branch": "master", "commit": "72a624f97730059bab359cb0b58a23433bfec308" },
-  "vim-wordmotion": { "branch": "master", "commit": "81d9bd298376ab0dc465c85d55afa4cb8d5f47a1" }
+  "vim-wordmotion": { "branch": "master", "commit": "81d9bd298376ab0dc465c85d55afa4cb8d5f47a1" },
+  "visual-whitespace.nvim": { "branch": "main", "commit": "97bb1320f259be56a08b3b33ef335f5865ebf17e" }
 }

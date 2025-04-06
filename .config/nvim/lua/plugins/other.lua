@@ -242,6 +242,16 @@ return {
             },
         },
     },
+    {
+        'mcauley-penney/visual-whitespace.nvim',
+        keys = { 'v', 'V', '<C-v>' },
+        config = true,
+    },
+    {
+        'jake-stewart/auto-cmdheight.nvim',
+        lazy = false,
+        config = true,
+    },
 
     -------------------- MISC --------------------
     -- TODO use option `winfixbuf` for specific buffers
