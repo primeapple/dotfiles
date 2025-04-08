@@ -117,6 +117,31 @@ return {
             end
         end,
     },
+    {
+        'cbochs/grapple.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        cmd = 'Grapple',
+        keys = {
+            {
+                'gh',
+                function()
+                    if vim.v.count > 0 then
+                        return '<cmd>Grapple select index=' .. vim.v.count .. '<CR>'
+                    else
+                        return '<cmd>Grapple toggle<cr>'
+                    end
+                end,
+                desc = 'Grapple toggle/move tag',
+                expr = true,
+            },
+            { 'gH', '<cmd>Grapple toggle_tags<cr>', desc = 'Grapple open tags window' },
+            { ']h', '<cmd>Grapple cycle_tags next<cr>', desc = 'Grapple cycle next tag' },
+            { '[h', '<cmd>Grapple cycle_tags prev<cr>', desc = 'Grapple cycle previous tag' },
+        },
+        opts = {
+            scope = 'git_branch',
+        },
+    },
 
     -------------------- TEXT OBJECTS --------------------
     {
