@@ -128,7 +128,17 @@ return {
                     if vim.v.count > 0 then
                         return '<cmd>Grapple select index=' .. vim.v.count .. '<CR>'
                     else
-                        return '<cmd>Grapple toggle<cr>'
+                        if vim.bo.filetype == 'oil' then
+                            local Oil = require('oil')
+                            local filename = Oil.get_cursor_entry().name
+                            local directory = Oil.get_current_dir()
+
+                            local Grapple = require('grapple')
+                            local Path = require('grapple.path')
+                            Grapple.toggle({ path = Path.join(directory, filename) })
+                        else
+                            return '<cmd>Grapple toggle<cr>'
+                        end
                     end
                 end,
                 desc = 'Grapple toggle/move tag',
