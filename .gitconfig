@@ -19,6 +19,7 @@
     # current-merge-base = !git merge-base $1 $(git branch --show-current)
     reset-origin=reset --hard @{u}
     squash = !git -c sequence.editor=\"nvim -c '2,\\$s/^pick/squash/'\" rebase --interactive $(git merge-base HEAD $(git rev-parse --verify --quiet master >/dev/null && echo master || echo main))
+    select = !git ls-files -m -o --exclude-standard | zf | xargs --no-run-if-empty git add
 # delta config
 [core]
     pager = delta

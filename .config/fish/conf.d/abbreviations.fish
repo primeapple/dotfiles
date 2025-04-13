@@ -93,8 +93,8 @@ if status --is-interactive
         echo $tuples | read -d , abb cmd
         abbr --add $abb $cmd
         abbr --add $abb'a' $cmd add
-        abbr --add $abb'au' $cmd 'add -u'
-        abbr --add $abb'c' $cmd 'commit -v'
+        abbr --add $abb'au' $cmd 'add --update'
+        abbr --add $abb'c' $cmd 'commit --verbose'
         abbr --add $abb'ca' $cmd 'commit --amend'
         abbr --add $abb'can' $cmd 'commit --amend --no-edit'
         abbr --add $abb'r' $cmd reset
@@ -124,7 +124,7 @@ if status --is-interactive
 
     # only git
     # default branch specific commands
-    for tuples in gc,'git checkout' gm,'git merge' grb,'git rebase'
+    for tuples in gs,'git switch' gm,'git merge' grb,'git rebase'
         echo $tuples | read -d , abb cmd
         function _abbr_git_default_branch_$abb --inherit-variable cmd
             if git rev-parse --verify main &>/dev/null
@@ -137,15 +137,17 @@ if status --is-interactive
         abbr --add $abb'd' $cmd dev
     end
 
+    abbr --add gi 'git init'
     abbr --add gaa 'git add --all'
-    abbr --add gaf 'git ls-files -m -o --exclude-standard | zf | xargs --no-run-if-empty git add'
     abbr --add gpb 'git publish'
     abbr --add gb 'git branch'
-    abbr --add gbd 'git branch -d'
-    abbr --add gbm 'git branch -m'
-    abbr --add gco 'git checkout'
-    abbr --add gc- 'git checkout -'
-    abbr --add gcb 'git checkout -b'
+    abbr --add gbd 'git branch --delete'
+    abbr --add gbm 'git branch --move'
+    abbr --add gsw 'git switch'
+    abbr --add gs- 'git switch -'
+    abbr --add gsc 'git switch --create'
+    abbr --add gsq 'git squash'
+    abbr --add gse 'git select'
     abbr --add gm 'git merge'
     abbr --add gma 'git merge --abort'
     abbr --add grb 'git rebase'
@@ -159,7 +161,7 @@ if status --is-interactive
     abbr --add gcon 'git config user.name "Toni Müller" && git config user.email "toni.mueller.web@mailbox.org"'
 
     # only yadm
-    abbr --add yaf 'yadm diff --name-only | awk -v home=(echo $HOME) \'{print home "/" $1}\' | zf | xargs --no-run-if-empty yadm add'
+    abbr --add yse 'yadm diff --name-only | awk -v home=(echo $HOME) \'{print home "/" $1}\' | zf | xargs --no-run-if-empty yadm add'
 
     # taskwarrior related ones
     abbr --add t task
