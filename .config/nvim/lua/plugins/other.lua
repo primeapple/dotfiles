@@ -279,7 +279,7 @@ return {
     },
     {
         'mcauley-penney/visual-whitespace.nvim',
-        keys = { 'v', 'V', '<C-v>' },
+        keys = { 'v', '<C-v>', { 'V', 'vg_' } },
         config = true,
     },
     {

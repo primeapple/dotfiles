@@ -1,6 +1,7 @@
 local map = require('toni.utils').map
 
-map('n', 'V', 'vg_')
+-- already mapped by visual-whitespace.nvim
+-- map('n', 'V', 'vg_')
 map('n', 'vv', 'V')
 map({ 'n', 'x', 'o' }, { 'L', '<S-Right>' }, 'g_')
 map({ 'n', 'x', 'o' }, { 'H', '<S-Left>' }, '^')
