@@ -20,4 +20,7 @@ function fish_hybrid_key_bindings --description \
     bind L end-of-line
     bind --mode visual H beginning-of-line
     bind --mode visual L end-of-line
+
+    bind --mode insert ctrl-y forward-char
+    bind --mode insert alt-y forward-word
 end
