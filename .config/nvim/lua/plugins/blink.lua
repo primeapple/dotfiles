@@ -17,7 +17,16 @@ return {
                 ghost_text = {
                     enabled = true,
                 },
-                menu = { auto_show = false },
+                menu = {
+                    auto_show = false,
+                    draw = {
+                        columns = {
+                            { 'kind_icon' },
+                            { 'label', 'label_description', gap = 1 },
+                            { 'source_name' },
+                        },
+                    },
+                },
             },
             keymap = { preset = 'enter' },
             sources = {
