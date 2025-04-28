@@ -7,7 +7,6 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'williamboman/mason.nvim',
-            'hrsh7th/cmp-nvim-lsp',
             'b0o/schemastore.nvim',
             -- TODO replace with https://github.com/folke/lazydev.nvim
             'folke/neodev.nvim',
@@ -17,8 +16,6 @@ return {
             require('neodev').setup({
                 library = { plugins = { 'nvim-dap-ui' }, types = true },
             })
-
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
             local lsp = require('lspconfig')
             local utils = require('toni.utils')
@@ -32,7 +29,6 @@ return {
             local server = function(name, opts)
                 local merged_options = vim.tbl_deep_extend('force', {
                     on_attach = utils.on_attach,
-                    capabilities = capabilities,
                 }, opts or {})
 
                 lsp[name].setup(merged_options)
