@@ -1,8 +1,9 @@
 return {
     'nvim-treesitter/nvim-treesitter',
+    -- TODO enable this when it's further developed
+    -- branch = 'main',
     build = ':TSUpdate',
     version = false,
-    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
         'nvim-treesitter/nvim-treesitter-context',
         'RRethy/nvim-treesitter-textsubjects',
