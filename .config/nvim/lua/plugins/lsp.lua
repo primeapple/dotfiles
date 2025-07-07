@@ -6,7 +6,6 @@ return {
         cond = is_workstation,
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            'williamboman/mason.nvim',
             'b0o/schemastore.nvim',
             -- TODO replace with https://github.com/folke/lazydev.nvim
             'folke/neodev.nvim',

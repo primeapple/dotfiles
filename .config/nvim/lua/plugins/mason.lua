@@ -1,9 +1,9 @@
 return {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     cmd = 'Mason',
     cond = require('toni.utils').is_workstation,
     dependencies = {
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason-lspconfig.nvim',
     },
     config = function()
         require('mason').setup({
