@@ -15,7 +15,7 @@ end
 set --export BUN_INSTALL "$HOME/.bun"
 set --export GOPATH "$HOME/go"
 
-for path_to_add in ~/.local/share/JetBrains/Toolbox/scripts ~/bin $BUN_INSTALL/bin $GOPATH/bin
+for path_to_add in ~/.local/share/JetBrains/Toolbox/scripts ~/bin ~/.local/bin $BUN_INSTALL/bin $GOPATH/bin
     if test -d $path_to_add
         fish_add_path -g $path_to_add
     end
