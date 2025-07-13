@@ -7,15 +7,9 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'b0o/schemastore.nvim',
-            -- TODO replace with https://github.com/folke/lazydev.nvim
-            'folke/neodev.nvim',
         },
 
         config = function()
-            require('neodev').setup({
-                library = { plugins = { 'nvim-dap-ui' }, types = true },
-            })
-
             local lsp = require('lspconfig')
             local utils = require('toni.utils')
 
