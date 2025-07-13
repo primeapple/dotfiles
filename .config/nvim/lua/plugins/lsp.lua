@@ -53,6 +53,7 @@ return {
                 },
             })
             server('gopls')
+            server('harper-ls')
             server('jsonls', {
                 settings = {
                     json = {
@@ -62,7 +63,6 @@ return {
                 },
             })
             server('kotlin_language_server')
-            server('ltex_plus')
             server('lua_ls', {
                 settings = {
                     Lua = {
