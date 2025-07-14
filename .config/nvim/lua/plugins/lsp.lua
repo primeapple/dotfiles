@@ -75,6 +75,7 @@ return {
             })
             server('phpactor')
             server('pyright')
+            server('rust_analyzer')
             server('stylelint_lsp')
             server('tailwindcss', {
                 root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),

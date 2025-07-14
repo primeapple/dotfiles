@@ -20,3 +20,10 @@ for path_to_add in ~/.local/share/JetBrains/Toolbox/scripts ~/bin ~/.local/bin $
         fish_add_path -g $path_to_add
     end
 end
+
+set --export CARGO_ENV "$HOME/.cargo/env.fish"
+for file_to_source in $CARGO_ENV
+    if test -f $path_to_add
+        source $file_to_source
+    end
+end
