@@ -8,7 +8,7 @@ if status is-interactive
     set -g fish_escape_delay_ms 10
 
     if command -v bookmarker >/dev/null
-        bookmarker --init fish | source
+        bookmarker init fish | source
     end
 end
 
