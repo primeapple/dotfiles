@@ -20,6 +20,7 @@ return {
                 'fish',
                 'go',
                 'html',
+                'http',
                 'java',
                 'javascript',
                 'json',

@@ -1,7 +1,7 @@
 openai-api-base: https://api.githubcopilot.com
 # set the env variable OPENAI_API_KEY
 # openai-api-key: ""
-model: openai/gpt-4o
+model: openai/claude-sonnet-4
 weak-model: openai/gpt-4o-mini
 show-model-warnings: false
 dark-mode: true
