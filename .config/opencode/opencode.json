@@ -1,0 +1,14 @@
+{
+	"$schema": "https://opencode.ai/config.json",
+	"theme": "opencode",
+	"model": "",
+	"disabled_providers": ["anthropic", "openapi"],
+    "keybinds": {
+        "messages_half_page_down": "ctrl+d",
+        "messages_half_page_up": "ctrl+u",
+        "messages_first": "<leader>g",
+        "messages_last": "<leader>G",
+        "messages_next": "ctrl+n",
+        "messages_previous": "ctrl+u"
+    }
+}
