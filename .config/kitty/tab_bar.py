@@ -161,10 +161,10 @@ def parse_statusline_str(statusline_str) -> List[Component]:
         italic = False
         for item_format in format.split(","):
             if item_format.startswith("fg="):
-                if item_format != "fg=default":
+                if item_format != "fg=" and item_format != "fg=default":
                     fg = as_rgb(int(item_format[4:10], 16))
             elif item_format.startswith("bg="):
-                if item_format != "bg=default":
+                if item_format != "bg=" and item_format != "bg=default":
                     bg = as_rgb(int(item_format[4:10], 16))
             elif item_format == "bold":
                 bold = True
