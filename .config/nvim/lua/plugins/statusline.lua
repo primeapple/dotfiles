@@ -3,7 +3,6 @@ return {
         'rebelot/heirline.nvim',
         event = 'UIEnter',
         dependencies = {
-            'nvim-lua/plenary.nvim',
             'nvim-tree/nvim-web-devicons',
             'rebelot/kanagawa.nvim',
             'lewis6991/gitsigns.nvim',
@@ -227,6 +226,7 @@ return {
             local Space = { provider = '  ' }
 
             local DefaultStatuslineLeft = { FileNameBlock, Space, Git, Align }
+            -- TODO add search results
             local DefaultStatusLineRight = {
                 LSPActive,
                 Space,
@@ -458,7 +458,7 @@ return {
         init = function()
             vim.cmd('let g:tpipeline_size = &co')
             vim.g.tpipeline_clearstl = 1
-            vim.g.tpipeline_refreshcmd = 'kitty @ set-tab-title refresh_tabbar'
+            vim.g.tpipeline_refreshcmd = 'kitty @ set-tab-title ""'
             vim.api.nvim_create_autocmd('User', {
                 pattern = 'TpipelineSize',
                 command = 'let g:tpipeline_size = &co',
