@@ -56,7 +56,6 @@ return {
                     },
                 },
             })
-            server('kotlin_language_server')
             server('lua_ls', {
                 settings = {
                     Lua = {

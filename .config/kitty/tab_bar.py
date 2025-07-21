@@ -93,7 +93,7 @@ def _draw_tab(
     screen: Screen,
     tab: TabBarData,
     before: int,
-    max_tab_length: int,
+    max_title_length: int,
     index: int,
     is_last: bool,
     extra_data: ExtraData,
@@ -102,12 +102,14 @@ def _draw_tab(
     bg = ACTIVE_TAB_BG if tab.is_active else INACTIVE_TAB_BG
     options = ComponentOptions(fg, bg, True)
 
-    max_tab_length += 1
-    if max_tab_length <= 1:
+    max_title_length += 1
+    # We never want tabs that are to big
+    max_title_length = min(max_title_length, 30)
+    if max_title_length <= 1:
         draw_components(screen, [Component("…", options)])
-    elif max_tab_length == 2:
+    elif max_title_length == 2:
         draw_components(screen, [Component("…|", options)])
-    elif max_tab_length < 6:
+    elif max_title_length < 6:
         draw_components(
             screen,
             tab_left_components(tab.is_active)
@@ -116,8 +118,8 @@ def _draw_tab(
         )
     else:
         draw_components(screen, tab_left_components(tab.is_active))
-        draw_title(draw_data, screen, tab, index, max_tab_length)
-        extra = screen.cursor.x - before - max_tab_length
+        draw_title(draw_data, screen, tab, index, max_title_length)
+        extra = screen.cursor.x - before - max_title_length
         if extra >= 0:
             screen.cursor.x -= extra + 3
             draw_components(screen, [Component("…", options)])
@@ -128,47 +130,6 @@ def _draw_tab(
 
     if not is_last:
         draw_components(screen, [space_component(1)])
-
-    return screen.cursor.x
-
-    ### OLD
-
-    orig_fg = screen.cursor.fg
-    left_sep, right_sep = ("", "")
-    slant_fg = as_rgb(color_as_int(draw_data.default_bg))
-
-    def draw_sep(which: str) -> None:
-        tab_bg = as_rgb(draw_data.tab_bg(tab))
-        screen.cursor.fg = tab_bg
-        screen.cursor.bg = slant_fg
-        screen.draw(which)
-        screen.cursor.bg = tab_bg
-        screen.cursor.fg = orig_fg
-
-    # TODO: logic based on max title length?
-    max_tab_length += 1
-    if max_tab_length <= 1:
-        screen.draw("…")
-    elif max_tab_length == 2:
-        screen.draw("…|")
-    elif max_tab_length < 6:
-        draw_sep(left_sep)
-        screen.draw("…")
-        draw_sep(right_sep)
-    else:
-        draw_sep(left_sep)
-        draw_title(draw_data, screen, tab, index, max_tab_length)
-        extra = screen.cursor.x - before - max_tab_length
-        if extra >= 0:
-            screen.cursor.x -= extra + 3
-            screen.draw("…")
-        elif extra == -1:
-            screen.cursor.x -= 2
-            screen.draw("…")
-        draw_sep(right_sep)
-
-    if not is_last:
-        draw_sep(" ")
 
     return screen.cursor.x
 
