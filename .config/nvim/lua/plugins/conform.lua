@@ -39,6 +39,11 @@ return {
                 typescriptreact = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
                 yaml = { 'prettierd', 'prettier', 'yamlfmt', stop_after_first = true },
             },
+            format_on_save = {
+                lsp_format = 'fallback',
+                timeout_ms = 500,
+                undojoin = true,
+            },
             notify_on_error = false,
         })
     end,
