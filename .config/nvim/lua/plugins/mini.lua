@@ -26,9 +26,18 @@ return {
             -- Redo with U
             map('n', 'U', '<C-R><Cmd>lua MiniBracketed.register_undo_state()<CR>')
 
-            -- TODO remove with nvim 0.10
             require('mini.comment').setup()
             require('mini.cursorword').setup()
+            require('mini.hipatterns').setup({
+                highlighters = {
+                    fixme = { pattern = '%s+%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+                    hack = { pattern = '%s+%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+                    warn = { pattern = '%s+%f[%w]()WARN()%f[%W]', group = 'MiniHipatternsHack' },
+                    todo = { pattern = '%s+%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
+                    test = { pattern = '%s+%f[%w]()TEST()%f[%W]', group = 'MiniHipatternsTodo' },
+                    note = { pattern = '%s+%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+                },
+            })
             require('mini.move').setup({
                 mappings = {
                     up = '[e',

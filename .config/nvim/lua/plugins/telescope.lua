@@ -68,7 +68,6 @@ return {
         'nvim-telescope/telescope-dap.nvim',
         'nvim-telescope/telescope-live-grep-args.nvim',
         'debugloop/telescope-undo.nvim',
-        'folke/todo-comments.nvim',
     },
     config = function()
         local telescope = require('telescope')

@@ -1,4 +1,3 @@
-local todo_keywords = { 'FIX', 'TODO', 'HACK', 'WARN', 'PERF', 'NOTE', 'TEST' }
 local is_workstation = require('toni.utils').is_workstation
 
 return {
@@ -247,35 +246,6 @@ return {
                 },
             })
         end,
-    },
-    {
-        'folke/todo-comments.nvim',
-        event = 'VeryLazy',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        keys = {
-            {
-                ']t',
-                function()
-                    require('todo-comments').jump_next({ keywords = todo_keywords })
-                end,
-            },
-            {
-                '[t',
-                function()
-                    require('todo-comments').jump_prev({ keywords = todo_keywords })
-                end,
-            },
-        },
-        opts = {
-            highlight = {
-                -- vim regex
-                pattern = [[.*<(KEYWORDS)\s*:?]],
-            },
-            search = {
-                -- ripgrep regex
-                pattern = [[\b(KEYWORDS)\b]],
-            },
-        },
     },
     {
         'mcauley-penney/visual-whitespace.nvim',
