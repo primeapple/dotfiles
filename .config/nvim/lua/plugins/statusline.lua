@@ -32,6 +32,9 @@ return {
                 }
             end
 
+            local Align = { provider = '%=' }
+            local Space = { provider = '  ' }
+
             local FileNameBlock = {
                 init = function(self)
                     self.filename = vim.api.nvim_buf_get_name(0)
@@ -222,11 +225,43 @@ return {
                     hl = { fg = 'git_change' },
                 },
             }
-            local Align = { provider = '%=' }
-            local Space = { provider = '  ' }
 
-            local DefaultStatuslineLeft = { FileNameBlock, Space, Git, Align }
-            -- TODO add search results
+            local SearchCount = {
+                condition = function()
+                    return vim.v.hlsearch ~= 0 and vim.o.cmdheight == 0
+                end,
+                init = function(self)
+                    local ok, search = pcall(vim.fn.searchcount)
+                    if ok and search.total then
+                        self.search = search
+                    end
+                end,
+                provider = function(self)
+                    local search = self.search
+                    return string.format('  [%d/%d]', search.current, math.min(search.total, search.maxcount))
+                end,
+                hl = { bold = true },
+            }
+
+            local MacroRec = {
+                condition = function()
+                    return vim.fn.reg_recording() ~= '' and vim.o.cmdheight == 0
+                end,
+                provider = '   ',
+                hl = { fg = 'orange', bold = true },
+                utils.surround({ '[', ']' }, nil, {
+                    provider = function()
+                        return vim.fn.reg_recording()
+                    end,
+                    hl = { fg = 'fg', bold = true },
+                }),
+                update = {
+                    'RecordingEnter',
+                    'RecordingLeave',
+                },
+            }
+
+            local DefaultStatuslineLeft = { FileNameBlock, SearchCount, MacroRec, Space, Git, Align }
             local DefaultStatusLineRight = {
                 LSPActive,
                 Space,
