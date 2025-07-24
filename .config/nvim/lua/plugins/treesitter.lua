@@ -1,5 +1,6 @@
 return {
     'nvim-treesitter/nvim-treesitter',
+    event = 'VeryLazy',
     -- TODO enable this when it's further developed
     -- branch = 'main',
     build = ':TSUpdate',
