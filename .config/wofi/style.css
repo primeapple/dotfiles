@@ -1,39 +1,21 @@
-@define-color base00 #282828;
-@define-color base01 #3C3836;
-@define-color base02 #504945;
-@define-color base03 #665C54;
-@define-color base04 #BDAE93;
-@define-color base06 #D5C4A1;
-@define-color base06 #EBDBB2;
-@define-color base07 #FBF1C7;
-@define-color base08 #FB4934;
-@define-color base09 #FE8019;
-@define-color base0A #FABD2F;
-@define-color base0B #B8BB26;
-@define-color base0C #8EC07C;
-@define-color base0D #83A598;
-@define-color base0E #D3869B;
-@define-color base0F #D65D0E;
-
-/* @define-color base00: #1F1F28; */
-/* @define-color base01: #2A2A37; */
-/* @define-color base02: #223249; */
-/* @define-color base03: #727169; */
-/* @define-color base04: #C8C093; */
-/* @define-color base05: #DCD7BA; */
-/* @define-color base06: #938AA9; */
-/* @define-color base07: #363646; */
-/* @define-color base08: #C34043; */
-/* @define-color base09: #FFA066; */
-/* @define-color base0A: #DCA561; */
-/* @define-color base0B: #98BB6C; */
-/* @define-color base0C: #7FB4CA; */
-/* @define-color base0D: #7E9CD8; */
-/* @define-color base0E: #957FB8; */
-/* @define-color base0F: #D27E99; */
+@define-color base00 #1F1F28;
+@define-color base01 #2A2A37;
+@define-color base02 #223249;
+@define-color base03 #727169;
+@define-color base04 #C8C093;
+@define-color base05 #DCD7BA;
+@define-color base06 #938AA9;
+@define-color base07 #363646;
+@define-color base08 #C34043;
+@define-color base09 #FFA066;
+@define-color base0A #DCA561;
+@define-color base0B #98BB6C;
+@define-color base0C #7FB4CA;
+@define-color base0D #7E9CD8;
+@define-color base0E #957FB8;
+@define-color base0F #D27E99;
 
 window {
-    opacity: 0.95;
     border:  0px;
     border-radius: 10px;
     font-family: monospace;
@@ -46,13 +28,13 @@ window {
     padding: 10px;
     margin: 0px;
     font-size: 28px;
-	color: #8EC07C;
-	background-color: #554444;
+	color: @base0C;
+	background-color: @base01;
 }
 
 #inner-box {
 	margin: 0px;
-	color: @base06;
+	color: @base05;
 	background-color: @base00;
 }
 
@@ -63,13 +45,17 @@ window {
 }
 
 #selected {
-	background-color: #608787;
+	background-color: @base02;
 }
 
 #entry {
 	padding: 0px;
     margin: 0px;
 	background-color: @base00;
+}
+
+#entry:focus {
+    outline-width: 0;
 }
 
 #scroll {
