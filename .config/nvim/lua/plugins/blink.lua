@@ -29,7 +29,17 @@ return {
                     },
                 },
             },
-            keymap = { preset = 'default' },
+            keymap = {
+                preset = 'default',
+                ['<CR>'] = {
+                    function(cmp)
+                        if cmp.is_menu_visible() then
+                            return cmp.accept()
+                        end
+                    end,
+                    'fallback',
+                },
+            },
             sources = {
                 default = {
                     'lazydev',
