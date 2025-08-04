@@ -42,7 +42,7 @@ destructive_warning_restarts_connection = False
 
 # When this option is on (and if `destructive_warning` is not empty),
 # destructive statements are not executed when outside of a transaction.
-destructive_statements_require_transaction = False
+destructive_statements_require_transaction = True
 
 # Enables expand mode, which is similar to `\x` in psql.
 expand = False
