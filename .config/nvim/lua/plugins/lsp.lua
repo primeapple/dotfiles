@@ -14,8 +14,8 @@ return {
             local utils = require('toni.utils')
 
             -- diagnostic mappings
-            utils.map('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
-            utils.map('n', '<leader>D', '<cmd>lua vim.diagnostic.setloclist()<CR>')
+            utils.map('n', '<leader>d', vim.diagnostic.open_float)
+            utils.map('n', '<leader>D', vim.diagnostic.setloclist)
 
             --- @param name string
             --- @param opts table?

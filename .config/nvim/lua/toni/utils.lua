@@ -24,37 +24,18 @@ M.on_attach = function(client, bufnr)
         vim.lsp.inlay_hint.enable(true, { bufnr })
     end
 
-    local opts = { noremap = true, silent = true }
+    M.map('n', 'crr', vim.lsp.buf.code_action, { buffer = bufnr })
+    M.map('n', 'crn', vim.lsp.buf.rename, { buffer = bufnr })
+    M.map('n', 'gR', vim.lsp.buf.references, { buffer = bufnr })
+    M.map('n', 'gD', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', { buffer = bufnr })
+    M.map('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr })
+    M.map('n', 'gt', vim.lsp.buf.type_definition, { buffer = bufnr })
 
-    -- api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-
-    api.nvim_buf_set_keymap(bufnr, 'n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    -- api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    -- used by Kulala
-    -- api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', '<leader>t', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    api.nvim_buf_set_keymap(
-        bufnr,
-        'n',
-        '<leader>sl',
-        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-        opts
-    )
-    api.nvim_buf_set_keymap(
-        bufnr,
-        'n',
-        'yoi',
-        '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>',
-        opts
-    )
-
-    -- TODO is the default in nvim 0.11
-    api.nvim_buf_set_keymap(bufnr, 'n', 'crn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    api.nvim_buf_set_keymap(bufnr, 'n', 'crr', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
+        M.map('n', 'yoi', function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
+        end, { buffer = bufnr })
+    end
 end
 
 local ft_augroup = api.nvim_create_augroup('ft_augroup', { clear = true })
