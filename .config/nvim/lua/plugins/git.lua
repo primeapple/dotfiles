@@ -8,9 +8,9 @@ return {
         config = function()
             require('gitsigns').setup({
                 numhl = true,
-                _on_attach_pre = function(_, callback)
+                _on_attach_pre = function(bufnr, callback)
                     if vim.fn.executable('yadm') == 1 then
-                        require('gitsigns-yadm').yadm_signs(callback)
+                        require('gitsigns-yadm').yadm_signs(callback, { bufnr = bufnr })
                     else
                         callback()
                     end
@@ -22,23 +22,19 @@ return {
                     -- Navigation
                     map({ 'n', 'x' }, ']g', function()
                         if vim.wo.diff then
-                            return ']g'
+                            vim.cmd.normal({ ']g', bang = true })
+                        else
+                            gs.nav_hunk('next')
                         end
-                        vim.schedule(function()
-                            gs.next_hunk({ navigation_message = false })
-                        end)
-                        return '<Ignore>'
-                    end, { expr = true, buffer = bufnr })
+                    end, { buffer = bufnr })
 
                     map({ 'n', 'x' }, '[g', function()
                         if vim.wo.diff then
-                            return '[g'
+                            vim.cmd.normal({ '[g', bang = true })
+                        else
+                            gs.nav_hunk('prev')
                         end
-                        vim.schedule(function()
-                            gs.prev_hunk({ navigation_message = false })
-                        end)
-                        return '<Ignore>'
-                    end, { expr = true, buffer = bufnr })
+                    end, { buffer = bufnr })
 
                     -- suggested actions
                     map('n', '<leader>ga', gs.stage_hunk, { buffer = bufnr })
@@ -64,20 +60,5 @@ return {
                 end,
             })
         end,
-    },
-    {
-        'sindrets/diffview.nvim',
-        cmd = { 'DiffviewOpen' },
-        keys = {
-            { '<leader>gh', '<cmd>DiffviewFileHistory --follow %<cr>', mode = 'n', desc = 'History of file' },
-            { '<leader>gH', '<cmd>DiffviewFileHistory<cr>', mode = 'n', desc = 'History of repository' },
-            {
-                '<leader>gh',
-                "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>",
-                mode = 'x',
-                desc = 'History of selection',
-            },
-            { '<leader>gl', '<Cmd>.DiffviewFileHistory --follow<CR>', mode = 'n', desc = 'History of line' },
-        },
     },
 }
