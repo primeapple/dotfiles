@@ -1,0 +1,9 @@
+{
+  ;; Either "Markdown" or "Org".
+  :file/type "Markdown"
+  ;; This will be used for journal file names
+  ;; Using the format below and the file type above will produce 2025_01_01.md
+  :file/format "yyyy_MM_dd"
+  ;; The directory which holds all your notes
+  :directory "/home/toni/documents/logseq"
+}
