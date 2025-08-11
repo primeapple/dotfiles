@@ -1,0 +1,3 @@
+# I want to see notifications over fullscreen windows
+layer=overlay
+default-timeout=30000
