@@ -47,12 +47,11 @@ return {
                 end,
             })
 
-            lsp['angularls'].setup({})
-            lsp['astro'].setup({})
-            lsp['bashls'].setup({})
-            lsp['biome'].setup({})
-            lsp['dockerls'].setup({})
-            lsp['eslint'].setup({
+            vim.lsp.enable('astro')
+            vim.lsp.enable('bashls')
+            vim.lsp.enable('biome')
+            vim.lsp.enable('dockerls')
+            vim.lsp.config('eslint', {
                 filetypes = {
                     'javascript',
                     'javascriptreact',
@@ -66,9 +65,10 @@ return {
                     'html',
                 },
             })
-            lsp['gopls'].setup({})
-            lsp['harper-ls'].setup({})
-            lsp['jsonls'].setup({
+            vim.lsp.enable('eslint')
+            vim.lsp.enable('gopls')
+            vim.lsp.enable('harper_ls')
+            vim.lsp.config('jsonls', {
                 settings = {
                     json = {
                         schemas = require('schemastore').json.schemas(),
@@ -76,9 +76,9 @@ return {
                     },
                 },
             })
+            vim.lsp.enable('jsonls')
             vim.lsp.enable('kotlin_lsp')
-            lsp['kotlin_lsp'].setup({})
-            lsp['lua_ls'].setup({
+            vim.lsp.config('lua_ls', {
                 settings = {
                     Lua = {
                         hint = {
@@ -94,13 +94,14 @@ return {
                     },
                 },
             })
-            lsp['phpactor'].setup({})
-            lsp['pyright'].setup({})
-            lsp['rust_analyzer'].setup({})
-            lsp['stylelint_lsp'].setup({})
-            lsp['tailwindcss'].setup({
+            vim.lsp.enable('lua_ls')
+            vim.lsp.enable('pyright')
+            vim.lsp.enable('rust_analyzer')
+            vim.lsp.enable('stylelint_lsp')
+            vim.lsp.config('tailwindcss', {
                 root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
             })
+            vim.lsp.enable('tailwindcss')
             -- server('vtsls', {
             --     settings = {
             --         complete_function_calls = true,
@@ -131,7 +132,7 @@ return {
             --     },
             -- })
 
-            lsp['yamlls'].setup({
+            vim.lsp.config('yamlls', {
                 settings = {
                     yaml = {
                         schemaStore = {
@@ -145,6 +146,7 @@ return {
                     },
                 },
             })
+            vim.lsp.enable('yamlls')
         end,
     },
     {
