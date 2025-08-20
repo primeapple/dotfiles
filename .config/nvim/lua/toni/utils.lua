@@ -19,25 +19,6 @@ M.map = function(modes, keys, command, opt)
     vim.keymap.set(modes, keys, command, options)
 end
 
-M.on_attach = function(client, bufnr)
-    if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(true, { bufnr })
-    end
-
-    M.map('n', 'crr', vim.lsp.buf.code_action, { buffer = bufnr })
-    M.map('n', 'crn', vim.lsp.buf.rename, { buffer = bufnr })
-    M.map('n', 'gR', vim.lsp.buf.references, { buffer = bufnr })
-    M.map('n', 'gD', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', { buffer = bufnr })
-    M.map('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr })
-    M.map('n', 'gt', vim.lsp.buf.type_definition, { buffer = bufnr })
-
-    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
-        M.map('n', 'yoi', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
-        end, { buffer = bufnr })
-    end
-end
-
 local ft_augroup = api.nvim_create_augroup('ft_augroup', { clear = true })
 M.ft_autocmd = function(filetypes, callback)
     api.nvim_create_autocmd('FileType', {

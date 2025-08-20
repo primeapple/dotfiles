@@ -8,12 +8,11 @@ return {
     cmd = { 'ConformInfo' },
     keys = {
         {
-            -- Maybe use `gq` as a keymap? Would also enable formatting for `x` mode
-            'crf',
+            'grf',
             function()
                 require('conform').format({ async = true, lsp_format = 'fallback' })
             end,
-            mode = 'n',
+            mode = { 'n', 'x' },
             desc = 'Format buffer',
         },
     },

@@ -90,9 +90,6 @@ local config = {
     init_options = {
         bundles = {},
     },
-    on_attach = function(client, buffer)
-        require('toni.utils').on_attach(client, buffer)
-    end,
 }
 
 require('jdtls').start_or_attach(config)

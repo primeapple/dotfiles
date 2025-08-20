@@ -17,22 +17,42 @@ return {
             utils.map('n', '<leader>d', vim.diagnostic.open_float)
             utils.map('n', '<leader>D', vim.diagnostic.setloclist)
 
-            --- @param name string
-            --- @param opts table?
-            local server = function(name, opts)
-                local merged_options = vim.tbl_deep_extend('force', {
-                    on_attach = utils.on_attach,
-                }, opts or {})
+            vim.api.nvim_create_autocmd('LspAttach', {
+                group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+                callback = function(event)
+                    local map = function(keys, func, desc, mode)
+                        mode = mode or 'n'
+                        vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+                    end
 
-                lsp[name].setup(merged_options)
-            end
+                    map('grr', require('telescope.builtin').lsp_references, 'LSP: [G]oto [R]eferences in Telescope')
+                    map('grR', vim.lsp.buf.references, 'LSP: [G]oto [R]eferences in Quickfix')
+                    map('gri', require('telescope.builtin').lsp_implementations, 'LSP: [G]oto [I]mplementation')
+                    -- TODO maype use gd and gD
+                    map('grd', require('telescope.builtin').lsp_definitions, 'LSP: [G]oto [D]efinition')
+                    -- TODO do split
+                    map('grD', '<cmd>vsplit | lua vim.lsp.buf.definition()', 'LSP: [G]oto [D]efinition in Split')
+                    map('gO', require('telescope.builtin').lsp_document_symbols, 'LSP: Open Document Symbols')
+                    map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'LSP: Open Workspace Symbols')
+                    map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
-            server('angularls')
-            server('astro')
-            server('bashls')
-            server('biome')
-            server('dockerls')
-            server('eslint', {
+                    local client = vim.lsp.get_client_by_id(event.data.client_id)
+                    if
+                        client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
+                    then
+                        map('yoi', function()
+                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+                        end, 'LSP: Toggle Inlay Hints')
+                    end
+                end,
+            })
+
+            lsp['angularls'].setup({})
+            lsp['astro'].setup({})
+            lsp['bashls'].setup({})
+            lsp['biome'].setup({})
+            lsp['dockerls'].setup({})
+            lsp['eslint'].setup({
                 filetypes = {
                     'javascript',
                     'javascriptreact',
@@ -46,9 +66,9 @@ return {
                     'html',
                 },
             })
-            server('gopls')
-            server('harper-ls')
-            server('jsonls', {
+            lsp['gopls'].setup({})
+            lsp['harper-ls'].setup({})
+            lsp['jsonls'].setup({
                 settings = {
                     json = {
                         schemas = require('schemastore').json.schemas(),
@@ -56,7 +76,9 @@ return {
                     },
                 },
             })
-            server('lua_ls', {
+            vim.lsp.enable('kotlin_lsp')
+            lsp['kotlin_lsp'].setup({})
+            lsp['lua_ls'].setup({
                 settings = {
                     Lua = {
                         hint = {
@@ -72,11 +94,11 @@ return {
                     },
                 },
             })
-            server('phpactor')
-            server('pyright')
-            server('rust_analyzer')
-            server('stylelint_lsp')
-            server('tailwindcss', {
+            lsp['phpactor'].setup({})
+            lsp['pyright'].setup({})
+            lsp['rust_analyzer'].setup({})
+            lsp['stylelint_lsp'].setup({})
+            lsp['tailwindcss'].setup({
                 root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
             })
             -- server('vtsls', {
@@ -109,7 +131,7 @@ return {
             --     },
             -- })
 
-            server('yamlls', {
+            lsp['yamlls'].setup({
                 settings = {
                     yaml = {
                         schemaStore = {
