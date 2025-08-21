@@ -102,35 +102,36 @@ return {
                 root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
             })
             vim.lsp.enable('tailwindcss')
-            -- server('vtsls', {
-            --     settings = {
-            --         complete_function_calls = true,
-            --         vtsls = {
-            --             enableMoveToFileCodeAction = true,
-            --             autoUseWorkspaceTsdk = true,
-            --             experimental = {
-            --                 completion = {
-            --                     enableServerSideFuzzyMatch = true,
-            --                 },
-            --                 -- maxInlayHintLength = 100,
-            --             },
-            --         },
-            --         typescript = {
-            --             updateImportsOnFileMove = { enabled = 'always' },
-            --             suggest = {
-            --                 completeFunctionCalls = true,
-            --             },
-            --             inlayHints = {
-            --                 enumMemberValues = { enabled = true },
-            --                 functionLikeReturnTypes = { enabled = true },
-            --                 parameterNames = { enabled = 'literals' },
-            --                 parameterTypes = { enabled = true },
-            --                 propertyDeclarationTypes = { enabled = true },
-            --                 variableTypes = { enabled = false },
-            --             },
-            --         },
-            --     },
-            -- })
+            vim.lsp.config('vtsls', {
+                settings = {
+                    complete_function_calls = true,
+                    vtsls = {
+                        enableMoveToFileCodeAction = true,
+                        autoUseWorkspaceTsdk = true,
+                        experimental = {
+                            completion = {
+                                enableServerSideFuzzyMatch = true,
+                            },
+                            maxInlayHintLength = 100,
+                        },
+                    },
+                    typescript = {
+                        updateImportsOnFileMove = { enabled = 'always' },
+                        suggest = {
+                            completeFunctionCalls = true,
+                        },
+                        inlayHints = {
+                            enumMemberValues = { enabled = true },
+                            functionLikeReturnTypes = { enabled = true },
+                            parameterNames = { enabled = 'literals' },
+                            parameterTypes = { enabled = true },
+                            propertyDeclarationTypes = { enabled = true },
+                            variableTypes = { enabled = false },
+                        },
+                    },
+                },
+            })
+            vim.lsp.enable('vtsls')
 
             vim.lsp.config('yamlls', {
                 settings = {
