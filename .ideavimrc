@@ -105,9 +105,9 @@ nnoremap K :action QuickJavaDoc<cr>
 
 "" Goto Stuff ""
 " Data type related
-nnoremap gd :action GotoDeclaration<cr>
-nnoremap gD :vsplit<CR>:action GotoDeclaration<CR>
-nnoremap gr :action FindUsages<cr>
+nnoremap grd :action GotoDeclaration<cr>
+nnoremap grD :vsplit<CR>:action GotoDeclaration<CR>
+nnoremap grr :action FindUsages<cr>
 nnoremap gpt :action GotoTest<cr>
 " nnoremap <Leader>h :action CallHierarchy<cr>
 " nnoremap gb :action ShowNavBar<cr>
@@ -178,7 +178,7 @@ nnoremap ]g :action VcsShowNextChangeMarker<cr>
 nnoremap [g :action VcsShowPrevChangeMarker<cr>
 
 " Code Actions
-nnoremap crr :action ShowIntentionActions<cr>
-nnoremap crf :action ReformatCode<cr>
-nnoremap crn :action RenameElement<cr>
+nnoremap gra :action ShowIntentionActions<cr>
+nnoremap grf :action ReformatCode<cr>
+nnoremap grn :action RenameElement<cr>
 

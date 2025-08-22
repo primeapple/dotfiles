@@ -60,3 +60,7 @@ map('x', 'p', 'p:let @+=@0<CR>')
 
 -- folding
 map('n', '<leader><leader>', 'za')
+
+-- diable gd and gD until I learned the new lsp mappings
+map('n', 'gd', "<Nop>")
+map('n', 'gD', "<Nop>")
