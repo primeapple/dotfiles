@@ -12,8 +12,10 @@ local WorkType = {
 	org = "org",
 	quit = "quit",
 	support = "support",
+	-- unused for now
+	technical_improvements = "technical_improvements",
 }
-local CategoryExcelOrder = { "feat", "incident", "know", "maintenance", "org", "support" }
+local CategoryExcelOrder = { "feat", "maintenance", "incident", "technical_improvements", "org", "support", "know" }
 
 --- @alias WorkItem { category: WorkType, time: string, minutes: number}
 --- @alias WorkSession { category: WorkType, startTime: string, startMinutes: number, endTime: string, endMinutes: number }
@@ -199,19 +201,16 @@ local function main()
 
 	local summaries = {}
 	for _, filename in ipairs(arg) do
-		local summary = processJournalFile(filename, true)
+		local summary = processJournalFile(filename, false)
 		if summary then
 			table.insert(summaries, { date = filename, summary = summary })
 
-			io.write(filename .. "\n")
+			io.write(filename .. ",")
 			for _, category in ipairs(CategoryExcelOrder) do
-				io.write(category .. ", ")
+				local asPercentage = math.floor(summary[category].totalPercentage * 100 + 0.5)
+				io.write(asPercentage .. "%,")
 			end
-            io.write("\n")
-			for _, category in ipairs(CategoryExcelOrder) do
-				io.write(summary[category].totalPercentage .. ", ")
-			end
-            io.write("\n")
+			io.write("\n")
 		end
 	end
 end
