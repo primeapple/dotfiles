@@ -8,9 +8,11 @@ fi
 
 WORK_TAG=""
 case "$1" in
-    dev) WORK_TAG=#work/dev
+    feat) WORK_TAG=#work/feat
     ;;
-    idea) WORK_TAG=#work/idea
+    incident) WORK_TAG=#work/incident
+    ;;
+    know) WORK_TAG=#work/know
     ;;
     maintenance) WORK_TAG=#work/maintenance
     ;;

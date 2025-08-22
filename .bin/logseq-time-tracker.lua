@@ -5,20 +5,22 @@
 
 ---@enum WorkType
 local WorkType = {
-	dev = "dev",
-	idea = "idea",
+	feat = "feat",
+	incident = "incident",
+	know = "know",
 	maintenance = "maintenance",
 	org = "org",
 	quit = "quit",
 	support = "support",
 }
+local CategoryExcelOrder = { "feat", "incident", "know", "maintenance", "org", "support" }
 
---- @alias WorkItem { category: WorkType, time: string, minutes: integer}
---- @alias WorkSession  { category: WorkType, startTime: string, startMinutes: integer, endTime: string, endMinutes: integer }
---- @alias WorkSummary  table<WorkType, { totalDuration: integer, sessions: WorkSession[]}>
+--- @alias WorkItem { category: WorkType, time: string, minutes: number}
+--- @alias WorkSession { category: WorkType, startTime: string, startMinutes: number, endTime: string, endMinutes: number }
+--- @alias WorkSummary  table<WorkType, { totalDuration: number, totalPercentage: number, sessions: WorkSession[]}>
 
 --- @param timeStr string
---- @return integer?
+--- @return number?
 local function parseTime(timeStr)
 	local hour, minute = timeStr:match("(%d+):(%d+)")
 	if hour and minute then
@@ -35,7 +37,7 @@ local function parseWorkEntry(line)
 
 	if time and category then
 		category = WorkType[category]
-		minutes = parseTime(time)
+		local minutes = parseTime(time)
 
 		if minutes and category then
 			return { category = category, time = time, minutes = minutes }
@@ -82,22 +84,31 @@ end
 local function summarizeByCategory(sessions)
 	--- @type WorkSummary
 	local summary = {}
+	for _, category in pairs(WorkType) do
+		summary[category] = {
+			totalDuration = 0,
+			totalPercentage = 0,
+			sessions = {},
+		}
+	end
+
+	local dailyTotalDuration = 0
 	for _, session in ipairs(sessions) do
-		if not summary[session.category] then
-			summary[session.category] = {
-				totalDuration = 0,
-				sessions = {},
-			}
-		end
 		summary[session.category].totalDuration = summary[session.category].totalDuration
 			+ session.endMinutes
 			- session.startMinutes
 		table.insert(summary[session.category].sessions, session)
+		dailyTotalDuration = dailyTotalDuration + session.endMinutes - session.startMinutes
 	end
+
+	for _, summarized in pairs(summary) do
+		summarized.totalPercentage = summarized.totalDuration / dailyTotalDuration
+	end
+
 	return summary
 end
 
---- @param minutes integer
+--- @param minutes number
 --- @return string
 local function minutesToTime(minutes)
 	local hours = math.floor(minutes / 60)
@@ -190,7 +201,17 @@ local function main()
 	for _, filename in ipairs(arg) do
 		local summary = processJournalFile(filename, true)
 		if summary then
-			table.insert(summaries, summary)
+			table.insert(summaries, { date = filename, summary = summary })
+
+			io.write(filename .. "\n")
+			for _, category in ipairs(CategoryExcelOrder) do
+				io.write(category .. ", ")
+			end
+            io.write("\n")
+			for _, category in ipairs(CategoryExcelOrder) do
+				io.write(summary[category].totalPercentage .. ", ")
+			end
+            io.write("\n")
 		end
 	end
 end
