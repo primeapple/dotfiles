@@ -158,6 +158,7 @@ if status --is-interactive
     abbr --add gcp 'git cherry-pick'
     abbr --add gcpn 'git cherry-pick --no-commit'
     abbr --add gclo 'git clone'
+    abbr --add gco 'git checkout'
     abbr --add gcon 'git config user.name "Toni Müller" && git config user.email "toni.mueller.web@mailbox.org"'
 
     # only yadm
