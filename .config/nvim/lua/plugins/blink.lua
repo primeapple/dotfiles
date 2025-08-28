@@ -42,12 +42,19 @@ return {
             },
             sources = {
                 default = {
-                    'lazydev',
+                    'buffer',
+                    'emoji',
                     'lsp',
                     'path',
                     'snippets',
-                    'buffer',
-                    'emoji',
+                },
+                per_filetype = {
+                    lua = { inherit_defaults = true, 'lazydev' },
+                    markdown = {
+                        'buffer',
+                        'emoji',
+                        'path',
+                    },
                 },
                 providers = {
                     emoji = {
@@ -57,7 +64,8 @@ return {
                         opts = { insert = true }, -- Insert emoji (default) or complete its name
                     },
                     snippets = {
-                        score_offset = 4,
+                        max_items = 10,
+                        score_offset = 15,
                     },
                     lazydev = {
                         name = 'LazyDev',
