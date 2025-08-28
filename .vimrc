@@ -90,14 +90,26 @@ nnoremap U <C-R>
 
 " Window navigation
 nnoremap <C-Left> <C-w>h
+nnoremap <C-h> <C-w>h
 nnoremap <C-Right> <C-w>l
+nnoremap <C-l> <C-w>l
 nnoremap <C-Up> <C-w>k
+nnoremap <C-k> <C-w>k
 nnoremap <C-Down> <C-w>j
+nnoremap <C-j> <C-w>j
 inoremap <C-Left> <Esc><C-w>h
+inoremap <C-h> <Esc><C-w>h
 inoremap <C-Right> <Esc><C-w>l
+inoremap <C-l> <Esc><C-w>l
 inoremap <C-Up> <Esc><C-w>k
+inoremap <C-k> <Esc><C-w>k
 inoremap <C-Down> <Esc><C-w>j
+inoremap <C-j> <Esc><C-w>j
 xnoremap <C-Left> <Esc><C-w>h
+xnoremap <C-h> <Esc><C-w>h
 xnoremap <C-Right> <Esc><C-w>l
+xnoremap <C-l> <Esc><C-w>l
 xnoremap <C-Up> <Esc><C-w>k
+xnoremap <C-k> <Esc><C-w>k
 xnoremap <C-Down> <Esc><C-w>j
+xnoremap <C-j> <Esc><C-w>j

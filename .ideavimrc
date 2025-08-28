@@ -105,8 +105,8 @@ nnoremap K :action QuickJavaDoc<cr>
 
 "" Goto Stuff ""
 " Data type related
-nnoremap grd :action GotoDeclaration<cr>
-nnoremap grD :vsplit<CR>:action GotoDeclaration<CR>
+nnoremap gd :action GotoDeclaration<cr>
+nnoremap gD :vsplit<CR>:action GotoDeclaration<CR>
 nnoremap grr :action FindUsages<cr>
 nnoremap gpt :action GotoTest<cr>
 " nnoremap <Leader>h :action CallHierarchy<cr>
@@ -149,8 +149,9 @@ nnoremap <Leader>/ :vsp<CR>
 nnoremap <Leader>- :sp<CR>
 nnoremap ZZ :action CloseAllEditors<cr>
 nnoremap ZQ :action CloseAllEditors<cr>
-nnoremap ZC :action HideActiveWindow<cr>
-nnoremap ZA :action HideAllWindows<cr>
+" this hides only the "Quickfix" window, not e.g. the Nerdtree
+" nnoremap ZC :action HideActiveWindow<cr>
+nnoremap ZC :action HideAllWindows<cr>
 
 " Runing stuff
 nnoremap <Leader>rr :action Run<cr>

@@ -28,9 +28,8 @@ return {
                     map('grr', require('telescope.builtin').lsp_references, 'LSP: [G]oto [R]eferences in Telescope')
                     map('grR', vim.lsp.buf.references, 'LSP: [G]oto [R]eferences in Quickfix')
                     map('gri', require('telescope.builtin').lsp_implementations, 'LSP: [G]oto [I]mplementation')
-                    -- TODO maype use gd and gD
-                    map('grd', require('telescope.builtin').lsp_definitions, 'LSP: [G]oto [D]efinition')
-                    map('grD', '<cmd>vsplit | lua vim.lsp.buf.definition() <CR>', 'LSP: [G]oto [D]efinition in Split')
+                    map('gd', require('telescope.builtin').lsp_definitions, 'LSP: [G]oto [D]efinition')
+                    map('gD', '<cmd>vsplit | lua vim.lsp.buf.definition() <CR>', 'LSP: [G]oto [D]efinition in Split')
                     map('gO', require('telescope.builtin').lsp_document_symbols, 'LSP: Open Document Symbols')
                     map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'LSP: Open Workspace Symbols')
                     map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
