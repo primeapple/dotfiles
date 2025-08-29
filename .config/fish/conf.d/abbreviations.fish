@@ -105,6 +105,7 @@ if status --is-interactive
         abbr --add $abb'ds' $cmd 'diff --staged'
         abbr --add $abb'f' $cmd fetch
         abbr --add $abb'pl' $cmd pull
+        abbr --add $abb'plr' $cmd 'pull --rebase'
         abbr --add $abb'p' $cmd push
         abbr --add $abb'pf' $cmd 'push --force-with-lease --force-if-includes'
         abbr --add $abb'pff' $cmd 'push --force'
