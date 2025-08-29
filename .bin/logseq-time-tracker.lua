@@ -12,14 +12,23 @@ local WorkType = {
 	org = "org",
 	quit = "quit",
 	support = "support",
-	-- unused for now
-	technical_improvements = "technical_improvements",
 }
-local CategoryExcelOrder = { "feat", "maintenance", "incident", "technical_improvements", "org", "support", "know" }
+local CategoryExcelOrder = { "feat", "maintenance", "incident", "org", "support", "know" }
 
 --- @alias WorkItem { category: WorkType, time: string, minutes: number}
 --- @alias WorkSession { category: WorkType, startTime: string, startMinutes: number, endTime: string, endMinutes: number }
---- @alias WorkSummary  table<WorkType, { totalDuration: number, totalPercentage: number, sessions: WorkSession[]}>
+--- @alias WorkSummary { date: osdateparam, totalDuration: number, sessionsByType: table<WorkType, { totalDuration: number, totalPercentage: number, sessions: WorkSession[]}> }
+
+--- @param path string
+--- @return osdateparam date
+local function parsePathDate(path)
+	local year, month, day = path:match(".*/(%d%d%d%d)_(%d%d)_(%d%d).md")
+	return {
+		year = year,
+		month = month,
+		day = day,
+	}
+end
 
 --- @param timeStr string
 --- @return number?
@@ -82,12 +91,17 @@ local function calculateWorkSessions(entries)
 end
 
 --- @param sessions WorkSession[]
+--- @param date osdateparam
 --- @return WorkSummary
-local function summarizeByCategory(sessions)
+local function summarizeByCategory(sessions, date)
 	--- @type WorkSummary
-	local summary = {}
+	local summary = {
+		date = date,
+		totalDuration = 0,
+		sessionsByType = {},
+	}
 	for _, category in pairs(WorkType) do
-		summary[category] = {
+		summary.sessionsByType[category] = {
 			totalDuration = 0,
 			totalPercentage = 0,
 			sessions = {},
@@ -96,15 +110,20 @@ local function summarizeByCategory(sessions)
 
 	local dailyTotalDuration = 0
 	for _, session in ipairs(sessions) do
-		summary[session.category].totalDuration = summary[session.category].totalDuration
+		summary.sessionsByType[session.category].totalDuration = summary.sessionsByType[session.category].totalDuration
 			+ session.endMinutes
 			- session.startMinutes
-		table.insert(summary[session.category].sessions, session)
+		table.insert(summary.sessionsByType[session.category].sessions, session)
 		dailyTotalDuration = dailyTotalDuration + session.endMinutes - session.startMinutes
 	end
+	summary.totalDuration = dailyTotalDuration
 
-	for _, summarized in pairs(summary) do
-		summarized.totalPercentage = summarized.totalDuration / dailyTotalDuration
+	for _, summarized in pairs(summary.sessionsByType) do
+		if dailyTotalDuration == 0 then
+			summarized.totalPercentage = 0
+		else
+			summarized.totalPercentage = summarized.totalDuration / dailyTotalDuration
+		end
 	end
 
 	return summary
@@ -120,7 +139,7 @@ end
 
 --- @param filename string
 --- @param shouldPrint boolean
---- @return WorkSummary?
+--- @return WorkSummary
 local function processJournalFile(filename, shouldPrint)
 	local file = io.open(filename, "r")
 	if not file then
@@ -143,7 +162,10 @@ local function processJournalFile(filename, shouldPrint)
 	file:close()
 
 	if #entries == 0 then
-		return
+		if shouldPrint then
+			print("Journal page was empty: " .. "filename")
+		end
+		return summarizeByCategory({}, parsePathDate(filename))
 	end
 
 	assert(
@@ -177,19 +199,52 @@ local function processJournalFile(filename, shouldPrint)
 		print()
 	end
 
-	local summary = summarizeByCategory(sessions)
+	local summary = summarizeByCategory(sessions, parsePathDate(filename))
 	if shouldPrint then
 		print("Summary by Category:")
-		local totalTime = 0
-		for category, data in pairs(summary) do
+		for category, data in pairs(summary.sessionsByType) do
 			print(string.format("  %s: %s (%d sessions)", category, minutesToTime(data.totalDuration), #data.sessions))
-			totalTime = totalTime + data.totalDuration
 		end
-		print(string.format("  TOTAL: %s", minutesToTime(totalTime)))
+		print(string.format("  TOTAL: %s", minutesToTime(summary.totalDuration)))
 		print()
 	end
 
 	return summary
+end
+
+local function printSummaries(filenames)
+	--- @type WorkSummary[]
+	local summaries = {}
+	for _, filename in ipairs(filenames) do
+		local summary = processJournalFile(filename, false)
+		table.insert(summaries, summary)
+	end
+	table.sort(summaries, function(s1, s2)
+		return os.time(s1.date) < os.time(s2.date)
+	end)
+
+	--- @type WorkSummary[]
+	local summariesWithOffDays = {}
+	local nextDate = summaries[1].date
+	for _, summary in ipairs(summaries) do
+		while os.time(nextDate) < os.time(summary.date) do
+			table.insert(summariesWithOffDays, summarizeByCategory({}, nextDate))
+            nextDate = os.date("*t", os.time(nextDate) + 24 * 60 * 60) --[[@as osdateparam]]
+		end
+		table.insert(summariesWithOffDays, summary)
+		nextDate = os.date("*t", os.time(nextDate) + 24 * 60 * 60) --[[@as osdateparam]]
+	end
+
+	for _, summary in ipairs(summariesWithOffDays) do
+		io.write(summary.date.year .. "/" .. summary.date.month .. "/" .. summary.date.day .. ",")
+		for _, category in ipairs(CategoryExcelOrder) do
+			local asPercentage = math.floor(summary.sessionsByType[category].totalPercentage * 100 + 0.5)
+			local asHour = math.floor(summary.sessionsByType[category].totalDuration / 60 + 0.5)
+			io.write(asHour .. ",")
+			io.write(asPercentage .. "%,")
+		end
+		io.write("\n")
+	end
 end
 
 local function main()
@@ -199,20 +254,7 @@ local function main()
 		os.exit(1)
 	end
 
-	local summaries = {}
-	for _, filename in ipairs(arg) do
-		local summary = processJournalFile(filename, false)
-		if summary then
-			table.insert(summaries, { date = filename, summary = summary })
-
-			io.write(filename .. ",")
-			for _, category in ipairs(CategoryExcelOrder) do
-				local asPercentage = math.floor(summary[category].totalPercentage * 100 + 0.5)
-				io.write(asPercentage .. "%,")
-			end
-			io.write("\n")
-		end
-	end
+	printSummaries(arg)
 end
 
 main()
