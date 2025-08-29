@@ -1,3 +1,16 @@
-# I want to see notifications over fullscreen windows
+# see https://github.com/basecamp/omarchy/blob/master/themes/kanagawa/mako.ini
+text-color=#dcd7ba
+border-color=#dcd7ba
+background-color=#1f1f28
+width=420
+height=110
+padding=10
+border-size=2
+outer-margin=20
+max-icon-size=32
+
 layer=overlay
 default-timeout=30000
+
+[urgency=critical]
+default-timeout=0
