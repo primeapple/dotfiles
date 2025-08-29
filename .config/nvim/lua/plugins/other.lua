@@ -11,49 +11,9 @@ return {
     },
     {
         'johmsalas/text-case.nvim',
-        keys = {
-            {
-                -- k for "kebab-case"
-                'crk',
-                function()
-                    require('textcase').current_word('to_dash_case')
-                end,
-            },
-            {
-                'crc',
-                function()
-                    require('textcase').current_word('to_camel_case')
-                end,
-            },
-            {
-                'crl',
-                function()
-                    require('textcase').current_word('to_snake_case')
-                end,
-            },
-            {
-                'crp',
-                function()
-                    require('textcase').current_word('to_pascal_case')
-                end,
-            },
-            {
-                'cru',
-                function()
-                    require('textcase').current_word('to_constant_case')
-                end,
-            },
-            -- this does not fully work yet
-            {
-                'crt',
-                function()
-                    require('textcase').current_word('to_title_case')
-                end,
-            },
-        },
-        opts = {
-            default_keymappings_enabled = false,
-        },
+        keys = { 'ga', mode = { 'n', 'x' } },
+        cmd = { 'Subs' },
+        config = true,
     },
 
     -------------------- NAVIGATION --------------------
@@ -61,30 +21,179 @@ return {
         'mrjones2014/smart-splits.nvim',
         -- TODO: works for now, but may be better with a check if the current terminal is kitty
         cond = is_workstation,
-        -- TODO: use `keys`
+        keys = {
+            {
+                '<C-Left>',
+                function()
+                    require('smart-splits').move_cursor_left()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-h>',
+                function()
+                    require('smart-splits').move_cursor_left()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-Right>',
+                function()
+                    require('smart-splits').move_cursor_right()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-l>',
+                function()
+                    require('smart-splits').move_cursor_right()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-Up>',
+                function()
+                    require('smart-splits').move_cursor_up()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-k>',
+                function()
+                    require('smart-splits').move_cursor_up()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-Down>',
+                function()
+                    require('smart-splits').move_cursor_down()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-j>',
+                function()
+                    require('smart-splits').move_cursor_down()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<A-Left>',
+                function()
+                    require('smart-splits').resize_left()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<A-h>',
+                function()
+                    require('smart-splits').resize_left()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<A-Right>',
+                function()
+                    require('smart-splits').resize_right()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<A-l>',
+                function()
+                    require('smart-splits').resize_right()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<A-Up>',
+                function()
+                    require('smart-splits').resize_up()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<A-k>',
+                function()
+                    require('smart-splits').resize_up()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<A-Down>',
+                function()
+                    require('smart-splits').resize_down()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<A-j>',
+                function()
+                    require('smart-splits').resize_down()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-A-Left>',
+                function()
+                    require('smart-splits').swap_buf_left()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-A-h>',
+                function()
+                    require('smart-splits').swap_buf_left()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-A-Right>',
+                function()
+                    require('smart-splits').swap_buf_right()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-A-l>',
+                function()
+                    require('smart-splits').swap_buf_right()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-A-Up>',
+                function()
+                    require('smart-splits').swap_buf_up()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-A-k>',
+                function()
+                    require('smart-splits').swap_buf_up()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-A-Down>',
+                function()
+                    require('smart-splits').swap_buf_down()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+            {
+                '<C-A-j>',
+                function()
+                    require('smart-splits').swap_buf_down()
+                end,
+                mode = { 'n', 'i', 'x', 't' },
+            },
+        },
         event = 'VeryLazy',
         build = './kitty/install-kittens.bash',
-        config = function()
-            local map = require('toni.utils').map
-            map({ 'n', 'i', 'x', 't' }, { '<C-h>', '<C-Left>' }, require('smart-splits').move_cursor_left)
-            map({ 'n', 'i', 'x', 't' }, { '<C-j>', '<C-Down>' }, require('smart-splits').move_cursor_down)
-            map({ 'n', 'i', 'x', 't' }, { '<C-k>', '<C-Up>' }, require('smart-splits').move_cursor_up)
-            -- Unsure where `C-l` is already mapped
-            map(
-                { 'n', 'i', 'x', 't' },
-                { '<C-l>', '<C-Right>' },
-                require('smart-splits').move_cursor_right,
-                { unique = false }
-            )
-            map({ 'n', 'i', 'x', 't' }, { '<A-,>' }, require('smart-splits').resize_left)
-            map({ 'n', 'i', 'x', 't' }, { '<A-]>' }, require('smart-splits').resize_down)
-            map({ 'n', 'i', 'x', 't' }, { '<A-[>' }, require('smart-splits').resize_up)
-            map({ 'n', 'i', 'x', 't' }, { '<A-.>' }, require('smart-splits').resize_right)
-            -- map('n', { 'h', 'Left' }, require('smart-splits').swap_buf_left)
-            -- map('n', { 'j', 'Down' }, require('smart-splits').swap_buf_down)
-            -- map('n', { 'k', 'Up' }, require('smart-splits').swap_buf_up)
-            -- map('n', { 'l', 'Right' }, require('smart-splits').swap_buf_right)
-        end,
+        config = true,
     },
     {
         'rgroli/other.nvim',
