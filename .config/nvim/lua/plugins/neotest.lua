@@ -87,9 +87,6 @@ return {
                         vitestCommand = 'npx vitest',
                     }),
                     require('neotest-golang'),
-                    -- require('neotest-vim-test')({
-                    --     ignore_file_types = { 'python', 'vim', 'lua' },
-                    -- }),
                 },
                 quickfix = {
                     enabled = false,
