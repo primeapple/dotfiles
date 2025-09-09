@@ -19,8 +19,8 @@ toggle() {
 
 
 main() {
-    if ! [[ "$(hyprctl monitors)" =~ [[:space:]]DP-[0-9]+ ]]; then
-        echo "No second monitor found, aborting"
+    if ! hyprctl monitors | grep "^Monitor " | grep -v "^Monitor eDP-"; then
+        notify-send "No external monitor found, aborting clamshell"
         exit 0
     fi
 
