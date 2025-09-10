@@ -229,20 +229,25 @@ local function printSummaries(filenames)
 	for _, summary in ipairs(summaries) do
 		while os.time(nextDate) < os.time(summary.date) do
 			table.insert(summariesWithOffDays, summarizeByCategory({}, nextDate))
-            nextDate = os.date("*t", os.time(nextDate) + 24 * 60 * 60) --[[@as osdateparam]]
+			nextDate = os.date("*t", os.time(nextDate) + 24 * 60 * 60) --[[@as osdateparam]]
 		end
 		table.insert(summariesWithOffDays, summary)
 		nextDate = os.date("*t", os.time(nextDate) + 24 * 60 * 60) --[[@as osdateparam]]
 	end
 
 	for _, summary in ipairs(summariesWithOffDays) do
-		io.write(summary.date.year .. "/" .. summary.date.month .. "/" .. summary.date.day .. ",")
+		io.write(summary.date.day .. "/" .. summary.date.month .. "/" .. summary.date.year .. ",")
+
+		local summedRoundedHours = 0
 		for _, category in ipairs(CategoryExcelOrder) do
 			local asPercentage = math.floor(summary.sessionsByType[category].totalPercentage * 100 + 0.5)
-			local asHour = math.floor(summary.sessionsByType[category].totalDuration / 60 + 0.5)
+			-- To not "loose" time we round up anything bigger than .2
+			local asHour = math.floor(summary.sessionsByType[category].totalDuration / 60 + 0.8)
+			summedRoundedHours = summedRoundedHours + asHour
 			io.write(asHour .. ",")
 			io.write(asPercentage .. "%,")
 		end
+		io.write(summedRoundedHours)
 		io.write("\n")
 	end
 end
