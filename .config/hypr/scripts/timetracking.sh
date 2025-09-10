@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if ! command -v lsq > /dev/null; then
-    echo "lsq is not installed, aborting" 1>&2
+    notify-send "$0" "lsq is not installed, aborting"
     exit 1
 fi
 
@@ -22,7 +22,7 @@ case "$1" in
     ;;
     support) WORK_TAG=#work/support
     ;;
-    *) echo "unclear command '$1', aborting" 1>&2; exit 1
+    *) notify-send "$0" "unclear command '$1', aborting"; exit 1
     ;;
 esac
 
@@ -30,4 +30,4 @@ TIME=$(date +%H:%M)
 
 lsq -a "$TIME $WORK_TAG"
 
-notify-send --expire-time=5000 "Switched to $WORK_TAG"
+notify-send --expire-time=5000 "$0" "Switched to $WORK_TAG"
