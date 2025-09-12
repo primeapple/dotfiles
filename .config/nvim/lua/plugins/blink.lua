@@ -46,7 +46,6 @@ return {
                     'emoji',
                     'lsp',
                     'path',
-                    'snippets',
                 },
                 per_filetype = {
                     lua = { inherit_defaults = true, 'lazydev' },
@@ -63,24 +62,12 @@ return {
                         score_offset = 15, -- Tune by preference
                         opts = { insert = true }, -- Insert emoji (default) or complete its name
                     },
-                    snippets = {
-                        max_items = 10,
-                        score_offset = 15,
-                    },
                     lazydev = {
                         name = 'LazyDev',
                         module = 'lazydev.integrations.blink',
-                        score_offset = 3,
-                    },
-                    lsp = {
-                        score_offset = 3,
-                    },
-                    path = {
-                        score_offset = 2,
                     },
                     buffer = {
-                        min_keyword_length = 5,
-                        score_offset = 1,
+                        min_keyword_length = 3,
                     },
                 },
             },
