@@ -56,6 +56,22 @@ return {
             desc = 'Toggle Header/Body',
         },
         {
+            KULALA_LEADER .. 'c',
+            function()
+                require('kulala').copy()
+            end,
+            ft = { 'http', 'rest' },
+            desc = 'Copy as cURL',
+        },
+        {
+            KULALA_LEADER .. 'C',
+            function()
+                require('kulala').from_curl()
+            end,
+            ft = { 'http', 'rest' },
+            desc = 'Paste from cURL',
+        },
+        {
             KULALA_LEADER .. 'f',
             function()
                 require('kulala').search()
