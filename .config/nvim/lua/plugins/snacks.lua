@@ -1,14 +1,17 @@
 return {
     'folke/snacks.nvim',
-    event = 'VeryLazy',
+    lazy = false,
     ---@type snacks.Config
     opts = {
         input = {
             enabled = true,
-            -- win = {
-            --     enter = false,
-            -- },
-            expand = false,
+            win = {
+                on_win = function()
+                    vim.schedule(function()
+                        vim.cmd('stopinsert')
+                    end)
+                end,
+            },
         },
     },
 }
