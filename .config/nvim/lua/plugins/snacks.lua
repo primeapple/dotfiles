@@ -3,6 +3,15 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
+        bigfile = {
+            enabled = true,
+        },
+        image = {
+            enabled = true,
+        },
+        indent = {
+            enabled = true,
+        },
         input = {
             enabled = true,
             win = {
@@ -12,6 +21,19 @@ return {
                     end)
                 end,
             },
+        },
+        scroll = {
+            enabled = true,
+        },
+    },
+    keys = {
+        {
+            '<leader>G',
+            function()
+                Snacks.gitbrowse()
+            end,
+            desc = 'Git Browse',
+            mode = { 'n', 'v' },
         },
     },
 }
