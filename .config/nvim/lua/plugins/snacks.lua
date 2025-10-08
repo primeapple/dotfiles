@@ -22,9 +22,6 @@ return {
                 end,
             },
         },
-        scroll = {
-            enabled = true,
-        },
     },
     keys = {
         {
