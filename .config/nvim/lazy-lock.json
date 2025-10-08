@@ -45,6 +45,7 @@
   "quicker.nvim": { "branch": "master", "commit": "6b88ca4d70e35df877d9564beba83f00ba0c3133" },
   "schemastore.nvim": { "branch": "main", "commit": "fea7b3eb30d6e7261529ae7e8e94bf717f9c428f" },
   "scrollEOF.nvim": { "branch": "master", "commit": "e462b9a07b8166c3e8011f1dcbc6bf68b67cd8d7" },
+  "sidekick.nvim": { "branch": "main", "commit": "e869205ff05a8defec31175e0f7f8f923e13cde6" },
   "smart-splits.nvim": { "branch": "master", "commit": "e8ef796c13abd22d3643c5271375543fc2abf682" },
   "snacks.nvim": { "branch": "main", "commit": "f6c06415a27bd63b038e0c624b11d272c300390f" },
   "stickybuf.nvim": { "branch": "master", "commit": "0c1e5f1a3eb36eea2cea57083828269cc62c58e4" },
