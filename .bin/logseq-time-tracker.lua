@@ -5,15 +5,28 @@
 
 ---@enum WorkType
 local WorkType = {
+	bug = "bug",
 	feat = "feat",
 	incident = "incident",
 	know = "know",
 	maintenance = "maintenance",
+	maintenance_support_requests = "maintenance_support_requests",
 	org = "org",
 	quit = "quit",
 	support = "support",
+	technical = "technical",
 }
-local CategoryExcelOrder = { "feat", "maintenance", "incident", "org", "support", "know" }
+local CategoryExcelOrder = {
+	WorkType.bug,
+	WorkType.feat,
+	WorkType.maintenance_support_requests,
+	WorkType.technical,
+	WorkType.maintenance,
+	WorkType.incident,
+	WorkType.org,
+	WorkType.support,
+	WorkType.know,
+}
 
 --- @alias WorkItem { category: WorkType, time: string, minutes: number}
 --- @alias WorkSession { category: WorkType, startTime: string, startMinutes: number, endTime: string, endMinutes: number }
@@ -235,20 +248,25 @@ local function printSummaries(filenames)
 		nextDate = os.date("*t", os.time(nextDate) + 24 * 60 * 60) --[[@as osdateparam]]
 	end
 
+	-- Write Header
+	io.write("date")
+	for _, category in ipairs(CategoryExcelOrder) do
+		io.write("," .. category)
+	end
+	io.write(",total")
+
+	-- Write data
 	for _, summary in ipairs(summariesWithOffDays) do
-		io.write(summary.date.day .. "/" .. summary.date.month .. "/" .. summary.date.year .. ",")
+		io.write("\n" .. summary.date.day .. "/" .. summary.date.month .. "/" .. summary.date.year)
 
 		local summedRoundedHours = 0
 		for _, category in ipairs(CategoryExcelOrder) do
-			local asPercentage = math.floor(summary.sessionsByType[category].totalPercentage * 100 + 0.5)
 			-- To not "loose" time we round up anything bigger than .2
 			local asHour = math.floor(summary.sessionsByType[category].totalDuration / 60 + 0.8)
 			summedRoundedHours = summedRoundedHours + asHour
-			io.write(asHour .. ",")
-			io.write(asPercentage .. "%,")
+			io.write("," .. asHour)
 		end
-		io.write(summedRoundedHours)
-		io.write("\n")
+		io.write("," .. summedRoundedHours)
 	end
 end
 
