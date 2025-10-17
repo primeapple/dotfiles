@@ -17,8 +17,8 @@ local WorkType = {
 	technical = "technical",
 }
 local CategoryExcelOrder = {
-	WorkType.bug,
 	WorkType.feat,
+	WorkType.bug,
 	WorkType.maintenance_support_requests,
 	WorkType.technical,
 	WorkType.maintenance,

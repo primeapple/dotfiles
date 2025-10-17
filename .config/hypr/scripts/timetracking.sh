@@ -8,6 +8,8 @@ fi
 
 WORK_TAG=""
 case "$1" in
+    bug) WORK_TAG=#work/bug
+    ;;
     feat) WORK_TAG=#work/feat
     ;;
     incident) WORK_TAG=#work/incident
@@ -21,6 +23,8 @@ case "$1" in
     quit) WORK_TAG=#work/quit
     ;;
     support) WORK_TAG=#work/support
+    ;;
+    technical) WORK_TAG=#work/technical
     ;;
     *) notify-send "$0" "unclear command '$1', aborting"; exit 1
     ;;
