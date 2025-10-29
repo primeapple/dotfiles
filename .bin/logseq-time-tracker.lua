@@ -43,6 +43,8 @@ local function parsePathDate(path)
 	}
 end
 
+local isDebug = os.getenv("DEBUG") ~= nil
+
 --- @param timeStr string
 --- @return number?
 local function parseTime(timeStr)
@@ -80,7 +82,14 @@ local function calculateWorkSessions(entries)
 
 	for _, entry in ipairs(entries) do
 		if currentStart and currentCategory then
-			assert(currentStart.minutes < entry.minutes)
+			assert(
+				currentStart.minutes < entry.minutes,
+				"There was a task at time "
+					.. entry.time
+					.. " of category "
+					.. entry.category
+					.. "that has a start date before the previous task in the journal"
+			)
 			table.insert(sessions, {
 				category = currentCategory,
 				startTime = currentStart.time,
@@ -151,9 +160,8 @@ local function minutesToTime(minutes)
 end
 
 --- @param filename string
---- @param shouldPrint boolean
 --- @return WorkSummary
-local function processJournalFile(filename, shouldPrint)
+local function processJournalFile(filename)
 	local file = io.open(filename, "r")
 	if not file then
 		error("Could not open file " .. filename)
@@ -175,7 +183,7 @@ local function processJournalFile(filename, shouldPrint)
 	file:close()
 
 	if #entries == 0 then
-		if shouldPrint then
+		if isDebug then
 			print("Journal page was empty: " .. "filename")
 		end
 		return summarizeByCategory({}, parsePathDate(filename))
@@ -186,7 +194,7 @@ local function processJournalFile(filename, shouldPrint)
 		"Last item at time " .. entries[#entries].time .. " is not #work/quit on journal " .. filename
 	)
 
-	if shouldPrint then
+	if isDebug then
 		print("=== Journal: " .. filename .. " ===")
 		print("Found " .. #entries .. " work entries:")
 		for _, entry in ipairs(entries) do
@@ -196,7 +204,7 @@ local function processJournalFile(filename, shouldPrint)
 	end
 
 	local sessions = calculateWorkSessions(entries)
-	if shouldPrint then
+	if isDebug then
 		print("Work Sessions:")
 		for _, session in ipairs(sessions) do
 			print(
@@ -213,7 +221,7 @@ local function processJournalFile(filename, shouldPrint)
 	end
 
 	local summary = summarizeByCategory(sessions, parsePathDate(filename))
-	if shouldPrint then
+	if isDebug then
 		print("Summary by Category:")
 		for category, data in pairs(summary.sessionsByType) do
 			print(string.format("  %s: %s (%d sessions)", category, minutesToTime(data.totalDuration), #data.sessions))
@@ -229,7 +237,7 @@ local function printSummaries(filenames)
 	--- @type WorkSummary[]
 	local summaries = {}
 	for _, filename in ipairs(filenames) do
-		local summary = processJournalFile(filename, false)
+		local summary = processJournalFile(filename)
 		table.insert(summaries, summary)
 	end
 	table.sort(summaries, function(s1, s2)
@@ -240,7 +248,10 @@ local function printSummaries(filenames)
 	local summariesWithOffDays = {}
 	local nextDate = summaries[1].date
 	for _, summary in ipairs(summaries) do
-		while os.time(nextDate) < os.time(summary.date) do
+		while
+			(nextDate.year .. nextDate.month .. nextDate.day)
+			< (summary.date.year .. summary.date.month .. summary.date.day)
+		do
 			table.insert(summariesWithOffDays, summarizeByCategory({}, nextDate))
 			nextDate = os.date("*t", os.time(nextDate) + 24 * 60 * 60) --[[@as osdateparam]]
 		end
@@ -261,10 +272,14 @@ local function printSummaries(filenames)
 
 		local summedRoundedHours = 0
 		for _, category in ipairs(CategoryExcelOrder) do
-			-- To not "loose" time we round up anything bigger than .2
+			-- To not "lose" time we round up anything bigger than .2
 			local asHour = math.floor(summary.sessionsByType[category].totalDuration / 60 + 0.8)
 			summedRoundedHours = summedRoundedHours + asHour
-			io.write("," .. asHour)
+			if asHour == 0 then
+				io.write(",")
+			else
+				io.write("," .. asHour)
+			end
 		end
 		io.write("," .. summedRoundedHours)
 	end
