@@ -8,6 +8,14 @@ return {
     },
     keys = {
         {
+            '<c-.>',
+            function()
+                require('sidekick.cli').toggle()
+            end,
+            desc = 'Sidekick Toggle',
+            mode = { 'n', 't', 'i', 'x' },
+        },
+        {
             '<leader>aa',
             function()
                 require('sidekick.cli').toggle()
@@ -17,9 +25,18 @@ return {
         {
             '<leader>as',
             function()
-                require('sidekick.cli').select({ filter = { installed = true } })
+                require('sidekick.cli').select()
             end,
+            -- Or to select only installed tools:
+            -- require("sidekick.cli").select({ filter = { installed = true } })
             desc = 'Select CLI',
+        },
+        {
+            '<leader>ad',
+            function()
+                require('sidekick.cli').close()
+            end,
+            desc = 'Detach a CLI Session',
         },
         {
             '<leader>at',
@@ -28,6 +45,13 @@ return {
             end,
             mode = { 'x', 'n' },
             desc = 'Send This',
+        },
+        {
+            '<leader>af',
+            function()
+                require('sidekick.cli').send({ msg = '{file}' })
+            end,
+            desc = 'Send File',
         },
         {
             '<leader>av',
@@ -45,14 +69,7 @@ return {
             mode = { 'n', 'x' },
             desc = 'Sidekick Select Prompt',
         },
-        {
-            '<c-.>',
-            function()
-                require('sidekick.cli').focus()
-            end,
-            mode = { 'n', 'x', 'i', 't' },
-            desc = 'Sidekick Switch Focus',
-        },
+        -- Example of a keybinding to open Claude directly
         {
             '<leader>ac',
             function()
