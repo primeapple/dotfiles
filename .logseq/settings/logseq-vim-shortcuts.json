@@ -1,5 +1,5 @@
 {
-  "enableVisualModeIndicator": false,
+  "enableVisualModeIndicator": true,
   "showRecentEmojis": false,
   "disabled": false,
   "keyBindings": {
@@ -43,7 +43,7 @@
     "pastePrev": "shift+p",
     "prevNewBlock": "shift+o",
     "prevSibling": "shift+k",
-    "redo": "ctrl+r",
+    "redo": "shift+u",
     "search": "/",
     "searchPrev": "shift+n",
     "searchNext": "n",
