@@ -8,7 +8,5 @@
         "messages_half_page_up": "ctrl+u",
         "messages_first": "<leader>g",
         "messages_last": "<leader>G",
-        "messages_next": "ctrl+n",
-        "messages_previous": "ctrl+u"
     }
 }
