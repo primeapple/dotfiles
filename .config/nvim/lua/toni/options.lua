@@ -48,6 +48,9 @@ opt.updatetime = 250
 g.mapleader = ' '
 g.maplocalleader = ','
 
+-- Make <C-A> and <C-X> work better on numbers with strings with "-" before the number, like "sprint-1"
+opt.nrformats:append('blank')
+
 -- It's not recommended to use fish for internal terminal, therefore let's set it to bash
 opt.shell = '/bin/bash'
 
