@@ -9,8 +9,12 @@
 ;;   {:shortcuts {:ui/toggle-theme "t z"
 ;;                :ui/toggle-brackets "t b"}}
 
-{:shortcuts {:go/graph-view []
- :editor/move-block-down ["alt+shift+down" "close-square-bracket e"]
+{:shortcuts {:plugin.logseq-vim-shortcuts/vim-shortcut-outdent-0 ["shift+h" "shift+,"]
+ :go/graph-view []
+ :plugin.logseq-vim-shortcuts/vim-shortcut-indent-0 ["shift+l" "shift+."]
  :editor/move-block-up ["alt+shift+up" "open-square-bracket e"]
+ :editor/move-block-down ["alt+shift+down" "close-square-bracket e"]
  :ui/accent-colors-picker []
- :plugin.logseq-vim-shortcuts/vim-shortcut-change-current-block-0 ["d c" "c c"]}}
+ :plugin.logseq-vim-shortcuts/vim-shortcut-top-0 ["g g"]
+ :plugin.logseq-vim-shortcuts/vim-shortcut-change-current-block-0 ["d c" "c c"]
+ :plugin.logseq-vim-shortcuts/vim-shortcut-redo-0 ["ctrl+r" "shift+u"]}}

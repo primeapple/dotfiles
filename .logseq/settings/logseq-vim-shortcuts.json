@@ -7,11 +7,11 @@
     "changeCase": "mod+shift+u",
     "changeCaseUpper": "g shift+u",
     "changeCaseLower": "g u",
+    "changeCurrentBlock": "d c",
     "collapse": "z c",
     "collapseAll": "z shift+c",
     "copyCurrentBlockContent": "y y",
     "copyCurrentBlockRef": "shift+y",
-    "changeCurrentBlock": "d c",
     "deleteCurrentBlock": "d d",
     "deleteCurrentAndNextSiblingBlocks": "d j",
     "deleteCurrentAndPrevSiblingBlocks": "d k",
@@ -20,11 +20,7 @@
     "extendAll": "z shift+o",
     "highlightFocusIn": "l",
     "highlightFocusOut": "h",
-    "indent": [
-      "shift+l",
-      "shift+right",
-      "shift+."
-    ],
+    "indent": "shift+l",
     "insert": [
       "shift+a",
       "a"
@@ -35,16 +31,12 @@
     ],
     "nextNewBlock": "o",
     "nextSibling": "shift+j",
-    "outdent": [
-      "shift+h",
-      "shift+left",
-      "shift+,"
-    ],
+    "outdent": "shift+h",
     "pasteNext": "p",
     "pastePrev": "shift+p",
     "prevNewBlock": "shift+o",
     "prevSibling": "shift+k",
-    "redo": "shift+u",
+    "redo": "ctrl+r",
     "search": "/",
     "searchPrev": "shift+n",
     "searchNext": "n",
@@ -55,7 +47,7 @@
     "searchStackoverflow": "s s",
     "searchWikipedia": "s e",
     "searchYoutube": "s y",
-    "top": "g g",
+    "top": "shift+t",
     "undo": "u",
     "up": "k",
     "exitEditing": [
