@@ -11,6 +11,7 @@
     "collapseAll": "z shift+c",
     "copyCurrentBlockContent": "y y",
     "copyCurrentBlockRef": "shift+y",
+    "changeCurrentBlock": "d c",
     "deleteCurrentBlock": "d d",
     "deleteCurrentAndNextSiblingBlocks": "d j",
     "deleteCurrentAndPrevSiblingBlocks": "d k",
