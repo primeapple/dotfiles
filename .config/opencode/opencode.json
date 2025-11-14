@@ -8,5 +8,10 @@
         "messages_half_page_up": "ctrl+u",
         "messages_first": "<leader>g",
         "messages_last": "<leader>G",
+    },
+    "permission": {
+        "edit": "allow",
+        "bash": "ask",
+        "webfetch": "ask"
     }
 }
