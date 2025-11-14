@@ -1,4 +1,4 @@
 #!/bin/bash
 
-curl --remote-name --output-dir /home/toni/.bin/ https://raw.githubusercontent.com/primeapple/git-uptag/refs/heads/main/git-uptag
-chmod +x /home/toni/.bin/git-uptag
+curl --remote-name --output-dir ~/.bin/ https://raw.githubusercontent.com/primeapple/git-uptag/refs/heads/main/git-uptag
+chmod +x ~/.bin/git-uptag
