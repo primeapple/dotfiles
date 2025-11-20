@@ -157,7 +157,8 @@ nnoremap ZC :action HideAllWindows<cr>
 nnoremap <Leader>rr :action Run<cr>
 nnoremap <Leader>rn :action ContextRun<cr>
 nnoremap <Leader>rf :action RunClass<cr>
-map <C-p> <Action>(RebuildProject)
+nnoremap <Leader>rb :action BuildProject<cr>
+nnoremap <Leader>rB :action RebuildProject<cr>
 map <Leader>R <Action>(Stop)
 
 " TODO?
@@ -169,8 +170,8 @@ map <Leader>R <Action>(Stop)
 " nnoremap <Leader>f :action RerunFailedTests<cr>
 
 " Debugging
-nnoremap <Leader>rb :action ToggleLineBreakpoint<cr>
-nnoremap <Leader>rB :action EditBreakpoint<cr>
+nnoremap <Leader>rdb :action ToggleLineBreakpoint<cr>
+nnoremap <Leader>rdB :action EditBreakpoint<cr>
 
 " Git Integration
 nnoremap <Leader>gb :action Annotate<cr>
