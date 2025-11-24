@@ -48,7 +48,7 @@ fi
 
 # Checking and constructing the message if it includes ticket number
 while [ ${#PARTS[@]} -ge 2 ]; do
-    if [[ ${PARTS[0]} =~ ^[A-Z0-9]+$ ]] && [[ ${PARTS[1]} =~ ^[0-9]+$ ]]; then
+    if [[ ${PARTS[0]} =~ ^[A-Z]+$ ]] && [[ ${PARTS[1]} =~ ^[0-9]+$ ]]; then
         MESSAGE+="${PARTS[0]}-${PARTS[1]} "
         PARTS=("${PARTS[@]:2}")
     elif [[ ${PARTS[0]} =~ ^[0-9]+$ ]]; then
