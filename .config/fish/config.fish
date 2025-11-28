@@ -7,8 +7,8 @@ if status is-interactive
     # default is 50 iirc
     set -g fish_escape_delay_ms 10
 
-    if command -v bookmarker >/dev/null
-        bookmarker init fish | source
+    if command -v bm >/dev/null
+        command bm init fish | source
     end
 end
 
