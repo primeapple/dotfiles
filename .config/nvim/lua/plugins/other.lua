@@ -1,3 +1,4 @@
+local is_kitty = require('toni.utils').is_kitty
 local is_workstation = require('toni.utils').is_workstation
 
 return {
@@ -27,8 +28,7 @@ return {
     -------------------- NAVIGATION --------------------
     {
         'mrjones2014/smart-splits.nvim',
-        -- TODO: works for now, but may be better with a check if the current terminal is kitty
-        cond = is_workstation,
+        cond = is_kitty,
         keys = {
             {
                 '<C-Left>',

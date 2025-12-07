@@ -289,7 +289,6 @@ return {
     },
     {
         'vimpostor/vim-tpipeline',
-        -- TODO: works for now, but may be better with a check if the current terminal is kitty
         cond = require('toni.utils').is_workstation,
         event = 'UIEnter',
         dependencies = { 'rebelot/heirline.nvim' },

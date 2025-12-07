@@ -38,6 +38,7 @@ M.with_pre_save = function(callback)
     end
 end
 
+--- @type boolean
 local is_workstation_cache = nil
 --- @return boolean
 M.is_workstation = function()
@@ -54,6 +55,23 @@ M.is_workstation = function()
         is_workstation_cache = false
     end
     return is_workstation_cache
+end
+
+--- @type boolean
+local is_kitty_cache = nil
+--- @return boolean
+M.is_kitty = function()
+    if is_kitty_cache ~= nil then
+        return is_kitty_cache
+    end
+
+    local terminal = os.getenv('TERM')
+    if terminal == 'xterm-kitty' then
+        is_kitty_cache = true
+    else
+        is_kitty_cache = false
+    end
+    return is_kitty_cache
 end
 
 return M
