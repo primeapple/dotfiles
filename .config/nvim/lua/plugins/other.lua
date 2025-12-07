@@ -5,9 +5,17 @@ return {
     {
         'andymass/vim-matchup',
         event = 'VeryLazy',
-        init = function()
-            vim.g.matchup_matchparen_offscreen = { method = 'popup' }
-        end,
+        ---@type matchup.Config
+        opts = {
+            matchparen = {
+                offscreen = {
+                    method = 'popup',
+                },
+            },
+            treesitter = {
+                stopline = 500,
+            },
+        },
     },
     {
         'johmsalas/text-case.nvim',
