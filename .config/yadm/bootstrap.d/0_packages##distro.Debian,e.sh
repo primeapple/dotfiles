@@ -1,6 +1,7 @@
 #!/bin/bash
 
 apt_packages=(
+    "fish"
     "tree-sitter-cli"
 )
 
