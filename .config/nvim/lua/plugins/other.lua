@@ -199,6 +199,7 @@ return {
                 mode = { 'n', 'i', 'x', 't' },
             },
         },
+        version = '>=1.0.0',
         event = 'VeryLazy',
         build = './kitty/install-kittens.bash',
         config = true,

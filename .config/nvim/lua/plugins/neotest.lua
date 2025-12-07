@@ -11,7 +11,13 @@ return {
             'antoinemadec/FixCursorHold.nvim',
             'marilari88/neotest-vitest',
             'mfussenegger/nvim-dap',
-            { 'fredrikaverpil/neotest-golang', version = '*' },
+            {
+                'fredrikaverpil/neotest-golang',
+                version = '*',
+                build = function()
+                    vim.system({ 'go', 'install', 'gotest.tools/gotestsum@latest' }):wait()
+                end,
+            },
         },
         cond = require('toni.utils').is_workstation,
         keys = {
@@ -38,12 +44,6 @@ return {
                 with_pre_save(function()
                     require('neotest').run.run_last({ strategy = 'dap' })
                 end),
-            },
-            {
-                '<leader>rp',
-                function()
-                    require('neotest').output_panel.toggle()
-                end,
             },
             {
                 '<leader>rs',
@@ -86,15 +86,18 @@ return {
                     require('neotest-vitest')({
                         vitestCommand = 'npx vitest',
                     }),
-                    require('neotest-golang'),
+                    require('neotest-golang')({
+                        runner = 'gotestsum'
+                    }),
+                },
+                -- only parse the current file
+                discovery = {
+                    enabled = false,
+                    concurrent = 1,
                 },
                 quickfix = {
                     enabled = false,
                     open = false,
-                },
-                output_panel = {
-                    enabled = true,
-                    open = 'rightbelow vsplit | resize 30',
                 },
                 status = {
                     enabled = true,
