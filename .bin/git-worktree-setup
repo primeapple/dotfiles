@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "Error: Not in a git repository" >&2
+    exit 1
+fi
+
+GIT_ROOT=$(git rev-parse --show-toplevel)
+cd "$GIT_ROOT"
+
+if [ -n "$(git status --porcelain)" ]; then
+    echo "Error: You have uncommitted changes" >&2
+    exit 1
+fi
+
+CURRENT_BRANCH=$(git branch --show-current)
+
+DEFAULT_BRANCH=""
+if git rev-parse --verify refs/remotes/origin/HEAD > /dev/null 2>&1; then
+    DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||')
+elif git rev-parse --verify refs/heads/main > /dev/null 2>&1; then
+    DEFAULT_BRANCH="main"
+elif git rev-parse --verify refs/heads/master > /dev/null 2>&1; then
+    DEFAULT_BRANCH="master"
+else
+    echo "Error: Could not determine default branch" >&2
+    exit 1
+fi
+
+if [ "$CURRENT_BRANCH" != "$DEFAULT_BRANCH" ]; then
+    echo "Error: Not on default branch ($DEFAULT_BRANCH). Current branch: $CURRENT_BRANCH" >&2
+    exit 1
+fi
+
+ORIGINAL_NAME=$(basename "$GIT_ROOT")
+PARENT_DIR=$(dirname "$GIT_ROOT")
+NEW_MAIN_NAME="${ORIGINAL_NAME}+main"
+
+cd "$PARENT_DIR"
+
+mv "$ORIGINAL_NAME" "$NEW_MAIN_NAME"
+
+mkdir "$ORIGINAL_NAME"
+
+mv "$NEW_MAIN_NAME" "$ORIGINAL_NAME/"
+
+cd "$ORIGINAL_NAME/$NEW_MAIN_NAME"
+
+for WORKTREE_NAME in work fuzzy; do
+    BRANCH_NAME="parking/$WORKTREE_NAME"
+    WORKTREE_DIR="../${ORIGINAL_NAME}+${WORKTREE_NAME}"
+    
+    if ! git rev-parse --verify "$BRANCH_NAME" > /dev/null 2>&1; then
+        git branch "$BRANCH_NAME"
+    fi
+    
+    git worktree add "$WORKTREE_DIR" "$BRANCH_NAME"
+done
+
+echo "Git worktree setup complete!"
+echo "Structure created:"
+echo "  $ORIGINAL_NAME/"
+echo "    ├── ${ORIGINAL_NAME}+main (main branch)"
+echo "    ├── ${ORIGINAL_NAME}+work (parking/work branch)"
+echo "    ├── ${ORIGINAL_NAME}+fuzzy (parking/fuzzy branch)"

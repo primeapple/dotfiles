@@ -167,9 +167,11 @@ if status --is-interactive
     abbr --add gw 'git wip'
     abbr --add gwt 'git worktree'
     abbr --add gwta 'git worktree add'
+    abbr --add gwtf 'git-worktree-fuzzy'
     abbr --add gwtl 'git worktree list'
+    abbr --add gwtm 'git-worktree-main'
     abbr --add gwtr 'git worktree remove'
-    abbr --add gwts 'cd (git worktree list | zf | awk "{print \$1}")'
+    abbr --add gwtw 'git-worktree-work'
 
     # only yadm
     abbr --add yse 'yadm diff --name-only | awk -v home=(echo $HOME) \'{print home "/" $1}\' | zf | xargs --no-run-if-empty yadm add'
