@@ -11,7 +11,18 @@
     },
     "permission": {
         "edit": "allow",
-        "bash": "ask",
+        "bash": {
+            "*": "ask",
+            "fd": "allow",
+            "find": "allow",
+            "git diff": "allow",
+            "git log": "allow",
+            "git status": "allow",
+            "grep": "allow",
+            "ls": "allow",
+            "rg": "allow"
+        },
+        "external_directory": "deny",
         "webfetch": "ask"
     }
 }
