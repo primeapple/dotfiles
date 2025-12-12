@@ -36,7 +36,7 @@ fi
 
 ORIGINAL_NAME=$(basename "$GIT_ROOT")
 PARENT_DIR=$(dirname "$GIT_ROOT")
-NEW_MAIN_NAME="${ORIGINAL_NAME}+main"
+NEW_MAIN_NAME="${ORIGINAL_NAME}+${DEFAULT_BRANCH}"
 
 cd "$PARENT_DIR"
 
@@ -62,6 +62,6 @@ done
 echo "Git worktree setup complete!"
 echo "Structure created:"
 echo "  $ORIGINAL_NAME/"
-echo "    ├── ${ORIGINAL_NAME}+main (main branch)"
+echo "    ├── ${ORIGINAL_NAME}+${DEFAULT_BRANCH} (${DEFAULT_BRANCH} branch)"
 echo "    ├── ${ORIGINAL_NAME}+work (parking/work branch)"
 echo "    ├── ${ORIGINAL_NAME}+fuzzy (parking/fuzzy branch)"
