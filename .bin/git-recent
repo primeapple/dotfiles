@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Source: https://gist.github.com/jordan-brough/48e2803c0ffa6dc2e0bd
+# Inspired from: https://gist.github.com/jordan-brough/48e2803c0ffa6dc2e0bd
 # See also: https://stackoverflow.com/a/25095062/58876
 
 # Download this script as "git-recent" (no extension), chmod it to be executable and put it in your
@@ -63,7 +63,7 @@ while getopts "hn:le" opt; do
   esac
 done
 
-NUM=${NUM-10} # default to 10 lines
+NUM=${NUM-20} # default to showing all branches (up to 1000)
 INTERACTIVE=${INTERACTIVE-1} # default to interactive
 CHECK_EXISTENCE=${CHECK_EXISTENCE-0} # default to *not* checking existence (faster)
 
