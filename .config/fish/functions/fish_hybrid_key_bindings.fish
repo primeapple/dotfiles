@@ -9,6 +9,8 @@ function fish_hybrid_key_bindings --description \
     for mode in default insert visual
         # 't' stands for tidy
         bind --mode $mode \ct 'echo -n (clear | string replace \e\[3J ""); commandline -f repaint'
+        # Regression https://github.com/fish-shell/fish-shell/issues/11082
+        bind --mode $mode \cn down-or-search
     end
 
     bind yy fish_clipboard_copy
