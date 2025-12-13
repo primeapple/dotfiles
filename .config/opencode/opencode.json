@@ -10,7 +10,6 @@
         "messages_last": "<leader>G",
     },
     "permission": {
-        "edit": "allow",
         "bash": {
             "*": "ask",
             "cat *": "allow",
@@ -23,7 +22,8 @@
             "ls *": "allow",
             "rg *": "allow"
         },
+        "edit": "allow",
         "external_directory": "deny",
-        "webfetch": "ask"
+        "webfetch": "deny"
     }
 }
