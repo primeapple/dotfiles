@@ -8,6 +8,9 @@ return {
         bigfile = {
             enabled = true,
         },
+        gitbrowse = {
+            what = "file",
+        },
         image = {
             enabled = true,
         },
