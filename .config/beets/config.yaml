@@ -1,0 +1,5 @@
+---
+directory: ~/beets/music
+library: ~/beets/data/musiclibrary.db
+plugins:
+  - fish
