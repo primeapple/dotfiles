@@ -24,6 +24,11 @@ return {
         cmd = { 'Subs' },
         config = true,
     },
+    {
+        'windwp/nvim-ts-autotag',
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = true,
+    },
 
     -------------------- NAVIGATION --------------------
     {

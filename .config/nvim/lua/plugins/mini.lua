@@ -56,35 +56,6 @@ return {
                 },
             })
 
-            require('mini.pairs').setup({
-                -- see https://github.com/echasnovski/mini.nvim/issues/835
-                mappings = {
-                    -- Prevents the action if the cursor is just before any character or next to a "\".
-                    ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\][%s%)%]%}]' },
-                    ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\][%s%)%]%}]' },
-                    ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\][%s%)%]%}]' },
-                    -- Prevents the action if the cursor is just before or next to any character.
-                    ['"'] = {
-                        action = 'closeopen',
-                        pair = '""',
-                        neigh_pattern = '[^%w][^%w]',
-                        register = { cr = false },
-                    },
-                    ["'"] = {
-                        action = 'closeopen',
-                        pair = "''",
-                        neigh_pattern = '[^%w][^%w]',
-                        register = { cr = false },
-                    },
-                    ['`'] = {
-                        action = 'closeopen',
-                        pair = '``',
-                        neigh_pattern = '[^%w][^%w]',
-                        register = { cr = false },
-                    },
-                },
-            })
-
             local snippets = require('mini.snippets')
             require('mini.snippets').setup({
                 mappings = {
