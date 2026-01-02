@@ -2,4 +2,8 @@
 directory: ~/beets/music
 library: ~/beets/data/musiclibrary.db
 plugins:
+  - edit
+  - fetchart
   - fish
+  - musicbrainz
+  - spotify
