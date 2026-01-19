@@ -393,4 +393,8 @@ return {
         end,
         config = true, -- default settings
     },
+    {
+        'wakatime/vim-wakatime',
+        event = 'VeryLazy',
+    },
 }

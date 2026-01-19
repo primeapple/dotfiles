@@ -60,12 +60,12 @@ return {
                     'vue',
                     'svelte',
                     'astro',
-                    'html',
                 },
             })
             vim.lsp.enable('eslint')
             vim.lsp.enable('gopls')
             vim.lsp.enable('harper_ls')
+            vim.lsp.enable('html')
             vim.lsp.config('jsonls', {
                 settings = {
                     json = {
