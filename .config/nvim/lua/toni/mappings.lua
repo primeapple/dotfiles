@@ -35,7 +35,7 @@ map('n', '<leader>-', '<cmd> sp <CR>')
 map('n', '<leader>=', '<C-w>=')
 
 -- get out of terminal mode
-map('t', '<ESC><ESC>', '<C-\\><C-n>')
+map('t', '<C-ESC>', '<C-\\><C-n>')
 
 -- Remap for dealing with visual line wraps
 map('n', 'j', function()
