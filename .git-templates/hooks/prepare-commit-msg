@@ -35,29 +35,32 @@ for type in "${CONVENTIONAL_COMMIT_TYPES[@]}"; do
     CONVENTIONAL_COMMIT_TYPES+=("$type!")
 done
 
-# Split branchname by "-" char and store in PARTS
-IFS='-' read -ra PARTS <<< "$CURRENT_BRANCH"
-
 MESSAGE=""
 
+# Split branchname by "/" char and store in BRANCH_PARTS
+IFS='/' read -ra BRANCH_PARTS <<< "$CURRENT_BRANCH"
+
 # Checking if it includes conventional commit (scope not supported)
-if [[ ${CONVENTIONAL_COMMIT_TYPES[*]} =~ ${PARTS[0]} ]]; then
-    MESSAGE="${PARTS[0]}: "
-    PARTS=("${PARTS[@]:1}")
+if [[ ${CONVENTIONAL_COMMIT_TYPES[*]} =~ ${BRANCH_PARTS[0]} ]]; then
+    MESSAGE="${BRANCH_PARTS[0]}: "
 fi
 
-# Checking and constructing the message if it includes ticket number
-while [ ${#PARTS[@]} -ge 2 ]; do
-    if [[ ${PARTS[0]} =~ ^[A-Z]+$ ]] && [[ ${PARTS[1]} =~ ^[0-9]+$ ]]; then
-        MESSAGE+="${PARTS[0]}-${PARTS[1]} "
-        PARTS=("${PARTS[@]:2}")
-    elif [[ ${PARTS[0]} =~ ^[0-9]+$ ]]; then
-        MESSAGE+="#${PARTS[0]} "
-        PARTS=("${PARTS[@]:1}")
-    else
-        break
+if [ ${#BRANCH_PARTS[@]} -ge 2 ]; then
+    # Split description by "/" char and store in DESCRIPTION_PARTS
+    IFS='-' read -ra DESCRIPTION_PARTS <<< "${BRANCH_PARTS[1]}"
+
+    # Checking and constructing the message if it includes reference
+    if [[ ${DESCRIPTION_PARTS[0]} =~ ^[0-9]+$ ]]; then
+        MESSAGE+="#${DESCRIPTION_PARTS[0]} "
+        DESCRIPTION_PARTS=("${DESCRIPTION_PARTS[@]:1}")
     fi
-done
+
+    # Checking and constructing the message if it includes ticket number
+    if [[ ${DESCRIPTION_PARTS[0]} =~ ^[A-Z]+$ ]] && [[ ${DESCRIPTION_PARTS[1]} =~ ^[0-9]+$ ]]; then
+        MESSAGE+="${DESCRIPTION_PARTS[0]}-${DESCRIPTION_PARTS[1]} "
+        DESCRIPTION_PARTS=("${DESCRIPTION_PARTS[@]:2}")
+    fi
+fi
 
 # Write MESSAGE to the commit message file
 sed -i "1s/.*/$MESSAGE/" "$COMMIT_MSG_FILE"
