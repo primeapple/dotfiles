@@ -172,7 +172,7 @@ if status --is-interactive
     abbr --add gwtf 'git-worktree-fuzzy'
     abbr --add gwtl 'git worktree list'
     abbr --add gwtm 'git-worktree-main'
-    abbr --add gwtr 'git worktree remove'
+    abbr --add gwtr 'git worktree-review'
     abbr --add gwtw 'git-worktree-work'
 
     # only yadm
