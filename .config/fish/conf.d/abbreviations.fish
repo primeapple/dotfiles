@@ -150,6 +150,8 @@ if status --is-interactive
     abbr --add gcon 'git config user.name "Toni Müller" && git config user.email "toni.mueller.web@mailbox.org"'
     abbr --add gcp 'git cherry-pick'
     abbr --add gcpn 'git cherry-pick --no-commit'
+    abbr --add gd 'git switch --detach'
+    abbr --add gdl 'git switch --detach (git last)'
     abbr --add gi 'git init'
     abbr --add gm 'git merge'
     abbr --add gma 'git merge --abort'

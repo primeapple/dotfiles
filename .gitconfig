@@ -21,6 +21,7 @@
     squash = !git -c sequence.editor=\"nvim -c '2,\\$s/^pick/squash/'\" rebase --interactive $(git merge-base HEAD $(git rev-parse --verify --quiet master >/dev/null && echo master || echo main))
     select = !git ls-files -m -o --exclude-standard | zf | xargs --no-run-if-empty git add
     park = !git fetch && git switch parking/$(basename $(pwd) | cut -d "+" -f 2) >/dev/null 2>&1 || git switch $(basename $(pwd) | cut -d "+" -f 2) && git reset --hard origin/master
+    last = !git log --all --author=\"$(git config user.name)\" -1 --format=\"%H\"
 [core]
     pager = delta
 [interactive]
