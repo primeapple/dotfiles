@@ -371,6 +371,15 @@ return {
         lazy = false,
         config = true,
     },
+    {
+        'shortcuts/no-neck-pain.nvim',
+        keys = { { 'yop', '<cmd>NoNeckPain<cr>' } },
+        version = '*',
+        opts = {
+            width = 200,
+        },
+        config = true,
+    },
 
     -------------------- MISC --------------------
     -- TODO use option `winfixbuf` for specific buffers

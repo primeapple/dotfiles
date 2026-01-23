@@ -9,7 +9,7 @@ return {
             enabled = true,
         },
         gitbrowse = {
-            what = "file",
+            what = 'file',
         },
         image = {
             enabled = true,
@@ -30,9 +30,7 @@ return {
         picker = {
             enabled = true,
             list = {
-                keys = {
-
-                },
+                keys = {},
             },
         },
     },
@@ -108,6 +106,20 @@ return {
                 Snacks.picker.git_status()
             end),
             desc = 'Git Status',
+        },
+        {
+            '<leader>z',
+            function()
+                Snacks.zen()
+            end,
+            desc = 'Toggle Zen Mode',
+        },
+        {
+            '<leader>Z',
+            function()
+                Snacks.zen.zoom()
+            end,
+            desc = 'Toggle Zoom',
         },
     },
 }
