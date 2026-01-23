@@ -5,5 +5,6 @@ plugins:
   - edit
   - fetchart
   - fish
+  - info
   - musicbrainz
   - spotify
