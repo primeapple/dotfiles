@@ -373,9 +373,13 @@ return {
     },
     {
         'shortcuts/no-neck-pain.nvim',
+        lazy = false,
         keys = { { 'yop', '<cmd>NoNeckPain<cr>' } },
         version = '*',
         opts = {
+            autocmds = {
+                enableOnVimEnter = true,
+            },
             width = 200,
         },
         config = true,
