@@ -28,6 +28,7 @@
     jq
     neovim
     ripgrep
+    toot
     trash-cli
     zf
     # # You can also create simple shell scripts directly inside your
