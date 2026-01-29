@@ -9,9 +9,8 @@
 ;;   {:shortcuts {:ui/toggle-theme "t z"
 ;;                :ui/toggle-brackets "t b"}}
 
-{:shortcuts {:plugin.logseq-vim-shortcuts/vim-shortcut-outdent-0 ["shift+h" "shift+,"]
+{:shortcuts {
  :go/graph-view []
- :plugin.logseq-vim-shortcuts/vim-shortcut-indent-0 ["shift+l" "shift+."]
  :editor/move-block-up ["alt+shift+up" "open-square-bracket e"]
  :editor/move-block-down ["alt+shift+down" "close-square-bracket e"]
  :ui/accent-colors-picker []
