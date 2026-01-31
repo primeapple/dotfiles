@@ -4,6 +4,14 @@ return {
     'mistweaverco/kulala.nvim',
     keys = {
         {
+            '<leader>K',
+            function()
+                require('kulala').interrupt_requests()
+            end,
+            ft = { 'http', 'rest' },
+            desc = 'Interrupt requests',
+        },
+        {
             KULALA_LEADER .. 'n',
             function()
                 require('kulala').run()
