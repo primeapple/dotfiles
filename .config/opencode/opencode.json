@@ -15,15 +15,30 @@
             "cat *": "allow",
             "fd *": "allow",
             "find *": "allow",
+            "gh issue list": "allow",
+            "gh issue view *": "allow",
             "git diff": "allow",
             "git log": "allow",
             "git status": "allow",
+            "go test *": "allow",
             "grep *": "allow",
+            "head": "allow",
             "ls *": "allow",
-            "rg *": "allow"
+            "mkdir": "allow",
+            "rg *": "allow",
+            "wc": "allow"
         },
         "edit": "allow",
         "external_directory": "deny",
         "webfetch": "deny"
+    },
+    "mcp": {
+        "context7": {
+            "type": "remote",
+            "url": "https://mcp.context7.com/mcp",
+            "headers": {
+                "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+            }
+        }
     }
 }
