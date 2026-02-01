@@ -48,7 +48,7 @@ mv "$NEW_MAIN_NAME" "$ORIGINAL_NAME/"
 
 cd "$ORIGINAL_NAME/$NEW_MAIN_NAME"
 
-for WORKTREE_NAME in work fuzzy review ; do
+for WORKTREE_NAME in work review ; do
     BRANCH_NAME="parking/$WORKTREE_NAME"
     WORKTREE_DIR="../${ORIGINAL_NAME}+${WORKTREE_NAME}"
     
@@ -64,5 +64,4 @@ echo "Structure created:"
 echo "  $ORIGINAL_NAME/"
 echo "    ├── ${ORIGINAL_NAME}+${DEFAULT_BRANCH} (${DEFAULT_BRANCH} branch)"
 echo "    ├── ${ORIGINAL_NAME}+work (parking/work branch)"
-echo "    ├── ${ORIGINAL_NAME}+fuzzy (parking/fuzzy branch)"
 echo "    ├── ${ORIGINAL_NAME}+review (parking/review branch)"
