@@ -334,17 +334,6 @@ return {
         config = true,
     },
     {
-        'lukas-reineke/indent-blankline.nvim',
-        event = { 'BufReadPost', 'BufNewFile' },
-        enabled = false,
-        main = 'ibl',
-        opts = {
-            scope = {
-                show_start = false,
-            },
-        },
-    },
-    {
         'j-hui/fidget.nvim',
         cond = is_workstation,
         event = 'VeryLazy',
