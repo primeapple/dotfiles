@@ -18,6 +18,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    asciinema_3
     bat
     delta
     eza
@@ -30,6 +31,7 @@
     ripgrep
     toot
     trash-cli
+    yt-dlp
     zf
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -76,4 +78,39 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting 'Welcome to fish 🐟'
+      set fish_features qmark-noglob
+
+      echo y | fish_config theme save kanagawa
+
+      set -g fish_key_bindings fish_hybrid_key_bindings
+
+      # default is 50 iirc
+      set -g fish_escape_delay_ms 10
+
+      if command -v bm >/dev/null
+          command bm init fish | source
+      end
+    '';
+    plugins = [
+        { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
+        # I'd much rather use a flake for that
+        { name = "nvm"; src = pkgs.fishPlugins.nvm.src; }
+        {
+            name = "pufferfish";
+            src = pkgs.fetchFromGitHub {
+              owner = "nickeb96";
+              repo = "puffer-fish";
+              rev = "83174b07de60078be79985ef6123d903329622b8";
+              sha256 = "0a4x985hzv77r5q8cly6580n488pf5iqlwkifrhzj9kifkwpj70f";
+            };
+        }
+        { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+        { name = "z"; src = pkgs.fishPlugins.z.src; }
+    ];
+  };
 }
