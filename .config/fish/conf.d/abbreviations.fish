@@ -168,14 +168,20 @@ if status --is-interactive
     abbr --add guw 'git unwip'
     abbr --add gw 'git wip'
     abbr --add gwt 'git worktree'
-    abbr --add gwta 'git-worktree-add'
     abbr --add gwtl 'git worktree list'
-    abbr --add gwtm 'git-worktree-main'
-    abbr --add gwtr 'git worktree-review'
-    abbr --add gwtw 'git-worktree-work'
 
     # only yadm
     abbr --add yse 'yadm diff --name-only | awk -v home=(echo $HOME) \'{print home "/" $1}\' | zf | xargs --no-run-if-empty yadm add'
+
+    # worktree.fish
+    abbr --add wtc 'worktree create'
+    abbr --add wtcl 'worktree clean'
+    abbr --add wti 'worktree init'
+    abbr --add wtm 'worktree switch main'
+    abbr --add wtp 'worktree park'
+    abbr --add wtr 'worktree switch review'
+    abbr --add wts 'worktree switch'
+    abbr --add wtw 'worktree switch work'
 
     # taskwarrior related ones
     abbr --add t task
