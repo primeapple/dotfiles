@@ -9,8 +9,12 @@ _error_handler() {
 trap '_error_handler "$LINENO" "$BASH_COMMAND"' ERR
 
 
-### Install nix
-sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
+### Install nix in multi-user mode
+curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon --yes
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
 nix run home-manager/master -- switch --flake ~/.config/home-manager#toni
 
 ### After home manager is configured, we can now onetime commands 
