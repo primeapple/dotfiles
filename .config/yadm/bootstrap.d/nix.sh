@@ -15,11 +15,12 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
-# If systemd is not running (e.g. because of tests), start the daemon
-if ! systemd-notify --booted; then
-    nix-daemon &
-    sleep 2
+# If systemd is not running, start the daemon
+if ! nix-shell -p nix-info --run "nix-info -m" 2>/dev/null; then
+    sudo nix-daemon &
+    sleep 5
 fi
+
 nix run home-manager/master -- switch --flake ~/.config/home-manager#toni
 
 ### After home manager is configured, we can now onetime commands 
