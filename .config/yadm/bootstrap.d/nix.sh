@@ -19,6 +19,7 @@ nix run home-manager/master -- switch --flake ~/.config/home-manager#toni
 # If systemd is not running (e.g. because of tests), start the daemon
 if ! systemd-notify --booted; then
     nix-daemon &
+    sleep 2
 fi
 
 ### After home manager is configured, we can now onetime commands 
