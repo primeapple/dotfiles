@@ -98,6 +98,7 @@ if status --is-interactive
         abbr --add $abb'c' $cmd 'commit --verbose'
         abbr --add $abb'ca' $cmd 'commit --amend'
         abbr --add $abb'can' $cmd 'commit --amend --no-edit'
+        abbr --add --set-cursor $abb'cm' $cmd 'commit --message "%"'
         abbr --add $abb'd' $cmd diff
         abbr --add $abb'ds' $cmd 'diff --staged'
         abbr --add $abb'f' $cmd fetch
