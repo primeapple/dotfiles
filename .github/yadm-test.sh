@@ -4,7 +4,7 @@ set -eu
 
 echo "## TEST: Cloning the dotfiles via YADM ##"
 yadm clone --no-bootstrap https://github.com/primeapple/dotfiles
-yadm checkout /home/primeapple
+yadm checkout /home/toni
 echo "## DONE"
 
 ###############################################################################
