@@ -13,4 +13,5 @@ COPY yadm-test.sh yadm-test.sh
 RUN chmod +x yadm-test.sh && chown primeapple:primeapple yadm-test.sh
 
 USER primeapple
+ENV USER=primeapple
 CMD ["./yadm-test.sh"]
