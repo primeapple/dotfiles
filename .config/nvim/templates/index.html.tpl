@@ -3,11 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <!-- Primary Meta Tags -->
     <title>My Website</title>
-    <meta name="title" content="My Website">
     <meta name="description" content="A brief description of your website (150-160 characters)">
     <meta name="keywords" content="your, relevant, keywords">
     <meta name="author" content="Toni Müller">
