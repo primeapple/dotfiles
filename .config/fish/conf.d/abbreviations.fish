@@ -73,7 +73,10 @@ if status --is-interactive
     abbr --add cht cht.sh
     abbr --add record 'wf-recorder -g "$(slurp)" -f recording.mp4'
     abbr --add screen 'grim -g "$(slurp)" screenshot.png'
+
+    # kitty
     abbr --add kssh 'kitten ssh'
+    abbr --add icat 'kitten icat'
 
     # npm related ones
     abbr --add n npm

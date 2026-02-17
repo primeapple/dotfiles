@@ -6,7 +6,7 @@ return {
         {
             '<leader>K',
             function()
-                require('kulala').interrupt_requests()
+                require('kulala').close()
             end,
             ft = { 'http', 'rest' },
             desc = 'Interrupt requests',
