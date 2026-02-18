@@ -3,6 +3,23 @@
 	"theme": "opencode",
 	"model": "",
 	"disabled_providers": ["anthropic", "openapi"],
+    "provider": {
+        "jan": {
+          "npm": "@ai-sdk/openai-compatible",
+          "name": "jan (local)",
+          "options": {
+            "baseURL": "http://127.0.0.1:1337/v1"
+          },
+          "models": {
+            "Dolphin3_0-Llama3_1-8B-Q8_0": {
+              "name": "Dolphin-Llama3_1-8B"
+            },
+            "bartowski/Nanbeige_Nanbeige4-3B-Thinking-2511-Q6_K_L": {
+              "name": "bartowski/Nanbeige"
+            }
+          }
+        }
+    },
     "keybinds": {
         "messages_half_page_down": "ctrl+d",
         "messages_half_page_up": "ctrl+u",
