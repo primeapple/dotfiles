@@ -78,8 +78,8 @@ echo "## DONE"
 echo "## TEST: nix installed specified applications via home-manager"
 apps=("nvim" "bat" "eza")
 for app in "${apps[@]}"; do
-  if ! command -v "$app"; then
-    echo "Error: App $app was not installed by pacman."
+  if ! fish -c "command -v $app"; then
+    echo "Error: App $app was not installed by nix."
     exit 1
   fi
 done
