@@ -12,13 +12,17 @@ trap '_error_handler "$LINENO" "$BASH_COMMAND"' ERR
 ### Install nix in multi-user mode
 curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon --yes
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    echo "Soucing nix-daemon"
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
 # If systemd is not running, start the daemon
 if ! nix-shell -p nix-info --run "nix-info -m" 2>/dev/null; then
-    sudo nix daemon --extra-experimental-features nix-command &
-    sleep 5
+    echo "Starting Nix daemon"
+    nix-daemon --version
+    sudo nix-daemon --version
+    nix daemon --extra-experimental-features nix-command &
+    sleep 1
 fi
 
 nix run home-manager/master -- switch --flake ~/.config/home-manager#toni
