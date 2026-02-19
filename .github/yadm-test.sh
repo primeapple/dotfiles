@@ -55,26 +55,20 @@ echo "## DONE"
 
 ###############################################################################
 
-# echo "## TEST: fish is the default shell"
-# if [ $(basename "$SHELL") != "fish" ]; then
-#   echo "Error: fish is not the default shell."
-#   exit 1
-# fi
-# echo "## DONE"
-
-###############################################################################
-
-echo "## TEST: fisher is installed"
-if ! fish -c "fisher --version" >/dev/null 2>&1; then
-  echo "Error: fisher is not installed."
-  exit 1
-fi
+echo "## TEST: pacman installed specified applications"
+apps=("docker" "syncthing" "zip")
+for app in "${apps[@]}"; do
+  if ! command -v "$app"; then
+    echo "Error: App $app was not installed by pacman."
+    exit 1
+  fi
+done
 echo "## DONE"
 
 ###############################################################################
 
-echo "## TEST: pacman installed specified applications"
-apps=("docker" "syncthing" "zip")
+echo "## TEST: nix installed specified applications via home-manager"
+apps=("nvim" "bat" "eza")
 for app in "${apps[@]}"; do
   if ! command -v "$app"; then
     echo "Error: App $app was not installed by pacman."

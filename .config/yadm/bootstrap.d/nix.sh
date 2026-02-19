@@ -18,6 +18,7 @@ fi
 # If systemd is not running, start the daemon
 if ! nix-shell -p nix-info --run "nix-info -m" 2>/dev/null; then
     sudo nix daemon --extra-experimental-features nix-command &
+    sleep 5
 fi
 
 nix run home-manager/master -- switch --flake ~/.config/home-manager#toni
