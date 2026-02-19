@@ -21,6 +21,7 @@ fi
 if ! nix-shell -p nix-info --run "nix-info -m" 2>/dev/null; then
     echo "Starting Nix daemon"
     sudo env PATH="$PATH" nix-daemon --extra-experimental-features nix-command &
+    sleep 3
 fi
 
 nix run home-manager/master -- switch --flake ~/.config/home-manager#toni
