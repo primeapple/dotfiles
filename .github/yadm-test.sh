@@ -76,10 +76,10 @@ echo "## DONE"
 ###############################################################################
 
 echo "## TEST: nix installed specified applications via home-manager"
-apps=("nvim" "bat" "eza")
+apps=("nix" "home-manager" "nvim" "bat" "eza")
 for app in "${apps[@]}"; do
   if ! fish -c "command -v $app"; then
-    echo "Error: App $app was not installed by nix."
+    echo "Error: App $app , installed by nix, is not yet available for fish."
     exit 1
   fi
 done
@@ -95,4 +95,13 @@ for directory in "${directories[@]}"; do
     exit 1
   fi
 done
+echo "## DONE"
+
+###############################################################################
+
+echo "## TEST: yadm status returns nothing"
+if [[ -n $(yadm status --porcelain) ]]; then
+    echo "Error: Directory $directory was not created by xdg-config-dirs."
+    exit 1
+fi
 echo "## DONE"
