@@ -1,5 +1,7 @@
 return {
     'folke/sidekick.nvim',
+    -- Otherwise it won't get loaded on `x` mappings
+    event = 'VeryLazy',
     opts = {
         nes = { enabled = false },
         cli = {
