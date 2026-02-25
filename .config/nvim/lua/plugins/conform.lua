@@ -44,6 +44,7 @@ return {
                 typescript = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
                 typescriptreact = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
                 yaml = { 'prettierd', 'prettier', 'yamlfmt', stop_after_first = true },
+                ['_'] = { 'trim_whitespace' },
             },
             notify_on_error = false,
         })
