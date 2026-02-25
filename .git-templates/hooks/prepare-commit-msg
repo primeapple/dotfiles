@@ -2,9 +2,10 @@
 # This script is used by git to generate a commit message template based on the current branch name.
 # Supported parts are conventional commit types (`type`) and ticket numbers (`123` or `GH-123`)
 # The branch name will result in a commit message template like this:
-#  - type-some-description -> type:
-#  - type-GH-123-description -> type: GH-123
-#  - type-123-description -> type: #123
+#  - type/some-description -> type:
+#  - type/GH-123-description -> type: GH-123
+#  - type!/GH-123-description -> type: GH-123
+#  - type/123-description -> type: #123
 #  - 123-description -> #123
 #  - 123-GH-124-description -> #123 GH-124
 #  - some-description ->
@@ -46,7 +47,7 @@ if [[ ${CONVENTIONAL_COMMIT_TYPES[*]} =~ ${BRANCH_PARTS[0]} ]]; then
 fi
 
 if [ ${#BRANCH_PARTS[@]} -ge 2 ]; then
-    # Split description by "/" char and store in DESCRIPTION_PARTS
+    # Split description by "-" char and store in DESCRIPTION_PARTS
     IFS='-' read -ra DESCRIPTION_PARTS <<< "${BRANCH_PARTS[1]}"
 
     # Checking and constructing the message if it includes reference
