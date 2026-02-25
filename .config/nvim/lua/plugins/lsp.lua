@@ -65,6 +65,9 @@ return {
             vim.lsp.enable('eslint')
             vim.lsp.enable('gopls')
             vim.lsp.enable('harper_ls')
+            vim.lsp.config('html', {
+                filetypes = { 'gohtml' },
+            })
             vim.lsp.enable('html')
             vim.lsp.config('jsonls', {
                 settings = {
@@ -96,6 +99,7 @@ return {
             vim.lsp.enable('pyright')
             vim.lsp.enable('rust_analyzer')
             vim.lsp.enable('stylelint_lsp')
+            vim.lsp.enable('superhtml')
             vim.lsp.config('tailwindcss', {
                 root_dir = lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
             })
