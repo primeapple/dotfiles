@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./packages.nix
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "toni";
@@ -24,12 +28,9 @@
     fd
     htop
     jq
-    mvnd
     neovim
     ripgrep
-    toot
     trash-cli
-    yt-dlp
     zf
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
