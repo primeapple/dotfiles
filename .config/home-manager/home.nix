@@ -23,9 +23,8 @@
     eza
     fd
     htop
-    httpie
-    jless
     jq
+    mvnd
     neovim
     ripgrep
     toot
