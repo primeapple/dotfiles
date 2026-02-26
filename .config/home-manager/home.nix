@@ -109,6 +109,15 @@
             };
         }
         { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+        {
+            name = "worktree.fish";
+            src = pkgs.fetchFromGitHub {
+                owner = "primeapple";
+                repo = "worktree.fish";
+                rev = "de8b40bb89972e9faece3737b18508cb8f492320";
+                sha256 = "sha256-qEo80py3NRiNfwJV+qO5qba7AV408C62ip4UZp3tvqw=";
+            };
+        }
         { name = "z"; src = pkgs.fishPlugins.z.src; }
     ];
   };
