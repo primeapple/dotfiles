@@ -42,6 +42,7 @@
             "grep *": "allow",
             "head": "allow",
             "ls *": "allow",
+            "make *": "allow",
             "mkdir *": "allow",
             "npm test *": "allow",
             "rg *": "allow",
