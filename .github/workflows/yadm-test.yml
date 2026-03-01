@@ -4,10 +4,17 @@ on:
 jobs:
   yadm-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - distro: arch
+            dockerfile: Dockerfile.arch
+          - distro: debian
+            dockerfile: Dockerfile.debian
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Build Docker image
-        run: docker build -f .github/Dockerfile -t arch-yadm .github/
+        run: docker build -f .github/${{ matrix.dockerfile }} -t ${{ matrix.distro }}-yadm .github/
       - name: Run yadm-test script
-        run: docker run --rm -e BRANCH="${{ github.ref_name }}" arch-yadm
+        run: docker run --rm -e BRANCH="${{ github.ref_name }}" -e DISTRO="${{ matrix.distro }}" ${{ matrix.distro }}-yadm

@@ -64,13 +64,13 @@ echo "## DONE"
 
 ###############################################################################
 
-echo "## TEST: pacman installed specified applications"
-apps=("docker" "syncthing" "zip")
+echo "## TEST: package manager installed specified applications"
+apps=("docker" "unzip" "zip")
 for app in "${apps[@]}"; do
-  if ! command -v "$app"; then
-    echo "Error: App $app was not installed by pacman."
-    exit 1
-  fi
+    if ! command -v "$app"; then
+        echo "Error: App $app was not installed by package manager"
+        exit 1
+    fi
 done
 echo "## DONE"
 

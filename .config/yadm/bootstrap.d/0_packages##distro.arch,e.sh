@@ -9,7 +9,6 @@ pacman_packages=(
     "nodejs"
     "npm"
     "openssh"
-    "syncthing"
     "tree-sitter-cli"
     "unzip"
     "xdg-user-dirs"
