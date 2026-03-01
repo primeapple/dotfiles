@@ -11,7 +11,8 @@ trap '_error_handler "$LINENO" "$BASH_COMMAND"' ERR
 
 
 echo "## TEST: Cloning the dotfiles via YADM ##"
-yadm clone --no-bootstrap https://github.com/primeapple/dotfiles
+BRANCH="${BRANCH:-main}"
+yadm clone --no-bootstrap -b "$BRANCH" https://github.com/primeapple/dotfiles
 yadm checkout /home/toni
 echo "## DONE"
 
@@ -95,6 +96,25 @@ for directory in "${directories[@]}"; do
     exit 1
   fi
 done
+echo "## DONE"
+
+###############################################################################
+
+echo "## TEST: SSH key is generated"
+if [ ! -f ~/.ssh/id_ed25519 ]; then
+    echo "Error: SSH private key ~/.ssh/id_ed25519 does not exist."
+    exit 1
+fi
+
+if [ ! -f ~/.ssh/id_ed25519.pub ]; then
+    echo "Error: SSH public key ~/.ssh/id_ed25519.pub does not exist."
+    exit 1
+fi
+
+if ! ssh-keygen -l -f ~/.ssh/id_ed25519.pub > /dev/null 2>&1; then
+    echo "Error: SSH key is invalid."
+    exit 1
+fi
 echo "## DONE"
 
 ###############################################################################

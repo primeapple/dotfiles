@@ -8,6 +8,7 @@ pacman_packages=(
     "kitty"
     "nodejs"
     "npm"
+    "openssh"
     "syncthing"
     "tree-sitter-cli"
     "unzip"
