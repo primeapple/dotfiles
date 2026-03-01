@@ -11,7 +11,8 @@ trap '_error_handler "$LINENO" "$BASH_COMMAND"' ERR
 
 
 echo "## TEST: Cloning the dotfiles via YADM ##"
-yadm clone --no-bootstrap https://github.com/primeapple/dotfiles
+BRANCH="${BRANCH:-main}"
+yadm clone --no-bootstrap -b "$BRANCH" https://github.com/primeapple/dotfiles
 yadm checkout /home/toni
 echo "## DONE"
 
