@@ -4,18 +4,27 @@
 	"model": "",
 	"disabled_providers": ["anthropic", "openapi"],
     "provider": {
-        "jan": {
+        "lmstudio": {
           "npm": "@ai-sdk/openai-compatible",
-          "name": "jan (local)",
+          "name": "LM Studio (local)",
           "options": {
-            "baseURL": "http://127.0.0.1:1337/v1"
+            "baseURL": "http://127.0.0.1:1234/v1"
           },
           "models": {
-            "Dolphin3_0-Llama3_1-8B-Q8_0": {
-              "name": "Dolphin-Llama3_1-8B"
-            },
-            "bartowski/Nanbeige_Nanbeige4-3B-Thinking-2511-Q6_K_L": {
-              "name": "bartowski/Nanbeige"
+            "Edge-Quant/nanbeige4.1-3b": {
+              "name": "nanbeige4.1-3b"
+            }
+          }
+        },
+        "ollama": {
+          "npm": "@ai-sdk/openai-compatible",
+          "name": "Ollama",
+          "options": {
+            "baseURL": "http://127.0.0.1:11434/v1"
+          },
+          "models": {
+            "nanbeige:3b-16k": {
+              "name": "Nanbeige 3b (16k context)"
             }
           }
         }
@@ -29,6 +38,7 @@
     "permission": {
         "bash": {
             "*": "ask",
+            ".mvnw *": "allow",
             "cat *": "allow",
             "fd *": "allow",
             "find *": "allow",
@@ -44,8 +54,11 @@
             "ls *": "allow",
             "make *": "allow",
             "mkdir *": "allow",
+            "mvn *": "allow",
+            "mvnd *": "allow",
             "npm test *": "allow",
             "rg *": "allow",
+            "tail *": "allow",
             "wc *": "allow"
         },
         "edit": "allow",
