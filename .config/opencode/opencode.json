@@ -38,10 +38,9 @@
     "permission": {
         "bash": {
             "*": "ask",
-            ".mvnw *": "allow",
+            "./mvnw *": "allow",
             "cat *": "allow",
             "fd *": "allow",
-            "find *": "allow",
             "gh issue list": "allow",
             "gh issue view *": "allow",
             "git diff *": "allow",
@@ -49,6 +48,7 @@
             "git show *": "allow",
             "git status": "allow",
             "go test *": "allow",
+            "gofmt *": "allow",
             "grep *": "allow",
             "head": "allow",
             "ls *": "allow",
@@ -58,6 +58,7 @@
             "mvnd *": "allow",
             "npm test *": "allow",
             "rg *": "allow",
+            "sort *": "allow",
             "tail *": "allow",
             "wc *": "allow"
         },
