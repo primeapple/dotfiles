@@ -16,7 +16,7 @@ function fish_hybrid_key_bindings --description \
     bind yy fish_clipboard_copy
     bind --mode visual --sets-mode default y "fish_clipboard_copy; commandline -f end-selection repaint-mode"
     bind p fish_clipboard_paste
-    bind --mode visual --sets-mode default p "fish_clipboard_paste; commandline -f kill-selection end-selection repaint-mode"
+    bind --mode visual --sets-mode default p "commandline -f kill-selection end-selection; fish_clipboard_paste; set fish_bind_mode default; commandline -f repaint-mode"
 
     bind H beginning-of-line
     bind L end-of-line
