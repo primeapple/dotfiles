@@ -29,6 +29,7 @@ return {
             formatters_by_ft = {
                 css = { 'prettierd', 'prettier', stop_after_first = true },
                 fish = { 'fish_indent' },
+                go = { 'gofmt' },
                 gohtml = { 'djlint_gohtml' },
                 html = { 'prettierd', 'prettier', stop_after_first = true },
                 javascript = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
