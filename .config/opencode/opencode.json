@@ -1,39 +1,32 @@
 {
-	"$schema": "https://opencode.ai/config.json",
-	"theme": "opencode",
-	"model": "",
-	"disabled_providers": ["anthropic", "openapi"],
+    "$schema": "https://opencode.ai/config.json",
+    "model": "",
+    "disabled_providers": ["anthropic", "openapi"],
     "provider": {
         "lmstudio": {
-          "npm": "@ai-sdk/openai-compatible",
-          "name": "LM Studio (local)",
-          "options": {
-            "baseURL": "http://127.0.0.1:1234/v1"
-          },
-          "models": {
-            "Edge-Quant/nanbeige4.1-3b": {
-              "name": "nanbeige4.1-3b"
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "LM Studio (local)",
+            "options": {
+                "baseURL": "http://127.0.0.1:1234/v1"
+            },
+            "models": {
+                "Edge-Quant/nanbeige4.1-3b": {
+                    "name": "nanbeige4.1-3b"
+                }
             }
-          }
         },
         "ollama": {
-          "npm": "@ai-sdk/openai-compatible",
-          "name": "Ollama",
-          "options": {
-            "baseURL": "http://127.0.0.1:11434/v1"
-          },
-          "models": {
-            "nanbeige:3b-16k": {
-              "name": "Nanbeige 3b (16k context)"
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "Ollama",
+            "options": {
+                "baseURL": "http://127.0.0.1:11434/v1"
+            },
+            "models": {
+                "nanbeige:3b-16k": {
+                    "name": "Nanbeige 3b (16k context)"
+                }
             }
-          }
         }
-    },
-    "keybinds": {
-        "messages_half_page_down": "ctrl+d",
-        "messages_half_page_up": "ctrl+u",
-        "messages_first": "<leader>g",
-        "messages_last": "<leader>G",
     },
     "permission": {
         "bash": {
@@ -50,7 +43,7 @@
             "go test *": "allow",
             "gofmt *": "allow",
             "grep *": "allow",
-            "head": "allow",
+            "head *": "allow",
             "ls *": "allow",
             "make *": "allow",
             "mkdir *": "allow",
@@ -63,8 +56,8 @@
             "wc *": "allow"
         },
         "edit": "allow",
-        "external_directory": "deny",
-        "webfetch": "deny"
+        "external_directory": "ask",
+        "webfetch": "ask"
     },
     "mcp": {
         "context7": {
