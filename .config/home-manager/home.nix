@@ -115,7 +115,7 @@
                 owner = "primeapple";
                 repo = "worktree.fish";
                 rev = "f0b2c3aa4fe0d68cdb05e1386822d97df476b25e";
-                sha256 = "sha256-qEo80py3NRiNfwJV+qO5qba7AV408C62ip4UZp3tvqw=";
+                sha256 = "sha256-bQHvCv0e4SMcYhgHm/ex0dxjilQRYXlUAjprcSOJrEc=";
             };
         }
         { name = "z"; src = pkgs.fishPlugins.z.src; }
