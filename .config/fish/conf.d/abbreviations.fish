@@ -196,6 +196,11 @@ if status --is-interactive
     abbr --add ts 'task sync'
     abbr --add tui taskwarrior-tui
 
+    # home-manager
+    abbr --add hms home-manager switch --flake ~/.config/home-manager#toni
+    # nix
+    abbr --add nfu nix flake update
+
     function __zf_file
         zfd --type file
     end
