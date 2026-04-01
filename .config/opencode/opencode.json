@@ -33,6 +33,7 @@
             "*": "ask",
             "./mvnw *": "allow",
             "cat *": "allow",
+            "echo *": "allow",
             "fd *": "allow",
             "gh issue list": "allow",
             "gh issue view *": "allow",
@@ -51,6 +52,7 @@
             "mvnd *": "allow",
             "npm test *": "allow",
             "rg *": "allow",
+            "sed *": "allow",
             "sort *": "allow",
             "tail *": "allow",
             "wc *": "allow"
