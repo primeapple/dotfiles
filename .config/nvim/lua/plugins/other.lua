@@ -399,6 +399,18 @@ return {
     },
     {
         'wakatime/vim-wakatime',
+        -- check if `~/.wakatime.cfg` exists
+        cond = function()
+            local homedir = os.getenv('HOME') or ''
+            local filepath = homedir .. '/' .. '.wakatime.cfg'
+            local f = io.open(filepath, 'r')
+            if f then
+                f:close()
+                return true
+            else
+                return false
+            end
+        end,
         event = 'VeryLazy',
     },
 }
