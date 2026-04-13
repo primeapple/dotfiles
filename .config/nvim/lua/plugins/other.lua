@@ -340,15 +340,17 @@ return {
         config = true,
     },
     {
-        'norcalli/nvim-colorizer.lua',
+        'catgoose/nvim-colorizer.lua',
         event = 'VeryLazy',
-        config = function()
-            require('colorizer').setup({
-                opts = {
-                    names = false,
+        opts = {
+            options = {
+                parsers = {
+                    names = {
+                        enable = false,
+                    },
                 },
-            })
-        end,
+            },
+        },
     },
     {
         'mcauley-penney/visual-whitespace.nvim',
