@@ -1,11 +1,12 @@
 #!/bin/bash
 
 mkdir -p ~/desktop
-mkdir -p ~/downloads
-mkdir -p ~/templates
-mkdir -p ~/public
 mkdir -p ~/documents
+mkdir -p ~/downloads
 mkdir -p ~/music
-mkdir -p ~/pictures/pictures
+mkdir -p ~/pictures
+mkdir -p ~/projects
+mkdir -p ~/public
+mkdir -p ~/templates
 mkdir -p ~/videos
 xdg-user-dirs-update
