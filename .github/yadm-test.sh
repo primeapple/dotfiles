@@ -120,8 +120,10 @@ echo "## DONE"
 ###############################################################################
 
 echo "## TEST: yadm status returns nothing"
-if [[ -n $(yadm status --porcelain) ]]; then
-    echo "Error: yadm status is not clean"
+yadm_status=$(yadm status --porcelain)
+if [[ -n "$yadm_status" ]]; then
+    echo "Error: yadm status is not clean:"
+    echo "$yadm_status"
     exit 1
 fi
 echo "## DONE"
