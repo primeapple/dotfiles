@@ -1,0 +1,18 @@
+# Binaries
+/.bun/
+/.cargo/
+/.gradle/
+/.m2/repository/
+/.npm/
+/.rustup/
+/.var/
+/go/
+/var/
+
+# AI models
+/.lmstudio/
+/.ollama
+
+# other
+/.cache/
+/Sync/
