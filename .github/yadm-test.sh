@@ -124,6 +124,7 @@ yadm_status=$(yadm status --porcelain)
 if [[ -n "$yadm_status" ]]; then
     echo "Error: yadm status is not clean:"
     echo "$yadm_status"
+    yadm diff
     exit 1
 fi
 echo "## DONE"
