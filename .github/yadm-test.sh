@@ -91,7 +91,7 @@ echo "## DONE"
 echo "## TEST: xdg config dirs are created"
 directories=("documents" "downloads" "music")
 for directory in "${directories[@]}"; do
-  if ! [ -d "$directory" ]; then
+  if ! [ -d "$HOME/$directory" ]; then
     echo "Error: Directory $directory was not created by xdg-config-dirs."
     exit 1
   fi
@@ -121,7 +121,7 @@ echo "## DONE"
 
 echo "## TEST: yadm status returns nothing"
 if [[ -n $(yadm status --porcelain) ]]; then
-    echo "Error: Directory $directory was not created by xdg-config-dirs."
+    echo "Error: yadm status is not clean"
     exit 1
 fi
 echo "## DONE"
