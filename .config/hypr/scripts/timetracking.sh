@@ -8,23 +8,17 @@ fi
 
 WORK_TAG=""
 case "$1" in
-    bug) WORK_TAG=#work/bug
+    collab) WORK_TAG=#work/collab
     ;;
-    feat) WORK_TAG=#work/feat
-    ;;
-    incident) WORK_TAG=#work/incident
+    dev) WORK_TAG=#work/dev
     ;;
     know) WORK_TAG=#work/know
-    ;;
-    maintenance) WORK_TAG=#work/maintenance
     ;;
     org) WORK_TAG=#work/org
     ;;
     quit) WORK_TAG=#work/quit
     ;;
-    support) WORK_TAG=#work/support
-    ;;
-    technical) WORK_TAG=#work/technical
+    rand) WORK_TAG=#work/rand
     ;;
     *) notify-send "$0" "unclear command '$1', aborting"; exit 1
     ;;

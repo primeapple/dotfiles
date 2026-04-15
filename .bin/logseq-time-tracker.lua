@@ -5,27 +5,19 @@
 
 ---@enum WorkType
 local WorkType = {
-	bug = "bug",
-	feat = "feat",
-	incident = "incident",
+	collab = "collab",
+	dev = "dev",
 	know = "know",
-	maintenance = "maintenance",
-	maintenance_support_requests = "maintenance_support_requests",
 	org = "org",
 	quit = "quit",
-	support = "support",
-	technical = "technical",
+	rand = "rand",
 }
-local CategoryExcelOrder = {
-	WorkType.feat,
-	WorkType.bug,
-	WorkType.maintenance_support_requests,
-	WorkType.technical,
-	WorkType.maintenance,
-	WorkType.incident,
-	WorkType.org,
-	WorkType.support,
+local CategoryCSVOrder = {
+	WorkType.dev,
+	WorkType.collab,
 	WorkType.know,
+	WorkType.org,
+	WorkType.rand,
 }
 
 --- @alias WorkItem { category: WorkType, time: string, minutes: number}
@@ -261,7 +253,7 @@ local function printSummaries(filenames)
 
 	-- Write Header
 	io.write("date")
-	for _, category in ipairs(CategoryExcelOrder) do
+	for _, category in ipairs(CategoryCSVOrder) do
 		io.write("," .. category)
 	end
 	io.write(",total")
@@ -271,7 +263,7 @@ local function printSummaries(filenames)
 		io.write("\n" .. summary.date.day .. "/" .. summary.date.month .. "/" .. summary.date.year)
 
 		local summedRoundedHours = 0
-		for _, category in ipairs(CategoryExcelOrder) do
+		for _, category in ipairs(CategoryCSVOrder) do
 			-- To not "lose" time we round up anything bigger than .2
 			local asHour = math.floor(summary.sessionsByType[category].totalDuration / 60 + 0.8)
 			summedRoundedHours = summedRoundedHours + asHour
