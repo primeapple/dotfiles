@@ -87,7 +87,7 @@ if status --is-interactive
     abbr --add nrs npm run start
     abbr --add nrt npm run test
     # Maybe add `--testTimeout=1000000`
-    abbr --add nrtd npm run test --  --inspect-brk --no-file-parallelism
+    abbr --add nrtd npm run test -- --inspect-brk --no-file-parallelism
     abbr --add nrw npm run watch
     abbr --add nt npm test --
 
@@ -189,7 +189,7 @@ if status --is-interactive
 
     # home-manager
     abbr --add hms home-manager switch --flake ~/.config/home-manager#toni
-    abbr --add hmu "nix flake update --flake ~/.config/home-manager && home-manager switch --flake ~/.config/home-manager#toni"
+    abbr --add hmu 'nix flake update --flake ~/.config/home-manager && home-manager switch --flake ~/.config/home-manager#toni'
     # nix
     abbr --add nfu nix flake update
 
