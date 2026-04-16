@@ -19,12 +19,6 @@ return {
         },
     },
     {
-        'johmsalas/text-case.nvim',
-        keys = { 'ga', mode = { 'n', 'x' } },
-        cmd = { 'Subs' },
-        config = true,
-    },
-    {
         'windwp/nvim-ts-autotag',
         event = { 'BufReadPre', 'BufNewFile' },
         config = true,
@@ -334,12 +328,6 @@ return {
         config = true,
     },
     {
-        'j-hui/fidget.nvim',
-        cond = is_workstation,
-        event = 'VeryLazy',
-        config = true,
-    },
-    {
         'catgoose/nvim-colorizer.lua',
         event = 'VeryLazy',
         opts = {
@@ -352,11 +340,13 @@ return {
             },
         },
     },
+    -- TODO pin to hash
     {
         'mcauley-penney/visual-whitespace.nvim',
         keys = { 'v', '<C-v>', { 'V', 'vg_' }, { 'vv', 'V' } },
         config = true,
     },
+    -- TODO pin to hash
     {
         'jake-stewart/auto-cmdheight.nvim',
         lazy = false,
@@ -383,6 +373,7 @@ return {
         event = 'BufReadPre',
         opts = {},
     },
+    -- TODO pin to hash
     {
         'Aasim-A/scrollEOF.nvim',
         event = { 'CursorMoved', 'WinScrolled' },

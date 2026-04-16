@@ -5,8 +5,6 @@ return {
         'dmmulroy/tsc.nvim',
         cond = is_workstation,
         cmd = 'TSC',
-        opts = {
-            -- enable_progress_notifications = false,
-        },
+        opts = {},
     },
 }

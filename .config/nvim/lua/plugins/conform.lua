@@ -1,6 +1,7 @@
 return {
     'stevearc/conform.nvim',
     cond = require('toni.utils').is_workstation,
+    -- TODO can we remove that?
     dependencies = {
         'williamboman/mason.nvim',
     },

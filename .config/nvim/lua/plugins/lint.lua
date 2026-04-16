@@ -2,6 +2,7 @@ return {
     'mfussenegger/nvim-lint',
     cond = require('toni.utils').is_workstation,
     event = { 'BufReadPre', 'BufNewFile' },
+    -- TODO can we remove that?
     dependencies = {
         'williamboman/mason.nvim',
     },
