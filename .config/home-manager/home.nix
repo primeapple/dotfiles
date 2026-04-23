@@ -28,6 +28,7 @@
     fd
     htop
     jq
+    llama-cpp
     neovim
     ripgrep
     trash-cli
