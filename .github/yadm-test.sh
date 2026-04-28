@@ -9,8 +9,6 @@ _error_handler() {
 }
 trap '_error_handler "$LINENO" "$BASH_COMMAND"' ERR
 
-OS=$(uname -s)
-
 echo "## TEST: Cloning the dotfiles via YADM ##"
 BRANCH="${BRANCH:-main}"
 cd "$HOME"
