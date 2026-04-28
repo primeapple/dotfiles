@@ -23,11 +23,8 @@ if ! nix-shell -p nix-info --run "nix-info -m" 2>/dev/null; then
     sleep 3
 fi
 
-### Install home-manager via nix profile
-nix profile install nixpkgs#home-manager
-
-### Switch using home-manager with flake
-home-manager switch --flake "$HOME/.config/home-manager" --impure
+### Run home-manager switch using the flake
+nix run home-manager/master -- switch --flake "$HOME/.config/home-manager" --impure
 
 ### After home manager is configured, we can now onetime commands
 fish -c "tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Dotted --prompt_connection_andor_frame_color=Dark --prompt_spacing=Sparse --icons='Few icons' --transient=No"
