@@ -11,7 +11,9 @@
 
   outputs = { nixpkgs, home-manager, ... }: {
     homeConfigurations."toni" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      pkgs = import nixpkgs {
+        system = builtins.currentSystem;
+      };
       modules = [ ./home.nix ];
     };
   };

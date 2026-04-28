@@ -9,11 +9,11 @@ _error_handler() {
 }
 trap '_error_handler "$LINENO" "$BASH_COMMAND"' ERR
 
-
 echo "## TEST: Cloning the dotfiles via YADM ##"
 BRANCH="${BRANCH:-main}"
+cd "$HOME"
 yadm clone --no-bootstrap -b "$BRANCH" https://github.com/primeapple/dotfiles
-yadm checkout /home/toni
+yadm checkout "$HOME"
 echo "## DONE"
 
 ###############################################################################
@@ -67,7 +67,7 @@ echo "## DONE"
 echo "## TEST: package manager installed specified applications"
 apps=("docker" "unzip" "zip")
 for app in "${apps[@]}"; do
-    if ! command -v "$app"; then
+    if ! command -v "$app" > /dev/null 2>&1; then
         echo "Error: App $app was not installed by package manager"
         exit 1
     fi
