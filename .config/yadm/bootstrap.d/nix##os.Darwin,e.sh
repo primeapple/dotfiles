@@ -21,7 +21,7 @@ nix --version
 
 ### Run home-manager
 cd "$HOME/.config/home-manager"
-nix run home-manager/master -- switch --flake .#toni
+nix run home-manager/master -- switch --flake ~/.config/home-manager#toni@aarch64-darwin
 
 ### After home manager is configured, run onetime commands
 fish -c "tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Dotted --prompt_connection_andor_frame_color=Dark --prompt_spacing=Sparse --icons='Few icons' --transient=No"
