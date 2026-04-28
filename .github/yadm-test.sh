@@ -78,19 +78,15 @@ echo "## DONE"
 
 ###############################################################################
 
-if [[ "$OS" != "Darwin" ]]; then
-    echo "## TEST: nix installed specified applications via home-manager"
-    apps=("nix" "home-manager" "nvim" "bat" "eza")
-    for app in "${apps[@]}"; do
-      if ! fish -c "command -v $app"; then
-        echo "Error: App $app , installed by nix, is not yet available for fish."
-        exit 1
-      fi
-    done
-    echo "## DONE"
-else
-    echo "## SKIP: nix/home-manager test (not supported on macOS CI)"
-fi
+echo "## TEST: nix installed specified applications via home-manager"
+apps=("nix" "home-manager" "nvim" "bat" "eza")
+for app in "${apps[@]}"; do
+  if ! fish -c "command -v $app"; then
+    echo "Error: App $app , installed by nix, is not yet available for fish."
+    exit 1
+  fi
+done
+echo "## DONE"
 
 ###############################################################################
 
