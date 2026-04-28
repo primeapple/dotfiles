@@ -16,8 +16,10 @@ BRANCH="${BRANCH:-main}"
 yadm clone --no-bootstrap -b "$BRANCH" https://github.com/primeapple/dotfiles
 if [[ "$OS" == "Darwin" ]]; then
     yadm checkout "$HOME"
+    cd "$HOME"
 else
     yadm checkout /home/toni
+    cd /home/toni
 fi
 echo "## DONE"
 
