@@ -9,7 +9,7 @@ in
   ];
 
   home.username = "toni";
-  home.homeDirectory = lib.mkIf (!isDarwin) "/home/toni";
+  home.homeDirectory = if isDarwin then "/Users/runner" else "/home/toni";
 
   home.stateVersion = "24.05";
 
