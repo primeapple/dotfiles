@@ -8,7 +8,7 @@ in
     ./packages.nix
   ];
 
-  home.username = "toni";
+  home.username = if isDarwin then "runner" else "toni";
   home.homeDirectory = if isDarwin then "/Users/runner" else "/home/toni";
 
   home.stateVersion = "24.05";
