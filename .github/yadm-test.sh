@@ -9,11 +9,16 @@ _error_handler() {
 }
 trap '_error_handler "$LINENO" "$BASH_COMMAND"' ERR
 
+OS=$(uname -s)
 
 echo "## TEST: Cloning the dotfiles via YADM ##"
 BRANCH="${BRANCH:-main}"
 yadm clone --no-bootstrap -b "$BRANCH" https://github.com/primeapple/dotfiles
-yadm checkout /home/toni
+if [[ "$OS" == "Darwin" ]]; then
+    yadm checkout "$HOME"
+else
+    yadm checkout /home/toni
+fi
 echo "## DONE"
 
 ###############################################################################
@@ -67,7 +72,7 @@ echo "## DONE"
 echo "## TEST: package manager installed specified applications"
 apps=("docker" "unzip" "zip")
 for app in "${apps[@]}"; do
-    if ! command -v "$app"; then
+    if ! command -v "$app" > /dev/null 2>&1; then
         echo "Error: App $app was not installed by package manager"
         exit 1
     fi
@@ -76,15 +81,19 @@ echo "## DONE"
 
 ###############################################################################
 
-echo "## TEST: nix installed specified applications via home-manager"
-apps=("nix" "home-manager" "nvim" "bat" "eza")
-for app in "${apps[@]}"; do
-  if ! fish -c "command -v $app"; then
-    echo "Error: App $app , installed by nix, is not yet available for fish."
-    exit 1
-  fi
-done
-echo "## DONE"
+if [[ "$OS" != "Darwin" ]]; then
+    echo "## TEST: nix installed specified applications via home-manager"
+    apps=("nix" "home-manager" "nvim" "bat" "eza")
+    for app in "${apps[@]}"; do
+      if ! fish -c "command -v $app"; then
+        echo "Error: App $app , installed by nix, is not yet available for fish."
+        exit 1
+      fi
+    done
+    echo "## DONE"
+else
+    echo "## SKIP: nix/home-manager test (not supported on macOS CI)"
+fi
 
 ###############################################################################
 

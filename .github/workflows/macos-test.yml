@@ -1,0 +1,15 @@
+name: macOS Test
+on:
+  push:
+jobs:
+  macos-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install yadm and fish
+        run: brew install yadm fish
+      - name: Run yadm-test script
+        run: bash .github/yadm-test.sh
+        env:
+          BRANCH: ${{ github.ref_name }}
