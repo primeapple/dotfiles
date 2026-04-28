@@ -1,8 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
-in
 {
   imports = [
     ./packages.nix
@@ -29,11 +26,10 @@ in
     fd
     htop
     jq
+    llama-cpp
     neovim
     ripgrep
     trash-cli
-  ] ++ lib.optionals (!isDarwin) [
-    llama-cpp
     zf
   ];
 
