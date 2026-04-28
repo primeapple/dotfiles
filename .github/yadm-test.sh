@@ -13,14 +13,9 @@ OS=$(uname -s)
 
 echo "## TEST: Cloning the dotfiles via YADM ##"
 BRANCH="${BRANCH:-main}"
+cd "$HOME"
 yadm clone --no-bootstrap -b "$BRANCH" https://github.com/primeapple/dotfiles
-if [[ "$OS" == "Darwin" ]]; then
-    yadm checkout "$HOME"
-    cd "$HOME"
-else
-    yadm checkout /home/toni
-    cd /home/toni
-fi
+yadm checkout "$HOME"
 echo "## DONE"
 
 ###############################################################################
