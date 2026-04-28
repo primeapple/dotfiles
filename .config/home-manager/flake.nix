@@ -9,15 +9,12 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }: let
-    systems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    homeConfigurations.toni = forAllSystems (system:
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        modules = [ ./home.nix ];
-      }
-    );
+  outputs = { nixpkgs, home-manager, ... }: {
+    homeConfigurations."toni" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = builtins.currentSystem;
+      };
+      modules = [ ./home.nix ];
+    };
   };
 }
