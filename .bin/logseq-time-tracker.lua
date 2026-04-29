@@ -227,6 +227,9 @@ end
 
 ---@param summary WorkSummary
 local function plotData(summary)
+	local dateStr = string.format("%04d-%02d-%02d", summary.date.year, summary.date.month, summary.date.day)
+	print("Date: " .. dateStr .. " | Total: " .. minutesToTime(summary.totalDuration))
+
 	local maxHours = 0
 	for _, category in ipairs(CategoryOrder) do
 		local hours = summary.sessionsByType[category].totalDuration / 60
