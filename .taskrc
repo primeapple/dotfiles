@@ -43,14 +43,6 @@ include solarized-dark-256.theme
 news.version=2.6.0
 weekstart=monday
 
-# Sync with inthe.am
-taskd.certificate=/home/toni/.task/private.certificate.pem
-taskd.key=/home/toni/.task/private.key.pem
-taskd.ca=/home/toni/.task/ca.cert.pem
-taskd.server=inthe.am:53589
-taskd.credentials=inthe_am/toni.mueller99/d4f6be8f-b435-47bd-acae-d9608c5a2fd9
-taskd.trust=strict
-
 # Aliases
 alias.inbox=list pro: -next
 

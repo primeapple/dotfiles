@@ -29,7 +29,10 @@ if [[ ! -d "$BOOTSTRAP_D" ]]; then
     exit 1
 fi
 
-mapfile -t bootstraps < <(find -L "$BOOTSTRAP_D" -type f | sort)
+bootstraps=()
+while IFS= read -r file; do
+    bootstraps+=("$file")
+done < <(find -L "$BOOTSTRAP_D" -type f | sort)
 for bootstrap in "${bootstraps[@]}"; do
     if [[ -x "$bootstrap" && ! "$bootstrap" =~ "##" && ! "$bootstrap" =~ "~$" ]]; then
 		echo "Executing file from bootstrap: $bootstrap"
