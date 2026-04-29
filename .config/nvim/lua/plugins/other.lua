@@ -355,6 +355,9 @@ return {
     {
         'shortcuts/no-neck-pain.nvim',
         lazy = false,
+        -- This plugin breaks when used together with snacks.picker
+        -- disabled until https://github.com/shortcuts/no-neck-pain.nvim/issues/511 is fixed
+         enabled = false,
         keys = { { 'yop', '<cmd>NoNeckPain<cr>' } },
         version = '*',
         opts = {

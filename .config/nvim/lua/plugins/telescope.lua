@@ -3,6 +3,7 @@ local is_workstation = require('toni.utils').is_workstation
 
 return {
     'nvim-telescope/telescope.nvim',
+    enabled = false,
     version = '>=0.1.0',
     cmd = 'Telescope',
     keys = {

@@ -25,14 +25,9 @@ return {
                         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
                     end
 
-                    map('grr', require('telescope.builtin').lsp_references, 'LSP: [G]oto [R]eferences in Telescope')
+                    -- others are defined in `snacks.picker`
                     map('grR', vim.lsp.buf.references, 'LSP: [G]oto [R]eferences in Quickfix')
-                    map('gri', require('telescope.builtin').lsp_implementations, 'LSP: [G]oto [I]mplementation')
-                    map('gd', require('telescope.builtin').lsp_definitions, 'LSP: [G]oto [D]efinition')
                     map('gD', '<cmd>vsplit | lua vim.lsp.buf.definition() <CR>', 'LSP: [G]oto [D]efinition in Split')
-                    map('gO', require('telescope.builtin').lsp_document_symbols, 'LSP: Open Document Symbols')
-                    map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'LSP: Open Workspace Symbols')
-                    map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
                     if
