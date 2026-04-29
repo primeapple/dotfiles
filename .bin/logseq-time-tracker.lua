@@ -12,7 +12,7 @@ local WorkType = {
 	quit = "quit",
 	rand = "rand",
 }
-local CategoryCSVOrder = {
+local CategoryOrder = {
 	WorkType.dev,
 	WorkType.collab,
 	WorkType.know,
@@ -27,7 +27,7 @@ local CategoryCSVOrder = {
 --- @param path string
 --- @return osdateparam date
 local function parsePathDate(path)
-	local year, month, day = path:match(".*/(%d%d%d%d)_(%d%d)_(%d%d).md")
+	local year, month, day = path:match(".*(%d%d%d%d)_(%d%d)_(%d%d).md")
 	return {
 		year = year,
 		month = month,
@@ -225,7 +225,53 @@ local function processJournalFile(filename)
 	return summary
 end
 
-local function printSummaries(filenames)
+---@param summary WorkSummary
+local function plotData(summary)
+	local maxHours = 0
+	for _, category in ipairs(CategoryOrder) do
+		local hours = summary.sessionsByType[category].totalDuration / 60
+		if hours > maxHours then
+			maxHours = hours
+		end
+	end
+	local yMax = math.ceil(maxHours * 2) / 2
+	if yMax == 0 then
+		yMax = 0.5
+	end
+	local height = math.ceil(yMax * 2) + 2
+
+	local gnuplotScript = {}
+	table.insert(gnuplotScript, "reset session")
+	table.insert(gnuplotScript, "set terminal dumb size 80 " .. height)
+
+	table.insert(gnuplotScript, "set yrange [0:" .. yMax .. "]")
+	table.insert(gnuplotScript, "set ytics 0, 0.5, " .. yMax .. " format \"%.1fh\"")
+	table.insert(gnuplotScript, "unset key")
+	table.insert(gnuplotScript, "set tics nomirror")
+	table.insert(gnuplotScript, "set bmargin 1")
+	table.insert(gnuplotScript, "set tmargin 0")
+	table.insert(gnuplotScript, "set offsets 0,0,0,0")
+	table.insert(gnuplotScript, "set style fill solid 1.0 noborder")
+	table.insert(gnuplotScript, "set boxwidth 0.8")
+
+	table.insert(gnuplotScript, "$Data << EOD")
+	for _, category in ipairs(CategoryOrder) do
+		table.insert(gnuplotScript, category .. " " .. summary.sessionsByType[category].totalDuration / 60)
+	end
+	table.insert(gnuplotScript, "EOD")
+
+	table.insert(gnuplotScript, "plot $Data using ($0+1):($2):xtic(1) with boxes")
+
+	local gp = io.popen("gnuplot -persist", "w")
+	if gp then
+		gp:write(table.concat(gnuplotScript, "\n") .. "\n")
+		gp:close()
+	else
+		io.stderr:write("Error: Could not start gnuplot\n")
+	end
+end
+
+local function getSummaries(filenames)
 	--- @type WorkSummary[]
 	local summaries = {}
 	for _, filename in ipairs(filenames) do
@@ -251,40 +297,36 @@ local function printSummaries(filenames)
 		nextDate = os.date("*t", os.time(nextDate) + 24 * 60 * 60) --[[@as osdateparam]]
 	end
 
-	-- Write Header
-	io.write("date")
-	for _, category in ipairs(CategoryCSVOrder) do
-		io.write("," .. category)
-	end
-	io.write(",total")
-
-	-- Write data
-	for _, summary in ipairs(summariesWithOffDays) do
-		io.write("\n" .. summary.date.day .. "/" .. summary.date.month .. "/" .. summary.date.year)
-
-		local summedRoundedHours = 0
-		for _, category in ipairs(CategoryCSVOrder) do
-			-- To not "lose" time we round up anything bigger than .2
-			local asHour = math.floor(summary.sessionsByType[category].totalDuration / 60 + 0.8)
-			summedRoundedHours = summedRoundedHours + asHour
-			if asHour == 0 then
-				io.write(",")
-			else
-				io.write("," .. asHour)
-			end
-		end
-		io.write("," .. summedRoundedHours)
-	end
+	return summariesWithOffDays
 end
 
 local function main()
-	if #arg == 0 then
-		print("Usage: lua logseq_tracker.lua <journal_file1.md> [journal_file2.md] ...")
+	local filenames = {}
+	local plotDay = false
+
+	for i, v in ipairs(arg) do
+		if i > 0 then
+			if v == "--plot-day" then
+				plotDay = true
+			else
+				table.insert(filenames, v)
+			end
+		end
+	end
+
+	if #filenames == 0 then
+		print("Usage: lua logseq_tracker.lua [--plot-day] <journal_file1.md> [journal_file2.md] ...")
 		print("Example: lua logseq_tracker.lua journals/2024_01_15.md")
+		print("Example: lua logseq_tracker.lua --plot-day journals/2024_01_15.md")
 		os.exit(1)
 	end
 
-	printSummaries(arg)
+	local summaries = getSummaries(filenames)
+	if plotDay then
+		for _, summary in ipairs(summaries) do
+			plotData(summary)
+		end
+	end
 end
 
 main()
