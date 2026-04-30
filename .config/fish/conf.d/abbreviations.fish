@@ -188,8 +188,8 @@ if status --is-interactive
     abbr --add wtw worktree switch work
 
     # home-manager
-    abbr --add hms home-manager switch --flake ~/.config/home-manager#toni
-    abbr --add hmu 'nix flake update --flake ~/.config/home-manager && home-manager switch --flake ~/.config/home-manager#toni'
+    abbr --add hms home-manager switch --impure --flake ~/.config/home-manager#toni
+    abbr --add hmu 'nix flake update --flake ~/.config/home-manager && home-manager switch --impure --flake ~/.config/home-manager#toni'
     # nix
     abbr --add nfu nix flake update
 
