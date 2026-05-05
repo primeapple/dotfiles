@@ -80,6 +80,13 @@ return {
             mode = { 'n', 'x' },
         },
         {
+            '<leader>fo',
+            function()
+                Snacks.picker.recent()
+            end,
+            desc = 'Old files',
+        },
+        {
             'gd',
             function()
                 Snacks.picker.lsp_definitions()

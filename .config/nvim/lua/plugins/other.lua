@@ -393,6 +393,7 @@ return {
     },
     {
         'wakatime/vim-wakatime',
+        enabled = false,
         -- check if `~/.wakatime.cfg` exists
         cond = function()
             local homedir = os.getenv('HOME') or ''
