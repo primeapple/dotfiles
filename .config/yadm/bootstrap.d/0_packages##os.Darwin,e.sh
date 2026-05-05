@@ -3,6 +3,7 @@
 brew_packages=(
     "docker"
     "gnupg"
+    "go"
     "opencode"
     "syncthing"
     "tree-sitter-cli"
