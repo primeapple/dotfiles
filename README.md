@@ -8,10 +8,22 @@ Used for the following systems systems:
 * [Arch Linux](https://archlinux.org/)
 * [Debian](https://www.debian.org/)
 
+## Prerequisites
+### MacOS
+- Install [Homebrew](https://brew.sh/)
+
 ## Installation
-To install the Dotfiles, install `yadm` and run:
+To install the Dotfiles, install `yadm` with your package manager (apt/pacman/brew) and run:
 ```shell
 yadm clone --no-bootstrap https://github.com/primeapple/dotfiles
+```
+
+Check that there are no local diffs:
+
+```shell
+yadm -c core.pager='' diff
+# if there are changes, inspect them, then run
+yadm checkout "$HOME"
 ```
 
 Set the corresponding classes of the machine, if needed:
@@ -32,10 +44,7 @@ You may now need to do some more things:
 yadm decrypt
 ```
 
-### SSH Key Generation
-From fish run the following commands
-```shell
-eval (ssh-agent -c)
-ssh-add ~/.ssh/id_ed25519
-```
+## Follow Up
 
+### MacOS
+- Use this Keyboard Layout: https://github.com/carjorvaz/macos-us-altgr-intl
