@@ -1,15 +1,18 @@
 #!/bin/bash
 
 brew_packages=(
+    "coreutils"
     "docker"
-    "gnupg"
     "gh"
-    "go"
+    "gh"
+    "gnupg"
+    "gnu-sed"
     "lua"
     "python"
     "syncthing"
     "tree-sitter-cli"
     "unzip"
+    "zf"
     "zip"
 )
 
