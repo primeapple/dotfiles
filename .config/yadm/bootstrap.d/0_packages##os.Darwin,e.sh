@@ -3,8 +3,10 @@
 brew_packages=(
     "docker"
     "gnupg"
+    "gh"
     "go"
-    "opencode"
+    "lua"
+    "python"
     "syncthing"
     "tree-sitter-cli"
     "unzip"
@@ -16,4 +18,4 @@ brew_cask_packages=(
 )
 
 brew install --quiet "${brew_packages[@]}"
-brew install --quiet --cask "${brew_packages[@]}"
+brew install --quiet --cask "${brew_cask_packages[@]}"

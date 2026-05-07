@@ -20,6 +20,15 @@ if status --is-interactive
         abbr --add dr docker run
     end
 
+    function __gradle_abbr
+        if test -f ./gradlew
+            echo ./gradlew
+        else
+            echo gradle
+        end
+    end
+    abbr --add gw --function __gradle_abbr
+
     function __maven_abbr
         if test -f ./mvnw
             echo ./mvnw
@@ -170,7 +179,7 @@ if status --is-interactive
     abbr --add gsq git squash
     abbr --add gsw git switch
     abbr --add guw git unwip
-    abbr --add gw git wip
+    abbr --add gwi git wip
     abbr --add gwt git worktree
     abbr --add gwtl git worktree list
 

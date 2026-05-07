@@ -26,10 +26,8 @@
     fd
     htop
     jq
-    llama-cpp
     neovim
     ripgrep
-    trash-cli
     # Build currently failing on macos
     # zf
   ];
@@ -91,8 +89,6 @@
     '';
     plugins = [
         { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
-        # I'd much rather use a flake for that
-        { name = "nvm"; src = pkgs.fishPlugins.nvm.src; }
         {
             name = "pufferfish";
             src = pkgs.fetchFromGitHub {
@@ -102,6 +98,7 @@
               sha256 = "0a4x985hzv77r5q8cly6580n488pf5iqlwkifrhzj9kifkwpj70f";
             };
         }
+        { name = "sdkman-for-fish"; src = pkgs.fishPlugins.sdkman-for-fish.src; }
         { name = "tide"; src = pkgs.fishPlugins.tide.src; }
         {
             name = "worktree.fish";
