@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+_error_handler() {
+    local status=$?
+    echo >&2 "$0: Error on line $1: $2"
+    exit $status
+}
+trap '_error_handler "$LINENO" "$BASH_COMMAND"' ERR
+
+# Detect available clipboard tool
+get_clipboard_tool() {
+    if command -v pbcopy &>/dev/null && command -v pbpaste &>/dev/null; then
+        echo "pbcopy"
+    elif command -v wl-copy &>/dev/null && command -v wl-paste &>/dev/null; then
+        echo "wl-copy"
+    elif command -v xclip &>/dev/null; then
+        echo "xclip"
+    else
+        echo >&2 "Error: No clipboard tool found (pbcopy/pbpaste, wl-copy/wl-paste, xclip)."
+        exit 1
+    fi
+}
+
+# Copy: Get input from arguments or stdin and copy to clipboard
+copy() {
+    local tool
+    tool=$(get_clipboard_tool)
+
+    case $tool in
+        "pbcopy") pbcopy ;;
+        "wl-copy") wl-copy ;;
+        "xclip")   xclip -selection clipboard ;;
+    esac
+}
+
+# Paste: Get content from clipboard and print to stdout
+paste() {
+    local tool
+    tool=$(get_clipboard_tool)
+
+    case $tool in
+        "pbcopy") pbpaste ;;
+        "wl-copy") wl-paste ;;
+        "xclip")   xclip -selection clipboard -o ;;
+    esac
+}
+
+# Main
+if [[ $# -gt 0 ]]; then
+    # Arguments provided — echo them into copy
+    printf '%s' "$*" | copy
+elif [[ ! -t 0 ]]; then
+    # Stdin is a pipe or redirect
+    copy
+else
+    # No arguments, no pipe — paste
+    paste
+fi
