@@ -4,20 +4,24 @@ if status --is-interactive
         abbr --add qmkf qmk flash -kb splitkb/kyria/rev2 -km primeapple -bl avrdude
     end
 
-    if command -v docker >/dev/null
-        abbr --add --set-cursor dcdp docker compose --profile % down
-        abbr --add --set-cursor dcup docker compose --profile % up
-        abbr --add d docker
-        abbr --add db docker build
-        abbr --add dc docker compose
-        abbr --add dcd docker compose down
-        abbr --add dcl docker compose logs
-        abbr --add dcls docker compose ls
-        abbr --add dcp docker compose ps
-        abbr --add dcpl docker compose pull
-        abbr --add dcu docker compose up
-        abbr --add dcud docker compose up --detach
-        abbr --add dr docker run
+    # docker/podman related ones
+    for tuples in d,docker p,podman
+        echo $tuples | read -d , abb cmd
+
+        abbr --add $abb $cmd
+        abbr --add $abb'a' $cmd add
+        abbr --add --set-cursor $abb'cdp' $cmd compose --profile % down
+        abbr --add --set-cursor $abb'cup' $cmd compose --profile % up
+        abbr --add $abb'b' $cmd build
+        abbr --add $abb'c' $cmd compose
+        abbr --add $abb'cd' $cmd compose down
+        abbr --add $abb'cl' $cmd compose logs
+        abbr --add $abb'cls' $cmd compose ls
+        abbr --add $abb'cp' $cmd compose ps
+        abbr --add $abb'cpl' $cmd compose pull
+        abbr --add $abb'cu' $cmd compose up
+        abbr --add $abb'cud' $cmd compose up --detach
+        abbr --add $abb'r' $cmd run
     end
 
     function __gradle_abbr
