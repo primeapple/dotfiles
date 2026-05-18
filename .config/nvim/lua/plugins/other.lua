@@ -1,4 +1,3 @@
-local is_kitty = require('toni.utils').is_kitty
 local is_workstation = require('toni.utils').is_workstation
 
 return {
@@ -25,184 +24,6 @@ return {
     },
 
     -------------------- NAVIGATION --------------------
-    {
-        'mrjones2014/smart-splits.nvim',
-        cond = is_kitty,
-        keys = {
-            {
-                '<C-Left>',
-                function()
-                    require('smart-splits').move_cursor_left()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-h>',
-                function()
-                    require('smart-splits').move_cursor_left()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-Right>',
-                function()
-                    require('smart-splits').move_cursor_right()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-l>',
-                function()
-                    require('smart-splits').move_cursor_right()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-Up>',
-                function()
-                    require('smart-splits').move_cursor_up()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-k>',
-                function()
-                    require('smart-splits').move_cursor_up()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-Down>',
-                function()
-                    require('smart-splits').move_cursor_down()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-j>',
-                function()
-                    require('smart-splits').move_cursor_down()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<A-Left>',
-                function()
-                    require('smart-splits').resize_left()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<A-h>',
-                function()
-                    require('smart-splits').resize_left()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<A-Right>',
-                function()
-                    require('smart-splits').resize_right()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<A-l>',
-                function()
-                    require('smart-splits').resize_right()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<A-Up>',
-                function()
-                    require('smart-splits').resize_up()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<A-k>',
-                function()
-                    require('smart-splits').resize_up()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<A-Down>',
-                function()
-                    require('smart-splits').resize_down()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<A-j>',
-                function()
-                    require('smart-splits').resize_down()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-A-Left>',
-                function()
-                    require('smart-splits').swap_buf_left()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-A-h>',
-                function()
-                    require('smart-splits').swap_buf_left()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-A-Right>',
-                function()
-                    require('smart-splits').swap_buf_right()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-A-l>',
-                function()
-                    require('smart-splits').swap_buf_right()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-A-Up>',
-                function()
-                    require('smart-splits').swap_buf_up()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-A-k>',
-                function()
-                    require('smart-splits').swap_buf_up()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-A-Down>',
-                function()
-                    require('smart-splits').swap_buf_down()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-            {
-                '<C-A-j>',
-                function()
-                    require('smart-splits').swap_buf_down()
-                end,
-                mode = { 'n', 'i', 'x', 't' },
-            },
-        },
-        version = '>=1.0.0',
-        event = 'VeryLazy',
-        build = './kitty/install-kittens.bash',
-        config = true,
-    },
     {
         'rgroli/other.nvim',
         keys = { 'gp', 'gP' },
@@ -260,7 +81,7 @@ return {
                 desc = 'Grapple toggle/move tag',
                 expr = true,
             },
-            { 'gH', '<cmd>Grapple toggle_tags<cr>', desc = 'Grapple open tags window' },
+            { 'gH', '<cmd>Grapple toggle_tags<cr>',     desc = 'Grapple open tags window' },
             { ']h', '<cmd>Grapple cycle_tags next<cr>', desc = 'Grapple cycle next tag' },
             { '[h', '<cmd>Grapple cycle_tags prev<cr>', desc = 'Grapple cycle previous tag' },
         },
@@ -273,9 +94,9 @@ return {
     {
         'chaoren/vim-wordmotion',
         keys = {
-            { '<leader>w', mode = { 'n', 'o', 'x' } },
-            { '<leader>b', mode = { 'n', 'o', 'x' } },
-            { '<leader>e', mode = { 'n', 'o', 'x' } },
+            { '<leader>w',  mode = { 'n', 'o', 'x' } },
+            { '<leader>b',  mode = { 'n', 'o', 'x' } },
+            { '<leader>e',  mode = { 'n', 'o', 'x' } },
             { '<leader>ge', mode = { 'n', 'o', 'x' } },
             { '<leader>aw', mode = { 'o', 'x' } },
             { '<leader>iw', mode = { 'o', 'x' } },
@@ -357,7 +178,7 @@ return {
         lazy = false,
         -- This plugin breaks when used together with snacks.picker
         -- disabled until https://github.com/shortcuts/no-neck-pain.nvim/issues/511 is fixed
-         enabled = false,
+        enabled = false,
         keys = { { 'yop', '<cmd>NoNeckPain<cr>' } },
         version = '*',
         opts = {
@@ -389,7 +210,7 @@ return {
         init = function()
             vim.g.netrw_nogx = 1 -- disable netrw gx
         end,
-        config = true, -- default settings
+        config = true,
     },
     {
         'wakatime/vim-wakatime',
