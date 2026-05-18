@@ -1,8 +1,25 @@
 #!/bin/bash
 set -euo pipefail
 
-if ! command -v lsq > /dev/null; then
-    notify-send "$0" "lsq is not installed, aborting"
+LSQ_PATH="$HOME/go/bin/lsq"
+
+notify() {
+    local title="$1"
+    local body="$2"
+
+    if command -v notify-send &> /dev/null; then
+        notify-send "$title" "$body"
+        return $?
+    fi
+
+    if [[ "$(uname)" == "Darwin" ]]; then
+        osascript -e "display notification \"$body\" with title \"$title\"" 2>/dev/null
+        return $?
+    fi
+}
+
+if [ ! -f "$LSQ_PATH" ]; then
+    notify "$0" "lsq is not installed at $LSQ_PATH, aborting"
     exit 1
 fi
 
@@ -20,12 +37,12 @@ case "$1" in
     ;;
     rand) WORK_TAG=#work/rand
     ;;
-    *) notify-send "$0" "unclear command '$1', aborting"; exit 1
+    *) notify "$0" "unclear command '$1', aborting"; exit 1
     ;;
 esac
 
 TIME=$(date +%H:%M)
 
-lsq -a "$TIME $WORK_TAG"
+$LSQ_PATH -a "$TIME $WORK_TAG"
 
-notify-send --expire-time=5000 "$0" "Switched to $WORK_TAG"
+notify "$0" "Switched to $WORK_TAG"
