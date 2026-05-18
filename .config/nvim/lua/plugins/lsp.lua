@@ -7,13 +7,7 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'b0o/schemastore.nvim',
-            {
-                'mfussenegger/nvim-jdtls',
-                cond = is_workstation,
-                ft = { 'java' },
-            },
         },
-
         config = function()
             local lsp = require('lspconfig')
             local utils = require('toni.utils')
@@ -69,14 +63,6 @@ return {
                 filetypes = { 'gohtml' },
             })
             vim.lsp.enable('html')
-            vim.lsp.config("jdtls", {
-                settings = {
-                    java = {
-                        -- Custom eclipse.jdt.ls options go here
-                    },
-                },
-            })
-            vim.lsp.enable("jdtls")
             vim.lsp.config('jsonls', {
                 settings = {
                     json = {
