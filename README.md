@@ -48,3 +48,21 @@ yadm decrypt
 
 ### MacOS
 - Use this Keyboard Layout: https://github.com/carjorvaz/macos-us-altgr-intl
+
+### Linux
+- Install https://github.com/rvaiya/keyd and set up the following config in `/etc/keyd/default.conf`
+
+```conf
+[ids]
+
+*
+
+[main]
+
+# Maps capslock to escape when pressed and control when held
+capslock = overload(control, esc)
+
+# swap left alt and left meta
+leftmeta = lefalt
+leftalt = leftmeta
+```
