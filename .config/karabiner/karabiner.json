@@ -41,6 +41,11 @@
                                 "from": { "key_code": "right_command" },
                                 "to": [{ "key_code": "right_option" }],
                                 "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "right_option" },
+                                "to": [{ "key_code": "right_command" }],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -50,7 +55,7 @@
                             {
                                 "from": {
                                     "key_code": "c",
-                                    "modifiers": { "mandatory": ["right_option"] }
+                                    "modifiers": { "mandatory": ["right_command"] }
                                 },
                                 "to": [ { "shell_command": "~/.bin/timetracking.sh collab" } ],
                                 "type": "basic"
@@ -58,7 +63,7 @@
                             {
                                 "from": {
                                     "key_code": "d",
-                                    "modifiers": { "mandatory": ["right_option"] }
+                                    "modifiers": { "mandatory": ["right_command"] }
                                 },
                                 "to": [ { "shell_command": "~/.bin/timetracking.sh dev" } ],
                                 "type": "basic"
@@ -66,7 +71,7 @@
                             {
                                 "from": {
                                     "key_code": "k",
-                                    "modifiers": { "mandatory": ["right_option"] }
+                                    "modifiers": { "mandatory": ["right_command"] }
                                 },
                                 "to": [ { "shell_command": "~/.bin/timetracking.sh know" } ],
                                 "type": "basic"
@@ -74,7 +79,7 @@
                             {
                                 "from": {
                                     "key_code": "o",
-                                    "modifiers": { "mandatory": ["right_option"] }
+                                    "modifiers": { "mandatory": ["right_command"] }
                                 },
                                 "to": [ { "shell_command": "~/.bin/timetracking.sh org" } ],
                                 "type": "basic"
@@ -82,7 +87,7 @@
                             {
                                 "from": {
                                     "key_code": "q",
-                                    "modifiers": { "mandatory": ["right_option"] }
+                                    "modifiers": { "mandatory": ["right_command"] }
                                 },
                                 "to": [ { "shell_command": "~/.bin/timetracking.sh quit" } ],
                                 "type": "basic"
@@ -90,7 +95,7 @@
                             {
                                 "from": {
                                     "key_code": "r",
-                                    "modifiers": { "mandatory": ["right_option"] }
+                                    "modifiers": { "mandatory": ["right_command"] }
                                 },
                                 "to": [ { "shell_command": "~/.bin/timetracking.sh rand" } ],
                                 "type": "basic"
