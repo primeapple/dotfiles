@@ -6,24 +6,13 @@
         "lmstudio": {
             "npm": "@ai-sdk/openai-compatible",
             "name": "LM Studio (local)",
+            "api-key": "not-needed",
             "options": {
                 "baseURL": "http://127.0.0.1:1234/v1"
             },
             "models": {
-                "Edge-Quant/nanbeige4.1-3b": {
-                    "name": "nanbeige4.1-3b"
-                }
-            }
-        },
-        "ollama": {
-            "npm": "@ai-sdk/openai-compatible",
-            "name": "Ollama",
-            "options": {
-                "baseURL": "http://127.0.0.1:11434/v1"
-            },
-            "models": {
-                "nanbeige:3b-16k": {
-                    "name": "Nanbeige 3b (16k context)"
+                "google/gemma-4-26b-a4b": {
+                    "name": "gemma-4-26b-a4b"
                 }
             }
         }
@@ -52,7 +41,7 @@
             "git diff *": "allow",
             "git log *": "allow",
             "git show *": "allow",
-            "git status": "allow",
+            "git status *": "allow",
             "go test *": "allow",
             "gofmt *": "allow",
             "grep *": "allow",
@@ -71,6 +60,8 @@
             "sleep *": "allow",
             "sort *": "allow",
             "tail *": "allow",
+            "uniq *": "allow",
+            "unzip *": "allow",
             "wc *": "allow",
             "xargs grep *": "allow"
         },
