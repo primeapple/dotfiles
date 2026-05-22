@@ -45,6 +45,15 @@
                             "to": [{ "shell_command": "~/.bin/timetracking.sh know" }]
                         },
                         {
+                            "from": { "key_code": "left_option" },
+                            "to": [
+                                {
+                                    "key_code": "left_shift",
+                                    "modifiers": ["left_command", "left_control", "left_option"]
+                                }
+                            ]
+                        },
+                        {
                             "from": {
                                 "key_code": "o",
                                 "modifiers": { "mandatory": ["right_command"] }
@@ -74,21 +83,6 @@
                             "to": [{ "key_code": "right_command" }]
                         },
                         {
-                          "from": {
-                            "key_code": "left_option"
-                          },
-                          "to": [
-                            {
-                              "key_code": "left_shift",
-                              "modifiers": [
-                                "left_command",
-                                "left_control",
-                                "left_option"
-                              ]
-                            }
-                          ]
-                        },
-                        {
                             "from": {
                                 "key_code": "tab",
                                 "modifiers": { "mandatory": ["command"] }
@@ -113,6 +107,16 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "identifiers": {
+                        "is_pointing_device": true,
+                        "product_id": 49233,
+                        "vendor_id": 1133
+                    },
+                    "ignore": false,
+                    "mouse_flip_horizontal_wheel": true,
+                    "mouse_flip_vertical_wheel": true
                 }
             ],
             "name": "Default profile",
