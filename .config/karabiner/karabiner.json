@@ -4,105 +4,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Swap \"command + tab\" with \"option + tab\" (Compatibility for AltTab app)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": { "mandatory": ["command"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "tab",
-                                        "modifiers": ["option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "tab",
-                                        "modifiers": ["command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Map right option on right command key",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "right_command" },
-                                "to": [{ "key_code": "right_option" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": { "key_code": "right_option" },
-                                "to": [{ "key_code": "right_command" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Timetracking hotkeys for Logseq",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": { "mandatory": ["right_command"] }
-                                },
-                                "to": [ { "shell_command": "~/.bin/timetracking.sh collab" } ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "d",
-                                    "modifiers": { "mandatory": ["right_command"] }
-                                },
-                                "to": [ { "shell_command": "~/.bin/timetracking.sh dev" } ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "k",
-                                    "modifiers": { "mandatory": ["right_command"] }
-                                },
-                                "to": [ { "shell_command": "~/.bin/timetracking.sh know" } ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "o",
-                                    "modifiers": { "mandatory": ["right_command"] }
-                                },
-                                "to": [ { "shell_command": "~/.bin/timetracking.sh org" } ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "q",
-                                    "modifiers": { "mandatory": ["right_command"] }
-                                },
-                                "to": [ { "shell_command": "~/.bin/timetracking.sh quit" } ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "r",
-                                    "modifiers": { "mandatory": ["right_command"] }
-                                },
-                                "to": [ { "shell_command": "~/.bin/timetracking.sh rand" } ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Change caps_lock to left_control if pressed with other keys, change caps_lock to escape if pressed alone.",
                         "manipulators": [
                             {
@@ -118,6 +19,87 @@
                     }
                 ]
             },
+            "devices": [
+                {
+                    "identifiers": { "is_keyboard": true },
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "c",
+                                "modifiers": { "mandatory": ["right_command"] }
+                            },
+                            "to": [{ "shell_command": "~/.bin/timetracking.sh collab" }]
+                        },
+                        {
+                            "from": {
+                                "key_code": "d",
+                                "modifiers": { "mandatory": ["right_command"] }
+                            },
+                            "to": [{ "shell_command": "~/.bin/timetracking.sh dev" }]
+                        },
+                        {
+                            "from": {
+                                "key_code": "k",
+                                "modifiers": { "mandatory": ["right_command"] }
+                            },
+                            "to": [{ "shell_command": "~/.bin/timetracking.sh know" }]
+                        },
+                        {
+                            "from": {
+                                "key_code": "o",
+                                "modifiers": { "mandatory": ["right_command"] }
+                            },
+                            "to": [{ "shell_command": "~/.bin/timetracking.sh org" }]
+                        },
+                        {
+                            "from": {
+                                "key_code": "q",
+                                "modifiers": { "mandatory": ["right_command"] }
+                            },
+                            "to": [{ "shell_command": "~/.bin/timetracking.sh quit" }]
+                        },
+                        {
+                            "from": {
+                                "key_code": "r",
+                                "modifiers": { "mandatory": ["right_command"] }
+                            },
+                            "to": [{ "shell_command": "~/.bin/timetracking.sh rand" }]
+                        },
+                        {
+                            "from": { "key_code": "right_command" },
+                            "to": [{ "key_code": "right_option" }]
+                        },
+                        {
+                            "from": { "key_code": "right_option" },
+                            "to": [{ "key_code": "right_command" }]
+                        },
+                        {
+                            "from": {
+                                "key_code": "tab",
+                                "modifiers": { "mandatory": ["command"] }
+                            },
+                            "to": [
+                                {
+                                    "key_code": "tab",
+                                    "modifiers": ["option"]
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "tab",
+                                "modifiers": { "mandatory": ["option"] }
+                            },
+                            "to": [
+                                {
+                                    "key_code": "tab",
+                                    "modifiers": ["command"]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
             "name": "Default profile",
             "selected": true,
             "virtual_hid_keyboard": { "keyboard_type_v2": "iso" }
