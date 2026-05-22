@@ -1,4 +1,6 @@
-export const EnvProtection = async ({ project, client, $, directory, worktree }) => {
+import type { Plugin } from "@opencode-ai/plugin"
+
+export const EnvProtection: Plugin = async ({ project, client, $, directory, worktree }) => {
   return {
     "tool.execute.before": async (input, output) => {
       if (input.tool === "read" && output.args.filePath.includes(".env")) {
