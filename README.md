@@ -54,15 +54,14 @@ yadm decrypt
 
 ```conf
 [ids]
-
 *
+# Exclude Kyria v2, it has its own mappings
+-8d1d:9d9d
 
 [main]
-
-# Maps capslock to escape when pressed and control when held
 capslock = overload(control, esc)
+leftalt = leftcontrol
+leftmeta = layer(hyper)
 
-# swap left alt and left meta
-leftmeta = lefalt
-leftalt = leftmeta
+[hyper:C-M-S-A]
 ```
