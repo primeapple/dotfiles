@@ -24,15 +24,6 @@ if status --is-interactive
         abbr --add $abb'r' $cmd run
     end
 
-    function __gradle_abbr
-        if test -f ./gradlew
-            echo ./gradlew
-        else
-            echo gradle
-        end
-    end
-    abbr --add gw --function __gradle_abbr
-
     function __maven_abbr
         if test -f ./mvnw
             echo ./mvnw
@@ -184,7 +175,6 @@ if status --is-interactive
     abbr --add gsw git switch
     abbr --add guw git unwip
     abbr --add gwi git wip
-    abbr --add gwt git worktree
     abbr --add gwtl git worktree list
 
     # only yadm
