@@ -101,12 +101,12 @@
         { name = "sdkman-for-fish"; src = pkgs.fishPlugins.sdkman-for-fish.src; }
         { name = "tide"; src = pkgs.fishPlugins.tide.src; }
         {
-            name = "worktree.fish";
+            name = "worktree";
             src = pkgs.fetchFromGitHub {
                 owner = "primeapple";
                 repo = "worktree.fish";
-                rev = "f0b2c3aa4fe0d68cdb05e1386822d97df476b25e";
-                sha256 = "sha256-bQHvCv0e4SMcYhgHm/ex0dxjilQRYXlUAjprcSOJrEc=";
+                rev = "00d21a1ccb4dae234aa3f0119baf68b5bb976b76";
+                sha256 = "sha256-JQS6MWK4bYzjVfsIf9kUcmNEkqSA2EHdUUEDp1tMTbU=";
             };
         }
         { name = "z"; src = pkgs.fishPlugins.z.src; }
