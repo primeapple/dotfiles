@@ -4,5 +4,13 @@
 # * https://github.com/ddollar/git-utils/blob/master/git-wip
 # * https://github.com/ddollar/git-utils/blob/master/git-addremove
 
+# Check if the last commit is a 'WIP' commit
+LAST_COMMIT=`git log -1 --pretty=%B | tr -d '[:space:]'`
+
 git add --all
-git commit --all --message="WIP"
+
+if [ 'WIP' == "$LAST_COMMIT" ]; then
+    echo 'Last commit is a WIP commit already but we will create another one on top.'
+fi
+
+git commit --message="WIP"
