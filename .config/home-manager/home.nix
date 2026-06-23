@@ -89,15 +89,6 @@
     '';
     plugins = [
         { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
-        {
-            name = "pufferfish";
-            src = pkgs.fetchFromGitHub {
-              owner = "nickeb96";
-              repo = "puffer-fish";
-              rev = "83174b07de60078be79985ef6123d903329622b8";
-              sha256 = "0a4x985hzv77r5q8cly6580n488pf5iqlwkifrhzj9kifkwpj70f";
-            };
-        }
         { name = "sdkman-for-fish"; src = pkgs.fishPlugins.sdkman-for-fish.src; }
         { name = "tide"; src = pkgs.fishPlugins.tide.src; }
         {

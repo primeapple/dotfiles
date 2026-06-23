@@ -74,6 +74,11 @@ if status --is-interactive
         abbr --add pmu sudo pacman -Syu
     end
 
+    if command -v opencode >/dev/null
+        abbr --add oc opencode
+        abbr --add --set-cursor ocr opencode run --model lmstudio/gemma4-26b-gguf \"%\"
+    end
+
     abbr --add cht cht.sh
     abbr --add record 'wf-recorder -g "$(slurp)" -f recording.mp4'
     abbr --add screen 'grim -g "$(slurp)" screenshot.png'
