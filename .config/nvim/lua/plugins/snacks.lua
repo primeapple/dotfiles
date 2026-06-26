@@ -29,8 +29,22 @@ return {
         },
         picker = {
             enabled = true,
-            list = {
-                keys = {},
+            main = {
+                current = true,
+            },
+            win = {
+                input = {
+                    keys = {
+                        ["<C-->"] = { "edit_split", mode = { "i", "n" } },
+                        ["<C-/>"] = { "edit_vsplit", mode = { "i", "n" } },
+                    }
+                },
+                list = {
+                    keys = {
+                        ["<C-->"] = "edit_split",
+                        ["<C-/>"] = "edit_vsplit"
+                    }
+                },
             },
         },
     },
@@ -53,7 +67,9 @@ return {
         {
             '<leader>fs',
             function()
-                Snacks.picker.smart()
+                Snacks.picker.smart({
+                    filter = { cwd = true }
+                })
             end,
             desc = 'Smart Find Files',
         },
@@ -82,7 +98,9 @@ return {
         {
             '<leader>fo',
             function()
-                Snacks.picker.recent()
+                Snacks.picker.recent({
+                    filter = { cwd = true }
+                })
             end,
             desc = 'Old files',
         },
