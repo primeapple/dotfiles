@@ -28,6 +28,7 @@
     jq
     neovim
     ripgrep
+    starship
     # Build currently failing on macos
     # zf
   ];
@@ -86,11 +87,14 @@
       if command -v bm >/dev/null
           command bm init fish | source
       end
+
+      if command -v starship >/dev/null
+          starship init fish | source
+      end
     '';
     plugins = [
         { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
         { name = "sdkman-for-fish"; src = pkgs.fishPlugins.sdkman-for-fish.src; }
-        { name = "tide"; src = pkgs.fishPlugins.tide.src; }
         {
             name = "worktree";
             src = pkgs.fetchFromGitHub {
