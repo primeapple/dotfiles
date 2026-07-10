@@ -63,6 +63,7 @@
             "mvn *": "allow",
             "mvnd *": "allow",
             "npm ls *": "allow",
+            "npm run build": "allow",
             "npm test *": "allow",
             "npx jest *": "allow",
             "pwd *": "allow",
