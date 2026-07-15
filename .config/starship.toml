@@ -32,9 +32,9 @@ ahead     = '[ ⇡$count](#5FD700)'
 behind    = '[ ⇣$count](#5FD700)'
 diverged  = '[ ⇣$behind_count ⇡$ahead_count](#5FD700)'
 up_to_date = ''
-renamed = ''
-deleted = ''
-typechanged = ''
+renamed = '[ »$count](#D7AF00)'
+deleted = '[ ✘$count](#D7AF00)'
+typechanged = '[ $count](#D7AF00)'
 
 [fill]
 symbol = '·'
