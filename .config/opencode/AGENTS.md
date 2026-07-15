@@ -10,4 +10,4 @@
 ## Git
 
 - Unless explicitly asked, do not stage changes, create commits, or push to origin.
-- Do not run git with the `-C` flag. Often you are in the repository already. If not, cd into it before running the git command.
+- Do not run git with the `-C` flag, like `git -C`. Check what directory you are currently in. If needed, use `cd` before the git command and go into it the specified directory.
