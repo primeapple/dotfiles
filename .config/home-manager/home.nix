@@ -29,6 +29,7 @@
     neovim
     ripgrep
     starship
+    yq-go
     # Build currently failing on macos
     # zf
   ];
