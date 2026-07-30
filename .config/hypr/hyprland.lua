@@ -55,6 +55,12 @@ hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("_JAVA_AWT_WM_NONREPARENTING", "1")
 
+-- Nvidia
+-- hl.env("LIBVA_DRIVER_NAME", "nvidia")
+-- hl.env("GBM_BACKEND", "nvidia-drm")
+-- hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+-- hl.env("NVD_BACKEND", "direct")
+
 -- Input and appearance
 hl.config({
     input = {
