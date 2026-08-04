@@ -25,13 +25,9 @@
     eza
     fd
     htop
-    jq
     neovim
     ripgrep
     starship
-    yq-go
-    # Build currently failing on macos
-    # zf
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

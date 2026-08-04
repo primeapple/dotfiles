@@ -2,9 +2,14 @@
 
 {
   home.packages = with pkgs; [
-    mvnd
+    hyperfine
+    jq
     llama-cpp
+    mvnd
     toot
+    yq-go
     yt-dlp
+    # Build currently failing on macos
+    # zf
   ];
 }
