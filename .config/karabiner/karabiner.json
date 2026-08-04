@@ -27,11 +27,21 @@
                                 },
                                 "parameters": { "basic.to_delayed_action_delay_milliseconds": 2000 },
                                 "to": [
-                                    { "set_variable": { "name": "timetracking_mode", "value": 1 } }
+                                    {
+                                        "set_variable": {
+                                            "name": "timetracking_mode",
+                                            "value": 1
+                                        }
+                                    }
                                 ],
                                 "to_delayed_action": {
                                     "to_if_invoked": [
-                                        { "set_variable": { "name": "timetracking_mode", "value": 0 } }
+                                        {
+                                            "set_variable": {
+                                                "name": "timetracking_mode",
+                                                "value": 0
+                                            }
+                                        }
                                     ]
                                 },
                                 "type": "basic"
@@ -49,7 +59,12 @@
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
-                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    {
+                                        "set_variable": {
+                                            "name": "timetracking_mode",
+                                            "value": 0
+                                        }
+                                    },
                                     { "shell_command": "~/.bin/timetracking.sh collab" }
                                 ],
                                 "type": "basic"
@@ -67,7 +82,12 @@
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
-                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    {
+                                        "set_variable": {
+                                            "name": "timetracking_mode",
+                                            "value": 0
+                                        }
+                                    },
                                     { "shell_command": "~/.bin/timetracking.sh dev" }
                                 ],
                                 "type": "basic"
@@ -85,7 +105,12 @@
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
-                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    {
+                                        "set_variable": {
+                                            "name": "timetracking_mode",
+                                            "value": 0
+                                        }
+                                    },
                                     { "shell_command": "~/.bin/timetracking.sh know" }
                                 ],
                                 "type": "basic"
@@ -103,7 +128,12 @@
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
-                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    {
+                                        "set_variable": {
+                                            "name": "timetracking_mode",
+                                            "value": 0
+                                        }
+                                    },
                                     { "shell_command": "~/.bin/timetracking.sh org" }
                                 ],
                                 "type": "basic"
@@ -121,7 +151,12 @@
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
-                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    {
+                                        "set_variable": {
+                                            "name": "timetracking_mode",
+                                            "value": 0
+                                        }
+                                    },
                                     { "shell_command": "~/.bin/timetracking.sh quit" }
                                 ],
                                 "type": "basic"
@@ -139,7 +174,12 @@
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
-                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    {
+                                        "set_variable": {
+                                            "name": "timetracking_mode",
+                                            "value": 0
+                                        }
+                                    },
                                     { "shell_command": "~/.bin/timetracking.sh rand" }
                                 ],
                                 "type": "basic"
@@ -157,7 +197,12 @@
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
-                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } }
+                                    {
+                                        "set_variable": {
+                                            "name": "timetracking_mode",
+                                            "value": 0
+                                        }
+                                    }
                                 ],
                                 "type": "basic"
                             }
@@ -221,6 +266,15 @@
                     "ignore": false,
                     "mouse_flip_horizontal_wheel": true,
                     "mouse_flip_vertical_wheel": true
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": true,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 10203,
+                        "vendor_id": 5824
+                    }
                 }
             ],
             "name": "Default profile",
