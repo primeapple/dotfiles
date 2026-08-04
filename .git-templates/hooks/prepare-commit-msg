@@ -1,67 +1,112 @@
 #!/bin/bash
 # This script is used by git to generate a commit message template based on the current branch name.
-# Supported parts are conventional commit types (`type`) and ticket numbers (`123` or `GH-123`)
-# The branch name will result in a commit message template like this:
+# Supported parts are conventional commit types (`type`), scopes, breaking-change markers (`!`)
+# and ticket numbers (`GH-123`).
+# The branch name will result in a commit message template like this (trailing space included):
 #  - type/some-description -> type:
 #  - type/GH-123-description -> type: GH-123
-#  - type!/GH-123-description -> type: GH-123
-#  - type/123-description -> type: #123
-#  - 123-description -> #123
-#  - 123-GH-124-description -> #123 GH-124
+#  - type!/GH-123-description -> type!: GH-123
+#  - type-thing/some-description -> type(thing):
+#  - type-some-thing/GH-123-description -> type(some-thing): GH-123
+#  - type!-some-other-thing/GH-123-description -> type(some-other-thing)!: GH-123
+#  - GH-124-description -> GH-124
 #  - some-description ->
+# Everything after the first "/" is treated as the description.
+# An unknown type before the first "/" is ignored, so `toni/some-description` yields no template.
 
 COMMIT_MSG_FILE="$1"
+COMMIT_SOURCE="$2"
 
-# Abort during merges/rebases
-LAST_EXIT_CODE=$?
-if [ $LAST_EXIT_CODE -ne 0 ]; then
-    exit 0
-fi
+# Abort when git supplies its own message (merge, squash, amend, -c/-C, -m, -F)
+case "$COMMIT_SOURCE" in
+    merge | squash | commit | message) exit 0 ;;
+esac
 
-# Abort if first line of commit message is not empty (merges, amend, etc.)
+# Abort if first line of commit message is not empty (commit templates, pre-filled messages, etc.)
 if [ -n "$(head -n 1 "$COMMIT_MSG_FILE")" ]; then
     exit 0
 fi
 
-# Abort on excluded branches
-EXCLUDED_BRANCHES=("master" "main" "dev")
-CURRENT_BRANCH=$(git symbolic-ref --quiet --short HEAD)
-if [[ ${EXCLUDED_BRANCHES[*]} =~ $CURRENT_BRANCH ]]; then
+# Abort if HEAD is detached (rebase, bisect, checkout of a tag or commit)
+CURRENT_BRANCH=$(git symbolic-ref --quiet --short HEAD) || exit 0
+if [ -z "$CURRENT_BRANCH" ]; then
     exit 0
 fi
 
-# Build array of conventional commit types
+# Exact match of the first argument against the remaining ones
+contains() {
+    local needle="$1"
+    shift
+    local candidate
+    for candidate in "$@"; do
+        if [ "$candidate" = "$needle" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Abort on excluded branches
+EXCLUDED_BRANCHES=("master" "main" "dev")
+if contains "$CURRENT_BRANCH" "${EXCLUDED_BRANCHES[@]}"; then
+    exit 0
+fi
+
 CONVENTIONAL_COMMIT_TYPES=("build" "chore" "ci" "docs" "feat" "fix" "perf" "refactor" "revert" "style" "test")
-for type in "${CONVENTIONAL_COMMIT_TYPES[@]}"; do
-    CONVENTIONAL_COMMIT_TYPES+=("$type!")
-done
 
+TYPE=""
+SCOPE=""
+BREAKING=""
+TICKET=""
+DESCRIPTION="$CURRENT_BRANCH"
+
+# Split branch name at the first "/": type (with optional scope) and description
+if [[ $CURRENT_BRANCH == */* ]]; then
+    TYPE_PART="${CURRENT_BRANCH%%/*}"
+    DESCRIPTION="${CURRENT_BRANCH#*/}"
+
+    # Split the type part at the first "-": type (with optional "!") and scope
+    TYPE_CANDIDATE="$TYPE_PART"
+    if [[ $TYPE_PART == *-* ]]; then
+        TYPE_CANDIDATE="${TYPE_PART%%-*}"
+        SCOPE="${TYPE_PART#*-}"
+    fi
+
+    # A trailing "!" marks a breaking change and is rendered after the scope
+    if [[ $TYPE_CANDIDATE == *'!' ]]; then
+        TYPE_CANDIDATE="${TYPE_CANDIDATE%'!'}"
+        BREAKING="!"
+    fi
+
+    if contains "$TYPE_CANDIDATE" "${CONVENTIONAL_COMMIT_TYPES[@]}"; then
+        TYPE="$TYPE_CANDIDATE"
+    else
+        SCOPE=""
+        BREAKING=""
+    fi
+fi
+
+# Pick up a leading ticket number from the description
+if [[ $DESCRIPTION =~ ^([A-Z]+)-([0-9]+)(-|/|$) ]]; then
+    TICKET="${BASH_REMATCH[1]}-${BASH_REMATCH[2]}"
+fi
+
+# Assemble the message
 MESSAGE=""
-
-# Split branchname by "/" char and store in BRANCH_PARTS
-IFS='/' read -ra BRANCH_PARTS <<< "$CURRENT_BRANCH"
-
-# Checking if it includes conventional commit (scope not supported)
-if [[ ${CONVENTIONAL_COMMIT_TYPES[*]} =~ ${BRANCH_PARTS[0]} ]]; then
-    MESSAGE="${BRANCH_PARTS[0]}: "
+if [ -n "$TYPE" ]; then
+    MESSAGE="$TYPE"
+    if [ -n "$SCOPE" ]; then
+        MESSAGE+="($SCOPE)"
+    fi
+    MESSAGE+="$BREAKING: "
+fi
+if [ -n "$TICKET" ]; then
+    MESSAGE+="$TICKET "
 fi
 
-if [ ${#BRANCH_PARTS[@]} -ge 2 ]; then
-    # Split description by "-" char and store in DESCRIPTION_PARTS
-    IFS='-' read -ra DESCRIPTION_PARTS <<< "${BRANCH_PARTS[1]}"
-
-    # Checking and constructing the message if it includes reference
-    if [[ ${DESCRIPTION_PARTS[0]} =~ ^[0-9]+$ ]]; then
-        MESSAGE+="#${DESCRIPTION_PARTS[0]} "
-        DESCRIPTION_PARTS=("${DESCRIPTION_PARTS[@]:1}")
-    fi
-
-    # Checking and constructing the message if it includes ticket number
-    if [[ ${DESCRIPTION_PARTS[0]} =~ ^[A-Z]+$ ]] && [[ ${DESCRIPTION_PARTS[1]} =~ ^[0-9]+$ ]]; then
-        MESSAGE+="${DESCRIPTION_PARTS[0]}-${DESCRIPTION_PARTS[1]} "
-        DESCRIPTION_PARTS=("${DESCRIPTION_PARTS[@]:2}")
-    fi
-fi
-
-# Write MESSAGE to the commit message file
-sed -i "1s/.*/$MESSAGE/" "$COMMIT_MSG_FILE"
+# Replace the first line of the commit message file, keeping the rest intact
+TMP_FILE=$(mktemp) || exit 0
+printf '%s\n' "$MESSAGE" > "$TMP_FILE"
+tail -n +2 "$COMMIT_MSG_FILE" >> "$TMP_FILE"
+cat "$TMP_FILE" > "$COMMIT_MSG_FILE"
+rm -f "$TMP_FILE"
