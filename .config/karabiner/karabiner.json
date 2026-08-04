@@ -16,6 +16,152 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Timetracking leader: HYPER+t followed by c/d/k/o/q/r",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": { "mandatory": ["shift", "command", "control", "option"] }
+                                },
+                                "parameters": { "basic.to_delayed_action_delay_milliseconds": 2000 },
+                                "to": [
+                                    { "set_variable": { "name": "timetracking_mode", "value": 1 } }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        { "set_variable": { "name": "timetracking_mode", "value": 0 } }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "timetracking_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    { "shell_command": "~/.bin/timetracking.sh collab" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "timetracking_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    { "shell_command": "~/.bin/timetracking.sh dev" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "timetracking_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    { "shell_command": "~/.bin/timetracking.sh know" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "timetracking_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    { "shell_command": "~/.bin/timetracking.sh org" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "timetracking_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    { "shell_command": "~/.bin/timetracking.sh quit" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "timetracking_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } },
+                                    { "shell_command": "~/.bin/timetracking.sh rand" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "timetracking_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "any": "key_code",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    { "set_variable": { "name": "timetracking_mode", "value": 0 } }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -24,27 +170,6 @@
                     "identifiers": { "is_keyboard": true },
                     "simple_modifications": [
                         {
-                            "from": {
-                                "key_code": "c",
-                                "modifiers": { "mandatory": ["right_command"] }
-                            },
-                            "to": [{ "shell_command": "~/.bin/timetracking.sh collab" }]
-                        },
-                        {
-                            "from": {
-                                "key_code": "d",
-                                "modifiers": { "mandatory": ["right_command"] }
-                            },
-                            "to": [{ "shell_command": "~/.bin/timetracking.sh dev" }]
-                        },
-                        {
-                            "from": {
-                                "key_code": "k",
-                                "modifiers": { "mandatory": ["right_command"] }
-                            },
-                            "to": [{ "shell_command": "~/.bin/timetracking.sh know" }]
-                        },
-                        {
                             "from": { "key_code": "left_option" },
                             "to": [
                                 {
@@ -52,27 +177,6 @@
                                     "modifiers": ["left_command", "left_control", "left_option"]
                                 }
                             ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "o",
-                                "modifiers": { "mandatory": ["right_command"] }
-                            },
-                            "to": [{ "shell_command": "~/.bin/timetracking.sh org" }]
-                        },
-                        {
-                            "from": {
-                                "key_code": "q",
-                                "modifiers": { "mandatory": ["right_command"] }
-                            },
-                            "to": [{ "shell_command": "~/.bin/timetracking.sh quit" }]
-                        },
-                        {
-                            "from": {
-                                "key_code": "r",
-                                "modifiers": { "mandatory": ["right_command"] }
-                            },
-                            "to": [{ "shell_command": "~/.bin/timetracking.sh rand" }]
                         },
                         {
                             "from": { "key_code": "right_command" },
