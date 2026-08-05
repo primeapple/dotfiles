@@ -22,7 +22,7 @@ format = ' [$state( $progress_current/$progress_total)]($style)'
 
 [git_status]
 style = '#5FD700'
-format = '($all_status$ahead_behind)'
+format = '($conflicted$stashed$index_deleted$worktree_deleted$renamed$modified$index_typechanged$worktree_typechanged$staged$untracked$ahead_behind)'
 conflicted = '[ ~$count](#FF0000)'
 stashed   = '[ *$count](#5FD700)'
 staged    = '[ +$count](#D7AF00)'
@@ -33,8 +33,11 @@ behind    = '[ ⇣$count](#5FD700)'
 diverged  = '[ ⇣$behind_count ⇡$ahead_count](#5FD700)'
 up_to_date = ''
 renamed = '[ »$count](#D7AF00)'
-deleted = '[ ✘$count](#D7AF00)'
-typechanged = '[ $count](#D7AF00)'
+worktree_deleted = '[ -$count](#FF0000)'
+index_deleted = '[ -$count](#D7AF00)'
+# Having something to distinguish these two would be super cool
+worktree_typechanged = '[ $count](#D7AF00)'
+index_typechanged = '[ $count](#D7AF00)'
 
 [fill]
 symbol = '·'
