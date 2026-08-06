@@ -45,10 +45,12 @@ symbol = '·'
 style = '#585858'
 
 [username]
-format = '[$user](#D7AF87)'
+format = '[$user]($style)'
+style = '#D7AF87'
 
 [hostname]
-format = '[@$hostname](#D7AF87) '
+format = '[@$hostname]($style) '
+style = '#D7AF87'
 
 [time]
 disabled = false
