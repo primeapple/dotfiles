@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = '$directory$git_branch$git_state$git_status $fill${custom.ssh_context}$nodejs$aws$kubernetes$time$line_break$character'
+format = '$directory$git_branch$git_state$git_status $fill$username$hostname$nodejs$aws$kubernetes$time$line_break$character'
 
 
 [directory]
@@ -44,11 +44,11 @@ index_typechanged = '[ $count](#D7AF00)'
 symbol = '·'
 style = '#585858'
 
-[custom.ssh_context]
-when = 'test -n "$SSH_TTY"'
-command = 'printf "%s@%s" "$USER" "$(hostname -s)"'
-style = '#D7AF87'
-format = '[$output]($style) '
+[username]
+format = '[$user](#D7AF87)'
+
+[hostname]
+format = '[@$hostname](#D7AF87) '
 
 [time]
 disabled = false
