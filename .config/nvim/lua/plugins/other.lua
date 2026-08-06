@@ -149,11 +149,12 @@ return {
         config = true,
     },
     {
-        'catgoose/nvim-colorizer.lua',
-        event = 'VeryLazy',
+        "catgoose/nvim-colorizer.lua",
+        event = "BufReadPre",
         opts = {
             options = {
                 parsers = {
+                    css = true,
                     names = {
                         enable = false,
                     },
