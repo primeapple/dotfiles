@@ -46,7 +46,8 @@ style = '#585858'
 
 [username]
 format = '[$user]($style)'
-style = '#D7AF87'
+style_user = '#D7AF87'
+style_root = 'bold red'
 
 [hostname]
 format = '[@$hostname]($style) '
