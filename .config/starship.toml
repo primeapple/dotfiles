@@ -1,6 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = '$directory$git_branch$git_state$git_status $fill$time$line_break$character'
+format = '$hostname$directory$git_branch$git_state$git_status $fill$nodejs$aws$kubernetes$time$line_break$character'
+
 
 [directory]
 style = '#0087AF'
@@ -53,3 +54,21 @@ style = '#5F8787'
 success_symbol = '[❯](#5FD700)'
 error_symbol = '[❯](#FF0000)'
 format = '$symbol '
+
+[nodejs]
+format = '[$symbol($version )]($style)'
+
+[aws]
+format = '[$symbol ($profile )(\($region\) )]($style)'
+symbol = ''
+style = 'bold #FF9900'
+
+[kubernetes]
+format = '[$symbol$context( \($namespace\))]($style)'
+disabled = false
+style = 'bold blue'
+
+# from https://github.com/starship/starship/issues/6101#issuecomment-2295210551
+[[kubernetes.contexts]]
+context_pattern = 'arn.*\/(?P<cluster>[\w\/-]+)'
+context_alias = "$cluster"
