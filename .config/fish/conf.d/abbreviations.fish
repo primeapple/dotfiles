@@ -173,6 +173,7 @@ if status --is-interactive
     abbr --add grba git rebase --abort
     abbr --add grbc git rebase --continue
     abbr --add grc 'git switch (git recent -l | zf)'
+    abbr --add grf git refresh
     abbr --add gs- git switch -
     abbr --add gsc git switch --create
     abbr --add gse git select

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+branch=$(git branch --show-current)
+remote=${1:-$(git config --get "branch.$branch.remote" || printf origin)}
+
+git fetch "$remote"
+git remote set-head "$remote" --auto >/dev/null
+git rebase "$remote/HEAD"
