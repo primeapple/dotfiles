@@ -51,6 +51,7 @@
             "gh search *": "allow",
             "git branch --show-current": "allow",
             "git diff *": "allow",
+            "git grep *": "allow",
             "git ls-files *": "allow",
             "git log *": "allow",
             "git show *": "allow",
@@ -91,7 +92,7 @@
         },
         "edit": "allow",
         "external_directory": "ask",
-        "webfetch": "ask"
+        "webfetch": "allow"
     },
     "plugin": [
         "@mohak34/opencode-notifier@0.2.5"
