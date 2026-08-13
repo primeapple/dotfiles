@@ -1,6 +1,5 @@
 [fetch]
 	prune = true
-	pruneTags = true
 [user]
 	name = primeapple
 	email = toni.mueller.web@mailbox.org
