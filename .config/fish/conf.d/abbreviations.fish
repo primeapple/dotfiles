@@ -127,6 +127,7 @@ if status --is-interactive
         abbr --add $abb'rh' $cmd 'reset --hard'
         abbr --add $abb'rs' $cmd restore
         abbr --add $abb'rst' $cmd 'restore --staged'
+        abbr --add $abb'rv' $cmd revert
         abbr --add $abb's' $cmd 'status --short --branch'
         abbr --add $abb'st' $cmd 'stash push'
         abbr --add $abb'sta' $cmd 'stash apply'

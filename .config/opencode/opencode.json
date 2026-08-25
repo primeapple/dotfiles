@@ -54,6 +54,7 @@
             "git grep *": "allow",
             "git ls-files *": "allow",
             "git log *": "allow",
+            "git reflog *": "allow",
             "git show *": "allow",
             "git status *": "allow",
             "go test *": "allow",
