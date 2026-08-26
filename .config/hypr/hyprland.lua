@@ -116,6 +116,11 @@ hl.config({
     master = {
         new_status = "master",
     },
+    group = {
+        auto_group = true,
+        insert_after_current = true,
+        group_on_movetoworkspace = true,
+    },
 })
 
 hl.curve("myBezier", {
@@ -214,15 +219,41 @@ hl.workspace_rule({ workspace = "5", monitor = "DP-1" })
 
 -- Keybindings
 local mainMod = "SUPER + ALT + SHIFT + CTRL"
+local secondaryMod = "SUPER + ALT + CTRL"
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + E", hl.dsp.layout("togglesplit"))
-hl.bind(mainMod .. " + G", hl.dsp.group.toggle())
+-- Groups "eat" all active windows, making it one global group per workspace
+hl.bind(mainMod .. " + W", function()
+    local win = hl.get_active_window()
+    if win == nil then
+        return
+    end
+    if win.group ~= nil then
+        hl.dispatch(hl.dsp.group.toggle({ window = win }))
+        return
+    end
+    local first
+    local group
+    for _, w in ipairs(win.workspace:get_windows()) do
+        if not w.floating and w.group == nil then
+            if first == nil then
+                first = w
+            elseif group == nil then
+                hl.dispatch(hl.dsp.group.toggle({ window = first }))
+                group = first.group
+                group:add(w)
+            else
+                group:add(w)
+            end
+        end
+    end
+end)
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/screenshot.sh selection"))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(secondaryMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- Clamshell
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/clamshell.sh toggle"))
@@ -261,8 +292,16 @@ hl.define_submap("timetracking", function()
 end)
 
 -- Focus and groups
-hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+local function groupOrFocus(direction, next)
+    local win = hl.get_active_window()
+    if win ~= nil and win.group ~= nil then
+        hl.dispatch(next and hl.dsp.group.next() or hl.dsp.group.prev())
+    else
+        hl.dispatch(hl.dsp.focus({ direction = direction }))
+    end
+end
+hl.bind(mainMod .. " + H", function() groupOrFocus("left", false) end)
+hl.bind(mainMod .. " + L", function() groupOrFocus("right", true) end)
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
@@ -274,7 +313,7 @@ hl.bind(mainMod .. " + tab", hl.dsp.group.next())
 for workspace = 1, 10 do
     local key = workspace % 10
     hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = workspace }))
-    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = workspace }))
+    hl.bind(secondaryMod .. " + " .. key, hl.dsp.window.move({ workspace = workspace }))
 end
 
 hl.bind(mainMod .. " + M", hl.dsp.workspace.swap_monitors({
