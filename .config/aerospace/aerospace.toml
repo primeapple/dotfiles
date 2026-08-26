@@ -3,7 +3,7 @@ config-version = 2
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = []
 
-start-at-login = false
+start-at-login = true
 
 auto-reload-config = true
 
@@ -51,9 +51,6 @@ on-window-detected = [
     },
 ]
 
-# Possible values: (qwerty|dvorak|colemak)
-# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
-# TONI: unsure what this does?
 key-mapping.preset = 'qwerty'
 
 # Hyprland-compatible gaps: gaps_in = 2, gaps_out = 8.
@@ -85,7 +82,7 @@ gaps.outer.right =      8
     cmd-alt-ctrl-shift-f = 'fullscreen --no-outer-gaps'
     cmd-alt-ctrl-shift-v = 'layout floating tiling'
     cmd-alt-ctrl-shift-e = 'layout horizontal vertical'
-    cmd-alt-ctrl-shift-g = 'layout accordion tiles'
+    cmd-alt-ctrl-shift-w = 'layout accordion tiles'
 
     # Focus.
     cmd-alt-ctrl-shift-h = 'focus left'
