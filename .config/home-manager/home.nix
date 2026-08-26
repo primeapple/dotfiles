@@ -26,6 +26,7 @@
     fd
     herdr
     htop
+    kopia
     neovim
     ripgrep
     starship
