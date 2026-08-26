@@ -24,6 +24,7 @@
     delta
     eza
     fd
+    herdr
     htop
     neovim
     ripgrep

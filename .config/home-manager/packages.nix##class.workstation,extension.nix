@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    ast-grep
     hyperfine
     jq
     llama-cpp
