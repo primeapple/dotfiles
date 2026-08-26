@@ -1,0 +1,26 @@
+onboarding = false
+
+[theme]
+name = "kanagawa"
+
+[terminal]
+new_cwd = "follow"
+
+[ui.toast]
+delivery = "system"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+prompt_new_tab_name = false
+
+[keys]
+new_tab = ["prefix+c", "ctrl+shift+t"]
+close_tab = ["prefix+shift+x", "ctrl+shift+w"]
+previous_tab = ["prefix+p", "ctrl+shift+p"]
+next_tab = ["prefix+n", "ctrl+shift+n"]
+switch_tab = ["prefix+1..9", "ctrl+shift+1..9"]
+copy_mode = ["prefix+[", "ctrl+shift+["]
+edit_scrollback = ["prefix+e", "ctrl+shift+g"]
+split_vertical = ["prefix+/", "ctrl+shift+/"]
+split_horizontal = ["prefix+-", "ctrl+shift+-"]
+detach = ["prefix+q", "ctrl+shift+q"]
