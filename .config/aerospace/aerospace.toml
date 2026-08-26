@@ -1,0 +1,143 @@
+config-version = 2
+
+# Available commands : https://nikitabobko.github.io/AeroSpace/commands
+after-startup-command = []
+
+start-at-login = false
+
+auto-reload-config = true
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# The 'accordion-padding' specifies the size of accordion padding
+# You can set 0 to disable the padding feature
+accordion-padding = 30
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+#               tall monitor (anything higher than wide) gets vertical orientation
+default-root-container-orientation = 'auto'
+
+# Mouse follows focus when focused monitor changes
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
+automatically-unhide-macos-hidden-apps = false
+
+# List of workspaces that should stay alive even when they contain no windows,
+# even when they are invisible.
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+# A callback that runs every time binding mode changes
+on-mode-changed = []
+
+focus-follows-mouse.enabled = false
+
+# Keep selected applications on their workspaces.
+on-window-detected = [
+    {
+        if = 'test %{app-bundle-id} = com.tinyspeck.slackmacgap || test %{app-bundle-id} = com.apple.iCal || test %{app-bundle-id} = us.zoom.xos',
+        run = 'move-node-to-workspace 4',
+    },
+    {
+        if = 'test %{app-bundle-id} = com.amazonaws.acvc.osx || test %{app-bundle-id} = com.t3tools.t3code',
+        run = 'move-node-to-workspace 2',
+    },
+]
+
+# Possible values: (qwerty|dvorak|colemak)
+# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+# TONI: unsure what this does?
+key-mapping.preset = 'qwerty'
+
+# Hyprland-compatible gaps: gaps_in = 2, gaps_out = 8.
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+# Possible values:
+# - Constant:     gaps.outer.top = 8
+# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
+#                 In this example, 24 is a default value when there is no match.
+#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
+#                 See:
+#                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+gaps.inner.horizontal = 2
+gaps.inner.vertical =   2
+gaps.outer.left =       8
+gaps.outer.bottom =     8
+gaps.outer.top =        8
+gaps.outer.right =      8
+
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' binding mode must be always presented
+# Fallback value (if you omit the key): mode.main.binding = {}
+[mode.main.binding]
+
+    # Hyprland mainMod: SUPER + ALT + SHIFT + CTRL.
+
+    # Window actions.
+    cmd-alt-ctrl-shift-q = 'close'
+    cmd-alt-ctrl-shift-f = 'fullscreen --no-outer-gaps'
+    cmd-alt-ctrl-shift-v = 'layout floating tiling'
+    cmd-alt-ctrl-shift-e = 'layout horizontal vertical'
+    cmd-alt-ctrl-shift-g = 'layout accordion tiles'
+
+    # Focus.
+    cmd-alt-ctrl-shift-h = 'focus left'
+    cmd-alt-ctrl-shift-j = 'focus down'
+    cmd-alt-ctrl-shift-k = 'focus up'
+    cmd-alt-ctrl-shift-l = 'focus right'
+    cmd-alt-ctrl-shift-left = 'focus left'
+    cmd-alt-ctrl-shift-down = 'focus down'
+    cmd-alt-ctrl-shift-up = 'focus up'
+    cmd-alt-ctrl-shift-right = 'focus right'
+
+    # Workspaces.
+    cmd-alt-ctrl-shift-1 = 'workspace 1'
+    cmd-alt-ctrl-shift-2 = 'workspace 2'
+    cmd-alt-ctrl-shift-3 = 'workspace 3'
+    cmd-alt-ctrl-shift-4 = 'workspace 4'
+    cmd-alt-ctrl-shift-5 = 'workspace 5'
+    cmd-alt-ctrl-shift-6 = 'workspace 6'
+    cmd-alt-ctrl-shift-7 = 'workspace 7'
+    cmd-alt-ctrl-shift-8 = 'workspace 8'
+    cmd-alt-ctrl-shift-9 = 'workspace 9'
+    cmd-alt-ctrl-shift-0 = 'workspace 10'
+
+    # Hyprland's workspace move binding adds SHIFT to mainMod, but mainMod
+    # already contains SHIFT. AeroSpace cannot represent duplicate modifiers,
+    # so these bindings use mainMod without SHIFT.
+    cmd-alt-ctrl-1 = 'move-node-to-workspace 1'
+    cmd-alt-ctrl-2 = 'move-node-to-workspace 2'
+    cmd-alt-ctrl-3 = 'move-node-to-workspace 3'
+    cmd-alt-ctrl-4 = 'move-node-to-workspace 4'
+    cmd-alt-ctrl-5 = 'move-node-to-workspace 5'
+    cmd-alt-ctrl-6 = 'move-node-to-workspace 6'
+    cmd-alt-ctrl-7 = 'move-node-to-workspace 7'
+    cmd-alt-ctrl-8 = 'move-node-to-workspace 8'
+    cmd-alt-ctrl-9 = 'move-node-to-workspace 9'
+    cmd-alt-ctrl-0 = 'move-node-to-workspace 10'
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#mode
+    cmd-alt-ctrl-shift-semicolon = 'mode service'
+
+# 'service' binding mode declaration.
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main'] # reset layout
+    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+    #s = ['layout sticky tiling', 'mode main']
+
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']
