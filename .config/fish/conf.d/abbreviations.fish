@@ -141,7 +141,7 @@ if status --is-interactive
 
     # only git
     # default branch specific commands
-    for tuples in gs,'git switch' gm,'git merge' grb,'git rebase'
+    for tuples in gs,'git switch' gm,'git merge' grb,'git rebase' grbo,'git rebase --onto'
         echo $tuples | read -d , abb cmd
         function _abbr_git_default_branch_$abb --inherit-variable cmd
             if git rev-parse --verify main &>/dev/null
