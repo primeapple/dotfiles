@@ -120,6 +120,8 @@ gaps.outer.right =      8
     cmd-alt-ctrl-9 = 'move-node-to-workspace 9'
     cmd-alt-ctrl-0 = 'move-node-to-workspace 10'
 
+    cmd-alt-ctrl-shift-m = 'move-workspace-to-monitor --wrap-around next'
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     cmd-alt-ctrl-shift-semicolon = 'mode service'
 
