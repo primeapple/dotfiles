@@ -53,7 +53,6 @@ on-window-detected = [
 
 key-mapping.preset = 'qwerty'
 
-# Hyprland-compatible gaps: gaps_in = 2, gaps_out = 8.
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
 # - Constant:     gaps.outer.top = 8
@@ -75,7 +74,7 @@ gaps.outer.right =      8
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
 
-    # Hyprland mainMod: SUPER + ALT + SHIFT + CTRL.
+    # mainMod: SUPER + ALT + SHIFT + CTRL.
 
     # Window actions.
     cmd-alt-ctrl-shift-q = 'close'
@@ -85,14 +84,14 @@ gaps.outer.right =      8
     cmd-alt-ctrl-shift-w = 'layout accordion tiles'
 
     # Focus.
-    cmd-alt-ctrl-shift-h = 'focus left'
-    cmd-alt-ctrl-shift-j = 'focus down'
-    cmd-alt-ctrl-shift-k = 'focus up'
-    cmd-alt-ctrl-shift-l = 'focus right'
-    cmd-alt-ctrl-shift-left = 'focus left'
-    cmd-alt-ctrl-shift-down = 'focus down'
-    cmd-alt-ctrl-shift-up = 'focus up'
-    cmd-alt-ctrl-shift-right = 'focus right'
+    cmd-alt-ctrl-shift-h = 'focus --wrap-around left'
+    cmd-alt-ctrl-shift-j = 'focus --wrap-around down'
+    cmd-alt-ctrl-shift-k = 'focus --wrap-around up'
+    cmd-alt-ctrl-shift-l = 'focus --wrap-around right'
+    cmd-alt-ctrl-shift-left = 'focus --wrap-around left'
+    cmd-alt-ctrl-shift-down = 'focus --wrap-around down'
+    cmd-alt-ctrl-shift-up = 'focus --wrap-around up'
+    cmd-alt-ctrl-shift-right = 'focus --wrap-around right'
 
     # Workspaces.
     cmd-alt-ctrl-shift-1 = 'workspace 1'
@@ -106,9 +105,6 @@ gaps.outer.right =      8
     cmd-alt-ctrl-shift-9 = 'workspace 9'
     cmd-alt-ctrl-shift-0 = 'workspace 10'
 
-    # Hyprland's workspace move binding adds SHIFT to mainMod, but mainMod
-    # already contains SHIFT. AeroSpace cannot represent duplicate modifiers,
-    # so these bindings use mainMod without SHIFT.
     cmd-alt-ctrl-1 = 'move-node-to-workspace 1'
     cmd-alt-ctrl-2 = 'move-node-to-workspace 2'
     cmd-alt-ctrl-3 = 'move-node-to-workspace 3'
