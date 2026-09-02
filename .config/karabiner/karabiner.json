@@ -39,30 +39,6 @@
                         {
                             "from": { "key_code": "right_option" },
                             "to": [{ "key_code": "right_command" }]
-                        },
-                        {
-                            "from": {
-                                "key_code": "tab",
-                                "modifiers": { "mandatory": ["command"] }
-                            },
-                            "to": [
-                                {
-                                    "key_code": "tab",
-                                    "modifiers": ["option"]
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "tab",
-                                "modifiers": { "mandatory": ["option"] }
-                            },
-                            "to": [
-                                {
-                                    "key_code": "tab",
-                                    "modifiers": ["command"]
-                                }
-                            ]
                         }
                     ]
                 },
