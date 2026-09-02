@@ -118,10 +118,9 @@ gaps.outer.right =      8
 
     cmd-alt-ctrl-shift-m = 'move-workspace-to-monitor --wrap-around next'
 
-    # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     cmd-alt-ctrl-shift-semicolon = 'mode service'
+    cmd-alt-ctrl-shift-t = 'mode timetracking'
 
-# 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
@@ -136,3 +135,14 @@ gaps.outer.right =      8
     alt-shift-j = ['join-with down', 'mode main']
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
+
+# Timetracking
+[mode.timetracking.binding]
+    esc = 'mode main'
+
+    c = ['exec-and-forget ~/.bin/timetracking.sh collab', 'mode main']
+    d = ['exec-and-forget ~/.bin/timetracking.sh dev', 'mode main']
+    k = ['exec-and-forget ~/.bin/timetracking.sh know', 'mode main']
+    o = ['exec-and-forget ~/.bin/timetracking.sh org', 'mode main']
+    q = ['exec-and-forget ~/.bin/timetracking.sh quit', 'mode main']
+    r = ['exec-and-forget ~/.bin/timetracking.sh rand', 'mode main']
