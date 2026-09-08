@@ -10,7 +10,7 @@ return {
         config = true
     },
     {
-        'mrjones2014/smart-splits.nvim',
+        'smart-splits-nvim/smart-splits.nvim',
         lazy = false,
         cond = is_kitty,
         keys = {
@@ -183,7 +183,6 @@ return {
                 mode = { 'n', 'i', 'x', 't' },
             },
         },
-        version = '>=1.0.0',
         build = './kitty/install-kittens.bash',
         config = true,
     }
