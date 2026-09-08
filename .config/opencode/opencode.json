@@ -49,6 +49,7 @@
             "gh run list *": "allow",
             "gh run view *": "allow",
             "gh search *": "allow",
+            "git blame *": "allow",
             "git branch --show-current": "allow",
             "git diff *": "allow",
             "git grep *": "allow",
