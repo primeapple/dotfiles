@@ -29,3 +29,27 @@ previous_tab = ["prefix+p", "ctrl+shift+p"]
 split_horizontal = ["prefix+-", "ctrl+shift+-"]
 split_vertical = ["prefix+/", "ctrl+shift+/"]
 switch_tab = ["prefix+1..9", "ctrl+shift+1..9"]
+
+[[keys.command]]
+key = ["ctrl+h", "ctrl+left"]
+type = "plugin_action"
+command = "smart-splits.nvim.left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = ["ctrl+j", "ctrl+down"]
+type = "plugin_action"
+command = "smart-splits.nvim.down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = ["ctrl+k", "ctrl+up"]
+type = "plugin_action"
+command = "smart-splits.nvim.up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = ["ctrl+l", "ctrl+right"]
+type = "plugin_action"
+command = "smart-splits.nvim.right"
+description = "navigate right (vim/herdr)"

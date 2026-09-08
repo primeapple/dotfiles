@@ -12,7 +12,6 @@ return {
     {
         'smart-splits-nvim/smart-splits.nvim',
         lazy = false,
-        cond = is_kitty,
         keys = {
             {
                 '<C-Left>',

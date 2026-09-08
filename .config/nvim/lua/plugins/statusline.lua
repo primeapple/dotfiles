@@ -290,6 +290,7 @@ return {
     {
         'vimpostor/vim-tpipeline',
         cond = require('toni.utils').is_workstation,
+        enabled = false,
         event = 'UIEnter',
         dependencies = { 'rebelot/heirline.nvim' },
         init = function()
