@@ -26,11 +26,12 @@
     fd
     herdr
     htop
+    jq
     kopia
     neovim
-    pi-coding-agent
     ripgrep
     starship
+    yq-go
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
