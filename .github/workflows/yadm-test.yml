@@ -2,7 +2,7 @@ name: Yadm Test
 on:
   push:
 jobs:
-  yadm-test:
+  linux-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -13,8 +13,21 @@ jobs:
             dockerfile: Dockerfile.debian
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Build Docker image
         run: docker build -f .github/${{ matrix.dockerfile }} -t ${{ matrix.distro }}-yadm .github/
       - name: Run yadm-test script
         run: docker run --rm -e BRANCH="${{ github.ref_name }}" -e DISTRO="${{ matrix.distro }}" ${{ matrix.distro }}-yadm
+
+  macos-test:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install yadm
+        run: brew install yadm
+      - name: Run yadm-test script
+        run: bash .github/yadm-test.sh
+        env:
+          BRANCH: ${{ github.ref_name }}
