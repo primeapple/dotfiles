@@ -1,5 +1,6 @@
 {
     "$schema": "https://opencode.ai/config.json",
+    "instructions": ["~/.agents/AGENTS.md", "AGENTS.md"],
     "model": "",
     "theme": "kanagawa",
     "disabled_providers": ["anthropic", "openapi"],
