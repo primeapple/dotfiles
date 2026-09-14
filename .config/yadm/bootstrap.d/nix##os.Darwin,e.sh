@@ -20,5 +20,5 @@ fi
 nix --version
 
 ### Run home-manager switch using the flake
-nix run "$HOME/.config/home-manager" -- \
+nix run "$HOME/.config/home-manager#home-manager" -- \
   switch --flake "$HOME/.config/home-manager#toni" --impure
