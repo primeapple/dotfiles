@@ -2,7 +2,10 @@
 // Routes every OpenCode bash tool call through dcg (Destructive Command
 // Guard) before execution. Remove with `uninstall.sh` or by deleting this
 // file. Docs: https://github.com/Dicklesworthstone/destructive_command_guard
-const DCG_BIN = "/Users/toni/.local/bin/dcg";
+import { homedir } from "node:os";
+import { join } from "node:path";
+
+const DCG_BIN = join(homedir(), ".local", "bin", "dcg");
 
 export const DcgGuard = async () => {
   return {
