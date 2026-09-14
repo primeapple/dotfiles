@@ -24,15 +24,11 @@
         }
     },
     "permission": {
-        "*": "ask",
         "bash": "allow",
         "edit": "allow",
         "external_directory": "ask",
         "webfetch": "allow"
     },
-    "plugin": [
-        "@mohak34/opencode-notifier@0.2.5"
-    ],
     "mcp": {
         "context7": {
             "type": "remote",
