@@ -2,16 +2,12 @@
 set -euo pipefail
 
 lock="$HOME/.agents/.skill-lock.json"
-mapfile -t rows < <(jq -r '
-  .skills
-  | to_entries
-  | group_by([.value.source, (.value.ref // "-")])[]
-  | [.[0].value.source, (.[0].value.ref // "-")] + map(.key)
-  | @tsv
-' "$lock")
+if ! command -v jq >/dev/null 2>&1; then
+  echo "Error: jq is required to install skills." >&2
+  exit 1
+fi
 
-for row in "${rows[@]}"; do
-  IFS=$'\t' read -r -a fields <<< "$row"
+while IFS=$'\t' read -r -a fields; do
   source="${fields[0]}"
   ref="${fields[1]}"
   [[ "$ref" == "-" ]] || source="$source#$ref"
@@ -20,4 +16,10 @@ for row in "${rows[@]}"; do
     args+=(--skill "$name")
   done
   npx --yes skills add "$source" "${args[@]}" -g -a opencode -y
-done
+done < <(jq -r '
+  .skills
+  | to_entries
+  | group_by([.value.source, (.value.ref // "-")])[]
+  | [.[0].value.source, (.[0].value.ref // "-")] + map(.key)
+  | @tsv
+' "$lock")
