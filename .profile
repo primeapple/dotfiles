@@ -11,6 +11,7 @@ export GOPATH=$HOME/go
 
 ### OTHER
 export GTK_USE_PORTAL=0
+export BASH_ENV=$HOME/.bashenv
 
 ### PATH
 export PATH="$HOME/.local/bin:$PATH"
