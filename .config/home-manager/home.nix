@@ -28,6 +28,7 @@
     htop
     kopia
     neovim
+    pi-coding-agent
     ripgrep
     starship
   ];
