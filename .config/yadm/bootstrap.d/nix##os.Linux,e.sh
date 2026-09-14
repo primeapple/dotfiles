@@ -24,4 +24,5 @@ if ! nix-shell -p nix-info --run "nix-info -m" 2>/dev/null; then
 fi
 
 ### Run home-manager switch using the flake
-nix run home-manager/master -- switch --flake "$HOME/.config/home-manager#toni" --impure
+nix run "$HOME/.config/home-manager" -- \
+  switch --flake "$HOME/.config/home-manager#toni" --impure
