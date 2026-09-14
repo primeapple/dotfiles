@@ -119,6 +119,15 @@ echo "## DONE"
 
 ###############################################################################
 
+echo "## TEST: skills are added"
+if [ ! -f ~/.agents/skills/bro/SKILL.md ]; then
+    echo "Error: bro skill doesn't exist."
+    exit 1
+fi
+echo "## DONE"
+
+###############################################################################
+
 echo "## TEST: yadm status returns nothing"
 yadm_status=$(yadm status --porcelain)
 if [[ -n "$yadm_status" ]]; then
