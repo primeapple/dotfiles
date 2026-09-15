@@ -23,6 +23,8 @@ docker_packages=(
 
 base_packages=(
     "fish"
+    "nodejs"
+    "npm"
     "openssh-client"
     "tree-sitter-cli"
     "unzip"
