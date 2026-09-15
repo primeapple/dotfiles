@@ -20,7 +20,7 @@ while IFS=$'\t' read -r -a fields; do
   for name in "${fields[@]:2}"; do
     args+=(--skill "$name")
   done
-  npx --yes skills add "$source" "${args[@]}" -g -a opencode -y
+  npx --yes skills add "$source" "${args[@]}" -g -a opencode -y </dev/null
 done < <(jq -r '
   .skills
   | to_entries
