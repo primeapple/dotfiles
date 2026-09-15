@@ -76,6 +76,13 @@ echo "## DONE"
 
 ###############################################################################
 
+echo "## DEBUG: comparing Fish environments"
+fish -c 'echo "noninteractive PATH:"; string split : "$PATH"; echo "nix:"; command -v nix || true'
+fish -ic 'echo "interactive PATH:"; string split : "$PATH"; echo "nix:"; command -v nix || true'
+echo "## DONE"
+
+###############################################################################
+
 echo "## TEST: nix installed specified applications are available in interactive fish"
 apps=("nix" "home-manager" "nvim" "bat" "eza" "jq")
 for app in "${apps[@]}"; do
