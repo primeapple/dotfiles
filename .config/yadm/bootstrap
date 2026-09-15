@@ -29,17 +29,28 @@ if [[ ! -d "$BOOTSTRAP_D" ]]; then
     exit 1
 fi
 
+reload_environment() {
+    if [[ -r /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+    fi
+
+    if [[ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]]; then
+        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    fi
+}
+
 bootstraps=()
 while IFS= read -r file; do
     bootstraps+=("$file")
 done < <(find -L "$BOOTSTRAP_D" -type f | sort)
 for bootstrap in "${bootstraps[@]}"; do
     if [[ -x "$bootstrap" && ! "$bootstrap" =~ "##" && ! "$bootstrap" =~ "~$" ]]; then
-		echo "Executing file from bootstrap: $bootstrap"
+        echo "Executing file from bootstrap: $bootstrap"
         if ! "$bootstrap"; then
             echo "Error: bootstrap '$bootstrap' failed" >&2
             exit 1
         fi
+        reload_environment
     fi
 done
 

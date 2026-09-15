@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+require_command() {
+  if ! command -v "$1" >/dev/null 2>&1; then
+    echo "Error: $1 is required to install skills." >&2
+    exit 1
+  fi
+}
+
 lock="$HOME/.agents/.skill-lock.json"
-if ! command -v jq >/dev/null 2>&1; then
-  echo "Error: jq is required to install skills." >&2
-  exit 1
-fi
+require_command jq
+require_command npx
 
 while IFS=$'\t' read -r -a fields; do
   source="${fields[0]}"
