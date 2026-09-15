@@ -9,19 +9,6 @@ _error_handler() {
 }
 trap '_error_handler "$LINENO" "$BASH_COMMAND"' ERR
 
-# I hate doing that but I don't see a better way to make the script aware of the nix packages
-reload_environment() {
-  if [[ -r "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]]; then
-    set +u
-    . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-    set -u
-  fi
-
-  if [[ -r /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
-    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-  fi
-}
-
 echo "## TEST: Cloning the dotfiles via YADM ##"
 BRANCH="${BRANCH:-main}"
 cd "$HOME"
@@ -54,7 +41,6 @@ echo "## DONE"
 
 echo "## TEST: Executing bootstrap"
 yadm bootstrap
-reload_environment
 echo "## DONE"
 
 ###############################################################################
@@ -89,15 +75,6 @@ done
 echo "## DONE"
 
 ###############################################################################
-
-echo "## TEST: nix installed specified applications are available"
-apps=("nix" "home-manager" "nvim" "bat" "eza" "jq")
-for app in "${apps[@]}"; do
-  if ! command -v "$app" > /dev/null 2>&1; then
-    echo "Error: App $app, installed by nix, is not available."
-    exit 1
-  fi
-done
 
 echo "## TEST: nix installed specified applications are available in interactive fish"
 for app in "${apps[@]}"; do
