@@ -12,6 +12,14 @@ lock="$HOME/.agents/.skill-lock.json"
 require_command jq
 require_command npx
 
+lock_backup=$(mktemp)
+cp "$lock" "$lock_backup"
+restore_lock() {
+  cp "$lock_backup" "$lock"
+  rm -f "$lock_backup"
+}
+trap restore_lock EXIT
+
 while IFS=$'\t' read -r -a fields; do
   source="${fields[0]}"
   ref="${fields[1]}"
