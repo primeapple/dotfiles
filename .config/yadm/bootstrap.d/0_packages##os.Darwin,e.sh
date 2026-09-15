@@ -8,6 +8,7 @@ brew_packages=(
     "gnupg"
     "gnu-sed"
     "lua"
+    "node"
     "python"
     "syncthing"
     "tree-sitter-cli"

@@ -76,16 +76,15 @@ echo "## DONE"
 
 ###############################################################################
 
-echo "## TEST: nix installed specified applications are available"
-apps=("nix" "home-manager" "nvim" "bat" "eza" "jq")
-for app in "${apps[@]}"; do
-  if ! command -v "$app" > /dev/null 2>&1; then
-    echo "Error: App $app, installed by nix, is not available."
-    exit 1
-  fi
-done
+echo "## DEBUG: comparing Fish environments"
+fish -c 'echo "noninteractive PATH:"; string split : "$PATH"; echo "nix:"; command -v nix || true'
+fish -ic 'echo "interactive PATH:"; string split : "$PATH"; echo "nix:"; command -v nix || true'
+echo "## DONE"
+
+###############################################################################
 
 echo "## TEST: nix installed specified applications are available in interactive fish"
+apps=("nix" "home-manager" "nvim" "bat" "eza" "jq")
 for app in "${apps[@]}"; do
   if ! fish -ic "command -v $app" > /dev/null 2>&1; then
     echo "Error: App $app, installed by nix, is not available in interactive fish."

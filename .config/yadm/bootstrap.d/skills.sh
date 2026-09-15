@@ -1,11 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+require_command() {
+  if ! command -v "$1" >/dev/null 2>&1; then
+    echo "Error: $1 is required to install skills." >&2
+    exit 1
+  fi
+}
+
 lock="$HOME/.agents/.skill-lock.json"
-if ! command -v jq >/dev/null 2>&1; then
-  echo "Error: jq is required to install skills." >&2
-  exit 1
-fi
+require_command jq
+require_command npx
+
+lock_backup=$(mktemp)
+cp "$lock" "$lock_backup"
+restore_lock() {
+  cp "$lock_backup" "$lock"
+  rm -f "$lock_backup"
+}
+trap restore_lock EXIT
 
 while IFS=$'\t' read -r -a fields; do
   source="${fields[0]}"
@@ -15,7 +28,7 @@ while IFS=$'\t' read -r -a fields; do
   for name in "${fields[@]:2}"; do
     args+=(--skill "$name")
   done
-  npx --yes skills add "$source" "${args[@]}" -g -a opencode -y
+  npx --yes skills add "$source" "${args[@]}" -g -a opencode -y </dev/null
 done < <(jq -r '
   .skills
   | to_entries

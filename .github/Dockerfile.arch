@@ -1,7 +1,7 @@
 FROM archlinux:base
 
 RUN pacman -Syu --noconfirm \
-    && pacman -S --noconfirm fish yadm sudo
+    && pacman -S --noconfirm curl sudo yadm
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN useradd --create-home --groups wheel --shell /bin/bash toni \
