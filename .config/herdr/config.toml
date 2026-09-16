@@ -5,6 +5,7 @@ name = "kanagawa"
 
 [terminal]
 new_cwd = "follow"
+kitty_graphics = true
 
 [ui.toast]
 delivery = "system"
