@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     ast-grep
+    jwt-cli
     hyperfine
     llama-cpp
     mvnd
