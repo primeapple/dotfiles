@@ -1,0 +1,39 @@
+{
+  "providers": {
+    "amazon-bedrock": {
+      "modelOverrides": {
+        "global.openai.gpt-5.6-luna": {
+          "input": ["text", "image"],
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": null,
+            "xhigh": null,
+            "max": "max"
+          }
+        }
+      }
+    },
+    "opencode": {
+      "modelOverrides": {
+        "luna": {
+          "input": ["text", "image"],
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": null,
+            "xhigh": null,
+            "max": "max"
+          }
+        },
+        "glm-5.3-flash": {
+          "input": ["text", "image"]
+        }
+      }
+    }
+  }
+}
