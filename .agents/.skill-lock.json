@@ -90,12 +90,32 @@
       "skillFolderHash": "cb6e53477eaf04e6daeca22feacb85f9ce20d40c",
       "installedAt": "2026-09-14T20:05:06.239Z",
       "updatedAt": "2026-09-14T20:05:06.239Z"
+    },
+    "bookmarker": {
+      "source": "primeapple/bookmarker",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/primeapple/bookmarker.git",
+      "skillPath": "skills/bookmarker/SKILL.md",
+      "skillFolderHash": "e1ed0d436b1e3495490c327b627a2b6d20422962",
+      "installedAt": "2026-09-18T08:05:21.280Z",
+      "updatedAt": "2026-09-18T08:05:21.280Z"
     }
   },
   "dismissed": {
     "findSkillsPrompt": true
   },
   "lastSelectedAgents": [
-    "opencode"
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "droid",
+    "gemini-cli",
+    "github-copilot",
+    "kilo",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed"
   ]
 }
