@@ -5,8 +5,7 @@
       "args": [
         "-y",
         "chrome-devtools-mcp@latest",
-        "--no-usage-statistics",
-        "--slim"
+        "--no-usage-statistics"
       ]
     },
     "exa": {
