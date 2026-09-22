@@ -1,0 +1,6 @@
+{
+  "tui.input.tab": "ctrl+y",
+  "tui.editor.yank": [],
+  "app.thinking.cycle": "ctrl+t",
+  "app.thinking.toggle": []
+}
