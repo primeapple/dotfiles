@@ -3,6 +3,7 @@
   "theme": "dark",
   "enabledModels": [
     "amazon-bedrock/global.openai.gpt-5.6-luna",
+    "amazon-bedrock/us.moonshotai.kimi-k3",
     "opencode/glm-5.3-flash",
     "opencode/gpt-5.6-luna"
   ],
@@ -13,5 +14,9 @@
   },
   "packages": [
     "npm:pi-mcp-adapter"
-  ]
+  ],
+  "terminal": {
+    "showImages": false
+  },
+  "treeFilterMode": "no-tools"
 }

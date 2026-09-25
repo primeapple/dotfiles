@@ -1,5 +1,8 @@
 {
   "tui.input.tab": "ctrl+y",
+  "tui.select.up": "ctrl+p",
+  "tui.select.down": "ctrl+n",
+  "app.model.cycleForward": [],
   "tui.editor.yank": [],
   "app.thinking.cycle": "ctrl+t",
   "app.thinking.toggle": []

@@ -109,6 +109,15 @@
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-09-20T11:23:17.693Z",
       "updatedAt": "2026-09-20T11:23:17.693Z"
+    },
+    "code-review-and-quality": {
+      "source": "addyosmani/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
+      "skillPath": "skills/code-review-and-quality/SKILL.md",
+      "skillFolderHash": "8c26aef07c0ac94770d48ed68e72c0fd585420a6",
+      "installedAt": "2026-09-23T11:23:46.253Z",
+      "updatedAt": "2026-09-23T11:23:46.253Z"
     }
   },
   "dismissed": {
