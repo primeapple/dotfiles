@@ -118,6 +118,15 @@
       "skillFolderHash": "8c26aef07c0ac94770d48ed68e72c0fd585420a6",
       "installedAt": "2026-09-23T11:23:46.253Z",
       "updatedAt": "2026-09-23T11:23:46.253Z"
+    },
+    "easy-wins": {
+      "source": "primeapple/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/primeapple/skills.git",
+      "skillPath": "skills/easy-wins/SKILL.md",
+      "skillFolderHash": "eecbfaa9c557252d730181979e78e7de1f71bfad",
+      "installedAt": "2026-09-25T11:50:37.765Z",
+      "updatedAt": "2026-09-25T12:13:03.300Z"
     }
   },
   "dismissed": {
