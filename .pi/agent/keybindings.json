@@ -1,7 +1,7 @@
 {
   "tui.input.tab": "ctrl+y",
-  "tui.select.up": "ctrl+p",
-  "tui.select.down": "ctrl+n",
+  "tui.select.up": ["ctrl+p", "up"],
+  "tui.select.down": ["ctrl+n", "down"],
   "app.model.cycleForward": [],
   "tui.editor.yank": [],
   "app.thinking.cycle": "ctrl+t",
