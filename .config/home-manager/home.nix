@@ -92,11 +92,14 @@
       if command -v starship >/dev/null
           starship init fish | source
       end
+
+      if command -v mise >/dev/null
+          mise activate fish | source
+      end
     '';
     plugins = [
         { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
         { name = "sdkman-for-fish"; src = pkgs.fishPlugins.sdkman-for-fish.src; }
-        { name = "nvm"; src = pkgs.fishPlugins.nvm.src; }
         {
             name = "worktree";
             src = pkgs.fetchFromGitHub {

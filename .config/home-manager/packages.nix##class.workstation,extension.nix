@@ -6,6 +6,7 @@
     jwt-cli
     hyperfine
     llama-cpp
+    mise
     mvnd
     pi-coding-agent
     toot
