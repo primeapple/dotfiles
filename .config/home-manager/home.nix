@@ -99,7 +99,6 @@
     '';
     plugins = [
         { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
-        { name = "sdkman-for-fish"; src = pkgs.fishPlugins.sdkman-for-fish.src; }
         {
             name = "worktree";
             src = pkgs.fetchFromGitHub {

@@ -3,11 +3,23 @@ return {
     cond = require('toni.utils').is_workstation,
     ft = 'java',
     config = function()
+        local function mise_java_home(version)
+            local java_home = vim.fn.trim(vim.fn.system({
+                "mise",
+                "where",
+                "java@" .. version,
+            }))
+            assert(vim.v.shell_error == 0, "mise Java " .. version .. " is not installed; run `mise install`")
+            return java_home
+        end
+
+        local java_21_home = mise_java_home("temurin-21")
+        local java_26_home = mise_java_home("temurin-26")
+
         vim.lsp.config("jdtls", {
             root_markers = { "gradlew", "settings.gradle.kts", ".git" },
-            -- TODO use $SDKMAN_DIR
             cmd_env = {
-                JAVA_HOME = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/21.0.12-amzn",
+                JAVA_HOME = java_21_home,
             },
             settings = {
                 java = {
@@ -22,16 +34,16 @@ return {
                         runtimes = {
                             {
                                 name = "JavaSE-21",
-                                path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/21.0.12-amzn",
+                                path = java_21_home,
                             },
                             {
                                 name = "JavaSE-26",
-                                path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/26-amzn",
-                            }
+                                path = java_26_home,
+                            },
                         },
-                    }
-                }
-            }
+                    },
+                },
+            },
         })
         vim.lsp.enable("jdtls")
     end,
