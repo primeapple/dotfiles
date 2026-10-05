@@ -74,6 +74,15 @@
 
   programs.fish = {
     enable = true;
+    shellInit = ''
+      if command -v mise >/dev/null
+          mise activate fish | source
+      end
+
+      if command -v starship >/dev/null
+          starship init fish | source
+      end
+    '';
     interactiveShellInit = ''
       set fish_greeting 'Welcome to fish 🐟'
       set fish_features qmark-noglob
@@ -85,19 +94,14 @@
       # default is 50 iirc
       set -g fish_escape_delay_ms 10
 
+      set -g async_prompt_inherit_variables status pipestatus SHLVL CMD_DURATION fish_bind_mode COLUMNS
+
       if command -v bm >/dev/null
           command bm init fish | source
       end
-
-      if command -v starship >/dev/null
-          starship init fish | source
-      end
-
-      if command -v mise >/dev/null
-          mise activate fish | source
-      end
     '';
     plugins = [
+        { name = "async-prompt"; src = pkgs.fishPlugins.async-prompt.src; }
         { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
         {
             name = "worktree";
