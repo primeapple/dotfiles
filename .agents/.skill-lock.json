@@ -126,7 +126,16 @@
       "skillPath": "skills/easy-wins/SKILL.md",
       "skillFolderHash": "eecbfaa9c557252d730181979e78e7de1f71bfad",
       "installedAt": "2026-09-25T11:50:37.765Z",
-      "updatedAt": "2026-09-25T12:13:03.300Z"
+      "updatedAt": "2026-10-09T10:46:26.592Z"
+    },
+    "code-review": {
+      "source": "primeapple/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/primeapple/skills.git",
+      "skillPath": "skills/code-review/SKILL.md",
+      "skillFolderHash": "10d6aa356f0e13b842bd5b98fa50e70dc511e995",
+      "installedAt": "2026-10-09T10:46:26.590Z",
+      "updatedAt": "2026-10-09T10:46:26.590Z"
     }
   },
   "dismissed": {
@@ -143,6 +152,7 @@
     "kilo",
     "kimi-code-cli",
     "opencode",
+    "pi",
     "warp",
     "zed"
   ]
