@@ -79,6 +79,10 @@ if status --is-interactive
         abbr --add --set-cursor ocr opencode run --model lmstudio/gemma4-26b-gguf \"%\"
     end
 
+    if command -v pi >/dev/null
+        abbr --add picr 'pi "Do a code review for this branch compared to the default branch" --model'
+    end
+
     abbr --add cht cht.sh
     abbr --add record 'wf-recorder -g "$(slurp)" -f recording.mp4'
     abbr --add screen 'grim -g "$(slurp)" screenshot.png'
