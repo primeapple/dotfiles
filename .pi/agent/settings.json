@@ -8,13 +8,10 @@
     "opencode/glm-5.3-flash",
     "opencode/gpt-5.6-luna"
   ],
-  "modelThinkingLevels": {
-    "amazon-bedrock/global.openai.gpt-6-luna": "max",
-    "opencode/glm-5.3-flash": "max",
-    "opencode/gpt-5.6-luna": "max"
-  },
   "packages": [
-    "npm:pi-bedrock-compat@0.1.0"
+    "npm:pi-bedrock-compat@0.1.0",
+    "npm:@plannotator/pi-extension",
+    "git:github.com/primeapple/gondolin-rises"
   ],
   "treeFilterMode": "no-tools"
 }
