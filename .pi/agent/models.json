@@ -21,8 +21,6 @@
             "xhigh": null,
             "max": "max"
           }
-        },
-        "global.openai.gpt-6.1-sol": {
         }
       }
     },
@@ -39,7 +37,7 @@
             "max": "max"
           }
         },
-        "glm-5.3-flash": {
+        "deepseek-v4.1-flash": {
           "thinkingLevelMap": {
             "low": null,
             "high": null,
