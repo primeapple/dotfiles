@@ -142,9 +142,11 @@ echo "## DONE"
 ###############################################################################
 
 echo "## TEST: skills are added"
-if [ ! -f ~/.agents/skills/bro/SKILL.md ]; then
-    echo "Error: bro skill doesn't exist."
-    exit 1
+if [[ "${DISTRO:-}" == debian ]]; then
+  echo "## SKIP: skills are not installed on Debian, since it is still on node20"
+elif [ ! -f ~/.agents/skills/bro/SKILL.md ]; then
+  echo "Error: bro skill doesn't exist."
+  exit 1
 fi
 echo "## DONE"
 
