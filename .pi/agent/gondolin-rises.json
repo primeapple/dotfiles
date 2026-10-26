@@ -2,5 +2,6 @@
     "_version": 0,
     "mounts": [
         "../../.agents/"
-    ]
+    ],
+    "sandboxAgentsFile": "../../.agents/SANDBOX_AGENTS.md"
 }
