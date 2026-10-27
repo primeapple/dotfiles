@@ -40,6 +40,10 @@
         "initramfsPackages": [],
         "krunfwVersion": "v5.2.1"
     },
+    "env": {
+        "JAVA_HOME": "/usr/lib/jvm/java-25-openjdk",
+        "PATH": "/usr/lib/jvm/java-25-openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    },
     "rootfs": {
         "label": "gondolin-root"
     }
