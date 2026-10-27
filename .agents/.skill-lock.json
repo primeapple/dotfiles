@@ -26,20 +26,18 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/tdd/SKILL.md",
-      "skillFolderHash": "79288be15c67b849f22b6572056601090fd20913",
-      "pluginName": "mattpocock-skills",
+      "skillFolderHash": "667dbdd00c09d0e2189e082986e6a4d61a67c2a6",
       "installedAt": "2026-09-10T14:30:36.886Z",
-      "updatedAt": "2026-09-14T15:21:14.131Z"
+      "updatedAt": "2026-10-27T14:17:11.291Z"
     },
     "teach": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/productivity/teach/SKILL.md",
-      "skillFolderHash": "2ab11f2f51f3c29771edb5d4258d807a49462491",
-      "pluginName": "mattpocock-skills",
+      "skillFolderHash": "3fd617b610e59acbb99644de1ef37e394ff53cd1",
       "installedAt": "2026-09-10T14:30:36.886Z",
-      "updatedAt": "2026-09-14T15:21:14.135Z"
+      "updatedAt": "2026-10-27T14:17:13.547Z"
     },
     "prototype": {
       "source": "mattpocock/skills",
@@ -87,28 +85,18 @@
       "sourceUrl": "https://github.com/DietrichGebert/ponytail.git",
       "ref": "main",
       "skillPath": "skills/ponytail/SKILL.md",
-      "skillFolderHash": "cb6e53477eaf04e6daeca22feacb85f9ce20d40c",
+      "skillFolderHash": "e8d3fa76e7ff9223a784dbd4bcfc9ff46b3fa55d",
       "installedAt": "2026-09-14T20:05:06.239Z",
-      "updatedAt": "2026-09-14T20:05:06.239Z"
+      "updatedAt": "2026-10-27T14:17:16.960Z"
     },
     "grilling": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/productivity/grilling/SKILL.md",
-      "skillFolderHash": "f0732035b8b1b60ae39454e4191caef32fa91903",
-      "pluginName": "mattpocock-skills",
+      "skillFolderHash": "28aceb4c9567b985cb47f7db88cf23c9f33af8b8",
       "installedAt": "2026-09-20T11:23:17.693Z",
-      "updatedAt": "2026-09-20T11:23:17.693Z"
-    },
-    "code-review-and-quality": {
-      "source": "addyosmani/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/code-review-and-quality/SKILL.md",
-      "skillFolderHash": "8c26aef07c0ac94770d48ed68e72c0fd585420a6",
-      "installedAt": "2026-09-23T11:23:46.253Z",
-      "updatedAt": "2026-09-23T11:23:46.253Z"
+      "updatedAt": "2026-10-27T14:17:14.976Z"
     },
     "easy-wins": {
       "source": "primeapple/skills",
@@ -117,7 +105,7 @@
       "skillPath": "skills/easy-wins/SKILL.md",
       "skillFolderHash": "eecbfaa9c557252d730181979e78e7de1f71bfad",
       "installedAt": "2026-09-25T11:50:37.765Z",
-      "updatedAt": "2026-10-09T10:46:26.592Z"
+      "updatedAt": "2026-10-27T14:42:02.581Z"
     },
     "code-review": {
       "source": "primeapple/skills",
@@ -126,7 +114,25 @@
       "skillPath": "skills/code-review/SKILL.md",
       "skillFolderHash": "10d6aa356f0e13b842bd5b98fa50e70dc511e995",
       "installedAt": "2026-10-09T10:46:26.590Z",
-      "updatedAt": "2026-10-09T10:46:26.590Z"
+      "updatedAt": "2026-10-27T14:42:02.580Z"
+    },
+    "browser": {
+      "source": "primeapple/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/primeapple/skills.git",
+      "skillPath": "skills/browser/SKILL.md",
+      "skillFolderHash": "38de2390d9f37c9c7541d139fe0368ea2137ec78",
+      "installedAt": "2026-10-27T14:20:22.903Z",
+      "updatedAt": "2026-10-27T14:42:02.580Z"
+    },
+    "agents-wishlist": {
+      "source": "primeapple/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/primeapple/skills.git",
+      "skillPath": "skills/agents-wishlist/SKILL.md",
+      "skillFolderHash": "136c0f6aaeea470fd0f142a8464232133a7f47de",
+      "installedAt": "2026-10-27T14:42:02.577Z",
+      "updatedAt": "2026-10-27T14:42:02.577Z"
     }
   },
   "dismissed": {
@@ -138,6 +144,7 @@
     "codex",
     "cursor",
     "droid",
+    "fx",
     "gemini-cli",
     "github-copilot",
     "kilo",
