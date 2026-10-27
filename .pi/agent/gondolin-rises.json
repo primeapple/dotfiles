@@ -1,7 +1,16 @@
 {
     "_version": 0,
     "mounts": [
-        "../../.agents/"
+        "../../.agents/",
+        "../../.local/state/agents-wishlist/"
     ],
-    "sandboxAgentsFile": "../../.agents/SANDBOX_AGENTS.md"
+    "sandboxAgentsFile": "../../.agents/SANDBOX_AGENTS.md",
+    "secrets": {
+        "GH_TOKEN": {
+            "hostEnv": "READONLY_GH_TOKEN",
+            "hosts": [
+                "api.github.com"
+            ]
+        }
+    }
 }
