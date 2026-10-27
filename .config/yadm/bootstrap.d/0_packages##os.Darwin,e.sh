@@ -4,7 +4,6 @@ brew_packages=(
     "coreutils"
     "docker"
     "gh"
-    "gh"
     "gnupg"
     "gnu-sed"
     "lua"

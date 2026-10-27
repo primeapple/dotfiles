@@ -6,6 +6,7 @@
         "kernelPackage": "linux-virt",
         "kernelImage": "vmlinuz-virt",
         "rootfsPackages": [
+            "ast-grep",
             "bash",
             "ca-certificates",
             "curl",
@@ -14,24 +15,32 @@
             "fd",
             "fish",
             "git",
+            "github-cli",
+            "go",
+            "hyperfine",
             "jq",
             "linux-virt",
+            "lua5.4",
             "make",
             "mise",
             "nodejs",
             "npm",
+            "openjdk21",
+            "openjdk25",
             "openssh",
             "python3",
             "ripgrep",
             "rng-tools",
+            "rust",
+            "unzip",
             "uv",
-            "yq"
+            "yq",
+            "zip"
         ],
         "initramfsPackages": [],
         "krunfwVersion": "v5.2.1"
     },
     "rootfs": {
-        "label": "gondolin-root",
-        "sizeMB": 5120
+        "label": "gondolin-root"
     }
 }
