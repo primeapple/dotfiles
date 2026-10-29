@@ -80,7 +80,7 @@ if status --is-interactive
     end
 
     if command -v pi >/dev/null
-        abbr --add picr 'pi "Do a code review for this branch compared to the default branch" --model'
+        abbr --add picr 'pi "/skill:code-review" --model'
     end
 
     abbr --add cht cht.sh
