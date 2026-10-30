@@ -11,6 +11,9 @@
             "hosts": [
                 "api.github.com"
             ]
+        },
+        "NPM_TOKEN": {
+            "hostEnv": "NPM_TOKEN"
         }
     }
 }
