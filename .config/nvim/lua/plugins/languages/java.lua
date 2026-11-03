@@ -14,7 +14,7 @@ return {
         end
 
         local java_21_home = mise_java_home("temurin-21")
-        local java_26_home = mise_java_home("temurin-26")
+        local java_27_home = mise_java_home("temurin-27")
 
         vim.lsp.config("jdtls", {
             root_markers = { "gradlew", "settings.gradle.kts", ".git" },
@@ -38,7 +38,7 @@ return {
                             },
                             {
                                 name = "JavaSE-26",
-                                path = java_26_home,
+                                path = java_27_home,
                             },
                         },
                     },
