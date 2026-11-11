@@ -4,7 +4,7 @@
   "enabledModels": [
     "amazon-bedrock/global.openai.gpt-6-luna",
     "amazon-bedrock/global.openai.gpt-6.1-sol",
-    "amazon-bedrock/us.moonshotai.kimi-k3",
+    "amazon-bedrock/global.moonshotai.kimi-k3.1",
     "opencode/deepseek-v4.1-flash",
     "opencode/gpt-6-luna",
     "opencode/gpt-6.1-sol"
