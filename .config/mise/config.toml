@@ -3,3 +3,5 @@ idiomatic_version_file_enable_tools = ["node"]
 
 [tools]
 java = ["temurin-27", "temurin-21"]
+uv = "latest"
+python = "3.15"
