@@ -2,6 +2,8 @@
   "tui.input.tab": "ctrl+y",
   "tui.select.up": ["ctrl+p", "up"],
   "tui.select.down": ["ctrl+n", "down"],
+  "app.session.togglePath": [],
+  "app.session.toggleNamedFilter": [],
   "app.model.cycleForward": "tab",
   "tui.editor.yank": [],
   "app.thinking.cycle": "ctrl+t",
