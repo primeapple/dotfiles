@@ -1,5 +1,7 @@
 {
   "tui.input.tab": "ctrl+y",
+  "tui.editor.cursorLineEnd": ["end", "ctrl+end"],
+  "app.editor.external": "ctrl+e",
   "tui.select.up": ["ctrl+p", "up"],
   "tui.select.down": ["ctrl+n", "down"],
   "app.session.togglePath": [],

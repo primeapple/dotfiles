@@ -15,5 +15,6 @@
         "NPM_TOKEN": {
             "hostEnv": "NPM_TOKEN"
         }
-    }
+    },
+    "toggleHotkey": "ctrl+g"
 }
