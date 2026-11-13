@@ -1,10 +1,12 @@
 {
-  "lastChangelogVersion": "1.0.0",
+  "lastChangelogVersion": "1.5.2",
   "theme": "dark",
   "enabledModels": [
-    "amazon-bedrock/global.openai.gpt-6-luna",
+    "amazon-bedrock/global.openai.gpt-6.1-terra",
     "amazon-bedrock/global.openai.gpt-6.1-sol",
+    "amazon-bedrock/global.openai.gpt-6-luna",
     "amazon-bedrock/global.moonshotai.kimi-k3.1",
+    "amazon-bedrock/global.anthropic.claude-opus-5-5",
     "opencode/deepseek-v4.1-flash",
     "opencode/gpt-6-luna",
     "opencode/gpt-6.1-sol"
@@ -14,5 +16,8 @@
     "npm:@plannotator/pi-extension",
     "git:github.com/primeapple/gondolin-rises"
   ],
-  "treeFilterMode": "no-tools"
+  "treeFilterMode": "no-tools",
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-bedrock-compat@0.1.0\",\"scope\":\"user\"}": "0.1.0"
+  }
 }

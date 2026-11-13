@@ -2,13 +2,33 @@
   "providers": {
     "amazon-bedrock": {
       "modelOverrides": {
-        "us.moonshotai.kimi-k3": {
+        "global.moonshotai.kimi-k3.1": {
           "thinkingLevelMap": {
             "off": null,
             "minimal": null,
             "low": null,
             "medium": null,
             "high": "high"
+          }
+        },
+        "global.openai.gpt-6.1-sol": {
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": null,
+            "xhigh": "xhigh"
+          }
+        },
+        "global.openai.gpt-6.1-terra": {
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": null,
+            "xhigh": "xhigh"
           }
         },
         "global.openai.gpt-6-luna": {

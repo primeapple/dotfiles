@@ -1,4 +1,5 @@
 {
+  "tui.altScreen.searchNext": [],
   "tui.input.tab": "ctrl+y",
   "tui.editor.cursorLineEnd": ["end", "ctrl+end"],
   "app.editor.external": "ctrl+e",
