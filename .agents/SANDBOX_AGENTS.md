@@ -3,7 +3,6 @@
 ## Environment
 
 - Commands execute inside a Gondolin VM based on Alpine Linux, which uses musl libc.
-- If additional software is needed, tell the user; do not try to install it.
 
 ## General
 

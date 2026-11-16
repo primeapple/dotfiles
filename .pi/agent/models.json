@@ -21,16 +21,6 @@
             "xhigh": "xhigh"
           }
         },
-        "global.openai.gpt-6.1-terra": {
-          "thinkingLevelMap": {
-            "off": null,
-            "minimal": null,
-            "low": null,
-            "medium": null,
-            "high": null,
-            "xhigh": "xhigh"
-          }
-        },
         "global.openai.gpt-6-luna": {
           "thinkingLevelMap": {
             "off": null,
