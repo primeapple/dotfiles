@@ -44,6 +44,11 @@
         "JAVA_HOME": "/usr/lib/jvm/java-25-openjdk",
         "PATH": "/usr/lib/jvm/java-25-openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     },
+    "postBuild": {
+        "commands": [
+            "npm install -g --ignore-scripts @earendil-works/pi-coding-agent"
+        ]
+    },
     "rootfs": {
         "label": "gondolin-root"
     }
