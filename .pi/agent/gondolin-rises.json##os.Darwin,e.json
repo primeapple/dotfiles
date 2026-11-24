@@ -1,0 +1,23 @@
+{
+    "_version": 0,
+    "guestOnlyDirectories": [
+        "nodeModules"
+    ],
+    "mounts": [
+        "../../.agents/",
+        "../../.local/state/agents-wishlist/"
+    ],
+    "sandboxAgentsFile": "../../.agents/SANDBOX_AGENTS.md",
+    "secrets": {
+        "GH_TOKEN": {
+            "hostEnv": "READONLY_GH_TOKEN",
+            "hosts": [
+                "api.github.com"
+            ]
+        },
+        "NPM_TOKEN": {
+            "hostEnv": "NPM_TOKEN"
+        }
+    },
+    "toggleHotkey": "ctrl+g"
+}
