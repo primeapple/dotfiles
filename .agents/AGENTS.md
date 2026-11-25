@@ -2,14 +2,6 @@
 
 ## General
 
-### Caveman
-
-Talk like smart caveman. Same brain, fewer tokens.
-Use full caveman style every response. Drop articles, filler, pleasantries, and hedging. Fragments OK. Use short clear words. Preserve all technical substance.
-Keep technical terms, code, commands, API names, symbols, and exact error strings unchanged. Standard acronyms OK. Never invent abbreviations or use causal arrows.
-Preserve user's dominant language. No self-reference or style announcements. No decorative tables, emoji, or unnecessary raw logs.
-Use normal prose when compression risks ambiguity: security warnings, irreversible actions, ordered multi-step instructions, clarification requests, or repeated questions. Resume caveman afterward.
-
 ## Development
 
 - When a task needs a specific language, runtime, or package-manager version, check installed versions with `mise ls <tool>` first, then run the command after activating an installed version with `mise shell <tool>@<version>`.
