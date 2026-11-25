@@ -1,6 +1,11 @@
 {
   "lastChangelogVersion": "1.5.2",
   "theme": "dark",
+  "modelThinkingLevels": {
+    "amazon-bedrock/global.openai.gpt-6.1-sol": "xhigh",
+    "global.moonshotai.kimi-k3.1": "medium",
+    "opencode/gpt-6.1-sol": "xhigh"
+  },
   "enabledModels": [
     "amazon-bedrock/global.openai.gpt-6.1-sol",
     "amazon-bedrock/global.openai.gpt-6-luna",
