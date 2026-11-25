@@ -23,6 +23,7 @@
             "lua5.4",
             "make",
             "mise",
+            "neovim",
             "nodejs",
             "npm",
             "openjdk21",
