@@ -50,6 +50,7 @@
         ]
     },
     "rootfs": {
-        "label": "gondolin-root"
+        "label": "gondolin-root",
+        "sizeMb": 4096
     }
 }
